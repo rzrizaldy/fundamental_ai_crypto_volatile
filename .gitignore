@@ -1,0 +1,16 @@
+.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+mlruns/
+reports/build/
+dashboard/data/
+data/raw/
+data/processed/
+img/*.png
+models/artifacts/*.joblib
+models/artifacts/*.csv
+models/artifacts/*.json
+handoff/*
+!handoff/.gitkeep

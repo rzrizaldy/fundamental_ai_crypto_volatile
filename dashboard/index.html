@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Volatility Atlas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="kicker">CRYPTO_VOLATILITY_ATLAS // 2026</p>
+          <h1>Real-Time Crypto Volatility Monitor</h1>
+          <p class="lede">
+            Streaming Coinbase market data into Kafka, deriving one-second volatility features,
+            and tracking baseline versus logistic-regression performance through local artifacts.
+          </p>
+        </div>
+        <div class="hero-note">
+          <span>1. LIVE PIPELINE</span>
+          <span>2. MODEL SCORECARD</span>
+          <span>3. METHODS / LOG</span>
+        </div>
+      </header>
+
+      <section class="grid cards" id="summary-cards"></section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Recent Volatility</h2>
+          <p>Last exported rolling-volatility observations from the processed feature store.</p>
+        </div>
+        <div class="table-wrap">
+          <table id="recent-volatility-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Pair</th>
+                <th>Realized Vol 60s</th>
+                <th>Future Sigma 60s</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid two-up">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Feature Distribution Sample</h2>
+            <p>Quick sample rows for spread and volatility diagnostics.</p>
+          </div>
+          <div class="table-wrap compact">
+            <table id="feature-distribution-table">
+              <thead>
+                <tr>
+                  <th>Spread (bps)</th>
+                  <th>Realized Vol 60s</th>
+                  <th>EWMA |Return|</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Model Scorecard</h2>
+            <p>Latest metrics exported from the training pipeline.</p>
+          </div>
+          <pre id="metrics-block" class="code-block">No metrics exported yet.</pre>
+        </article>
+      </section>
+
+      <section class="grid two-up">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Artifact Links</h2>
+            <p>Primary local outputs used for grading and review.</p>
+          </div>
+          <ul class="artifact-list">
+            <li><a href="../reports/model_eval.md">Model evaluation markdown</a></li>
+            <li><a href="../reports/evidently/">Evidently outputs</a></li>
+            <li><a href="../img/model_pr_curve.png">Precision-recall curve</a></li>
+            <li><a href="../models/artifacts/predictions_latest.csv">Latest predictions</a></li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Methods / Log</h2>
+            <p>Short implementation notes in the same spirit as the reference dashboard.</p>
+          </div>
+          <div class="methods-copy">
+            <p>Data source: Coinbase Advanced Trade public market-data WebSocket.</p>
+            <p>Transport: Kafka raw and feature topics with local Docker Compose infrastructure.</p>
+            <p>Feature cadence: 1-second windows with a 60-second future-volatility label horizon.</p>
+            <p>Modeling: z-score baseline and logistic regression with MLflow tracking.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

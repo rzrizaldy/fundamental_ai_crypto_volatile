@@ -1,0 +1,35 @@
+project:
+  name: crypto-volatility
+  author: Rizaldy Utomo
+stream:
+  websocket_url: wss://advanced-trade-ws.coinbase.com
+  pairs:
+    - BTC-USD
+    - ETH-USD
+  channels:
+    - ticker
+    - heartbeats
+  heartbeat_timeout_seconds: 45
+  reconnect_backoff_seconds:
+    min: 1
+    max: 30
+  raw_topic: ticks.raw
+  feature_topic: ticks.features
+  bootstrap_servers: localhost:9092
+features:
+  bar_freq_seconds: 1
+  target_horizon_seconds: 60
+  ewma_span: 15
+  tau_quantile: 0.90
+storage:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  artifacts_dir: models/artifacts
+  dashboard_dir: dashboard/data
+tracking:
+  mlflow_tracking_uri: http://localhost:5000
+  experiment_name: crypto-volatility
+reports:
+  img_dir: img
+  evidently_dir: reports/evidently
+  template_path: templates/report.tex.j2
