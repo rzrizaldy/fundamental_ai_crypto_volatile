@@ -64,6 +64,19 @@ Logistic regression outperforms the baseline on both metrics. PR-AUC improves by
 
 ---
 
+## Dashboard Surface
+
+The dashboard now exposes the model output in a form that is easier to read than raw feature tables:
+
+- **Orange dots** on the volatility timeline show moments when the logistic model flags a spike.
+- **Spike Radar** lists the most recent model-detected spike events with timestamp, pair, realized volatility, and probability.
+- **What This Means Next** translates the one-minute spike probability into a simple turbulence outlook for the next minute, hour, and day.
+- **Price Scenario Compass** adds a separate heuristic layer with up/down bias and upside/downside target ranges for the next hour and day.
+
+The turbulence module is intentionally educational. The price scenario module is also simplified, but it is kept separate from the classifier output because the trained model predicts volatility, not direction.
+
+---
+
 ## Feature Set
 
 Eleven one-second features derived from raw tick data:
@@ -90,8 +103,8 @@ Eleven one-second features derived from raw tick data:
 
 BTC-USD moved from $67,643 to $67,882 (+0.35 %) over 52.7 minutes. The session exhibits a classic calm-volatile-calm pattern:
 
-- **First third (train window):** Moderate tick density, BTC range ≈ 67,600–67,900. Label rate 14 %.
-- **Middle third (val window):** High tick density, concentrated vol bursts. Label rate 37 %.
+- **First third (train window):** Moderate tick density, BTC range ≈ 67,600–67,900. Label rate 20.6 %.
+- **Middle third (val window):** High tick density, concentrated vol bursts. Label rate 56.8 %.
 - **Final third (test window):** BTC stabilises near $67,880. Label rate 5.9 %.
 
 This regime shift — from active middle to calm close — makes the test split genuinely harder than the training data. The test label rate (5.9 %) is substantially below the overall rate (24.9 %), which explains why both models are conservative: the logistic model's predicted positive rate (4.4 %) undershoots the true test label rate, but this is sensible for a detection task where false-positive operational cost is non-trivial.
@@ -122,7 +135,7 @@ The logistic threshold (0.4507) was selected by maximising F1 on the validation 
 
 The default 90th-percentile threshold (τ = 1.04 × 10⁻⁴) was evaluated and rejected: with 42 minutes of data, high-volatility bars concentrate in the first and middle thirds of the session, leaving the validation window with zero positive labels — making threshold selection and F1-based evaluation impossible.
 
-The 75th percentile (τ = 7.83 × 10⁻⁵) produces a usable 24.9 % overall positive rate distributed across all three splits (train 14 %, val 37 %, test 5.9 %). The EDA tau sweep in `notebooks/eda.ipynb` confirms this. A longer session (90+ min) would allow the 90th percentile to be used.
+The 75th percentile (τ = 7.83 × 10⁻⁵) produces a usable 24.9 % overall positive rate distributed across all three splits (train 20.6 %, val 56.8 %, test 5.9 %). The EDA tau sweep in `notebooks/eda.ipynb` confirms this. A longer session (90+ min) would allow the 90th percentile to be used.
 
 ---
 

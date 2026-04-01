@@ -444,6 +444,16 @@ h2 {
   color: var(--ink);
 }
 
+.badge-orange {
+  background: var(--safety-orange);
+  color: var(--paper);
+}
+
+.badge-blue {
+  background: var(--blueprint);
+  color: var(--paper);
+}
+
 /* ── DELTA PANEL ── */
 .delta-panel {}
 
@@ -484,6 +494,198 @@ h2 {
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+/* ── SPIKE RADAR + OUTLOOK ── */
+.spike-list {
+  display: grid;
+  gap: 10px;
+}
+
+.spike-row {
+  display: grid;
+  grid-template-columns: 16px 84px 82px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: var(--paper-dark);
+}
+
+.spike-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--safety-orange);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.spike-time,
+.spike-pair,
+.spike-prob {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.spike-copy {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.student-note,
+.outlook-summary {
+  margin-top: 16px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.outlook-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.outlook-card {
+  padding: 16px 14px;
+  border: 2px solid var(--ink);
+  background: var(--paper-dark);
+}
+
+.outlook-horizon {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.outlook-value {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.outlook-sub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.market-outlook-panel {
+  margin-bottom: 22px;
+}
+
+.market-outlook-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: var(--border);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.market-card {
+  background: var(--paper-dark);
+  padding: 18px 20px;
+  min-height: 100%;
+}
+
+.market-card + .market-card {
+  border-left: var(--border);
+}
+
+.market-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.market-pair {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.market-price {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.market-vol {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.market-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.market-metric {
+  padding: 14px 16px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.market-metric:nth-child(2n) {
+  border-right: none;
+}
+
+.market-metric:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.market-metric-label {
+  margin-bottom: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.market-metric-value {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.market-metric-sub {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.market-footnote {
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* ── PREDICTIONS TABLE ── */
@@ -623,10 +825,31 @@ h2 {
   .two-col { grid-template-columns: 1fr; }
 
   .delta-row { grid-template-columns: 1fr; }
+  .outlook-grid { grid-template-columns: 1fr; }
+  .market-outlook-grid { grid-template-columns: 1fr; }
+  .market-metric-grid { grid-template-columns: 1fr; }
 
   .chart-wrap { height: 260px; }
 
   .metric-grid { grid-template-columns: 1fr; }
   .metric-block { border-right: none; border-bottom: var(--border); }
   .metric-block:last-child { border-bottom: none; }
+
+  .spike-row {
+    grid-template-columns: 16px 1fr;
+  }
+
+  .market-card + .market-card {
+    border-left: none;
+    border-top: var(--border);
+  }
+
+  .market-metric {
+    border-right: none;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .market-metric:last-child {
+    border-bottom: none;
+  }
 }

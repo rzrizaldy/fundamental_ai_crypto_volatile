@@ -10,6 +10,10 @@ This project detects short-horizon volatility spikes in major crypto pairs using
 ## Prediction Goal
 At every one-second feature window, the model predicts whether the next 60 seconds will exhibit unusually high realized volatility. The output is a probability score plus a thresholded binary label.
 
+The dashboard exposes that prediction in two ways:
+- an orange-dot marker when the model flags a live spike
+- a plain-language turbulence outlook that translates the short-horizon signal into a simple “rougher vs calmer” reading for the next minute, hour, and day, similar to the live odds of a yes-or-no question about whether conditions will get rougher
+
 ## Success Metric
 The primary evaluation metric is **PR-AUC** because volatility spikes are relatively rare compared with normal market conditions. F1 at the selected validation threshold is tracked as a supporting metric.
 

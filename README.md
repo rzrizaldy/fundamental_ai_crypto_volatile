@@ -1,6 +1,6 @@
 # Crypto Volatility Pipeline
 
-This repository implements the Canvas assignment for real-time crypto volatility detection using public Coinbase market data, Kafka, MLflow, Evidently, and a lightweight local dashboard.
+This repository implements the Canvas assignment for real-time crypto volatility detection using public Coinbase market data, Kafka, MLflow, Evidently, and a live-capable dashboard with model spike markers and a plain-language volatility outlook.
 
 ## Stack
 - Python 3.12 for project runtime
@@ -31,7 +31,8 @@ cp .env.example .env
 - `scripts/generate_evidently_report.py`: drift and data quality report
 - `scripts/build_report.py`: Markdown to TeX to PDF build helper
 - `scripts/export_dashboard_data.py`: dashboard artifact export
-- `dashboard/`: static interface
+- `scripts/dashboard_server.py`: live SSE dashboard server
+- `dashboard/`: static + live interface
 
 ## Quick Start
 Start infrastructure:
@@ -94,6 +95,18 @@ python -m http.server 8000
 
 Then open `http://localhost:8000/dashboard/`.
 
+Live dashboard mode:
+
+```bash
+python scripts/dashboard_server.py
+```
+
+Then open `http://localhost:8766/` for the live SSE dashboard with:
+- orange-dot spike markers on the volatility chart
+- a spike radar panel for the latest model-triggered events
+- a simple “what this means next” turbulence outlook for the next minute, hour, and day, framed like the live odds of a yes-or-no question: “Will the market get rougher from here?”
+- a companion price-scenario compass with heuristic up/down bias and target ranges for the next hour and day
+
 ## Reporting Workflow
 Source Markdown files:
 - `docs/scoping_brief.md`
@@ -110,5 +123,6 @@ Notebook figures and report figures should be written to `img/`.
 
 ## Notes
 - The project assumes public Coinbase market-data access only.
-- The dashboard is intentionally lightweight and reads exported JSON rather than live sockets.
-- `docs/genai_appendix.md` is written to reflect limited AI assistance for checking and refinement, not primary authorship.
+- The dashboard supports both exported static JSON and live SSE mode on port `8766`.
+- The beginner-facing outlook module is educational and describes turbulence probability, not price direction.
+- The price-scenario compass is a heuristic companion layer driven by recent momentum and current volatility. It should not be described as a trained directional model.

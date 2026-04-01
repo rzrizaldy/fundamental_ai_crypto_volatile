@@ -33,7 +33,7 @@ concentrate in the first and last thirds of the session, leaving the middle wind
 and F1-based evaluation impossible.
 
 The 75th percentile produces a 24.9% positive rate overall and distributes positives
-across train (14%), validation (37%), and test (45%) splits, enabling stable evaluation.
+across train (20.6%), validation (56.8%), and test (5.9%) splits, enabling stable evaluation.
 
 | Percentile | τ value | Overall positive rate |
 |---|---|---|
@@ -44,10 +44,10 @@ across train (14%), validation (37%), and test (45%) splits, enabling stable eva
 **Volatility autocorrelation note:** `realized_vol_60s` (backward 60s window) correlates
 0.991 with `sigma_future_60s`. This reflects genuine volatility persistence in crypto
 (vol clusters at 1-minute scales) rather than data leakage — the two windows are
-non-overlapping. However, it means the logistic model's high PR-AUC (0.978) largely
-reflects this persistence effect rather than richer predictive signal. A longer session
-(multiple hours, different regimes) would reduce this correlation and yield more meaningful
-model comparisons.
+non-overlapping. However, it means the logistic model's strong PR-AUC (0.8439 on the
+final held-out test split) is still driven heavily by persistence rather than richer
+predictive structure. A longer session (multiple hours, different regimes) would reduce
+this correlation and yield more meaningful model comparisons.
 
 ## Core Features
 - `midprice`
@@ -64,3 +64,10 @@ model comparisons.
 
 ## Replay Requirement
 Replay must reuse the same feature code path as live processing so that a saved raw slice reproduces identical feature outputs within floating-point tolerance.
+
+## Dashboard Semantics
+- **Orange dot:** a model-predicted volatility spike (`predicted_spike = 1`)
+- **Next minute / hour / day outlook:** a plain-language turbulence summary derived from the current 60-second spike probability, recent realized volatility, and short-window pressure trend, framed like the live odds of a yes-or-no question about whether conditions will get rougher
+- **Price Scenario Compass:** a heuristic directional companion that uses recent signed return momentum for up/down bias and current realized volatility for rough upside/downside target ranges
+- The dashboard outlook is educational and should not be described as a price-direction forecast
+- The price scenario module is not a trained directional classifier and should be described as a heuristic companion layer

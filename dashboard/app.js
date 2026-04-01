@@ -22,6 +22,7 @@ let chartInstance  = null;
 let activePair     = 'BTC-USD';
 let dashData       = null;
 let isLive         = false;
+let liveSpikeEvents = [];
 
 // Chart data buffers per product (live mode)
 const liveBuffers = {
@@ -131,6 +132,253 @@ function renderDeltaBars(data) {
   document.getElementById('delta-f1-val').textContent    = (f1Delta>=0?'+':'')+f1Delta.toFixed(2)+' PP';
 }
 
+function renderSpikeRadar(data) {
+  const status = document.getElementById('spike-status');
+  const host = document.getElementById('spike-radar-list');
+  const sourceRows = (data.recent_spikes || []).slice(0, 12);
+  const byPair = {};
+  sourceRows.forEach((row) => {
+    const key = row.product_id || 'UNKNOWN';
+    if (!byPair[key]) byPair[key] = [];
+    byPair[key].push(row);
+  });
+  const pairOrder = Object.keys(byPair).sort();
+  const rows = [];
+  for (let round = 0; round < 8; round += 1) {
+    for (const pair of pairOrder) {
+      const next = byPair[pair]?.shift();
+      if (next) rows.push(next);
+      if (rows.length >= 8) break;
+    }
+    if (rows.length >= 8) break;
+  }
+
+  if (!rows.length) {
+    status.textContent = 'NO ACTIVE SPIKE';
+    status.className = 'badge badge-muted';
+    host.innerHTML = `<div class="spike-row"><div class="spike-dot"></div><div class="spike-copy">No spike events exported yet.</div></div>`;
+    return;
+  }
+
+  const latest = rows[0];
+  status.textContent = `${latest.product_id} SPIKE`;
+  status.className = 'badge badge-orange';
+  host.innerHTML = rows.map((row) => {
+    const time = String(row.window_end_ts || '').slice(11, 19);
+    const prob = row.logistic_probability != null ? `${(row.logistic_probability * 100).toFixed(1)}%` : '—';
+    const vol = row.realized_vol_60s != null ? row.realized_vol_60s.toExponential(2) : '—';
+    return `<div class="spike-row">
+      <div class="spike-dot"></div>
+      <div class="spike-time">${time}</div>
+      <div class="spike-pair">${row.product_id || '—'}</div>
+      <div class="spike-copy">vol ${vol} · price ${fmtPx(row.midprice) ?? '—'}</div>
+      <div class="spike-prob">${prob}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderOutlook(data, pair = activePair) {
+  const outlooks = data.probability_outlook || {};
+  const outlook = outlooks[pair];
+  if (!outlook) return;
+  document.getElementById('outlook-pair').textContent = pair;
+  document.getElementById('outlook-minute-up').textContent = `${(outlook.next_minute.higher_turbulence * 100).toFixed(0)}%`;
+  document.getElementById('outlook-minute-down').textContent = `${(outlook.next_minute.calmer_conditions * 100).toFixed(0)}% calmer`;
+  document.getElementById('outlook-hour-up').textContent = `${(outlook.next_hour.higher_turbulence * 100).toFixed(0)}%`;
+  document.getElementById('outlook-hour-down').textContent = `${(outlook.next_hour.calmer_conditions * 100).toFixed(0)}% calmer`;
+  document.getElementById('outlook-day-up').textContent = `${(outlook.next_day.higher_turbulence * 100).toFixed(0)}%`;
+  document.getElementById('outlook-day-down').textContent = `${(outlook.next_day.calmer_conditions * 100).toFixed(0)}% calmer`;
+  document.getElementById('student-summary').textContent = outlook.student_summary;
+}
+
+function clampProbability(value, low = 0.05, high = 0.95) {
+  return Math.min(high, Math.max(low, value));
+}
+
+function mean(arr) {
+  if (!arr.length) return 0;
+  return arr.reduce((sum, value) => sum + value, 0) / arr.length;
+}
+
+function std(arr) {
+  if (arr.length < 2) return 0;
+  const mu = mean(arr);
+  const variance = arr.reduce((sum, value) => sum + (value - mu) ** 2, 0) / (arr.length - 1);
+  return Math.sqrt(variance);
+}
+
+function computeDirectionalProbability(returns) {
+  const filtered = returns.filter((value) => Number.isFinite(value));
+  if (!filtered.length) return 0.5;
+  const short = filtered.slice(-30);
+  const medium = filtered.slice(-120);
+  const shortSignal = mean(short) / Math.max(std(short), 1e-8);
+  const mediumSignal = mean(medium) / Math.max(std(medium), 1e-8);
+  const directionalScore = 0.65 * shortSignal + 0.35 * mediumSignal;
+  const upProbability = 0.5 + 0.22 * Math.tanh(1.75 * directionalScore);
+  return clampProbability(upProbability, 0.25, 0.75);
+}
+
+function projectedMove(price, realizedVol, horizonSeconds, turbulenceProbability) {
+  const floorFraction = horizonSeconds <= 3600 ? 0.0015 : 0.004;
+  const capFraction = horizonSeconds <= 3600 ? 0.04 : 0.12;
+  const turbulenceScale = 0.7 + 0.9 * turbulenceProbability;
+  const rawMove = price * Math.max(realizedVol || 0, 1e-6) * Math.sqrt(horizonSeconds) * turbulenceScale;
+  return Math.min(price * capFraction, Math.max(price * floorFraction, rawMove));
+}
+
+function renderMarketScenarioCard(pair, scenario, outlook) {
+  const slug = pair.startsWith('BTC') ? 'btc' : 'eth';
+  const bias = document.getElementById(`market-${slug}-bias`);
+  bias.textContent = scenario.bias_label || 'MIXED';
+  bias.className = 'badge ' + (
+    scenario.bias_label === 'UP BIAS'
+      ? 'badge-green'
+      : scenario.bias_label === 'DOWN BIAS'
+        ? 'badge-orange'
+        : 'badge-muted'
+  );
+
+  document.getElementById(`market-${slug}-price`).textContent = fmtPx(scenario.current_price);
+  const volatilityCopy = outlook
+    ? `volatility pressure: ${(outlook.next_hour.higher_turbulence * 100).toFixed(0)}% next hour`
+    : 'volatility pressure: —';
+  document.getElementById(`market-${slug}-vol`).textContent = volatilityCopy;
+
+  document.getElementById(`market-${slug}-hour-up-prob`).textContent = `${(scenario.next_hour.up_probability * 100).toFixed(0)}%`;
+  document.getElementById(`market-${slug}-hour-up-move`).textContent = `+${fmtPx(scenario.next_hour.up_move_usd)}`;
+  document.getElementById(`market-${slug}-hour-up-price`).textContent = `to ${fmtPx(scenario.next_hour.up_target)}`;
+  document.getElementById(`market-${slug}-hour-down-prob`).textContent = `${(scenario.next_hour.down_probability * 100).toFixed(0)}%`;
+  document.getElementById(`market-${slug}-hour-down-move`).textContent = `-${fmtPx(scenario.next_hour.down_move_usd)}`;
+  document.getElementById(`market-${slug}-hour-down-price`).textContent = `to ${fmtPx(scenario.next_hour.down_target)}`;
+
+  document.getElementById(`market-${slug}-day-up-prob`).textContent = `${(scenario.next_day.up_probability * 100).toFixed(0)}%`;
+  document.getElementById(`market-${slug}-day-up-move`).textContent = `+${fmtPx(scenario.next_day.up_move_usd)}`;
+  document.getElementById(`market-${slug}-day-up-price`).textContent = `to ${fmtPx(scenario.next_day.up_target)}`;
+  document.getElementById(`market-${slug}-day-down-prob`).textContent = `${(scenario.next_day.down_probability * 100).toFixed(0)}%`;
+  document.getElementById(`market-${slug}-day-down-move`).textContent = `-${fmtPx(scenario.next_day.down_move_usd)}`;
+  document.getElementById(`market-${slug}-day-down-price`).textContent = `to ${fmtPx(scenario.next_day.down_target)}`;
+}
+
+function renderMarketOutlook(data) {
+  const scenarios = data.price_scenarios || {};
+  const outlooks = data.probability_outlook || {};
+  ['BTC-USD', 'ETH-USD'].forEach((pair) => {
+    const scenario = scenarios[pair];
+    if (!scenario) return;
+    renderMarketScenarioCard(pair, scenario, outlooks[pair]);
+  });
+}
+
+function buildLiveOutlook(pair) {
+  const state = liveState[pair] || {};
+  const buf = liveBuffers[pair];
+  if (!state || !buf || !buf.realized.length) return null;
+
+  const realized = buf.realized.filter((v) => v != null);
+  if (!realized.length) return null;
+
+  const latestVol = realized[realized.length - 1];
+  const sorted = [...realized].sort((a, b) => a - b);
+  const rank = sorted.findIndex((v) => v >= latestVol);
+  const volPercentile = rank === -1 ? 1 : (rank + 1) / sorted.length;
+  const latestProb = clampProbability(state.logistic_prob ?? volPercentile);
+
+  const recent = realized.slice(-60);
+  const previous = realized.slice(-120, -60);
+  const mean = (arr) => arr.length ? arr.reduce((sum, value) => sum + value, 0) / arr.length : 0;
+  const prevMean = Math.max(mean(previous) || mean(recent) || 1e-9, 1e-9);
+  const trendRatio = (mean(recent) - prevMean) / prevMean;
+  const trendScore = clampProbability(0.5 + 0.35 * trendRatio);
+  const sessionPressure = buf.spikes.filter((v) => v != null).length / Math.max(buf.spikes.length, 1);
+
+  const minuteUp = clampProbability(0.85 * latestProb + 0.15 * volPercentile);
+  const hourUp = clampProbability(0.55 * latestProb + 0.25 * volPercentile + 0.20 * trendScore);
+  const dayUp = clampProbability(0.30 * latestProb + 0.35 * volPercentile + 0.20 * sessionPressure + 0.15 * trendScore);
+
+  return {
+    pair,
+    next_minute: { higher_turbulence: minuteUp, calmer_conditions: 1 - minuteUp },
+    next_hour: { higher_turbulence: hourUp, calmer_conditions: 1 - hourUp },
+    next_day: { higher_turbulence: dayUp, calmer_conditions: 1 - dayUp },
+    student_summary:
+      `${pair} currently shows a ${(hourUp * 100).toFixed(0)}% chance of rougher-than-normal trading in the next hour ` +
+      `and a ${(dayUp * 100).toFixed(0)}% chance that choppy conditions stay elevated into the next day. ` +
+      `If you imagine a simple yes-or-no question like “Will the market get rougher?”, these percentages are the live odds. ` +
+      `This is an educational turbulence outlook, not a price-direction forecast.`,
+  };
+}
+
+function renderLiveOutlook(pair = activePair) {
+  const outlook = buildLiveOutlook(pair);
+  if (!outlook) return;
+  renderOutlook({ probability_outlook: { [pair]: outlook } }, pair);
+}
+
+function buildLivePriceScenario(pair) {
+  const state = liveState[pair] || {};
+  const buf = liveBuffers[pair];
+  if (!state || !buf || buf.price.length < 3) return null;
+
+  const prices = buf.price.filter((value) => Number.isFinite(value) && value > 0);
+  if (prices.length < 3) return null;
+
+  const returns = [];
+  for (let i = 1; i < prices.length; i += 1) {
+    returns.push(Math.log(prices[i] / prices[i - 1]));
+  }
+
+  const currentPrice = prices[prices.length - 1];
+  const realizedVol = state.realized_vol_60s ?? ((buf.realized[buf.realized.length - 1] || 0) / VOL_SCALE);
+  const latestProb = clampProbability(state.logistic_prob ?? 0.5);
+  const upProbability = computeDirectionalProbability(returns);
+  const downProbability = 1 - upProbability;
+
+  const hourMove = projectedMove(currentPrice, realizedVol, 3600, latestProb);
+  const dayMove = projectedMove(currentPrice, realizedVol, 86400, latestProb);
+
+  let biasLabel = 'MIXED';
+  if (upProbability >= 0.57) biasLabel = 'UP BIAS';
+  if (upProbability <= 0.43) biasLabel = 'DOWN BIAS';
+
+  return {
+    current_price: currentPrice,
+    bias_label: biasLabel,
+    next_hour: {
+      up_probability: upProbability,
+      down_probability: downProbability,
+      up_move_usd: hourMove,
+      down_move_usd: hourMove,
+      up_target: currentPrice + hourMove,
+      down_target: currentPrice - hourMove,
+    },
+    next_day: {
+      up_probability: upProbability,
+      down_probability: downProbability,
+      up_move_usd: dayMove,
+      down_move_usd: dayMove,
+      up_target: currentPrice + dayMove,
+      down_target: currentPrice - dayMove,
+    },
+    summary:
+      `${pair} is trading near ${fmtPx(currentPrice)}. ` +
+      `The current directional bias is ${biasLabel.toLowerCase()}, based on recent return momentum. ` +
+      `A simple next-hour scenario is up ${fmtPx(hourMove)} to ${fmtPx(currentPrice + hourMove)} ` +
+      `or down ${fmtPx(hourMove)} to ${fmtPx(currentPrice - hourMove)}. ` +
+      `This module is heuristic and complements the volatility outlook; it is not a directional model.`,
+  };
+}
+
+function renderLiveMarketOutlook() {
+  ['BTC-USD', 'ETH-USD'].forEach((pair) => {
+    const scenario = buildLivePriceScenario(pair);
+    const outlook = buildLiveOutlook(pair);
+    if (scenario) {
+      renderMarketScenarioCard(pair, scenario, outlook);
+    }
+  });
+}
+
 function renderPredictions(data) {
   const rows  = (data.predictions || []).slice(-20).reverse();
   const tbody = document.querySelector('#pred-table tbody');
@@ -174,7 +422,7 @@ function buildChart(pair) {
   const labels  = s.map(r => String(r.window_end_ts).slice(11, 19));
   const price   = s.map(r => r.midprice   != null ? r.midprice   : null);
   const vol     = s.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
-  const spikes  = s.map(r => r.label === 1 ? (r.realized_vol_60s || 0) * VOL_SCALE : null);
+  const spikes  = s.map(r => (r.predicted_spike === 1 || r.predicted_spike === true) ? (r.realized_vol_60s || 0) * VOL_SCALE : null);
 
   _createChart(pair, labels, price, vol, spikes);
 }
@@ -311,12 +559,19 @@ function _chartOptions(pair) {
 
 function bindPairTabs() {
   document.querySelectorAll('.pair-tabs .tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.pair-tabs .tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activePair = btn.dataset.pair;
-      if (isLive) rebuildLiveChart(activePair);
-      else        buildChart(activePair);
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pair-tabs .tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activePair = btn.dataset.pair;
+        if (isLive) {
+          rebuildLiveChart(activePair);
+          renderLiveOutlook(activePair);
+          renderLiveMarketOutlook();
+        } else {
+          buildChart(activePair);
+          renderOutlook(dashData, activePair);
+          renderMarketOutlook(dashData);
+        }
     });
   });
 }
@@ -373,8 +628,21 @@ function pushLiveTick(event) {
 
   // Update price board & ticker
   updateLivePrices();
+  renderLiveOutlook(activePair);
+  renderLiveMarketOutlook();
 
-  if (event.predicted_spike) flashSpike(pid, event.logistic_prob);
+  if (event.predicted_spike) {
+    liveSpikeEvents.unshift({
+      window_end_ts: event.ts,
+      product_id: pid,
+      midprice: event.midprice,
+      realized_vol_60s: event.realized_vol_60s,
+      logistic_probability: event.logistic_prob,
+    });
+    liveSpikeEvents = liveSpikeEvents.slice(0, 8);
+    renderSpikeRadar({ recent_spikes: liveSpikeEvents });
+    flashSpike(pid, event.logistic_prob);
+  }
 }
 
 function updateLiveChart() {
@@ -497,6 +765,9 @@ async function init() {
     renderScorecard(dashData);
     renderDeltaBars(dashData);
     renderPredictions(dashData);
+    renderSpikeRadar(dashData);
+    renderOutlook(dashData, activePair);
+    renderMarketOutlook(dashData);
     bindPairTabs();
     buildChart(activePair);   // static chart for active pair (BTC-USD default)
   } catch (err) {

@@ -12,7 +12,7 @@ Remaining work is PDF build + optional longer re-ingestion.
 - [x] Models trained → baseline PR-AUC 0.8257, logistic PR-AUC 0.8439 (real metrics)
 - [x] MLflow 2 runs logged to `mlruns/mlflow.db`
 - [x] Evidently `train_vs_test.html` generated
-- [x] `dashboard/data/dashboard.json` exported (with full chart_series, price_summary)
+- [x] `dashboard/data/dashboard.json` exported (with full chart_series, price_summary, recent_spikes, probability_outlook)
 - [x] All metrics_summary.json, predictions_latest.csv, model artifacts are REAL
 - [x] Dashboard rebuilt — PGH Transit Atlas × CoinMarketCap neobrutalist design
 - [x] Chart.js dual-line volatility chart with spike markers (BTC-USD / ETH-USD tabs)
@@ -60,6 +60,7 @@ mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db --port 5002
 - Figures: always from `img/`
 - Notebook style: short interpretation markdown between outputs
 - GenAI appendix (`docs/genai_appendix.md`): AI as limited support/checking — not primary generation
+- Dashboard: preserve the orange-dot spike language and the simple turbulence outlook module
 
 ## Cleanup (optional)
 

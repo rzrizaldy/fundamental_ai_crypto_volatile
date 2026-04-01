@@ -17,19 +17,22 @@
 | Deliverable | Status | Detail |
 |---|---|---|
 | Docker Compose (Kafka + MLflow) | ✅ | `apache/kafka:3.8.0` · MLflow on port 5001 |
-| Live WebSocket ingest — 42 min | ✅ | 32,613 ticks · BTC-USD + ETH-USD |
+| Live WebSocket ingest — 52.7 min | ✅ | 37,435 ticks · BTC-USD + ETH-USD |
 | Kafka `ticks.raw` validated | ✅ | 500 messages confirmed by `kafka_consume_check` |
 | Raw NDJSON mirror | ✅ | `data/raw/2026-04-01/{BTC,ETH}-USD.ndjson` |
-| `features.parquet` (real data) | ✅ | 5,218 rows · source=replay · τ=75th pct |
+| `features.parquet` (real data) | ✅ | 6,326 rows raw · 6,316 usable model rows · source=replay · τ=75th pct |
 | EDA notebook executed | ✅ | `notebooks/eda.ipynb` · figures in `img/` |
-| Baseline z-score | ✅ | PR-AUC **0.967** · F1 **0.833** |
-| Logistic regression | ✅ | PR-AUC **0.978** · F1 **0.864** |
+| Baseline z-score | ✅ | PR-AUC **0.8257** · F1 **0.7582** |
+| Logistic regression | ✅ | PR-AUC **0.8439** · F1 **0.8397** |
 | MLflow 2 runs logged | ✅ | `mlruns/mlflow.db` (SQLite) |
 | Evidently train-vs-test | ✅ | `reports/evidently/train_vs_test.html` + `.json` |
 | Dashboard JSON exported | ✅ | `dashboard/data/dashboard.json` |
+| Live SSE dashboard server | ✅ | `scripts/dashboard_server.py` on port 8766 |
+| Orange-dot spike radar | ✅ | live + static dashboard views |
+| Beginner turbulence outlook | ✅ | next-minute / next-hour / next-day module |
 | Train/test Parquet slices | ✅ | `data/processed/features_{train,test}_slice.parquet` |
 | PR curve figure | ✅ | `img/model_pr_curve.png` |
-| predictions_latest.csv | ✅ | 1,044 test-set rows with scores |
+| predictions_latest.csv | ✅ | 1,264 test-set rows with scores |
 
 **Zero synthetic artifacts remain.**
 
@@ -37,15 +40,15 @@
 
 ## 2. Key Results
 
-### Model evaluation — test split (held-out last 20 %, 1,044 rows)
+### Model evaluation — test split (held-out last 20 %, 1,264 rows)
 
 | Model | PR-AUC | F1 @ threshold | Predicted positive rate |
 |---|---:|---:|---:|
-| Baseline z-score | 0.9668 | 0.8329 | 0.625 |
-| **Logistic regression** | **0.9776** | **0.8640** | **0.349** |
+| Baseline z-score | 0.8257 | 0.7582 | 0.0617 |
+| **Logistic regression** | **0.8439** | **0.8397** | **0.0443** |
 
-Logistic beats baseline on both primary (PR-AUC +1.1 pp) and secondary (F1 +3.1 pp) metrics.
-Logistic threshold = 0.603 (chosen on validation F1). Train time = 0.004 s.
+Logistic beats baseline on both primary (PR-AUC +1.83 pp) and secondary (F1 +8.15 pp) metrics.
+Logistic threshold = 0.4507 (chosen on validation F1). Train time = 0.005 s.
 
 ### Data provenance
 
@@ -53,18 +56,18 @@ Logistic threshold = 0.603 (chosen on validation F1). Train time = 0.004 s.
 |---|---|
 | Exchange | Coinbase Advanced Trade WebSocket (public) |
 | Pairs | BTC-USD, ETH-USD |
-| Session | 2026-04-01T02:33:12Z → 03:15:28Z (≈ 42 min) |
-| Raw ticks | 32,613 (19,581 BTC + 13,032 ETH) |
-| Usable feature rows | 5,218 |
-| Train / Val / Test | 3,130 / 1,044 / 1,044 |
-| Label rate | 24.9% (τ = 75th pct ≈ 8.8 × 10⁻⁵) |
+| Session | 2026-04-01T02:33:12Z → 03:25:54Z (≈ 52.7 min) |
+| Raw ticks | 37,435 (22,335 BTC + 15,100 ETH) |
+| Usable feature rows | 6,316 |
+| Train / Val / Test | 3,789 / 1,263 / 1,264 |
+| Label rate | 24.9% (τ = 75th pct ≈ 7.83 × 10⁻⁵) |
 
 ### Why τ = 75th percentile
 
 The default 90th percentile was evaluated and rejected for this session:
-with 42 minutes of data, high-volatility periods concentrated in the first third
-left the validation window with zero positive labels — making threshold selection impossible.
-The 75th percentile distributes positives across all splits (train 14%, val 38%, test 45%)
+with 52.7 minutes of data, high-volatility periods were still concentrated enough to
+leave the validation window without a usable positive class balance for threshold selection.
+The 75th percentile distributes positives across all splits (train 20.6%, val 56.8%, test 5.9%)
 and is justified via the tau sweep in `notebooks/eda.ipynb`. This is documented in `docs/feature_spec.md`.
 
 ---
@@ -74,10 +77,10 @@ and is justified via the tau sweep in `notebooks/eda.ipynb`. This is documented 
 ```
 data/
   raw/2026-04-01/
-    BTC-USD.ndjson          19,581 live ticks
-    ETH-USD.ndjson          13,032 live ticks
+    BTC-USD.ndjson          22,335 live ticks
+    ETH-USD.ndjson          15,100 live ticks
   processed/
-    features.parquet         5,228 rows · source=replay
+    features.parquet         6,326 rows · source=replay
     features_train_slice.parquet
     features_test_slice.parquet
     features_modelcheck.parquet   (legacy synthetic — safe to delete)
@@ -88,8 +91,8 @@ models/
   artifacts/
     baseline.json            z-score μ/σ/threshold (live data)
     logistic_model.joblib    trained Pipeline (StandardScaler + LogisticRegression)
-    metrics_summary.json     REAL metrics (PR-AUC 0.978 / 0.967)
-    predictions_latest.csv   1,044 test-set rows
+    metrics_summary.json     REAL metrics (PR-AUC 0.8439 / 0.8257)
+    predictions_latest.csv   1,264 test-set rows
     predictions_infer.csv    (re-run infer.py to refresh)
 
 img/
@@ -116,6 +119,7 @@ pipeline/                    Shared library
 scripts/
   ws_ingest.py · replay.py · kafka_consume_check.py
   generate_evidently_report.py · export_dashboard_data.py · build_report.py
+  dashboard_server.py         live SSE dashboard backend
 
 docker/
   compose.yaml               apache/kafka:3.8.0 + MLflow (port 5001)
@@ -226,6 +230,8 @@ Report conventions:
 - Figures always from `img/` folder
 - Short interpretation paragraphs after every evidence block
 - Compact metric tables, no decorative copy
+- Dashboard explanations should keep orange-dot spike language consistent with the UI
+- The probability outlook should stay easy enough for a non-technical student to read
 
 GenAI appendix convention (`docs/genai_appendix.md`):
 - Describe AI as limited support for checking/refinement/debugging
@@ -240,7 +246,7 @@ GenAI appendix convention (`docs/genai_appendix.md`):
 |---|---:|---|
 | Streaming & Packaging | 25 | Kafka up · producer/consumer confirmed · replay verified · Dockerfile present |
 | Feature Engineering & Drift | 25 | 5,218 real rows · EDA executed · Evidently HTML+JSON · tau sweep documented |
-| Modeling & Evaluation | 30 | MLflow 2 runs · PR-AUC 0.978 · model card + all artifacts |
+| Modeling & Evaluation | 30 | MLflow 2 runs · PR-AUC 0.8439 · model card + all artifacts |
 | Docs & Professionalism | 20 | scoping brief · feature spec · model card · GenAI appendix · this handoff |
 | **Total** | **100** | |
 

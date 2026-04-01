@@ -14,3 +14,4 @@ models/artifacts/*.csv
 models/artifacts/*.json
 handoff/*
 !handoff/.gitkeep
+.private/
