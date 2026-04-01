@@ -64,90 +64,76 @@
 
     <main class="shell">
 
-      <section class="panel market-outlook-panel">
-        <div class="panel-head">
-          <div>
-            <h2>LIVE PRICE OUTLOOK</h2>
-            <p class="panel-sub">Primary market view for both tracked pairs. Large number = current price. Small caption = current volatility pressure.</p>
+      <section class="market-live-row">
+        <div class="market-live-card" id="market-card-btc">
+          <div class="market-live-head">
+            <div class="kpi-label">BTC-USD LIVE PRICE</div>
+            <span class="badge badge-muted" id="market-btc-bias">MIXED</span>
           </div>
-          <span class="badge badge-blue">BTC + ETH</span>
+          <div class="market-live-price" id="market-btc-price">—</div>
+          <div class="market-live-vol" id="market-btc-vol">VOLATILITY PRESSURE: —</div>
+          <div class="market-live-grid">
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · UP</div>
+              <div class="metric-val" id="market-btc-hour-up-prob">—</div>
+              <div class="market-live-sub" id="market-btc-hour-up-move">—</div>
+              <div class="market-live-sub" id="market-btc-hour-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · DOWN</div>
+              <div class="metric-val" id="market-btc-hour-down-prob">—</div>
+              <div class="market-live-sub" id="market-btc-hour-down-move">—</div>
+              <div class="market-live-sub" id="market-btc-hour-down-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · UP</div>
+              <div class="metric-val" id="market-btc-day-up-prob">—</div>
+              <div class="market-live-sub" id="market-btc-day-up-move">—</div>
+              <div class="market-live-sub" id="market-btc-day-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · DOWN</div>
+              <div class="metric-val" id="market-btc-day-down-prob">—</div>
+              <div class="market-live-sub" id="market-btc-day-down-move">—</div>
+              <div class="market-live-sub" id="market-btc-day-down-price">—</div>
+            </div>
+          </div>
         </div>
-        <div class="market-outlook-grid">
-          <div class="market-card" id="market-card-btc">
-            <div class="market-card-head">
-              <div>
-                <div class="market-pair">BTC-USD</div>
-                <div class="market-price" id="market-btc-price">—</div>
-                <div class="market-vol" id="market-btc-vol">volatility: —</div>
-              </div>
-              <span class="badge badge-muted" id="market-btc-bias">MIXED</span>
-            </div>
-            <div class="market-metric-grid">
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT HOUR · UP</div>
-                <div class="market-metric-value" id="market-btc-hour-up-prob">—</div>
-                <div class="market-metric-sub" id="market-btc-hour-up-move">—</div>
-                <div class="market-metric-sub" id="market-btc-hour-up-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT HOUR · DOWN</div>
-                <div class="market-metric-value" id="market-btc-hour-down-prob">—</div>
-                <div class="market-metric-sub" id="market-btc-hour-down-move">—</div>
-                <div class="market-metric-sub" id="market-btc-hour-down-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT DAY · UP</div>
-                <div class="market-metric-value" id="market-btc-day-up-prob">—</div>
-                <div class="market-metric-sub" id="market-btc-day-up-move">—</div>
-                <div class="market-metric-sub" id="market-btc-day-up-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT DAY · DOWN</div>
-                <div class="market-metric-value" id="market-btc-day-down-prob">—</div>
-                <div class="market-metric-sub" id="market-btc-day-down-move">—</div>
-                <div class="market-metric-sub" id="market-btc-day-down-price">—</div>
-              </div>
-            </div>
-          </div>
 
-          <div class="market-card" id="market-card-eth">
-            <div class="market-card-head">
-              <div>
-                <div class="market-pair">ETH-USD</div>
-                <div class="market-price" id="market-eth-price">—</div>
-                <div class="market-vol" id="market-eth-vol">volatility: —</div>
-              </div>
-              <span class="badge badge-muted" id="market-eth-bias">MIXED</span>
+        <div class="market-live-card" id="market-card-eth">
+          <div class="market-live-head">
+            <div class="kpi-label">ETH-USD LIVE PRICE</div>
+            <span class="badge badge-muted" id="market-eth-bias">MIXED</span>
+          </div>
+          <div class="market-live-price" id="market-eth-price">—</div>
+          <div class="market-live-vol" id="market-eth-vol">VOLATILITY PRESSURE: —</div>
+          <div class="market-live-grid">
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · UP</div>
+              <div class="metric-val" id="market-eth-hour-up-prob">—</div>
+              <div class="market-live-sub" id="market-eth-hour-up-move">—</div>
+              <div class="market-live-sub" id="market-eth-hour-up-price">—</div>
             </div>
-            <div class="market-metric-grid">
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT HOUR · UP</div>
-                <div class="market-metric-value" id="market-eth-hour-up-prob">—</div>
-                <div class="market-metric-sub" id="market-eth-hour-up-move">—</div>
-                <div class="market-metric-sub" id="market-eth-hour-up-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT HOUR · DOWN</div>
-                <div class="market-metric-value" id="market-eth-hour-down-prob">—</div>
-                <div class="market-metric-sub" id="market-eth-hour-down-move">—</div>
-                <div class="market-metric-sub" id="market-eth-hour-down-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT DAY · UP</div>
-                <div class="market-metric-value" id="market-eth-day-up-prob">—</div>
-                <div class="market-metric-sub" id="market-eth-day-up-move">—</div>
-                <div class="market-metric-sub" id="market-eth-day-up-price">—</div>
-              </div>
-              <div class="market-metric">
-                <div class="market-metric-label">NEXT DAY · DOWN</div>
-                <div class="market-metric-value" id="market-eth-day-down-prob">—</div>
-                <div class="market-metric-sub" id="market-eth-day-down-move">—</div>
-                <div class="market-metric-sub" id="market-eth-day-down-price">—</div>
-              </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · DOWN</div>
+              <div class="metric-val" id="market-eth-hour-down-prob">—</div>
+              <div class="market-live-sub" id="market-eth-hour-down-move">—</div>
+              <div class="market-live-sub" id="market-eth-hour-down-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · UP</div>
+              <div class="metric-val" id="market-eth-day-up-prob">—</div>
+              <div class="market-live-sub" id="market-eth-day-up-move">—</div>
+              <div class="market-live-sub" id="market-eth-day-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · DOWN</div>
+              <div class="metric-val" id="market-eth-day-down-prob">—</div>
+              <div class="market-live-sub" id="market-eth-day-down-move">—</div>
+              <div class="market-live-sub" id="market-eth-day-down-price">—</div>
             </div>
           </div>
         </div>
-        <div class="market-footnote">Directional bias and target prices are heuristic scenario ranges. The trained model itself predicts volatility, not direction.</div>
       </section>
 
       <!-- ╔══════════════════════════════════════╗
