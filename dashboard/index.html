@@ -102,7 +102,7 @@
         <div class="panel-head">
           <div>
             <h2>VOLATILITY TIMELINE</h2>
-            <p class="panel-sub">LEFT: price % change from session open (BTC + ETH) · RIGHT: realized_vol_60s ×10⁻⁴ · <span class="tag-orange">ORANGE DOTS</span> = model spike flags</p>
+            <p class="panel-sub">LEFT: absolute price (USD) · RIGHT: realized_vol_60s ×10⁻⁴ · <span class="tag-orange">ORANGE DOTS</span> = model spike flags · tabs switch pair</p>
           </div>
           <div class="pair-tabs">
             <button class="tab active" data-pair="BTC-USD">BTC-USD</button>
@@ -113,11 +113,9 @@
           <canvas id="vol-chart"></canvas>
         </div>
         <div class="chart-legend">
-          <span class="legend-item legend-blue">━ BTC PRICE %Δ</span>
-          <span class="legend-item legend-green">━ ETH PRICE %Δ</span>
-          <span class="legend-item" style="color:#5B7CFF">╌ BTC VOL ×10⁻⁴</span>
-          <span class="legend-item" style="color:#33C99A">╌ ETH VOL ×10⁻⁴</span>
-          <span class="legend-item legend-orange">● SPIKE (MODEL)</span>
+          <span class="legend-item legend-blue">━ PRICE (LEFT AXIS, USD)</span>
+          <span class="legend-item" style="color:#5B7CFF">╌ VOL ×10⁻⁴ (RIGHT AXIS)</span>
+          <span class="legend-item legend-orange">● SPIKE (MODEL FLAG)</span>
         </div>
       </section>
 

@@ -166,36 +166,25 @@ const fmtVol  = (v) => v != null ? (v).toFixed(4) + ' ×10⁻⁴' : null;
 const fmtPct  = (v) => v != null ? (v >= 0 ? '+' : '') + v.toFixed(4) + '%' : null;
 const fmtPx   = (v) => v != null ? '$' + Number(v).toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2}) : null;
 
-function buildChart() {
-  const cs  = dashData?.chart_series || {};
-  const btc = cs['BTC-USD'] || [];
-  const eth = cs['ETH-USD'] || [];
-  const maxLen = Math.max(btc.length, eth.length);
-  const step   = Math.max(1, Math.floor(maxLen / 400));
+function buildChart(pair) {
+  const series  = (dashData?.chart_series || {})[pair] || [];
+  const step    = Math.max(1, Math.floor(series.length / 400));
+  const s       = series.filter((_, i) => i % step === 0);
 
-  const btcS = btc.filter((_, i) => i % step === 0);
-  const ethS = eth.filter((_, i) => i % step === 0);
+  const labels  = s.map(r => String(r.window_end_ts).slice(11, 19));
+  const price   = s.map(r => r.midprice   != null ? r.midprice   : null);
+  const vol     = s.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
+  const spikes  = s.map(r => r.label === 1 ? (r.realized_vol_60s || 0) * VOL_SCALE : null);
 
-  // Shared labels from the longer series
-  const primary = btcS.length >= ethS.length ? btcS : ethS;
-  const labels  = primary.map(r => String(r.window_end_ts).slice(11, 19));
-
-  // Price: % change from first point (normalises BTC $68k vs ETH $2k onto same axis)
-  const btcP0  = btcS[0]?.midprice || 1;
-  const ethP0  = ethS[0]?.midprice || 1;
-  const btcPct = btcS.map(r => r.midprice != null ? (r.midprice - btcP0) / btcP0 * 100 : null);
-  const ethPct = ethS.map(r => r.midprice != null ? (r.midprice - ethP0) / ethP0 * 100 : null);
-
-  // Vol × VOL_SCALE (no sci notation: 0.000051 × 10000 = 0.51)
-  const btcVol    = btcS.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
-  const ethVol    = ethS.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
-  const btcSpikes = btcS.map(r => r.label === 1 ? (r.realized_vol_60s || 0) * VOL_SCALE : null);
-
-  _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes });
+  _createChart(pair, labels, price, vol, spikes);
 }
 
-function _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes }) {
+function _createChart(pair, labels, price, vol, spikes) {
   if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  const pairColor = pair === 'BTC-USD' ? TOKENS.blueprint : TOKENS.green;
+  const volColor  = pair === 'BTC-USD' ? '#5B7CFF' : '#33C99A';
+  const currency  = pair.split('-')[0];   // "BTC" or "ETH"
 
   const ctx = document.getElementById('vol-chart').getContext('2d');
   Chart.defaults.font.family = '"JetBrains Mono", monospace';
@@ -206,62 +195,37 @@ function _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes }) {
     data: {
       labels,
       datasets: [
-        // ── Price lines (left axis) ──
+        // ── Absolute price (left axis) ──
         {
-          label:            'BTC PRICE %Δ',
-          data:             btcPct,
+          label:            `${currency} PRICE`,
+          data:             price,
           yAxisID:          'yPrice',
-          borderColor:      TOKENS.blueprint,
+          borderColor:      pairColor,
           backgroundColor:  'transparent',
           borderWidth:      2,
           pointRadius:      0,
           pointHoverRadius: 4,
           tension:          0.15,
+          order:            2,
+        },
+        // ── Vol (right axis) ──
+        {
+          label:            `${currency} VOL ×10⁻⁴`,
+          data:             vol,
+          yAxisID:          'yVol',
+          borderColor:      volColor,
+          backgroundColor:  'transparent',
+          borderWidth:      1.5,
+          borderDash:       [5, 3],
+          pointRadius:      0,
+          pointHoverRadius: 3,
+          tension:          0.2,
           order:            3,
         },
+        // ── Spike markers (right axis) ──
         {
-          label:            'ETH PRICE %Δ',
-          data:             ethPct,
-          yAxisID:          'yPrice',
-          borderColor:      TOKENS.green,
-          backgroundColor:  'transparent',
-          borderWidth:      2,
-          pointRadius:      0,
-          pointHoverRadius: 4,
-          tension:          0.15,
-          order:            4,
-        },
-        // ── Vol lines (right axis) ──
-        {
-          label:            'BTC VOL ×10⁻⁴',
-          data:             btcVol,
-          yAxisID:          'yVol',
-          borderColor:      '#5B7CFF',    // lighter blueprint
-          backgroundColor:  'transparent',
-          borderWidth:      1.5,
-          borderDash:       [5, 3],
-          pointRadius:      0,
-          pointHoverRadius: 3,
-          tension:          0.2,
-          order:            5,
-        },
-        {
-          label:            'ETH VOL ×10⁻⁴',
-          data:             ethVol,
-          yAxisID:          'yVol',
-          borderColor:      '#33C99A',    // lighter green
-          backgroundColor:  'transparent',
-          borderWidth:      1.5,
-          borderDash:       [5, 3],
-          pointRadius:      0,
-          pointHoverRadius: 3,
-          tension:          0.2,
-          order:            6,
-        },
-        // ── BTC Spike markers (right axis) ──
-        {
-          label:            '⚡ SPIKE (BTC)',
-          data:             btcSpikes,
+          label:            '⚡ SPIKE',
+          data:             spikes,
           yAxisID:          'yVol',
           borderColor:      'transparent',
           backgroundColor:  TOKENS.orange,
@@ -272,11 +236,12 @@ function _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes }) {
         },
       ],
     },
-    options: _chartOptions(),
+    options: _chartOptions(pair),
   });
 }
 
-function _chartOptions() {
+function _chartOptions(pair) {
+  const currency = (pair || 'BTC-USD').split('-')[0];
   return {
     responsive:          true,
     maintainAspectRatio: false,
@@ -297,7 +262,7 @@ function _chartOptions() {
           label: (ctx) => {
             const v = ctx.raw;
             if (v === null || v === undefined) return null;
-            if (ctx.datasetIndex <= 1) return ` ${ctx.dataset.label}: ${fmtPct(v)}`;
+            if (ctx.datasetIndex === 0) return ` ${ctx.dataset.label}: ${fmtPx(v)}`;
             return ` ${ctx.dataset.label}: ${fmtVol(v)}`;
           },
         },
@@ -314,12 +279,12 @@ function _chartOptions() {
         ticks:    {
           font:     { size: 10 },
           color:    TOKENS.muted,
-          callback: (v) => (v >= 0 ? '+' : '') + v.toFixed(3) + '%',
+          callback: (v) => '$' + Number(v).toLocaleString('en-US', {maximumFractionDigits: 0}),
         },
-        grid:     { color: TOKENS.grid },
+        grid:  { color: TOKENS.grid },
         title: {
           display: true,
-          text:    'PRICE % CHANGE',
+          text:    `${currency} PRICE (USD)`,
           font:    { size: 9, family: '"JetBrains Mono", monospace' },
           color:   TOKENS.muted,
         },
@@ -330,9 +295,9 @@ function _chartOptions() {
         ticks:    {
           font:     { size: 10 },
           color:    TOKENS.muted,
-          callback: (v) => v.toFixed(3),    // plain decimal, no sci
+          callback: (v) => v.toFixed(3),   // plain decimal, no sci
         },
-        grid:     { drawOnChartArea: false },  // don't overlap left grid
+        grid:     { drawOnChartArea: false },
         title: {
           display: true,
           text:    'VOL × 10⁻⁴',
@@ -345,12 +310,13 @@ function _chartOptions() {
 }
 
 function bindPairTabs() {
-  // Tabs now control which pair's predictions are highlighted — chart always shows both
   document.querySelectorAll('.pair-tabs .tab').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.pair-tabs .tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activePair = btn.dataset.pair;
+      if (isLive) rebuildLiveChart(activePair);
+      else        buildChart(activePair);
     });
   });
 }
@@ -368,8 +334,12 @@ function setLiveBadge(live) {
 }
 
 function initLiveChart() {
-  // Start with empty chart; both pairs accumulate in real time
-  _createChart({ labels: [], btcPct: [], ethPct: [], btcVol: [], ethVol: [], btcSpikes: [] });
+  _createChart(activePair, [], [], [], []);
+}
+
+function rebuildLiveChart(pair) {
+  const buf = liveBuffers[pair];
+  _createChart(pair, [...buf.labels], [...buf.price], [...buf.realized], [...buf.spikes]);
 }
 
 function pushLiveTick(event) {
@@ -381,20 +351,12 @@ function pushLiveTick(event) {
   const buf = liveBuffers[pid];
   const ts  = String(event.ts || '').slice(11, 19);
 
-  // Seed price start on first tick
-  if (buf.priceStart === null && event.midprice != null) {
-    buf.priceStart = event.midprice;
-  }
-
-  const pricePct = buf.priceStart
-    ? (event.midprice - buf.priceStart) / buf.priceStart * 100
-    : 0;
   const volScaled = event.realized_vol_60s != null
     ? event.realized_vol_60s * VOL_SCALE
     : null;
 
   buf.labels.push(ts);
-  buf.price.push(pricePct);
+  buf.price.push(event.midprice ?? null);   // absolute price, no normalisation
   buf.realized.push(volScaled);
   buf.spikes.push(event.predicted_spike ? volScaled : null);
 
@@ -417,22 +379,14 @@ function pushLiveTick(event) {
 
 function updateLiveChart() {
   if (!chartInstance) return;
+  const buf = liveBuffers[activePair];
+  if (!buf.labels.length) return;
 
-  const btcBuf = liveBuffers['BTC-USD'];
-  const ethBuf = liveBuffers['ETH-USD'];
-  const n      = btcBuf.labels.length;
-  if (n === 0) return;
-
-  // Align ETH to BTC length (pad with nulls at start if ETH is shorter)
-  const pad = (arr) => arr.length >= n ? arr.slice(-n) : [...Array(n - arr.length).fill(null), ...arr];
-
-  chartInstance.data.labels = btcBuf.labels;
+  chartInstance.data.labels         = buf.labels;
   const ds = chartInstance.data.datasets;
-  ds[0].data = btcBuf.price;
-  ds[1].data = pad(ethBuf.price);
-  ds[2].data = btcBuf.realized;
-  ds[3].data = pad(ethBuf.realized);
-  ds[4].data = btcBuf.spikes;
+  ds[0].data                        = buf.price;
+  ds[1].data                        = buf.realized;
+  ds[2].data                        = buf.spikes;
   chartInstance.update('none');
 }
 
@@ -544,7 +498,7 @@ async function init() {
     renderDeltaBars(dashData);
     renderPredictions(dashData);
     bindPairTabs();
-    buildChart();   // static chart from history — both BTC + ETH, dual-axis
+    buildChart(activePair);   // static chart for active pair (BTC-USD default)
   } catch (err) {
     console.error('[CVI] Static load failed:', err);
     document.getElementById('kpi-bars').textContent = 'ERR';
