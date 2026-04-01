@@ -102,7 +102,7 @@
         <div class="panel-head">
           <div>
             <h2>VOLATILITY TIMELINE</h2>
-            <p class="panel-sub">realized_vol_60s (backward 60s σ) vs sigma_future_60s (forward 60s σ) · <span class="tag-orange">ORANGE DOTS</span> = spike labels (label=1)</p>
+            <p class="panel-sub">LEFT: price % change from session open (BTC + ETH) · RIGHT: realized_vol_60s ×10⁻⁴ · <span class="tag-orange">ORANGE DOTS</span> = model spike flags</p>
           </div>
           <div class="pair-tabs">
             <button class="tab active" data-pair="BTC-USD">BTC-USD</button>
@@ -113,9 +113,11 @@
           <canvas id="vol-chart"></canvas>
         </div>
         <div class="chart-legend">
-          <span class="legend-item legend-blue">— REALIZED_VOL_60S</span>
-          <span class="legend-item legend-green">— SIGMA_FUTURE_60S</span>
-          <span class="legend-item legend-orange">● SPIKE (LABEL=1)</span>
+          <span class="legend-item legend-blue">━ BTC PRICE %Δ</span>
+          <span class="legend-item legend-green">━ ETH PRICE %Δ</span>
+          <span class="legend-item" style="color:#5B7CFF">╌ BTC VOL ×10⁻⁴</span>
+          <span class="legend-item" style="color:#33C99A">╌ ETH VOL ×10⁻⁴</span>
+          <span class="legend-item legend-orange">● SPIKE (MODEL)</span>
         </div>
       </section>
 

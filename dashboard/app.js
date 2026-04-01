@@ -25,8 +25,8 @@ let isLive         = false;
 
 // Chart data buffers per product (live mode)
 const liveBuffers = {
-  'BTC-USD': { labels: [], realized: [], future: [], spikes: [] },
-  'ETH-USD': { labels: [], realized: [], future: [], spikes: [] },
+  'BTC-USD': { labels: [], price: [], realized: [], spikes: [], priceStart: null },
+  'ETH-USD': { labels: [], price: [], realized: [], spikes: [], priceStart: null },
 };
 
 // Latest live metrics per product
@@ -155,24 +155,46 @@ function renderPredictions(data) {
 
 
 // ── ─────────────────────────────────────────────────────── ──
-//   CHART
+//   CHART  (dual-axis: price % change left, vol×10⁴ right)
+//   Both BTC-USD and ETH-USD always shown
 // ── ─────────────────────────────────────────────────────── ──
 
-function buildChart(pair) {
-  // Static data
-  const series   = ((dashData?.chart_series || {})[pair]) || [];
-  const step     = Math.max(1, Math.floor(series.length / 400));
-  const sampled  = series.filter((_, i) => i % step === 0);
+const VOL_SCALE = 10_000;   // × 10⁴ → readable numbers, no sci notation
 
-  const labels    = sampled.map(r => String(r.window_end_ts).slice(11, 19));
-  const realVol   = sampled.map(r => r.realized_vol_60s);
-  const futureVol = sampled.map(r => r.sigma_future_60s);
-  const spikeData = sampled.map(r => r.label === 1 ? r.realized_vol_60s : null);
+// Format vol back to plain decimal for tooltip: 0.5123 → "0.5123 ×10⁻⁴"
+const fmtVol  = (v) => v != null ? (v).toFixed(4) + ' ×10⁻⁴' : null;
+const fmtPct  = (v) => v != null ? (v >= 0 ? '+' : '') + v.toFixed(4) + '%' : null;
+const fmtPx   = (v) => v != null ? '$' + Number(v).toLocaleString('en-US', {minimumFractionDigits:2,maximumFractionDigits:2}) : null;
 
-  _createChart(labels, realVol, futureVol, spikeData);
+function buildChart() {
+  const cs  = dashData?.chart_series || {};
+  const btc = cs['BTC-USD'] || [];
+  const eth = cs['ETH-USD'] || [];
+  const maxLen = Math.max(btc.length, eth.length);
+  const step   = Math.max(1, Math.floor(maxLen / 400));
+
+  const btcS = btc.filter((_, i) => i % step === 0);
+  const ethS = eth.filter((_, i) => i % step === 0);
+
+  // Shared labels from the longer series
+  const primary = btcS.length >= ethS.length ? btcS : ethS;
+  const labels  = primary.map(r => String(r.window_end_ts).slice(11, 19));
+
+  // Price: % change from first point (normalises BTC $68k vs ETH $2k onto same axis)
+  const btcP0  = btcS[0]?.midprice || 1;
+  const ethP0  = ethS[0]?.midprice || 1;
+  const btcPct = btcS.map(r => r.midprice != null ? (r.midprice - btcP0) / btcP0 * 100 : null);
+  const ethPct = ethS.map(r => r.midprice != null ? (r.midprice - ethP0) / ethP0 * 100 : null);
+
+  // Vol × VOL_SCALE (no sci notation: 0.000051 × 10000 = 0.51)
+  const btcVol    = btcS.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
+  const ethVol    = ethS.map(r => r.realized_vol_60s != null ? r.realized_vol_60s * VOL_SCALE : null);
+  const btcSpikes = btcS.map(r => r.label === 1 ? (r.realized_vol_60s || 0) * VOL_SCALE : null);
+
+  _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes });
 }
 
-function _createChart(labels, realVol, futureVol, spikeData) {
+function _createChart({ labels, btcPct, ethPct, btcVol, ethVol, btcSpikes }) {
   if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
 
   const ctx = document.getElementById('vol-chart').getContext('2d');
@@ -184,35 +206,66 @@ function _createChart(labels, realVol, futureVol, spikeData) {
     data: {
       labels,
       datasets: [
+        // ── Price lines (left axis) ──
         {
-          label:            'realized_vol_60s',
-          data:             realVol,
+          label:            'BTC PRICE %Δ',
+          data:             btcPct,
+          yAxisID:          'yPrice',
           borderColor:      TOKENS.blueprint,
           backgroundColor:  'transparent',
           borderWidth:      2,
           pointRadius:      0,
-          pointHoverRadius: 3,
-          tension:          0.2,
-          order:            2,
-        },
-        {
-          label:            'sigma_future_60s',
-          data:             futureVol,
-          borderColor:      TOKENS.green,
-          backgroundColor:  'transparent',
-          borderWidth:      1.5,
-          borderDash:       [4, 3],
-          pointRadius:      0,
-          pointHoverRadius: 3,
-          tension:          0.2,
+          pointHoverRadius: 4,
+          tension:          0.15,
           order:            3,
         },
         {
-          label:            'spike (label=1)',
-          data:             spikeData,
+          label:            'ETH PRICE %Δ',
+          data:             ethPct,
+          yAxisID:          'yPrice',
+          borderColor:      TOKENS.green,
+          backgroundColor:  'transparent',
+          borderWidth:      2,
+          pointRadius:      0,
+          pointHoverRadius: 4,
+          tension:          0.15,
+          order:            4,
+        },
+        // ── Vol lines (right axis) ──
+        {
+          label:            'BTC VOL ×10⁻⁴',
+          data:             btcVol,
+          yAxisID:          'yVol',
+          borderColor:      '#5B7CFF',    // lighter blueprint
+          backgroundColor:  'transparent',
+          borderWidth:      1.5,
+          borderDash:       [5, 3],
+          pointRadius:      0,
+          pointHoverRadius: 3,
+          tension:          0.2,
+          order:            5,
+        },
+        {
+          label:            'ETH VOL ×10⁻⁴',
+          data:             ethVol,
+          yAxisID:          'yVol',
+          borderColor:      '#33C99A',    // lighter green
+          backgroundColor:  'transparent',
+          borderWidth:      1.5,
+          borderDash:       [5, 3],
+          pointRadius:      0,
+          pointHoverRadius: 3,
+          tension:          0.2,
+          order:            6,
+        },
+        // ── BTC Spike markers (right axis) ──
+        {
+          label:            '⚡ SPIKE (BTC)',
+          data:             btcSpikes,
+          yAxisID:          'yVol',
           borderColor:      'transparent',
           backgroundColor:  TOKENS.orange,
-          pointRadius:      4,
+          pointRadius:      5,
           pointStyle:       'circle',
           showLine:         false,
           order:            1,
@@ -227,7 +280,7 @@ function _chartOptions() {
   return {
     responsive:          true,
     maintainAspectRatio: false,
-    animation:           { duration: 0 },   // no animation in live mode
+    animation:           { duration: 0 },
     interaction:         { mode: 'index', intersect: false },
     plugins: {
       legend: { display: false },
@@ -242,9 +295,10 @@ function _chartOptions() {
         padding:    10,
         callbacks: {
           label: (ctx) => {
-            if (ctx.datasetIndex === 2 && ctx.raw === null) return null;
-            if (ctx.raw === null || ctx.raw === undefined)  return null;
-            return ` ${ctx.dataset.label}: ${ctx.raw.toExponential(3)}`;
+            const v = ctx.raw;
+            if (v === null || v === undefined) return null;
+            if (ctx.datasetIndex <= 1) return ` ${ctx.dataset.label}: ${fmtPct(v)}`;
+            return ` ${ctx.dataset.label}: ${fmtVol(v)}`;
           },
         },
       },
@@ -254,25 +308,49 @@ function _chartOptions() {
         ticks: { maxTicksLimit: 8, maxRotation: 0, font: { size: 10 }, color: TOKENS.muted },
         grid:  { color: TOKENS.grid },
       },
-      y: {
-        ticks: { font: { size: 10 }, color: TOKENS.muted, callback: (v) => v.toExponential(1) },
-        grid:  { color: TOKENS.grid },
+      yPrice: {
+        type:     'linear',
+        position: 'left',
+        ticks:    {
+          font:     { size: 10 },
+          color:    TOKENS.muted,
+          callback: (v) => (v >= 0 ? '+' : '') + v.toFixed(3) + '%',
+        },
+        grid:     { color: TOKENS.grid },
+        title: {
+          display: true,
+          text:    'PRICE % CHANGE',
+          font:    { size: 9, family: '"JetBrains Mono", monospace' },
+          color:   TOKENS.muted,
+        },
+      },
+      yVol: {
+        type:     'linear',
+        position: 'right',
+        ticks:    {
+          font:     { size: 10 },
+          color:    TOKENS.muted,
+          callback: (v) => v.toFixed(3),    // plain decimal, no sci
+        },
+        grid:     { drawOnChartArea: false },  // don't overlap left grid
+        title: {
+          display: true,
+          text:    'VOL × 10⁻⁴',
+          font:    { size: 9, family: '"JetBrains Mono", monospace' },
+          color:   TOKENS.muted,
+        },
       },
     },
   };
 }
 
 function bindPairTabs() {
+  // Tabs now control which pair's predictions are highlighted — chart always shows both
   document.querySelectorAll('.pair-tabs .tab').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.pair-tabs .tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activePair = btn.dataset.pair;
-      if (isLive) {
-        rebuildLiveChart(activePair);
-      } else {
-        buildChart(activePair);
-      }
     });
   });
 }
@@ -289,55 +367,73 @@ function setLiveBadge(live) {
   badge.classList.toggle('is-live', live);
 }
 
-function initLiveChart(pair) {
-  const buf = liveBuffers[pair];
-  _createChart([...buf.labels], [...buf.realized], [...buf.future], [...buf.spikes]);
-}
-
-function rebuildLiveChart(pair) {
-  const buf = liveBuffers[pair];
-  _createChart([...buf.labels], [...buf.realized], [...buf.future], [...buf.spikes]);
+function initLiveChart() {
+  // Start with empty chart; both pairs accumulate in real time
+  _createChart({ labels: [], btcPct: [], ethPct: [], btcVol: [], ethVol: [], btcSpikes: [] });
 }
 
 function pushLiveTick(event) {
   const pid = event.product_id;
   if (!pid) return;
 
-  // Store latest state
   liveState[pid] = event;
 
-  // Append to buffer
   const buf = liveBuffers[pid];
   const ts  = String(event.ts || '').slice(11, 19);
 
-  buf.labels.push(ts);
-  buf.realized.push(event.realized_vol_60s ?? null);
-  buf.future.push(null);   // no forward sigma in live mode
-  buf.spikes.push(event.predicted_spike ? (event.realized_vol_60s ?? null) : null);
+  // Seed price start on first tick
+  if (buf.priceStart === null && event.midprice != null) {
+    buf.priceStart = event.midprice;
+  }
 
-  // Trim to max points
+  const pricePct = buf.priceStart
+    ? (event.midprice - buf.priceStart) / buf.priceStart * 100
+    : 0;
+  const volScaled = event.realized_vol_60s != null
+    ? event.realized_vol_60s * VOL_SCALE
+    : null;
+
+  buf.labels.push(ts);
+  buf.price.push(pricePct);
+  buf.realized.push(volScaled);
+  buf.spikes.push(event.predicted_spike ? volScaled : null);
+
+  // Trim rolling window
   if (buf.labels.length > CHART_MAX_POINTS) {
     buf.labels.shift();
+    buf.price.shift();
     buf.realized.shift();
-    buf.future.shift();
     buf.spikes.shift();
   }
 
-  // Update chart if this is the active pair
-  if (pid === activePair && chartInstance) {
-    const ds = chartInstance.data.datasets;
-    chartInstance.data.labels         = buf.labels;
-    ds[0].data                        = buf.realized;
-    ds[1].data                        = buf.future;
-    ds[2].data                        = buf.spikes;
-    chartInstance.update('none');     // no animation — smooth scrolling feel
-  }
+  // Update chart using BTC labels as master axis
+  updateLiveChart();
 
-  // Update price board
+  // Update price board & ticker
   updateLivePrices();
 
-  // Flash spike if predicted
   if (event.predicted_spike) flashSpike(pid, event.logistic_prob);
+}
+
+function updateLiveChart() {
+  if (!chartInstance) return;
+
+  const btcBuf = liveBuffers['BTC-USD'];
+  const ethBuf = liveBuffers['ETH-USD'];
+  const n      = btcBuf.labels.length;
+  if (n === 0) return;
+
+  // Align ETH to BTC length (pad with nulls at start if ETH is shorter)
+  const pad = (arr) => arr.length >= n ? arr.slice(-n) : [...Array(n - arr.length).fill(null), ...arr];
+
+  chartInstance.data.labels = btcBuf.labels;
+  const ds = chartInstance.data.datasets;
+  ds[0].data = btcBuf.price;
+  ds[1].data = pad(ethBuf.price);
+  ds[2].data = btcBuf.realized;
+  ds[3].data = pad(ethBuf.realized);
+  ds[4].data = btcBuf.spikes;
+  chartInstance.update('none');
 }
 
 function updateLivePrices() {
@@ -410,8 +506,8 @@ function connectSSE() {
   es.onopen = () => {
     isLive = true;
     setLiveBadge(true);
-    // Switch chart to live mode (empty buffers, start accumulating)
-    initLiveChart(activePair);
+    // Switch chart to live mode (empty buffers, both pairs accumulate)
+    initLiveChart();
     console.log('[CVI] SSE connected — live mode active');
   };
 
@@ -448,7 +544,7 @@ async function init() {
     renderDeltaBars(dashData);
     renderPredictions(dashData);
     bindPairTabs();
-    buildChart(activePair);   // static chart from history
+    buildChart();   // static chart from history — both BTC + ETH, dual-axis
   } catch (err) {
     console.error('[CVI] Static load failed:', err);
     document.getElementById('kpi-bars').textContent = 'ERR';
