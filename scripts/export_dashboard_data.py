@@ -39,6 +39,27 @@ def main() -> None:
             .head(400)
             .to_dict(orient="records")
         )
+        # Full chart series for Chart.js — one entry per product
+        chart_series: dict[str, list] = {}
+        for product, grp in features_df.sort_values("window_end_ts").groupby("product_id"):
+            chart_series[product] = grp[
+                ["window_end_ts", "realized_vol_60s", "sigma_future_60s", "label", "midprice"]
+            ].to_dict(orient="records")
+        payload["chart_series"] = chart_series
+        # Price summary
+        price_summary: dict[str, dict] = {}
+        for product, grp in features_df.groupby("product_id"):
+            grp_sorted = grp.sort_values("window_end_ts")
+            price_summary[product] = {
+                "first": float(grp_sorted["midprice"].iloc[0]),
+                "last": float(grp_sorted["midprice"].iloc[-1]),
+                "delta_pct": float(
+                    (grp_sorted["midprice"].iloc[-1] - grp_sorted["midprice"].iloc[0])
+                    / grp_sorted["midprice"].iloc[0]
+                    * 100
+                ),
+            }
+        payload["price_summary"] = price_summary
 
     if metrics_path.exists():
         payload["metrics"] = json.loads(metrics_path.read_text(encoding="utf-8"))
@@ -46,7 +67,21 @@ def main() -> None:
         preds_df = pd.read_csv(predictions_path).tail(120)
         payload["predictions"] = preds_df.to_dict(orient="records")
 
-    (dashboard_dir / "dashboard.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    import math
+
+    def _clean(obj):
+        """Recursively replace float NaN/Inf with None for valid JSON."""
+        if isinstance(obj, dict):
+            return {k: _clean(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [_clean(v) for v in obj]
+        if isinstance(obj, float) and (math.isnan(obj) or math.isinf(obj)):
+            return None
+        return obj
+
+    (dashboard_dir / "dashboard.json").write_text(
+        json.dumps(_clean(payload), indent=2), encoding="utf-8"
+    )
     print(f"Saved dashboard payload to {dashboard_dir / 'dashboard.json'}")
 
 

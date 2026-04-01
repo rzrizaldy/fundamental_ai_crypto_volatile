@@ -3,105 +3,276 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crypto Volatility Atlas</title>
+    <title>CRYPTO_VOL_ATLAS // 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
+    <!-- ╔══════════════════════════════════════╗
+         ║  TOP STATS TICKER (CoinMarketCap style) ║
+         ╚══════════════════════════════════════╝ -->
+    <div class="top-bar">
+      <span class="ticker-label">CRYPTO_VOL_ATLAS</span>
+      <div class="ticker-scroll" id="ticker-scroll">
+        <span class="ticker-item">LOADING...</span>
+      </div>
+      <span class="ticker-label right">CMU · 2026</span>
+    </div>
+
+    <!-- ╔══════════════════════════════════════╗
+         ║  MAIN HEADER                         ║
+         ╚══════════════════════════════════════╝ -->
+    <header class="site-header">
+      <div class="shell">
+        <div class="header-grid">
+          <div class="header-left">
+            <p class="kicker">// FUNDAMENTAL_AI · CRYPTO_VOLATILITY_DETECTION</p>
+            <h1>CRYPTO<br />VOL<br />ATLAS</h1>
+            <p class="lede">
+              Real-time BTC-USD + ETH-USD volatility detection via Coinbase
+              WebSocket → Kafka → logistic regression. One-second bars, 60s
+              forward label, live Evidently drift monitoring.
+            </p>
+          </div>
+          <div class="header-right">
+            <div class="price-board" id="price-board">
+              <div class="price-row">
+                <span class="price-pair">BTC-USD</span>
+                <span class="price-val" id="btc-price">—</span>
+                <span class="price-delta" id="btc-delta">—</span>
+              </div>
+              <div class="price-row">
+                <span class="price-pair">ETH-USD</span>
+                <span class="price-val" id="eth-price">—</span>
+                <span class="price-delta" id="eth-delta">—</span>
+              </div>
+              <div class="price-session">
+                <span>SESSION · 2026-04-01</span><br/>
+                <span>02:33 → 03:25 UTC</span><br/>
+                <span>52.7 MIN · 37,435 TICKS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <main class="shell">
-      <header class="hero">
-        <div>
-          <p class="kicker">CRYPTO_VOLATILITY_ATLAS // 2026</p>
-          <h1>Real-Time Crypto Volatility Monitor</h1>
-          <p class="lede">
-            Streaming Coinbase market data into Kafka, deriving one-second volatility features,
-            and tracking baseline versus logistic-regression performance through local artifacts.
-          </p>
-        </div>
-        <div class="hero-note">
-          <span>1. LIVE PIPELINE</span>
-          <span>2. MODEL SCORECARD</span>
-          <span>3. METHODS / LOG</span>
-        </div>
-      </header>
 
-      <section class="grid cards" id="summary-cards"></section>
-
-      <section class="panel">
-        <div class="panel-header">
-          <h2>Recent Volatility</h2>
-          <p>Last exported rolling-volatility observations from the processed feature store.</p>
+      <!-- ╔══════════════════════════════════════╗
+           ║  KPI CARDS                           ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="kpi-row" id="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">FEATURE BARS</div>
+          <div class="kpi-value" id="kpi-bars">—</div>
+          <div class="kpi-sub">1-SEC WINDOWS</div>
         </div>
-        <div class="table-wrap">
-          <table id="recent-volatility-table">
-            <thead>
-              <tr>
-                <th>Timestamp</th>
-                <th>Pair</th>
-                <th>Realized Vol 60s</th>
-                <th>Future Sigma 60s</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+        <div class="kpi-card">
+          <div class="kpi-label">LABEL RATE</div>
+          <div class="kpi-value accent-orange" id="kpi-label-rate">—</div>
+          <div class="kpi-sub">τ = 75TH PCT</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">PR-AUC · LOGISTIC</div>
+          <div class="kpi-value accent-green" id="kpi-prauc">—</div>
+          <div class="kpi-sub">VS BASELINE 0.826</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">F1 @ THRESHOLD</div>
+          <div class="kpi-value accent-blue" id="kpi-f1">—</div>
+          <div class="kpi-sub">VAL-SELECTED THR</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">TRAIN / VAL / TEST</div>
+          <div class="kpi-value" id="kpi-split">—</div>
+          <div class="kpi-sub">60 / 20 / 20 %</div>
         </div>
       </section>
 
-      <section class="grid two-up">
-        <article class="panel">
-          <div class="panel-header">
-            <h2>Feature Distribution Sample</h2>
-            <p>Quick sample rows for spread and volatility diagnostics.</p>
+      <!-- ╔══════════════════════════════════════╗
+           ║  BIG VOLATILITY CHART                ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="panel chart-panel">
+        <div class="panel-head">
+          <div>
+            <h2>VOLATILITY TIMELINE</h2>
+            <p class="panel-sub">realized_vol_60s (backward 60s σ) vs sigma_future_60s (forward 60s σ) · <span class="tag-orange">ORANGE DOTS</span> = spike labels (label=1)</p>
           </div>
-          <div class="table-wrap compact">
-            <table id="feature-distribution-table">
+          <div class="pair-tabs">
+            <button class="tab active" data-pair="BTC-USD">BTC-USD</button>
+            <button class="tab" data-pair="ETH-USD">ETH-USD</button>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="vol-chart"></canvas>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item legend-blue">— REALIZED_VOL_60S</span>
+          <span class="legend-item legend-green">— SIGMA_FUTURE_60S</span>
+          <span class="legend-item legend-orange">● SPIKE (LABEL=1)</span>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  MODEL SCORECARD                     ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="two-col">
+        <div class="panel scorecard-panel">
+          <div class="panel-head">
+            <h2>BASELINE · Z-SCORE</h2>
+            <span class="badge badge-muted">REFERENCE</span>
+          </div>
+          <div class="metric-grid" id="baseline-metrics">
+            <div class="metric-block">
+              <div class="metric-label">PR-AUC</div>
+              <div class="metric-val" id="b-prauc">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">F1 SCORE</div>
+              <div class="metric-val" id="b-f1">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">POSITIVE RATE</div>
+              <div class="metric-val" id="b-pos">—</div>
+            </div>
+          </div>
+          <div class="scorecard-note">
+            Single-feature z-score on normalized volatility. Threshold selected on validation F1.
+            Sensitive to non-stationarity in reference window.
+          </div>
+        </div>
+
+        <div class="panel scorecard-panel winner-panel">
+          <div class="panel-head">
+            <h2>LOGISTIC REGRESSION</h2>
+            <span class="badge badge-green">WINNER ↑</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-block">
+              <div class="metric-label">PR-AUC</div>
+              <div class="metric-val accent-green" id="lr-prauc">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">F1 SCORE</div>
+              <div class="metric-val accent-green" id="lr-f1">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">POSITIVE RATE</div>
+              <div class="metric-val" id="lr-pos">—</div>
+            </div>
+          </div>
+          <div class="scorecard-note">
+            StandardScaler + LogisticRegression (liblinear, balanced). Jointly weights
+            spread_bps + realized_vol_60s + ewma_abs_return. Train time: &lt;10ms.
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  IMPROVEMENT DELTA BAR               ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="panel delta-panel">
+        <div class="panel-head">
+          <h2>LOGISTIC vs BASELINE — IMPROVEMENT</h2>
+        </div>
+        <div class="delta-row">
+          <div class="delta-block">
+            <div class="delta-label">PR-AUC DELTA</div>
+            <div class="delta-bar-wrap">
+              <div class="delta-bar" id="delta-prauc-bar"></div>
+            </div>
+            <div class="delta-val accent-green" id="delta-prauc-val">—</div>
+          </div>
+          <div class="delta-block">
+            <div class="delta-label">F1 DELTA</div>
+            <div class="delta-bar-wrap">
+              <div class="delta-bar" id="delta-f1-bar"></div>
+            </div>
+            <div class="delta-val accent-green" id="delta-f1-val">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  RECENT PREDICTIONS + METHODS        ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>RECENT PREDICTIONS</h2>
+            <span class="panel-sub">TEST-SET SAMPLE · LAST 20 ROWS</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="pred-table">
               <thead>
                 <tr>
-                  <th>Spread (bps)</th>
-                  <th>Realized Vol 60s</th>
-                  <th>EWMA |Return|</th>
+                  <th>TIME</th>
+                  <th>PAIR</th>
+                  <th>TRUE</th>
+                  <th>PRED</th>
+                  <th>PROB</th>
                 </tr>
               </thead>
               <tbody></tbody>
             </table>
           </div>
-        </article>
+        </div>
 
-        <article class="panel">
-          <div class="panel-header">
-            <h2>Model Scorecard</h2>
-            <p>Latest metrics exported from the training pipeline.</p>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>METHODS</h2>
           </div>
-          <pre id="metrics-block" class="code-block">No metrics exported yet.</pre>
-        </article>
+          <div class="methods-list">
+            <div class="method-row">
+              <span class="method-num">01</span>
+              <span class="method-text">COINBASE WEBSOCKET → KAFKA (ticks.raw) → FEATURE STORE (ticks.features)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">02</span>
+              <span class="method-text">1-SEC OHLCV BARS · 11 FEATURES · TAU = 75TH PCT (7.83×10⁻⁵)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">03</span>
+              <span class="method-text">TRAIN/VAL/TEST = 60/20/20 % (CHRONOLOGICAL SPLIT)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">04</span>
+              <span class="method-text">BASELINE Z-SCORE · LOGISTIC REGRESSION · MLFLOW TRACKING</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">05</span>
+              <span class="method-text">EVIDENTLY DRIFT REPORT · FEATURE DISTRIBUTION SHIFT DETECTED (CALM CLOSE)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">06</span>
+              <span class="method-text">VOL AUTOCORR r=0.991 (realized_vol_60s ↔ sigma_future_60s) — PERSISTENCE, NOT LEAKAGE</span>
+            </div>
+          </div>
+          <div class="artifact-links">
+            <a href="../reports/model_eval.md" class="art-link">MODEL_EVAL.MD</a>
+            <a href="../reports/evidently/train_vs_test.html" class="art-link">EVIDENTLY REPORT</a>
+            <a href="../img/model_pr_curve.png" class="art-link">PR CURVE</a>
+            <a href="../models/artifacts/predictions_latest.csv" class="art-link">PREDICTIONS CSV</a>
+          </div>
+        </div>
       </section>
 
-      <section class="grid two-up">
-        <article class="panel">
-          <div class="panel-header">
-            <h2>Artifact Links</h2>
-            <p>Primary local outputs used for grading and review.</p>
-          </div>
-          <ul class="artifact-list">
-            <li><a href="../reports/model_eval.md">Model evaluation markdown</a></li>
-            <li><a href="../reports/evidently/">Evidently outputs</a></li>
-            <li><a href="../img/model_pr_curve.png">Precision-recall curve</a></li>
-            <li><a href="../models/artifacts/predictions_latest.csv">Latest predictions</a></li>
-          </ul>
-        </article>
+      <!-- ╔══════════════════════════════════════╗
+           ║  FOOTER                              ║
+           ╚══════════════════════════════════════╝ -->
+      <footer class="site-footer">
+        <span>RIZALDY UTOMO · rutomo@andrew.cmu.edu</span>
+        <span>//</span>
+        <span>FUNDAMENTAL_AI · CMU · 2026</span>
+        <span>//</span>
+        <span>DATA: COINBASE ADVANCED TRADE WS · BTC-USD + ETH-USD · 2026-04-01</span>
+      </footer>
 
-        <article class="panel">
-          <div class="panel-header">
-            <h2>Methods / Log</h2>
-            <p>Short implementation notes in the same spirit as the reference dashboard.</p>
-          </div>
-          <div class="methods-copy">
-            <p>Data source: Coinbase Advanced Trade public market-data WebSocket.</p>
-            <p>Transport: Kafka raw and feature topics with local Docker Compose infrastructure.</p>
-            <p>Feature cadence: 1-second windows with a 60-second future-volatility label horizon.</p>
-            <p>Modeling: z-score baseline and logistic regression with MLflow tracking.</p>
-          </div>
-        </article>
-      </section>
     </main>
 
     <script src="app.js"></script>

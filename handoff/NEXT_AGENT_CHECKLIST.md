@@ -5,17 +5,22 @@ Remaining work is PDF build + optional longer re-ingestion.
 
 ## What Was Done (do not repeat)
 - [x] Docker Compose up (Kafka + MLflow)
-- [x] 42-min live Coinbase ingest → 32,613 ticks
+- [x] 52-min live Coinbase ingest → 37,435 ticks (3 overlapping runs)
 - [x] Kafka `ticks.raw` validated (500 msgs confirmed)
-- [x] `features.parquet` rebuilt from live NDJSON (5,218 rows)
+- [x] `features.parquet` rebuilt from live NDJSON (6,316 rows, source=replay)
 - [x] EDA notebook executed → `img/eda_*.png`
-- [x] Models trained → baseline PR-AUC 0.967, logistic PR-AUC 0.978
+- [x] Models trained → baseline PR-AUC 0.8257, logistic PR-AUC 0.8439 (real metrics)
 - [x] MLflow 2 runs logged to `mlruns/mlflow.db`
 - [x] Evidently `train_vs_test.html` generated
-- [x] `dashboard/data/dashboard.json` exported
+- [x] `dashboard/data/dashboard.json` exported (with full chart_series, price_summary)
 - [x] All metrics_summary.json, predictions_latest.csv, model artifacts are REAL
+- [x] Dashboard rebuilt — PGH Transit Atlas × CoinMarketCap neobrutalist design
+- [x] Chart.js dual-line volatility chart with spike markers (BTC-USD / ETH-USD tabs)
+- [x] `reports/model_eval.md` renewed with full analysis
+- [x] `reports/build/model_eval.pdf` built via pandoc + tectonic (76 KB)
+- [x] `reports/build/scoping_brief.pdf` built via pandoc + tectonic (26 KB)
 
-## Still To Do
+## Still To Do (optional only)
 
 ## Activate Environment
 
@@ -23,21 +28,13 @@ Remaining work is PDF build + optional longer re-ingestion.
 source .venv/bin/activate
 ```
 
-## Priority 1 — Refresh inference predictions
+## Priority 1 — Refresh inference predictions (optional)
 
 ```bash
 python models/infer.py --features data/processed/features_test_slice.parquet
 ```
 
-## Priority 2 — Build PDFs (requires pandoc + tectonic)
-
-```bash
-brew install pandoc tectonic   # if not installed
-python scripts/build_report.py --input docs/scoping_brief.md  --output-dir reports/build
-python scripts/build_report.py --input reports/model_eval.md  --output-dir reports/build
-```
-
-## Priority 3 — Optional: longer ingest to restore τ = 90th pct
+## Priority 2 — Optional: longer ingest to restore τ = 90th pct
 
 ```bash
 # Start Docker first
