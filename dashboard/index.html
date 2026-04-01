@@ -17,7 +17,7 @@
          ╚══════════════════════════════════════╝ -->
     <div class="top-bar">
       <span class="ticker-label">CVI</span>
-      <span class="live-badge" id="live-badge">● STATIC</span>
+      <button class="live-badge" id="live-badge" title="Click to toggle live / static mode">● STATIC</button>
       <div class="ticker-scroll" id="ticker-scroll">
         <span class="ticker-item">LOADING...</span>
       </div>
@@ -56,6 +56,7 @@
                 <span>02:33 → 03:25 UTC</span><br/>
                 <span>52.7 MIN · 37,435 TICKS</span>
               </div>
+              <button class="mode-toggle-btn" id="mode-toggle-btn" title="Toggle live / static data">⬤ LIVE</button>
             </div>
           </div>
         </div>
@@ -394,6 +395,6 @@
 
     </main>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=2"></script>
   </body>
 </html>

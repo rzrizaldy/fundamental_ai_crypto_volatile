@@ -22,6 +22,8 @@ let chartInstance  = null;
 let activePair     = 'BTC-USD';
 let dashData       = null;
 let isLive         = false;
+let forcedStatic   = false;   // user manually pinned to static
+let activeES       = null;    // current EventSource ref
 let liveSpikeEvents = [];
 
 // Chart data buffers per product (live mode)
@@ -582,10 +584,51 @@ function bindPairTabs() {
 // ── ─────────────────────────────────────────────────────── ──
 
 function setLiveBadge(live) {
-  const badge = document.getElementById('live-badge');
-  if (!badge) return;
-  badge.textContent = live ? '● LIVE' : '● STATIC';
-  badge.classList.toggle('is-live', live);
+  const badge  = document.getElementById('live-badge');
+  const toggle = document.getElementById('mode-toggle-btn');
+  if (forcedStatic) {
+    if (badge)  { badge.textContent = '○ STATIC'; badge.classList.remove('is-live'); badge.classList.add('is-forced-static'); badge.title = 'Click to reconnect live'; }
+    if (toggle) { toggle.textContent = '○ STATIC — click to go live'; toggle.classList.add('is-static'); toggle.title = 'Click to reconnect live stream'; }
+  } else if (live) {
+    if (badge)  { badge.textContent = '● LIVE'; badge.classList.add('is-live'); badge.classList.remove('is-forced-static'); badge.title = 'Click to pin to static'; }
+    if (toggle) { toggle.textContent = '⬤ LIVE — click to freeze'; toggle.classList.remove('is-static'); toggle.title = 'Click to switch to static data'; }
+  } else {
+    if (badge)  { badge.textContent = '● STATIC'; badge.classList.remove('is-live', 'is-forced-static'); badge.title = 'Click to attempt live connection'; }
+    if (toggle) { toggle.textContent = '○ STATIC — click to go live'; toggle.classList.add('is-static'); toggle.title = 'Click to attempt live connection'; }
+  }
+}
+
+function switchToStatic() {
+  if (activeES) { activeES.close(); activeES = null; }
+  isLive = false;
+  forcedStatic = true;
+  setLiveBadge(false);
+  if (dashData) {
+    buildChart(activePair);
+    renderOutlook(dashData, activePair);
+    renderMarketOutlook(dashData);
+  }
+}
+
+function switchToLive() {
+  forcedStatic = false;
+  setLiveBadge(false);
+  trySSE().then(up => {
+    if (up) connectSSE();
+  });
+}
+
+function bindModeToggle() {
+  function onToggle() {
+    if (isLive || !forcedStatic) {
+      switchToStatic();
+    } else {
+      switchToLive();
+    }
+  }
+  document.getElementById('live-badge').addEventListener('click', onToggle);
+  const btn = document.getElementById('mode-toggle-btn');
+  if (btn) btn.addEventListener('click', onToggle);
 }
 
 function initLiveChart() {
@@ -685,7 +728,7 @@ function updateLivePrices() {
   const items = [];
   for (const [pid, st] of Object.entries(liveState)) {
     if (!st.midprice) continue;
-    const vol  = st.realized_vol_60s != null ? st.realized_vol_60s.toExponential(2) : '—';
+    const vol  = st.realized_vol_60s != null ? (st.realized_vol_60s * 1e4).toFixed(2) + '×10⁻⁴' : '—';
     const prob = st.logistic_prob != null ? (st.logistic_prob*100).toFixed(1)+'%' : '—';
     const cls  = st.predicted_spike ? 'lo' : 'hi';
     items.push(
@@ -723,7 +766,9 @@ async function trySSE() {
 }
 
 function connectSSE() {
+  if (forcedStatic) return;
   const es = new EventSource(SSE_URL);
+  activeES = es;
 
   es.onopen = () => {
     isLive = true;
@@ -742,11 +787,13 @@ function connectSSE() {
 
   es.onerror = () => {
     isLive = false;
+    activeES = null;
     setLiveBadge(false);
     es.close();
-    // Retry after 10 seconds
-    setTimeout(connectSSE, 10_000);
-    console.log('[CVI] SSE disconnected — retrying in 10s');
+    if (!forcedStatic) {
+      setTimeout(connectSSE, 10_000);
+      console.log('[CVI] SSE disconnected — retrying in 10s');
+    }
   };
 }
 
@@ -769,6 +816,7 @@ async function init() {
     renderOutlook(dashData, activePair);
     renderMarketOutlook(dashData);
     bindPairTabs();
+    bindModeToggle();
     buildChart(activePair);   // static chart for active pair (BTC-USD default)
   } catch (err) {
     console.error('[CVI] Static load failed:', err);

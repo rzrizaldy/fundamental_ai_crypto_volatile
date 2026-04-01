@@ -77,20 +77,38 @@ body {
   color: var(--terminal-green);
 }
 
-/* LIVE / STATIC badge */
+/* LIVE / STATIC toggle button */
 .live-badge {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  padding: 0 10px;
+  padding: 2px 10px;
   color: var(--muted);
   flex-shrink: 0;
-  transition: color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.live-badge:hover {
+  border-color: var(--muted);
+  color: var(--fg);
 }
 
 .live-badge.is-live {
   color: var(--terminal-green);
+  border-color: var(--terminal-green);
   animation: pulse 2s infinite;
+}
+
+.live-badge.is-forced-static {
+  color: var(--muted);
+  border-color: var(--border);
+  border-style: dashed;
+  animation: none;
 }
 
 @keyframes pulse {
@@ -208,6 +226,40 @@ h1 .accent { color: var(--blueprint); }
   color: var(--muted);
   line-height: 1.8;
   letter-spacing: 0.08em;
+}
+
+/* Mode toggle button (in header price board) */
+.mode-toggle-btn {
+  margin-top: 14px;
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  background: none;
+  border: 1px solid var(--terminal-green);
+  color: var(--terminal-green);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.mode-toggle-btn:hover {
+  background: var(--terminal-green);
+  color: var(--bg);
+}
+
+.mode-toggle-btn.is-static {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+.mode-toggle-btn.is-static:hover {
+  background: var(--muted);
+  color: var(--bg);
 }
 
 /* ── MAIN SHELL ── */

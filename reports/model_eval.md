@@ -66,14 +66,19 @@ Logistic regression outperforms the baseline on both metrics. PR-AUC improves by
 
 ## Dashboard Surface
 
-The dashboard now exposes the model output in a form that is easier to read than raw feature tables:
+![Dashboard — live streaming mode](../img/dashboard_top.png)
+
+*Live dashboard (FastAPI SSE server + Chart.js). Top bar: `● LIVE` badge and vol in `×10⁻⁴` units. Price board: toggle button switches between live Coinbase stream and static session export.*
+
+The dashboard exposes model output in a form that is easier to read than raw feature tables:
 
 - **Orange dots** on the volatility timeline show moments when the logistic model flags a spike.
-- **Spike Radar** lists the most recent model-detected spike events with timestamp, pair, realized volatility, and probability.
-- **What This Means Next** translates the one-minute spike probability into a simple turbulence outlook for the next minute, hour, and day.
-- **Price Scenario Compass** adds a separate heuristic layer with up/down bias and upside/downside target ranges for the next hour and day.
+- **Spike Radar** lists the most recent model-detected spike events with timestamp, pair, vol, and probability.
+- **What This Means Next** translates the one-minute spike probability into a turbulence outlook for the next minute, hour, and day.
+- **Price Scenario Compass** adds a heuristic layer with up/down bias and predicted price range for next hour and day.
+- **Live/Static toggle** (header price board) switches between real-time Coinbase SSE stream and the saved session export without a page reload.
 
-The turbulence module is intentionally educational. The price scenario module is also simplified, but it is kept separate from the classifier output because the trained model predicts volatility, not direction.
+The turbulence module is intentionally educational. The price scenario module is kept separate from the classifier output because the trained model predicts volatility, not direction.
 
 ---
 
@@ -117,6 +122,10 @@ The z-score baseline is a single-feature rule applied to a normalised rolling vo
 - `realized_vol_60s` captures recent backward volatility (direct vol-persistence signal).
 - `ewma_abs_return` captures momentum in absolute price moves (smoother than raw `return_1s`).
 
+![Feature relationships — spread vs vol and EWMA return by label](../img/eda_feature_relationships.png)
+
+*Left: positive-label rows cluster toward wider spreads and higher vol. Right: EWMA absolute return is higher for positive-label bars. Both patterns support the logistic model's feature weights.*
+
 The F1 improvement of +8.15 pp at the same threshold-selection policy (val-F1 maximisation) reflects this richer feature utilisation.
 
 ### Volatility autocorrelation and PR-AUC inflation
@@ -124,8 +133,6 @@ The F1 improvement of +8.15 pp at the same threshold-selection policy (val-F1 ma
 `realized_vol_60s` (backward 60 s rolling σ) and `sigma_future_60s` (the label source, forward 60 s rolling σ) have Pearson r = **0.991** on this dataset. This is a genuine **volatility persistence** effect — crypto vol clusters strongly at the 1-minute scale — not data leakage (the two windows are non-overlapping: backward [t−60, t] vs forward [t+1, t+60]).
 
 The practical consequence is that PR-AUC above 0.80 is **largely driven by the model learning "high current vol → high future vol"** — a reliable regime signal within a single short session. This is not overfitting, but it is a simpler predictive mechanism than "the model learned something subtle about order-book dynamics." A multi-hour or multi-day dataset spanning heterogeneous regimes would reduce this correlation and produce a more demanding evaluation benchmark.
-
-To the grader: the PR-AUC figures are real (not synthetic), verified by the MLflow run logged to `mlruns/mlflow.db` and the stored artifacts. The 0.977 figure cited in earlier planning documents refers to a different split (45 % test label rate); the 0.8439 reported here is from the correct final chronological 20 % test split with 5.9 % label rate.
 
 ### Threshold selection
 
@@ -135,7 +142,17 @@ The logistic threshold (0.4507) was selected by maximising F1 on the validation 
 
 The default 90th-percentile threshold (τ = 1.04 × 10⁻⁴) was evaluated and rejected: with 42 minutes of data, high-volatility bars concentrate in the first and middle thirds of the session, leaving the validation window with zero positive labels — making threshold selection and F1-based evaluation impossible.
 
-The 75th percentile (τ = 7.83 × 10⁻⁵) produces a usable 24.9 % overall positive rate distributed across all three splits (train 20.6 %, val 56.8 %, test 5.9 %). The EDA tau sweep in `notebooks/eda.ipynb` confirms this. A longer session (90+ min) would allow the 90th percentile to be used.
+The 75th percentile (τ = 7.83 × 10⁻⁵) produces a usable 24.9 % overall positive rate distributed across all three splits (train 20.6 %, val 56.8 %, test 5.9 %). The EDA tau sweep below confirms this.
+
+![Tau sweep — positive class rate by percentile](../img/eda_tau_positive_rate.png)
+
+*Positive class rate drops sharply above the 90th percentile, making the validation split unusable for F1-based threshold selection with this session length.*
+
+![Sigma future distribution](../img/eda_sigma_future_distribution.png)
+
+*Right-skewed distribution of σ\_future\_60s confirms that high-volatility events are rare tail events. τ = 75th pct sits at the start of the tail.*
+
+A longer session (90+ min) spanning multiple regime transitions would allow the 90th percentile to be used.
 
 ---
 

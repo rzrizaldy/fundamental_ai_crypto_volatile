@@ -1,10 +1,8 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[
-  11pt,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -38,16 +36,9 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Model Evaluation Report},
-  pdfauthor={Rizaldy Utomo · rutomo@andrew.cmu.edu},
-  colorlinks=true,
-  linkcolor={blue},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={blue},
+  hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage[margin=1in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -79,12 +70,10 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
-\title{Model Evaluation Report}
-\author{Rizaldy Utomo · rutomo@andrew.cmu.edu}
-\date{2026-04-01}
+\author{}
+\date{}
 
 \begin{document}
-\maketitle
 
 \hypertarget{model-evaluation-report}{%
 \section{Model Evaluation Report}\label{model-evaluation-report}}
@@ -178,13 +167,57 @@ improves by \textbf{+1.83 percentage points}; F1 improves by
 
 \begin{figure}
 \centering
-\includegraphics{../../img/model_pr_curve.png}
+\includegraphics{../img/model_pr_curve.png}
 \caption{Precision-Recall Curve --- Logistic Regression vs Baseline}
 \end{figure}
 
 \emph{Both models evaluated on the held-out test split (last 20 \% by
 time, n = 1,264 rows). Logistic regression (blue) outperforms the
 z-score baseline (orange) across all operating thresholds.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{dashboard-surface}{%
+\subsection{Dashboard Surface}\label{dashboard-surface}}
+
+\begin{figure}
+\centering
+\includegraphics{../img/dashboard_top.png}
+\caption{Dashboard --- live streaming mode}
+\end{figure}
+
+\emph{Live dashboard (FastAPI SSE server + Chart.js). Top bar:
+\texttt{●\ LIVE} badge and vol in \texttt{×10⁻⁴} units. Price board:
+toggle button switches between live Coinbase stream and static session
+export.}
+
+The dashboard exposes model output in a form that is easier to read than
+raw feature tables:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Orange dots} on the volatility timeline show moments when the
+  logistic model flags a spike.
+\item
+  \textbf{Spike Radar} lists the most recent model-detected spike events
+  with timestamp, pair, vol, and probability.
+\item
+  \textbf{What This Means Next} translates the one-minute spike
+  probability into a turbulence outlook for the next minute, hour, and
+  day.
+\item
+  \textbf{Price Scenario Compass} adds a heuristic layer with up/down
+  bias and predicted price range for next hour and day.
+\item
+  \textbf{Live/Static toggle} (header price board) switches between
+  real-time Coinbase SSE stream and the saved session export without a
+  page reload.
+\end{itemize}
+
+The turbulence module is intentionally educational. The price scenario
+module is kept separate from the classifier output because the trained
+model predicts volatility, not direction.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -230,10 +263,10 @@ The session exhibits a classic calm-volatile-calm pattern:
 \tightlist
 \item
   \textbf{First third (train window):} Moderate tick density, BTC range
-  ≈ 67,600--67,900. Label rate 14 \%.
+  ≈ 67,600--67,900. Label rate 20.6 \%.
 \item
   \textbf{Middle third (val window):} High tick density, concentrated
-  vol bursts. Label rate 37 \%.
+  vol bursts. Label rate 56.8 \%.
 \item
   \textbf{Final third (test window):} BTC stabilises near \$67,880.
   Label rate 5.9 \%.
@@ -271,6 +304,17 @@ features that carry complementary signal:
   \texttt{ewma\_abs\_return} captures momentum in absolute price moves
   (smoother than raw \texttt{return\_1s}).
 \end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{../img/eda_feature_relationships.png}
+\caption{Feature relationships --- spread vs vol and EWMA return by
+label}
+\end{figure}
+
+\emph{Left: positive-label rows cluster toward wider spreads and higher
+vol.~Right: EWMA absolute return is higher for positive-label bars. Both
+patterns support the logistic model's feature weights.}
 
 The F1 improvement of +8.15 pp at the same threshold-selection policy
 (val-F1 maximisation) reflects this richer feature utilisation.
@@ -320,10 +364,31 @@ window with zero positive labels --- making threshold selection and
 F1-based evaluation impossible.
 
 The 75th percentile (τ = 7.83 × 10⁻⁵) produces a usable 24.9 \% overall
-positive rate distributed across all three splits (train 14 \%, val 37
-\%, test 5.9 \%). The EDA tau sweep in \texttt{notebooks/eda.ipynb}
-confirms this. A longer session (90+ min) would allow the 90th
-percentile to be used.
+positive rate distributed across all three splits (train 20.6 \%, val
+56.8 \%, test 5.9 \%). The EDA tau sweep below confirms this.
+
+\begin{figure}
+\centering
+\includegraphics{../img/eda_tau_positive_rate.png}
+\caption{Tau sweep --- positive class rate by percentile}
+\end{figure}
+
+\emph{Positive class rate drops sharply above the 90th percentile,
+making the validation split unusable for F1-based threshold selection
+with this session length.}
+
+\begin{figure}
+\centering
+\includegraphics{../img/eda_sigma_future_distribution.png}
+\caption{Sigma future distribution}
+\end{figure}
+
+\emph{Right-skewed distribution of σ\_future\_60s confirms that
+high-volatility events are rare tail events. τ = 75th pct sits at the
+start of the tail.}
+
+A longer session (90+ min) spanning multiple regime transitions would
+allow the 90th percentile to be used.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
