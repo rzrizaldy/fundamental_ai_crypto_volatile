@@ -20,14 +20,14 @@ features:
   bar_freq_seconds: 1
   target_horizon_seconds: 60
   ewma_span: 15
-  tau_quantile: 0.90
+  tau_quantile: 0.75
 storage:
   raw_dir: data/raw
   processed_dir: data/processed
   artifacts_dir: models/artifacts
   dashboard_dir: dashboard/data
 tracking:
-  mlflow_tracking_uri: http://localhost:5000
+  mlflow_tracking_uri: sqlite:///mlruns/mlflow.db
   experiment_name: crypto-volatility
 reports:
   img_dir: img

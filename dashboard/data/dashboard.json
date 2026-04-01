@@ -1,0 +1,3708 @@
+{
+  "available": true,
+  "feature_rows": 5228,
+  "label_rate": 0.24827850038255547,
+  "recent_volatility": [
+    {
+      "window_end_ts": "2026-04-01T03:15:46Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9926099125199874e-05,
+      "sigma_future_60s": 2.9926099125199874e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:46Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.960429944980515e-05,
+      "sigma_future_60s": 5.947615750639488e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:47Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.947615750639488e-05,
+      "sigma_future_60s": 5.888012968381715e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:47Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9926099125199874e-05,
+      "sigma_future_60s": 2.987574363787932e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:48Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.888012968381715e-05,
+      "sigma_future_60s": 5.825949867502057e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:48Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.987574363787932e-05,
+      "sigma_future_60s": 2.987574363787932e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:49Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.987574363787932e-05,
+      "sigma_future_60s": 2.9908147083339153e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:49Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.825949867502057e-05,
+      "sigma_future_60s": 5.7950144738788255e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:50Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.7950144738788255e-05,
+      "sigma_future_60s": 5.837397805536767e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:50Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9908147083339153e-05,
+      "sigma_future_60s": 2.9909541399781243e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:51Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9909541399781243e-05,
+      "sigma_future_60s": 2.7122493221848294e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:51Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.837397805536767e-05,
+      "sigma_future_60s": 5.746587815506193e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:52Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.7122493221848294e-05,
+      "sigma_future_60s": 2.7122493221848294e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:52Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.746587815506193e-05,
+      "sigma_future_60s": 5.344293902596671e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:53Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.7122493221848294e-05,
+      "sigma_future_60s": 2.7049799603619612e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:53Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.344293902596671e-05,
+      "sigma_future_60s": 5.343606048933073e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:54Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.7049799603619612e-05,
+      "sigma_future_60s": 2.6976929881192206e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:54Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.343606048933073e-05,
+      "sigma_future_60s": 5.1229252309776344e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:55Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.1229252309776344e-05,
+      "sigma_future_60s": 5.11726748446031e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:55Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.6976929881192206e-05,
+      "sigma_future_60s": 2.6970619318576546e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:56Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.11726748446031e-05,
+      "sigma_future_60s": 5.1384759768991e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:56Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.6970619318576546e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:57Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:57Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.1384759768991e-05,
+      "sigma_future_60s": 5.1428720729020996e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:58Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.1428720729020996e-05,
+      "sigma_future_60s": 5.1428720729020996e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:58Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:59Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:15:59Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.1428720729020996e-05,
+      "sigma_future_60s": 4.9224339140558845e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:00Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:00Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9224339140558845e-05,
+      "sigma_future_60s": 4.9619782223873945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:01Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:01Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9619782223873945e-05,
+      "sigma_future_60s": 4.9619782223873945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:02Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9619782223873945e-05,
+      "sigma_future_60s": 4.9619782223873945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:02Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:03Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9619782223873945e-05,
+      "sigma_future_60s": 4.9619782223873945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:03Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 2.9362369108886103e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:04Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9619782223873945e-05,
+      "sigma_future_60s": 5.537932451504237e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:04Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 2.9362369108886103e-05,
+      "sigma_future_60s": 4.3920627597854965e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:05Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.3920627597854965e-05,
+      "sigma_future_60s": 4.3920627597854965e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:05Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.537932451504237e-05,
+      "sigma_future_60s": 5.404549138792821e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:06Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.3920627597854965e-05,
+      "sigma_future_60s": 4.352707439967107e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:06Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.404549138792821e-05,
+      "sigma_future_60s": 5.0837206249422226e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:07Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.0837206249422226e-05,
+      "sigma_future_60s": 4.96133471222647e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:07Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.352707439967107e-05,
+      "sigma_future_60s": 4.122963005834968e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:08Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.122963005834968e-05,
+      "sigma_future_60s": 4.121513824597944e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:08Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.96133471222647e-05,
+      "sigma_future_60s": 4.9599395388228286e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:09Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.121513824597944e-05,
+      "sigma_future_60s": 3.7360435663115834e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:09Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.9599395388228286e-05,
+      "sigma_future_60s": 4.930073246880152e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:10Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.7360435663115834e-05,
+      "sigma_future_60s": 3.667045328695523e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:10Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.930073246880152e-05,
+      "sigma_future_60s": 4.8590427273453185e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:11Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.8590427273453185e-05,
+      "sigma_future_60s": 4.973499652621423e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:11Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.667045328695523e-05,
+      "sigma_future_60s": 3.924897836727945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:12Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.924897836727945e-05,
+      "sigma_future_60s": 3.924897836727945e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:12Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.973499652621423e-05,
+      "sigma_future_60s": 4.973499652621423e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:13Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.973499652621423e-05,
+      "sigma_future_60s": 4.973499652621423e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:13Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.924897836727945e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:14Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.973499652621423e-05,
+      "sigma_future_60s": 4.973499652621423e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:14Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:15Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.973499652621423e-05,
+      "sigma_future_60s": 4.973499652621423e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:15Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:16Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:16Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.973499652621423e-05,
+      "sigma_future_60s": 4.975385862342075e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:17Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:17Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.975385862342075e-05,
+      "sigma_future_60s": 4.975290641756506e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:18Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:18Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.975290641756506e-05,
+      "sigma_future_60s": 4.945481566475119e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:19Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.945481566475119e-05,
+      "sigma_future_60s": 4.889680409665288e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:19Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 3.933428145049989e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:20Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 3.933428145049989e-05,
+      "sigma_future_60s": 4.525129494957243e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:20Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 4.889680409665288e-05,
+      "sigma_future_60s": 5.899227034807762e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:21Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.899227034807762e-05,
+      "sigma_future_60s": 5.8011963699481676e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:21Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.525129494957243e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:22Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:22Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.8011963699481676e-05,
+      "sigma_future_60s": 5.8020427307176266e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:23Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.8020427307176266e-05,
+      "sigma_future_60s": 5.8020427307176266e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:23Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:24Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:24Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.8020427307176266e-05,
+      "sigma_future_60s": 5.8020427307176266e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:25Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.8020427307176266e-05,
+      "sigma_future_60s": 5.8020427307176266e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:25Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:26Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.8020427307176266e-05,
+      "sigma_future_60s": 5.627486676126208e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:26Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:27Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.627486676126208e-05,
+      "sigma_future_60s": 5.624997394903709e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:27Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:28Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:28Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.624997394903709e-05,
+      "sigma_future_60s": 5.439787045553771e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:29Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.439787045553771e-05,
+      "sigma_future_60s": 5.439787045553771e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:29Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.5683279556849664e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:30Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.439787045553771e-05,
+      "sigma_future_60s": 5.44451881550283e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:30Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.5683279556849664e-05,
+      "sigma_future_60s": 4.685836345103892e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:31Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.44451881550283e-05,
+      "sigma_future_60s": 5.376705641838593e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:31Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.685836345103892e-05,
+      "sigma_future_60s": 4.6959092581421495e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:32Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.6959092581421495e-05,
+      "sigma_future_60s": 4.6959092581421495e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:32Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.376705641838593e-05,
+      "sigma_future_60s": 5.281146861130023e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:33Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.281146861130023e-05,
+      "sigma_future_60s": 5.281337849187784e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:33Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.6959092581421495e-05,
+      "sigma_future_60s": 4.741740671640752e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:34Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.281337849187784e-05,
+      "sigma_future_60s": 5.2837559806196776e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:34Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.741740671640752e-05,
+      "sigma_future_60s": 4.741740671640752e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:35Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.2837559806196776e-05,
+      "sigma_future_60s": 5.2837559806196776e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:35Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.741740671640752e-05,
+      "sigma_future_60s": 4.74166575135657e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:36Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.2837559806196776e-05,
+      "sigma_future_60s": 5.2837559806196776e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:36Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.74166575135657e-05,
+      "sigma_future_60s": 4.74166575135657e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:37Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.2837559806196776e-05,
+      "sigma_future_60s": 5.267986803134995e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:37Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.74166575135657e-05,
+      "sigma_future_60s": 4.801821131881115e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:38Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.267986803134995e-05,
+      "sigma_future_60s": 5.887895078405949e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:38Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.801821131881115e-05,
+      "sigma_future_60s": 4.803464961195376e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:39Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 5.887895078405949e-05,
+      "sigma_future_60s": 6.1144705446042e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:39Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.803464961195376e-05,
+      "sigma_future_60s": 4.803464961195376e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:40Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.803464961195376e-05,
+      "sigma_future_60s": 4.962187789470316e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:40Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.1144705446042e-05,
+      "sigma_future_60s": 6.214691624170895e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:41Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.214691624170895e-05,
+      "sigma_future_60s": 6.211638060225254e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:41Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.962187789470316e-05,
+      "sigma_future_60s": 4.990699740497171e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:42Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.211638060225254e-05,
+      "sigma_future_60s": 6.211638060225254e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:42Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.990699740497171e-05,
+      "sigma_future_60s": 4.99034390448034e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:43Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.211638060225254e-05,
+      "sigma_future_60s": 6.368597880769325e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:43Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.99034390448034e-05,
+      "sigma_future_60s": 4.876330319620329e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:44Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.368597880769325e-05,
+      "sigma_future_60s": 6.605275904590531e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:44Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.876330319620329e-05,
+      "sigma_future_60s": 4.8773698842710584e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:45Z",
+      "product_id": "BTC-USD",
+      "realized_vol_60s": 4.8773698842710584e-05,
+      "sigma_future_60s": 4.917002863790527e-05
+    },
+    {
+      "window_end_ts": "2026-04-01T03:16:45Z",
+      "product_id": "ETH-USD",
+      "realized_vol_60s": 6.605275904590531e-05,
+      "sigma_future_60s": 6.655376979655575e-05
+    }
+  ],
+  "feature_distribution": [
+    {
+      "spread_bps": 0.0014784784172476495,
+      "realized_vol_60s": 1.5898074916223062e-05,
+      "ewma_abs_return": 1.532323812627849e-05
+    },
+    {
+      "spread_bps": 0.0014784784172476495,
+      "realized_vol_60s": 1.4262040763202135e-05,
+      "ewma_abs_return": 1.340783336049368e-05
+    },
+    {
+      "spread_bps": 0.0014785732934788672,
+      "realized_vol_60s": 2.8276377270850782e-05,
+      "ewma_abs_return": 1.9752856948861288e-05
+    },
+    {
+      "spread_bps": 0.0014784799473781356,
+      "realized_vol_60s": 3.6117348941668386e-05,
+      "ewma_abs_return": 2.517538565995794e-05
+    },
+    {
+      "spread_bps": 0.0014784784172476495,
+      "realized_vol_60s": 3.378512670525906e-05,
+      "ewma_abs_return": 2.2157829381188204e-05
+    },
+    {
+      "spread_bps": 0.0014785741657993685,
+      "realized_vol_60s": 3.812575010825113e-05,
+      "ewma_abs_return": 2.748303215325286e-05
+    },
+    {
+      "spread_bps": 0.0014785741657993685,
+      "realized_vol_60s": 3.6202326864123716e-05,
+      "ewma_abs_return": 2.4047653134096254e-05
+    },
+    {
+      "spread_bps": 0.0014785741657993685,
+      "realized_vol_60s": 3.454381380880715e-05,
+      "ewma_abs_return": 2.1041696492334222e-05
+    },
+    {
+      "spread_bps": 0.0014785741657993685,
+      "realized_vol_60s": 3.309443436314109e-05,
+      "ewma_abs_return": 1.8411484430792444e-05
+    },
+    {
+      "spread_bps": 0.0014788759204263173,
+      "realized_vol_60s": 6.222132452438397e-05,
+      "ewma_abs_return": 4.161805570704285e-05
+    },
+    {
+      "spread_bps": 0.001478845522874779,
+      "realized_vol_60s": 6.0789014141525336e-05,
+      "ewma_abs_return": 3.8985319246921915e-05
+    },
+    {
+      "spread_bps": 0.001478845522874779,
+      "realized_vol_60s": 5.88580199350362e-05,
+      "ewma_abs_return": 3.4112154341056674e-05
+    },
+    {
+      "spread_bps": 0.001478845522874779,
+      "realized_vol_60s": 5.710008095506513e-05,
+      "ewma_abs_return": 2.9848135048424588e-05
+    },
+    {
+      "spread_bps": 0.001478845522874779,
+      "realized_vol_60s": 5.54908020040832e-05,
+      "ewma_abs_return": 2.6117118167371515e-05
+    },
+    {
+      "spread_bps": 0.001478845522874779,
+      "realized_vol_60s": 5.401034606481631e-05,
+      "ewma_abs_return": 2.2852478396450076e-05
+    },
+    {
+      "spread_bps": 0.001478676488328655,
+      "realized_vol_60s": 5.971439536874068e-05,
+      "ewma_abs_return": 3.4284446769095426e-05
+    },
+    {
+      "spread_bps": 0.001478676488328655,
+      "realized_vol_60s": 5.8217242330210174e-05,
+      "ewma_abs_return": 2.9998890922958498e-05
+    },
+    {
+      "spread_bps": 0.0014785197318824684,
+      "realized_vol_60s": 6.160789318569992e-05,
+      "ewma_abs_return": 3.950096509184177e-05
+    },
+    {
+      "spread_bps": 0.13307217672135577,
+      "realized_vol_60s": 6.0764478552847255e-05,
+      "ewma_abs_return": 3.963661823910155e-05
+    },
+    {
+      "spread_bps": 0.09758772026937473,
+      "realized_vol_60s": 5.948392564816805e-05,
+      "ewma_abs_return": 3.6548761821323124e-05
+    },
+    {
+      "spread_bps": 0.0014787005378937802,
+      "realized_vol_60s": 5.9615007898439204e-05,
+      "ewma_abs_return": 4.0325304187059565e-05
+    },
+    {
+      "spread_bps": 0.0014787261210331877,
+      "realized_vol_60s": 5.845659899997764e-05,
+      "ewma_abs_return": 3.7447259409270725e-05
+    },
+    {
+      "spread_bps": 0.0014787261210331877,
+      "realized_vol_60s": 5.7332754758199454e-05,
+      "ewma_abs_return": 3.2766351983111885e-05
+    },
+    {
+      "spread_bps": 0.0014787261210331877,
+      "realized_vol_60s": 5.6271354279169346e-05,
+      "ewma_abs_return": 2.86705579852229e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.5775452059720766e-05,
+      "ewma_abs_return": 2.9504354463896163e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.4810467421048466e-05,
+      "ewma_abs_return": 2.5816310155909143e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.389390528619434e-05,
+      "ewma_abs_return": 2.25892713864205e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.302184620284357e-05,
+      "ewma_abs_return": 1.976561246311794e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.219080102617853e-05,
+      "ewma_abs_return": 1.7294910905228197e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.139765201522455e-05,
+      "ewma_abs_return": 1.5133047042074672e-05
+    },
+    {
+      "spread_bps": 0.0014786738624005709,
+      "realized_vol_60s": 5.06396034948476e-05,
+      "ewma_abs_return": 1.3241416161815338e-05
+    },
+    {
+      "spread_bps": 0.0014786902611553777,
+      "realized_vol_60s": 4.992742487161928e-05,
+      "ewma_abs_return": 1.2972503575277698e-05
+    },
+    {
+      "spread_bps": 0.0014786872000268694,
+      "realized_vol_60s": 4.9237948572420213e-05,
+      "ewma_abs_return": 1.1609711156262456e-05
+    },
+    {
+      "spread_bps": 0.0014786872000268694,
+      "realized_vol_60s": 4.857124284974098e-05,
+      "ewma_abs_return": 1.015849726172965e-05
+    },
+    {
+      "spread_bps": 0.0014788903574076068,
+      "realized_vol_60s": 5.251298600690734e-05,
+      "ewma_abs_return": 2.6061119739184374e-05
+    },
+    {
+      "spread_bps": 0.0014788903574076068,
+      "realized_vol_60s": 5.1846514296147666e-05,
+      "ewma_abs_return": 2.2803479771786327e-05
+    },
+    {
+      "spread_bps": 0.0014787011938606558,
+      "realized_vol_60s": 5.533872417441622e-05,
+      "ewma_abs_return": 3.594252407736955e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.4734495053883224e-05,
+      "ewma_abs_return": 3.418533571206628e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.4082053772403734e-05,
+      "ewma_abs_return": 2.9912168748057995e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.345240382220199e-05,
+      "ewma_abs_return": 2.6173147654550745e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.284424831018288e-05,
+      "ewma_abs_return": 2.29015041977319e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.2256391371954e-05,
+      "ewma_abs_return": 2.0038816173015413e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.1687728272194674e-05,
+      "ewma_abs_return": 1.7533964151388488e-05
+    },
+    {
+      "spread_bps": 0.0014787335577676102,
+      "realized_vol_60s": 5.1137236665497125e-05,
+      "ewma_abs_return": 1.5342218632464925e-05
+    },
+    {
+      "spread_bps": 0.0014785910017407046,
+      "realized_vol_60s": 5.2568920873223815e-05,
+      "ewma_abs_return": 2.547553885349885e-05
+    },
+    {
+      "spread_bps": 0.0014786034612127652,
+      "realized_vol_60s": 5.203955908618113e-05,
+      "ewma_abs_return": 2.334459702407088e-05
+    },
+    {
+      "spread_bps": 0.001478677579419782,
+      "realized_vol_60s": 5.1965987884586026e-05,
+      "ewma_abs_return": 2.6692261601541923e-05
+    },
+    {
+      "spread_bps": 0.001478677579419782,
+      "realized_vol_60s": 5.145505137026224e-05,
+      "ewma_abs_return": 2.3355728901349183e-05
+    },
+    {
+      "spread_bps": 0.001478677579419782,
+      "realized_vol_60s": 5.0958895909814525e-05,
+      "ewma_abs_return": 2.0436262788680535e-05
+    },
+    {
+      "spread_bps": 0.0014786644627636026,
+      "realized_vol_60s": 5.049870227271977e-05,
+      "ewma_abs_return": 1.8990733205760123e-05
+    },
+    {
+      "spread_bps": 0.0014785243225399793,
+      "realized_vol_60s": 5.170560685952125e-05,
+      "ewma_abs_return": 2.846412910602826e-05
+    },
+    {
+      "spread_bps": 0.0014785029018669906,
+      "realized_vol_60s": 5.127160618379577e-05,
+      "ewma_abs_return": 2.6717292142190483e-05
+    },
+    {
+      "spread_bps": 0.0014785029018669906,
+      "realized_vol_60s": 5.081176239259493e-05,
+      "ewma_abs_return": 2.3377630624416673e-05
+    },
+    {
+      "spread_bps": 0.0014785029018669906,
+      "realized_vol_60s": 5.0364073447819e-05,
+      "ewma_abs_return": 2.045542679636459e-05
+    },
+    {
+      "spread_bps": 0.0014785029018669906,
+      "realized_vol_60s": 4.9928013142675825e-05,
+      "ewma_abs_return": 1.7898498446819017e-05
+    },
+    {
+      "spread_bps": 0.0014785029018669906,
+      "realized_vol_60s": 4.9503086620586934e-05,
+      "ewma_abs_return": 1.566118614096664e-05
+    },
+    {
+      "spread_bps": 0.0014784677085743845,
+      "realized_vol_60s": 4.952187199147368e-05,
+      "ewma_abs_return": 1.667898954706041e-05
+    },
+    {
+      "spread_bps": 0.02365552353569241,
+      "realized_vol_60s": 4.944866371833137e-05,
+      "ewma_abs_return": 1.4806645767345795e-05
+    },
+    {
+      "spread_bps": 0.001478519513280441,
+      "realized_vol_60s": 4.9639128277573646e-05,
+      "ewma_abs_return": 1.7123322453376726e-05
+    },
+    {
+      "spread_bps": 0.001478519513280441,
+      "realized_vol_60s": 4.960930874214692e-05,
+      "ewma_abs_return": 1.4982907146704635e-05
+    },
+    {
+      "spread_bps": 0.001478519513280441,
+      "realized_vol_60s": 4.960930874214692e-05,
+      "ewma_abs_return": 1.3110043753366556e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 5.1131844311600366e-05,
+      "ewma_abs_return": 2.35218031645975e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 5.047787893015223e-05,
+      "ewma_abs_return": 2.0581577769022812e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.977141132861522e-05,
+      "ewma_abs_return": 1.800888054789496e-05
+    },
+    {
+      "spread_bps": 0.001478804190030956,
+      "realized_vol_60s": 5.122826477265789e-05,
+      "ewma_abs_return": 2.7772477081023278e-05
+    },
+    {
+      "spread_bps": 0.0014787213104607646,
+      "realized_vol_60s": 5.116059609501152e-05,
+      "ewma_abs_return": 3.1306555970077717e-05
+    },
+    {
+      "spread_bps": 0.0014787318084473332,
+      "realized_vol_60s": 5.116490205145201e-05,
+      "ewma_abs_return": 2.8280472409427356e-05
+    },
+    {
+      "spread_bps": 0.0014787318084473332,
+      "realized_vol_60s": 5.116490205145201e-05,
+      "ewma_abs_return": 2.4745413358248937e-05
+    },
+    {
+      "spread_bps": 0.0014787318084473332,
+      "realized_vol_60s": 5.116490205145201e-05,
+      "ewma_abs_return": 2.1652236688467818e-05
+    },
+    {
+      "spread_bps": 0.0014787318084473332,
+      "realized_vol_60s": 4.373300977474081e-05,
+      "ewma_abs_return": 1.8945707102409343e-05
+    },
+    {
+      "spread_bps": 0.0014787318084473332,
+      "realized_vol_60s": 4.366264537433853e-05,
+      "ewma_abs_return": 1.6577493714608175e-05
+    },
+    {
+      "spread_bps": 0.0014786373491464694,
+      "realized_vol_60s": 4.440338433919783e-05,
+      "ewma_abs_return": 2.2490203718775827e-05
+    },
+    {
+      "spread_bps": 0.0014786373491464694,
+      "realized_vol_60s": 4.440338433919783e-05,
+      "ewma_abs_return": 1.967892825392885e-05
+    },
+    {
+      "spread_bps": 0.0014786373491464694,
+      "realized_vol_60s": 4.440338433919783e-05,
+      "ewma_abs_return": 1.7219062222187742e-05
+    },
+    {
+      "spread_bps": 0.0014786388817576441,
+      "realized_vol_60s": 4.440451236220303e-05,
+      "ewma_abs_return": 1.5196060279570841e-05
+    },
+    {
+      "spread_bps": 0.0014788046274034513,
+      "realized_vol_60s": 4.434673521001385e-05,
+      "ewma_abs_return": 2.7307441326841037e-05
+    },
+    {
+      "spread_bps": 0.0014788046274034513,
+      "realized_vol_60s": 4.434673521001385e-05,
+      "ewma_abs_return": 2.389401116098591e-05
+    },
+    {
+      "spread_bps": 0.0014788046274034513,
+      "realized_vol_60s": 4.2044874197136764e-05,
+      "ewma_abs_return": 2.090725976586267e-05
+    },
+    {
+      "spread_bps": 0.0014788046274034513,
+      "realized_vol_60s": 4.17588882487253e-05,
+      "ewma_abs_return": 1.8293852295129836e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.559281329232713e-05,
+      "ewma_abs_return": 3.408681474971818e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.486124089010961e-05,
+      "ewma_abs_return": 2.9825962906003406e-05
+    },
+    {
+      "spread_bps": 0.0014790183126517978,
+      "realized_vol_60s": 4.482735529652213e-05,
+      "ewma_abs_return": 2.6116205272988588e-05
+    },
+    {
+      "spread_bps": 0.0014790183126517978,
+      "realized_vol_60s": 4.482735529652213e-05,
+      "ewma_abs_return": 2.2851679613865013e-05
+    },
+    {
+      "spread_bps": 0.0014790183126517978,
+      "realized_vol_60s": 4.482735529652213e-05,
+      "ewma_abs_return": 1.9995219662131886e-05
+    },
+    {
+      "spread_bps": 0.0014790183126517978,
+      "realized_vol_60s": 4.454239368945394e-05,
+      "ewma_abs_return": 1.74958172043654e-05
+    },
+    {
+      "spread_bps": 0.0014792320618167102,
+      "realized_vol_60s": 4.809431631304202e-05,
+      "ewma_abs_return": 3.337265634947451e-05
+    },
+    {
+      "spread_bps": 0.0014792325015949047,
+      "realized_vol_60s": 4.809367562453127e-05,
+      "ewma_abs_return": 2.923805511287345e-05
+    },
+    {
+      "spread_bps": 0.001479303835880901,
+      "realized_vol_60s": 4.8388737195207194e-05,
+      "ewma_abs_return": 3.161131600780754e-05
+    },
+    {
+      "spread_bps": 0.001479303835880901,
+      "realized_vol_60s": 4.8388737195207194e-05,
+      "ewma_abs_return": 2.76599015068316e-05
+    },
+    {
+      "spread_bps": 0.001479303835880901,
+      "realized_vol_60s": 4.8388737195207194e-05,
+      "ewma_abs_return": 2.420241381847765e-05
+    },
+    {
+      "spread_bps": 0.0014794465315542237,
+      "realized_vol_60s": 4.973246741034218e-05,
+      "ewma_abs_return": 3.323401981715594e-05
+    },
+    {
+      "spread_bps": 0.0014795522563154466,
+      "realized_vol_60s": 5.038786985036636e-05,
+      "ewma_abs_return": 3.801224491495254e-05
+    },
+    {
+      "spread_bps": 0.0014795522563154466,
+      "realized_vol_60s": 5.0380372938972485e-05,
+      "ewma_abs_return": 3.326071430058347e-05
+    },
+    {
+      "spread_bps": 0.0014795522563154466,
+      "realized_vol_60s": 5.0380372938972485e-05,
+      "ewma_abs_return": 2.9103125013010535e-05
+    },
+    {
+      "spread_bps": 0.0014795522563154466,
+      "realized_vol_60s": 4.752220693024122e-05,
+      "ewma_abs_return": 2.5465234386384217e-05
+    },
+    {
+      "spread_bps": 0.0014800795734163834,
+      "realized_vol_60s": 6.545666552227045e-05,
+      "ewma_abs_return": 6.68245381416065e-05
+    },
+    {
+      "spread_bps": 0.0014800795734163834,
+      "realized_vol_60s": 6.280551784742958e-05,
+      "ewma_abs_return": 5.847147087390568e-05
+    },
+    {
+      "spread_bps": 0.0014805890715075256,
+      "realized_vol_60s": 7.579701272672358e-05,
+      "ewma_abs_return": 9.418475237157012e-05
+    },
+    {
+      "spread_bps": 0.00148049043159971,
+      "realized_vol_60s": 7.659222649419462e-05,
+      "ewma_abs_return": 9.073969441364681e-05
+    },
+    {
+      "spread_bps": 0.00148049043159971,
+      "realized_vol_60s": 7.659222649419462e-05,
+      "ewma_abs_return": 7.939723261194095e-05
+    },
+    {
+      "spread_bps": 0.00148049043159971,
+      "realized_vol_60s": 7.659222649419462e-05,
+      "ewma_abs_return": 6.947257853544834e-05
+    },
+    {
+      "spread_bps": 0.001480660319615814,
+      "realized_vol_60s": 7.751665940020324e-05,
+      "ewma_abs_return": 7.513158012487054e-05
+    },
+    {
+      "spread_bps": 0.001480660319615814,
+      "realized_vol_60s": 7.751665940020324e-05,
+      "ewma_abs_return": 6.574013260926172e-05
+    },
+    {
+      "spread_bps": 0.001480511254485779,
+      "realized_vol_60s": 7.906857738292598e-05,
+      "ewma_abs_return": 7.010759519011941e-05
+    },
+    {
+      "spread_bps": 0.0014803749300153826,
+      "realized_vol_60s": 7.896252649471598e-05,
+      "ewma_abs_return": 7.285459080648269e-05
+    },
+    {
+      "spread_bps": 0.0014805443509661935,
+      "realized_vol_60s": 7.987776065688697e-05,
+      "ewma_abs_return": 7.805270819766612e-05
+    },
+    {
+      "spread_bps": 0.0014805890715075256,
+      "realized_vol_60s": 7.979965447580723e-05,
+      "ewma_abs_return": 7.207156478527739e-05
+    },
+    {
+      "spread_bps": 0.0014805890715075256,
+      "realized_vol_60s": 7.979965447580723e-05,
+      "ewma_abs_return": 6.306261918711772e-05
+    },
+    {
+      "spread_bps": 0.0014806072643717269,
+      "realized_vol_60s": 7.975921578102901e-05,
+      "ewma_abs_return": 5.6715912387671926e-05
+    },
+    {
+      "spread_bps": 0.001480637300246404,
+      "realized_vol_60s": 7.965832844672194e-05,
+      "ewma_abs_return": 5.216198899709254e-05
+    },
+    {
+      "spread_bps": 0.001480637300246404,
+      "realized_vol_60s": 7.822573340663842e-05,
+      "ewma_abs_return": 4.564174037245597e-05
+    },
+    {
+      "spread_bps": 0.001480637300246404,
+      "realized_vol_60s": 7.812782583069276e-05,
+      "ewma_abs_return": 3.9936522825898974e-05
+    },
+    {
+      "spread_bps": 0.001480636859634561,
+      "realized_vol_60s": 7.81293797458823e-05,
+      "ewma_abs_return": 3.498147339965184e-05
+    },
+    {
+      "spread_bps": 0.0014806072643717269,
+      "realized_vol_60s": 7.827609121842448e-05,
+      "ewma_abs_return": 3.3107338955584724e-05
+    },
+    {
+      "spread_bps": 0.0014806072643717269,
+      "realized_vol_60s": 7.827609121842448e-05,
+      "ewma_abs_return": 2.8968921586136632e-05
+    },
+    {
+      "spread_bps": 0.0014804893356745632,
+      "realized_vol_60s": 7.935299139393816e-05,
+      "ewma_abs_return": 3.530449369294892e-05
+    },
+    {
+      "spread_bps": 0.0014804893356745632,
+      "realized_vol_60s": 7.917750463538326e-05,
+      "ewma_abs_return": 3.0891431981330304e-05
+    },
+    {
+      "spread_bps": 0.0014808236680806646,
+      "realized_vol_60s": 8.334266614463268e-05,
+      "ewma_abs_return": 5.525501728455066e-05
+    },
+    {
+      "spread_bps": 0.0014806607559322946,
+      "realized_vol_60s": 8.517825457131255e-05,
+      "ewma_abs_return": 6.210053338749268e-05
+    },
+    {
+      "spread_bps": 0.0014805892885674167,
+      "realized_vol_60s": 8.56366207946837e-05,
+      "ewma_abs_return": 6.0371513680544595e-05
+    },
+    {
+      "spread_bps": 0.001480342275083465,
+      "realized_vol_60s": 8.904758878093932e-05,
+      "ewma_abs_return": 7.368113608598054e-05
+    },
+    {
+      "spread_bps": 0.001480342275083465,
+      "realized_vol_60s": 8.85236232805939e-05,
+      "ewma_abs_return": 6.447099407523298e-05
+    },
+    {
+      "spread_bps": 0.001480342275083465,
+      "realized_vol_60s": 8.85236232805939e-05,
+      "ewma_abs_return": 5.641211981582885e-05
+    },
+    {
+      "spread_bps": 0.001480342275083465,
+      "realized_vol_60s": 8.85236232805939e-05,
+      "ewma_abs_return": 4.9360604838850244e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.883894334083881e-05,
+      "ewma_abs_return": 5.7587686947335674e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83270583512938e-05,
+      "ewma_abs_return": 5.038922607891872e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83496260559617e-05,
+      "ewma_abs_return": 4.4090572819053875e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83496260559617e-05,
+      "ewma_abs_return": 3.857925121667214e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83496260559617e-05,
+      "ewma_abs_return": 3.375684481458812e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83496260559617e-05,
+      "ewma_abs_return": 2.9537239212764602e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.83496260559617e-05,
+      "ewma_abs_return": 2.5845084311169026e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.770348584460223e-05,
+      "ewma_abs_return": 2.2614448772272897e-05
+    },
+    {
+      "spread_bps": 0.00148051278667244,
+      "realized_vol_60s": 8.770348584460223e-05,
+      "ewma_abs_return": 1.9787642675738784e-05
+    },
+    {
+      "spread_bps": 0.0014803935559299436,
+      "realized_vol_60s": 8.864354884217653e-05,
+      "ewma_abs_return": 2.738126890031123e-05
+    },
+    {
+      "spread_bps": 0.001480303488085194,
+      "realized_vol_60s": 8.922341622120351e-05,
+      "ewma_abs_return": 3.156390081889313e-05
+    },
+    {
+      "spread_bps": 0.0014800177979187117,
+      "realized_vol_60s": 9.24497075561926e-05,
+      "ewma_abs_return": 5.174503156036527e-05
+    },
+    {
+      "spread_bps": 0.0014799028080876556,
+      "realized_vol_60s": 9.318563098501967e-05,
+      "ewma_abs_return": 5.498914209908082e-05
+    },
+    {
+      "spread_bps": 0.10803029909459887,
+      "realized_vol_60s": 9.329188931445943e-05,
+      "ewma_abs_return": 5.113076494211736e-05
+    },
+    {
+      "spread_bps": 0.0014796840482085964,
+      "realized_vol_60s": 9.491385932115226e-05,
+      "ewma_abs_return": 6.020307409525019e-05
+    },
+    {
+      "spread_bps": 0.0014797298115931394,
+      "realized_vol_60s": 9.32995995281882e-05,
+      "ewma_abs_return": 5.654342418619201e-05
+    },
+    {
+      "spread_bps": 0.0014796884293045525,
+      "realized_vol_60s": 9.341010339113895e-05,
+      "ewma_abs_return": 5.297130895615963e-05
+    },
+    {
+      "spread_bps": 0.0014797295904798503,
+      "realized_vol_60s": 9.344082475748258e-05,
+      "ewma_abs_return": 4.982721150853563e-05
+    },
+    {
+      "spread_bps": 0.0014797298115931394,
+      "realized_vol_60s": 9.344061162813239e-05,
+      "ewma_abs_return": 4.361730669131435e-05
+    },
+    {
+      "spread_bps": 0.0014798747751809476,
+      "realized_vol_60s": 9.415134066207255e-05,
+      "ewma_abs_return": 5.041050731062079e-05
+    },
+    {
+      "spread_bps": 0.001479946173582341,
+      "realized_vol_60s": 9.427347844574131e-05,
+      "ewma_abs_return": 5.013982908068888e-05
+    },
+    {
+      "spread_bps": 0.001479946173582341,
+      "realized_vol_60s": 9.262202138439767e-05,
+      "ewma_abs_return": 4.387235044560277e-05
+    },
+    {
+      "spread_bps": 0.0014798535322011778,
+      "realized_vol_60s": 9.306604839606017e-05,
+      "ewma_abs_return": 4.6213277111039925e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.294780371510845e-05,
+      "ewma_abs_return": 4.384032693865842e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.294780371510845e-05,
+      "ewma_abs_return": 3.836028607132612e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.294780371510845e-05,
+      "ewma_abs_return": 3.3565250312410354e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.219928104669639e-05,
+      "ewma_abs_return": 2.936959402335906e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.1787354880179e-05,
+      "ewma_abs_return": 2.5698394770439178e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 9.1787354880179e-05,
+      "ewma_abs_return": 2.248609542413428e-05
+    },
+    {
+      "spread_bps": 0.6584356294459056,
+      "realized_vol_60s": 9.473856465442688e-05,
+      "ewma_abs_return": 4.1908760865295714e-05
+    },
+    {
+      "spread_bps": 0.001479685142941848,
+      "realized_vol_60s": 9.485208001249176e-05,
+      "ewma_abs_return": 4.127560092569247e-05
+    },
+    {
+      "spread_bps": 0.0014798938286816165,
+      "realized_vol_60s": 8.473286291209544e-05,
+      "ewma_abs_return": 5.374414301060041e-05
+    },
+    {
+      "spread_bps": 0.001479859447287773,
+      "realized_vol_60s": 8.477622108135642e-05,
+      "ewma_abs_return": 4.993038303555704e-05
+    },
+    {
+      "spread_bps": 0.001479782361713607,
+      "realized_vol_60s": 7.174657601143667e-05,
+      "ewma_abs_return": 5.020029713170298e-05
+    },
+    {
+      "spread_bps": 0.0014797322201574046,
+      "realized_vol_60s": 7.142532827334486e-05,
+      "ewma_abs_return": 4.816106523390873e-05
+    },
+    {
+      "spread_bps": 0.0014795977904741905,
+      "realized_vol_60s": 7.220006944017112e-05,
+      "ewma_abs_return": 5.3497360969167534e-05
+    },
+    {
+      "spread_bps": 0.0014795977904741905,
+      "realized_vol_60s": 7.220006944017112e-05,
+      "ewma_abs_return": 4.681019084802159e-05
+    },
+    {
+      "spread_bps": 0.0014795977904741905,
+      "realized_vol_60s": 7.03340183765082e-05,
+      "ewma_abs_return": 4.0958916992018895e-05
+    },
+    {
+      "spread_bps": 0.06658502356505265,
+      "realized_vol_60s": 7.072880743863165e-05,
+      "ewma_abs_return": 4.1702096106302144e-05
+    },
+    {
+      "spread_bps": 0.0014795977904741905,
+      "realized_vol_60s": 6.991149171464027e-05,
+      "ewma_abs_return": 4.235237783129999e-05
+    },
+    {
+      "spread_bps": 0.0014795820283328457,
+      "realized_vol_60s": 6.908214512949711e-05,
+      "ewma_abs_return": 3.838996151969919e-05
+    },
+    {
+      "spread_bps": 0.0014795820283328457,
+      "realized_vol_60s": 6.717165422141329e-05,
+      "ewma_abs_return": 3.359121632973679e-05
+    },
+    {
+      "spread_bps": 0.0014797319990433994,
+      "realized_vol_60s": 6.852296974594048e-05,
+      "ewma_abs_return": 4.206187744400708e-05
+    },
+    {
+      "spread_bps": 0.0014797319990433994,
+      "realized_vol_60s": 6.852296974594048e-05,
+      "ewma_abs_return": 3.68041427635062e-05
+    },
+    {
+      "spread_bps": 0.0014797319990433994,
+      "realized_vol_60s": 6.847462935471424e-05,
+      "ewma_abs_return": 3.2203624918067926e-05
+    },
+    {
+      "spread_bps": 0.0014797315611221704,
+      "realized_vol_60s": 6.837256156031984e-05,
+      "ewma_abs_return": 2.8215165097737178e-05
+    },
+    {
+      "spread_bps": 0.0014797319990433994,
+      "realized_vol_60s": 6.837332042488045e-05,
+      "ewma_abs_return": 2.4725262754947775e-05
+    },
+    {
+      "spread_bps": 0.001479782361713607,
+      "realized_vol_60s": 6.860012399543263e-05,
+      "ewma_abs_return": 2.5888906805569622e-05
+    },
+    {
+      "spread_bps": 0.0044393464303675335,
+      "realized_vol_60s": 6.860046817745294e-05,
+      "ewma_abs_return": 2.2671290733027036e-05
+    },
+    {
+      "spread_bps": 0.0014797749187345683,
+      "realized_vol_60s": 6.85895030345025e-05,
+      "ewma_abs_return": 2.0447788035251632e-05
+    },
+    {
+      "spread_bps": 0.001479782361713607,
+      "realized_vol_60s": 6.86042289661759e-05,
+      "ewma_abs_return": 1.8520720452851774e-05
+    },
+    {
+      "spread_bps": 0.001479782361713607,
+      "realized_vol_60s": 6.798742754693342e-05,
+      "ewma_abs_return": 1.62056303962453e-05
+    },
+    {
+      "spread_bps": 0.001479782361713607,
+      "realized_vol_60s": 6.798742754693342e-05,
+      "ewma_abs_return": 1.4179926596714637e-05
+    },
+    {
+      "spread_bps": 0.0014798082012837054,
+      "realized_vol_60s": 6.078496434998028e-05,
+      "ewma_abs_return": 1.4590133813322947e-05
+    },
+    {
+      "spread_bps": 0.0014798747751809476,
+      "realized_vol_60s": 5.981007402470773e-05,
+      "ewma_abs_return": 1.838976474307553e-05
+    },
+    {
+      "spread_bps": 0.0014798747751809476,
+      "realized_vol_60s": 5.959511566764156e-05,
+      "ewma_abs_return": 1.6091044150191087e-05
+    },
+    {
+      "spread_bps": 0.20715176678176106,
+      "realized_vol_60s": 5.879607732302128e-05,
+      "ewma_abs_return": 3.2604473240816483e-05
+    },
+    {
+      "spread_bps": 0.0014795894715244093,
+      "realized_vol_60s": 5.8978396684060434e-05,
+      "ewma_abs_return": 3.410524128126999e-05
+    },
+    {
+      "spread_bps": 0.0014795820283328457,
+      "realized_vol_60s": 5.896971561906543e-05,
+      "ewma_abs_return": 3.0470910064249696e-05
+    },
+    {
+      "spread_bps": 0.001479574804130296,
+      "realized_vol_60s": 5.8961068898125466e-05,
+      "ewma_abs_return": 2.7272372402325044e-05
+    },
+    {
+      "spread_bps": 0.001479574804130296,
+      "realized_vol_60s": 5.669278022240919e-05,
+      "ewma_abs_return": 2.3863325852034413e-05
+    },
+    {
+      "spread_bps": 0.0014795419677350698,
+      "realized_vol_60s": 5.669509689628238e-05,
+      "ewma_abs_return": 2.3654582091339757e-05
+    },
+    {
+      "spread_bps": 0.0014795787424425983,
+      "realized_vol_60s": 5.6866890180288505e-05,
+      "ewma_abs_return": 2.3804836074701677e-05
+    },
+    {
+      "spread_bps": 0.001479578525680375,
+      "realized_vol_60s": 5.686642954704736e-05,
+      "ewma_abs_return": 2.084772629822028e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.68530027651467e-05,
+      "ewma_abs_return": 1.898154758387695e-05
+    },
+    {
+      "spread_bps": 0.0014795892504528556,
+      "realized_vol_60s": 5.692006879663779e-05,
+      "ewma_abs_return": 1.825488633998687e-05
+    },
+    {
+      "spread_bps": 0.0014795728317524184,
+      "realized_vol_60s": 5.6903730306597356e-05,
+      "ewma_abs_return": 1.7360132774124333e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.689782776244884e-05,
+      "ewma_abs_return": 1.544904115481751e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.689782776244884e-05,
+      "ewma_abs_return": 1.351791101046532e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.616571056058567e-05,
+      "ewma_abs_return": 1.1828172134157156e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.5766769354978746e-05,
+      "ewma_abs_return": 1.0349650617387511e-05
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 5.021999865616498e-05,
+      "ewma_abs_return": 9.055944290214072e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.930833597506652e-05,
+      "ewma_abs_return": 7.923951253937313e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.923771523091631e-05,
+      "ewma_abs_return": 6.933457347195149e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.6633513416606307e-05,
+      "ewma_abs_return": 6.066775178795756e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.6441948401609686e-05,
+      "ewma_abs_return": 5.308428281446287e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.6315076037722864e-05,
+      "ewma_abs_return": 4.644874746265501e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.615723991866666e-05,
+      "ewma_abs_return": 4.064265402982313e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.615713801288065e-05,
+      "ewma_abs_return": 3.556232227609524e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.4262033239792785e-05,
+      "ewma_abs_return": 3.111703199158334e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.374243996143793e-05,
+      "ewma_abs_return": 2.722740299263542e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.374243996143793e-05,
+      "ewma_abs_return": 2.382397761855599e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.30682162470209e-05,
+      "ewma_abs_return": 2.084598041623649e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.288524878327675e-05,
+      "ewma_abs_return": 1.824023286420693e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.288524878327675e-05,
+      "ewma_abs_return": 1.5960203756181064e-06
+    },
+    {
+      "spread_bps": 0.0014795697669686954,
+      "realized_vol_60s": 4.288524878327675e-05,
+      "ewma_abs_return": 1.396517828665843e-06
+    },
+    {
+      "spread_bps": 0.0014795693312965423,
+      "realized_vol_60s": 4.2884838923481815e-05,
+      "ewma_abs_return": 1.2589423388656488e-06
+    },
+    {
+      "spread_bps": 0.0014795502839976514,
+      "realized_vol_60s": 4.289843986739028e-05,
+      "ewma_abs_return": 2.710595836934835e-06
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 4.8300116767256896e-05,
+      "ewma_abs_return": 2.4359653483468972e-05
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 4.276393557382158e-05,
+      "ewma_abs_return": 2.131469679803535e-05
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 4.243314053975748e-05,
+      "ewma_abs_return": 1.8650359698280932e-05
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 3.7902453675654584e-05,
+      "ewma_abs_return": 1.6319064735995818e-05
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 3.785037078700365e-05,
+      "ewma_abs_return": 1.427918164399634e-05
+    },
+    {
+      "spread_bps": 0.0014792900494683928,
+      "realized_vol_60s": 3.7379416737953596e-05,
+      "ewma_abs_return": 1.2494283938496797e-05
+    },
+    {
+      "spread_bps": 0.001479180863558098,
+      "realized_vol_60s": 3.8238057170123916e-05,
+      "ewma_abs_return": 2.0159229595965373e-05
+    },
+    {
+      "spread_bps": 0.0014791478237055939,
+      "realized_vol_60s": 3.66579652846145e-05,
+      "ewma_abs_return": 2.0431248594389758e-05
+    },
+    {
+      "spread_bps": 0.001478967345770706,
+      "realized_vol_60s": 3.963578081538662e-05,
+      "ewma_abs_return": 3.313012383273788e-05
+    },
+    {
+      "spread_bps": 0.001478967345770706,
+      "realized_vol_60s": 3.963578081538662e-05,
+      "ewma_abs_return": 2.898885835364565e-05
+    },
+    {
+      "spread_bps": 0.0014788962604941646,
+      "realized_vol_60s": 3.9337630740394965e-05,
+      "ewma_abs_return": 3.13734115105941e-05
+    },
+    {
+      "spread_bps": 0.0014787786041902263,
+      "realized_vol_60s": 4.009404730343585e-05,
+      "ewma_abs_return": 3.739691679169792e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 4.1273649644154216e-05,
+      "ewma_abs_return": 4.105919457495703e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 4.1273649644154216e-05,
+      "ewma_abs_return": 3.59267952530874e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.87195985656304e-05,
+      "ewma_abs_return": 3.143594584645148e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.87195985656304e-05,
+      "ewma_abs_return": 2.7506452615645048e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.87195985656304e-05,
+      "ewma_abs_return": 2.4068146038689416e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.872082663795226e-05,
+      "ewma_abs_return": 2.105962778385324e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.871956022640365e-05,
+      "ewma_abs_return": 1.8427174310871582e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.831623274445745e-05,
+      "ewma_abs_return": 1.6123777522012636e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.8316895324029945e-05,
+      "ewma_abs_return": 1.4108305331761056e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.8333551734136934e-05,
+      "ewma_abs_return": 1.2344767165290925e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.830535346632042e-05,
+      "ewma_abs_return": 1.080167126962956e-05
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.830535346632042e-05,
+      "ewma_abs_return": 9.451462360925865e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.830535346632042e-05,
+      "ewma_abs_return": 8.270029565810133e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.815769864315685e-05,
+      "ewma_abs_return": 7.236275870083866e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.748520863117142e-05,
+      "ewma_abs_return": 6.331741386323383e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.748520863117142e-05,
+      "ewma_abs_return": 5.54027371303296e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.291114939869831e-05,
+      "ewma_abs_return": 4.84773949890384e-06
+    },
+    {
+      "spread_bps": 0.0014788772326718752,
+      "realized_vol_60s": 3.25900392851476e-05,
+      "ewma_abs_return": 4.24177206154086e-06
+    },
+    {
+      "spread_bps": 0.0014788525191049352,
+      "realized_vol_60s": 3.260673266423663e-05,
+      "ewma_abs_return": 5.800447191956548e-06
+    },
+    {
+      "spread_bps": 0.12867999835753197,
+      "realized_vol_60s": 3.8761904109535173e-05,
+      "ewma_abs_return": 2.433892962366691e-05
+    },
+    {
+      "spread_bps": 0.08577253921198791,
+      "realized_vol_60s": 4.385653654144487e-05,
+      "ewma_abs_return": 4.188181920334325e-05
+    },
+    {
+      "spread_bps": 0.0014787746658337189,
+      "realized_vol_60s": 4.403787247028731e-05,
+      "ewma_abs_return": 4.1905594837977234e-05
+    },
+    {
+      "spread_bps": 0.04140513654361688,
+      "realized_vol_60s": 4.3820973306929685e-05,
+      "ewma_abs_return": 3.834024813096839e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.738574532779979e-05,
+      "ewma_abs_return": 5.222484423948601e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.74042905833303e-05,
+      "ewma_abs_return": 4.569673870955026e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.731773979959596e-05,
+      "ewma_abs_return": 3.998464637085648e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.734257926676484e-05,
+      "ewma_abs_return": 3.498656557449942e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 3.061324487768699e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 2.6786589267976114e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 2.34382656094791e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 2.0508482408294213e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 1.7944922107257436e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.735047924823256e-05,
+      "ewma_abs_return": 1.5701806843850257e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.759059933905638e-05,
+      "ewma_abs_return": 2.0078134527119834e-05
+    },
+    {
+      "spread_bps": 0.0014785339433044666,
+      "realized_vol_60s": 4.8262261283461975e-05,
+      "ewma_abs_return": 2.3907421249980715e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.988640915920761e-05,
+      "ewma_abs_return": 3.1749723923658e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.988640915920761e-05,
+      "ewma_abs_return": 2.7781008433200753e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.988640915920761e-05,
+      "ewma_abs_return": 2.430838237905066e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.988640915920761e-05,
+      "ewma_abs_return": 2.1269834581669326e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.988640915920761e-05,
+      "ewma_abs_return": 1.861110525896066e-05
+    },
+    {
+      "spread_bps": 0.0014786618368782124,
+      "realized_vol_60s": 4.9885898967668454e-05,
+      "ewma_abs_return": 1.6303200375835054e-05
+    },
+    {
+      "spread_bps": 0.0014785813802337346,
+      "realized_vol_60s": 5.019042962117043e-05,
+      "ewma_abs_return": 2.106695972833586e-05
+    },
+    {
+      "spread_bps": 0.0014785573323929677,
+      "realized_vol_60s": 5.017317592095795e-05,
+      "ewma_abs_return": 2.0466622628349483e-05
+    },
+    {
+      "spread_bps": 0.0014785098948552232,
+      "realized_vol_60s": 5.022047661463194e-05,
+      "ewma_abs_return": 2.191881722818287e-05
+    },
+    {
+      "spread_bps": 0.042875544492898605,
+      "realized_vol_60s": 5.024300924961078e-05,
+      "ewma_abs_return": 2.2801261834313323e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 5.02250382732305e-05,
+      "ewma_abs_return": 2.0634893245889245e-05
+    },
+    {
+      "spread_bps": 0.0014784779822195615,
+      "realized_vol_60s": 5.030796869916219e-05,
+      "ewma_abs_return": 1.966336605372147e-05
+    },
+    {
+      "spread_bps": 0.0014784779822195615,
+      "realized_vol_60s": 5.033291924509292e-05,
+      "ewma_abs_return": 1.720544529700629e-05
+    },
+    {
+      "spread_bps": 0.0014784779822195615,
+      "realized_vol_60s": 4.552225085830402e-05,
+      "ewma_abs_return": 1.5054764634880503e-05
+    },
+    {
+      "spread_bps": 0.0014784779822195615,
+      "realized_vol_60s": 4.552225085830402e-05,
+      "ewma_abs_return": 1.317291905552044e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.550870675896123e-05,
+      "ewma_abs_return": 1.3134138637148767e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.550870675896123e-05,
+      "ewma_abs_return": 1.149237130750517e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.550870675896123e-05,
+      "ewma_abs_return": 1.0055824894067023e-05
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.550870675896123e-05,
+      "ewma_abs_return": 8.798846782308646e-06
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.4727976286995264e-05,
+      "ewma_abs_return": 7.698990934520065e-06
+    },
+    {
+      "spread_bps": 0.0014784589630075983,
+      "realized_vol_60s": 4.470073299855698e-05,
+      "ewma_abs_return": 6.736617067705057e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 4.2296376363305473e-05,
+      "ewma_abs_return": 1.0477678700298573e-05
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 4.2296376363305473e-05,
+      "ewma_abs_return": 9.167968862761251e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 4.194645924330419e-05,
+      "ewma_abs_return": 8.021972754916095e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 4.080894683689124e-05,
+      "ewma_abs_return": 7.019226160551583e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 6.141822890482635e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 5.3740950291723056e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 4.702333150525767e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 4.114541506710046e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 3.6002238183712906e-06
+    },
+    {
+      "spread_bps": 0.0014784047561406555,
+      "realized_vol_60s": 3.973905448787892e-05,
+      "ewma_abs_return": 3.1501958410748794e-06
+    },
+    {
+      "spread_bps": 0.0014783990755442302,
+      "realized_vol_60s": 3.97334214847262e-05,
+      "ewma_abs_return": 3.236901983562701e-06
+    },
+    {
+      "spread_bps": 0.0014783990755442302,
+      "realized_vol_60s": 3.97334214847262e-05,
+      "ewma_abs_return": 2.8322892356173633e-06
+    },
+    {
+      "spread_bps": 0.0014783990755442302,
+      "realized_vol_60s": 3.97334214847262e-05,
+      "ewma_abs_return": 2.478253081165193e-06
+    },
+    {
+      "spread_bps": 0.0014785907809659695,
+      "realized_vol_60s": 4.338947918583734e-05,
+      "ewma_abs_return": 1.8376472048333075e-05
+    },
+    {
+      "spread_bps": 0.0014785907809659695,
+      "realized_vol_60s": 4.338947918583734e-05,
+      "ewma_abs_return": 1.607941304229144e-05
+    },
+    {
+      "spread_bps": 0.0014785907809659695,
+      "realized_vol_60s": 4.338947918583734e-05,
+      "ewma_abs_return": 1.406948641200501e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 4.38936015001257e-05,
+      "ewma_abs_return": 1.833620326554542e-05
+    },
+    {
+      "spread_bps": 0.0014784484710457044,
+      "realized_vol_60s": 4.7566368418345254e-05,
+      "ewma_abs_return": 3.410103395680986e-05
+    },
+    {
+      "spread_bps": 0.001478421367500042,
+      "realized_vol_60s": 4.7593670936198265e-05,
+      "ewma_abs_return": 3.2129978837998696e-05
+    },
+    {
+      "spread_bps": 0.001478421367500042,
+      "realized_vol_60s": 4.7593670936198265e-05,
+      "ewma_abs_return": 2.8113731483248857e-05
+    },
+    {
+      "spread_bps": 0.0014784480338838574,
+      "realized_vol_60s": 4.768355422387492e-05,
+      "ewma_abs_return": 2.6854127967315015e-05
+    },
+    {
+      "spread_bps": 0.001478421367500042,
+      "realized_vol_60s": 4.770938738653966e-05,
+      "ewma_abs_return": 2.5751974890872905e-05
+    },
+    {
+      "spread_bps": 0.001478421367500042,
+      "realized_vol_60s": 4.768945617721044e-05,
+      "ewma_abs_return": 2.253297802951379e-05
+    },
+    {
+      "spread_bps": 0.001478421367500042,
+      "realized_vol_60s": 4.289121232556563e-05,
+      "ewma_abs_return": 1.9716355775824568e-05
+    },
+    {
+      "spread_bps": 0.0014782950431157776,
+      "realized_vol_60s": 3.901185764975541e-05,
+      "ewma_abs_return": 2.7932949329893917e-05
+    },
+    {
+      "spread_bps": 0.0014782386630752327,
+      "realized_vol_60s": 3.895366854748327e-05,
+      "ewma_abs_return": 2.9208741266170243e-05
+    },
+    {
+      "spread_bps": 0.001478290235347695,
+      "realized_vol_60s": 3.929643768411263e-05,
+      "ewma_abs_return": 2.9918528734462734e-05
+    },
+    {
+      "spread_bps": 0.0014783595160875785,
+      "realized_vol_60s": 3.502857857652247e-05,
+      "ewma_abs_return": 3.2036574959204395e-05
+    },
+    {
+      "spread_bps": 0.00147841131321161,
+      "realized_vol_60s": 3.535247494683262e-05,
+      "ewma_abs_return": 3.241171987854172e-05
+    },
+    {
+      "spread_bps": 0.0014784482546161737,
+      "realized_vol_60s": 3.551581143092442e-05,
+      "ewma_abs_return": 3.1483437811121216e-05
+    },
+    {
+      "spread_bps": 0.07242497973101787,
+      "realized_vol_60s": 4.896614321424481e-05,
+      "ewma_abs_return": 6.030982377573806e-05
+    },
+    {
+      "spread_bps": 0.001477868366229276,
+      "realized_vol_60s": 5.1543287842242016e-05,
+      "ewma_abs_return": 6.904718079310144e-05
+    },
+    {
+      "spread_bps": 0.0014779109573074102,
+      "realized_vol_60s": 5.174827226151792e-05,
+      "ewma_abs_return": 6.401863924586538e-05
+    },
+    {
+      "spread_bps": 0.001478091835074399,
+      "realized_vol_60s": 5.4374908252795494e-05,
+      "ewma_abs_return": 7.131362374954484e-05
+    },
+    {
+      "spread_bps": 0.001478092051399071,
+      "realized_vol_60s": 5.437514124817535e-05,
+      "ewma_abs_return": 6.241789693012893e-05
+    },
+    {
+      "spread_bps": 0.0014784082553892935,
+      "realized_vol_60s": 6.128093499432179e-05,
+      "ewma_abs_return": 8.135350925393555e-05
+    },
+    {
+      "spread_bps": 0.0014784082553892935,
+      "realized_vol_60s": 6.128093499432179e-05,
+      "ewma_abs_return": 7.118432059719361e-05
+    },
+    {
+      "spread_bps": 0.0014784082553892935,
+      "realized_vol_60s": 6.093827376926948e-05,
+      "ewma_abs_return": 6.228628052254441e-05
+    },
+    {
+      "spread_bps": 0.0014784482546161737,
+      "realized_vol_60s": 6.067680138549465e-05,
+      "ewma_abs_return": 5.788240008689983e-05
+    },
+    {
+      "spread_bps": 0.0014784482546161737,
+      "realized_vol_60s": 5.957743310710663e-05,
+      "ewma_abs_return": 5.0647100076037346e-05
+    },
+    {
+      "spread_bps": 0.0014784482546161737,
+      "realized_vol_60s": 5.957743310710663e-05,
+      "ewma_abs_return": 4.431621256653268e-05
+    },
+    {
+      "spread_bps": 0.0014784482546161737,
+      "realized_vol_60s": 5.957743310710663e-05,
+      "ewma_abs_return": 3.877668599571609e-05
+    },
+    {
+      "spread_bps": 0.0014785286946212548,
+      "realized_vol_60s": 6.002710522831571e-05,
+      "ewma_abs_return": 4.073064722495101e-05
+    },
+    {
+      "spread_bps": 0.0014785472784067152,
+      "realized_vol_60s": 6.005436011710942e-05,
+      "ewma_abs_return": 3.721026293196204e-05
+    },
+    {
+      "spread_bps": 0.0014785573323929677,
+      "realized_vol_60s": 6.0063307979914186e-05,
+      "ewma_abs_return": 3.340914764091699e-05
+    },
+    {
+      "spread_bps": 0.11385421736197304,
+      "realized_vol_60s": 5.996112935699706e-05,
+      "ewma_abs_return": 3.505495926383599e-05
+    },
+    {
+      "spread_bps": 0.0014786620576740638,
+      "realized_vol_60s": 5.999719185681667e-05,
+      "ewma_abs_return": 3.370430981760313e-05
+    },
+    {
+      "spread_bps": 0.0014787333369505086,
+      "realized_vol_60s": 6.0137907388374566e-05,
+      "ewma_abs_return": 3.551696420354579e-05
+    },
+    {
+      "spread_bps": 0.11238311047389314,
+      "realized_vol_60s": 6.000583605300569e-05,
+      "ewma_abs_return": 3.177049800848043e-05
+    },
+    {
+      "spread_bps": 0.011829785359153943,
+      "realized_vol_60s": 5.9998417774695986e-05,
+      "ewma_abs_return": 2.7965542224688635e-05
+    },
+    {
+      "spread_bps": 0.0014787333369505086,
+      "realized_vol_60s": 5.99866779670313e-05,
+      "ewma_abs_return": 2.5329360244248678e-05
+    },
+    {
+      "spread_bps": 0.0014787333369505086,
+      "realized_vol_60s": 5.99866779670313e-05,
+      "ewma_abs_return": 2.2163190213717594e-05
+    },
+    {
+      "spread_bps": 0.001478731587630752,
+      "realized_vol_60s": 5.998783446018128e-05,
+      "ewma_abs_return": 1.9540664683317385e-05
+    },
+    {
+      "spread_bps": 0.001478731587630752,
+      "realized_vol_60s": 5.998783446018128e-05,
+      "ewma_abs_return": 1.709808159790271e-05
+    },
+    {
+      "spread_bps": 0.15673941790790313,
+      "realized_vol_60s": 6.019977215075102e-05,
+      "ewma_abs_return": 1.9849782103327633e-05
+    },
+    {
+      "spread_bps": 0.0014786747391434003,
+      "realized_vol_60s": 6.019937985340537e-05,
+      "ewma_abs_return": 1.7451734766735868e-05
+    },
+    {
+      "spread_bps": 0.0014786747391434003,
+      "realized_vol_60s": 6.019937985340537e-05,
+      "ewma_abs_return": 1.5270267920893883e-05
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 6.0199710871181273e-05,
+      "ewma_abs_return": 1.3416934721141508e-05
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 6.0199710871181273e-05,
+      "ewma_abs_return": 1.173981788099882e-05
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 6.0199710871181273e-05,
+      "ewma_abs_return": 1.0272340645873967e-05
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 8.988298065139722e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 7.864760806997256e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 6.881665706122599e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 6.021457492857275e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 5.2687753062501155e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 4.610178392968851e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 4.033906093847745e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 3.5296678321167767e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 3.0884593531021797e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.9981883652827275e-05,
+      "ewma_abs_return": 2.702401933964407e-06
+    },
+    {
+      "spread_bps": 0.0014786740831999965,
+      "realized_vol_60s": 5.997646359098691e-05,
+      "ewma_abs_return": 2.3646016922188564e-06
+    },
+    {
+      "spread_bps": 0.0014786828270081285,
+      "realized_vol_60s": 5.997614278201323e-05,
+      "ewma_abs_return": 2.808365708087274e-06
+    },
+    {
+      "spread_bps": 0.0014786821710575482,
+      "realized_vol_60s": 5.9976571102381663e-05,
+      "ewma_abs_return": 2.5127705884706995e-06
+    },
+    {
+      "spread_bps": 0.0014786821710575482,
+      "realized_vol_60s": 5.7632493238960525e-05,
+      "ewma_abs_return": 2.198674264911862e-06
+    },
+    {
+      "spread_bps": 0.0014786821710575482,
+      "realized_vol_60s": 5.7632493238960525e-05,
+      "ewma_abs_return": 1.923839981797879e-06
+    },
+    {
+      "spread_bps": 0.004436201324995124,
+      "realized_vol_60s": 5.779777635343102e-05,
+      "ewma_abs_return": 6.045548504918722e-06
+    },
+    {
+      "spread_bps": 0.0014787429582831543,
+      "realized_vol_60s": 5.7477392619963896e-05,
+      "ewma_abs_return": 6.06619258442008e-06
+    },
+    {
+      "spread_bps": 0.0014787429582831543,
+      "realized_vol_60s": 5.421816443541968e-05,
+      "ewma_abs_return": 5.3079185113675695e-06
+    },
+    {
+      "spread_bps": 0.0014785910017407046,
+      "realized_vol_60s": 5.586056038875658e-05,
+      "ewma_abs_return": 1.7490348061015448e-05
+    },
+    {
+      "spread_bps": 0.0014785807243731556,
+      "realized_vol_60s": 5.587179573474987e-05,
+      "ewma_abs_return": 1.6172723747742317e-05
+    },
+    {
+      "spread_bps": 0.0014785807243731556,
+      "realized_vol_60s": 5.583144216694299e-05,
+      "ewma_abs_return": 1.4151133279274528e-05
+    },
+    {
+      "spread_bps": 0.0014785807243731556,
+      "realized_vol_60s": 5.5773017015487234e-05,
+      "ewma_abs_return": 1.2382241619365211e-05
+    },
+    {
+      "spread_bps": 0.0014785809429932837,
+      "realized_vol_60s": 5.577293956461039e-05,
+      "ewma_abs_return": 1.0852943677333367e-05
+    },
+    {
+      "spread_bps": 0.0014785809429932837,
+      "realized_vol_60s": 5.577293956461039e-05,
+      "ewma_abs_return": 9.496325717666697e-06
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 6.638238347198743e-05,
+      "ewma_abs_return": 4.529776290929955e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 6.611363419567641e-05,
+      "ewma_abs_return": 3.96355425456371e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 6.603359437581729e-05,
+      "ewma_abs_return": 3.4681099727432464e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 6.584552554516113e-05,
+      "ewma_abs_return": 3.0345962261503404e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 6.57518156216743e-05,
+      "ewma_abs_return": 2.655271697881548e-05
+    },
+    {
+      "spread_bps": 0.0014790100023691116,
+      "realized_vol_60s": 6.572786267646333e-05,
+      "ewma_abs_return": 2.3954646811493547e-05
+    },
+    {
+      "spread_bps": 0.0014790183126517978,
+      "realized_vol_60s": 5.548590579216911e-05,
+      "ewma_abs_return": 2.166284768485125e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 5.23338372928395e-05,
+      "ewma_abs_return": 1.897347945448045e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 5.231812082982397e-05,
+      "ewma_abs_return": 1.6601794522670396e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 5.0308168544755884e-05,
+      "ewma_abs_return": 1.4526570207336596e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 5.0308684988805606e-05,
+      "ewma_abs_return": 1.2710748931419523e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.264112833634732e-05,
+      "ewma_abs_return": 1.1121905314992083e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.264112833634732e-05,
+      "ewma_abs_return": 9.731667150618072e-06
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.264112833634732e-05,
+      "ewma_abs_return": 8.515208756790814e-06
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 4.25671346143384e-05,
+      "ewma_abs_return": 7.450807662191962e-06
+    },
+    {
+      "spread_bps": 0.0014790898472035567,
+      "realized_vol_60s": 4.2897592945353285e-05,
+      "ewma_abs_return": 1.2546602526625169e-05
+    },
+    {
+      "spread_bps": 0.0014792325015949047,
+      "realized_vol_60s": 4.440246345268402e-05,
+      "ewma_abs_return": 2.3033440761092257e-05
+    },
+    {
+      "spread_bps": 0.0014792325015949047,
+      "realized_vol_60s": 4.440246345268402e-05,
+      "ewma_abs_return": 2.0154260665955726e-05
+    },
+    {
+      "spread_bps": 0.0014792325015949047,
+      "realized_vol_60s": 4.400988301817851e-05,
+      "ewma_abs_return": 1.763497808271126e-05
+    },
+    {
+      "spread_bps": 0.0029584647822243804,
+      "realized_vol_60s": 4.40175725621379e-05,
+      "ewma_abs_return": 1.5439851025197875e-05
+    },
+    {
+      "spread_bps": 0.0014792325015949047,
+      "realized_vol_60s": 4.402852168591232e-05,
+      "ewma_abs_return": 1.3519114849873666e-05
+    },
+    {
+      "spread_bps": 0.0014792898306385197,
+      "realized_vol_60s": 4.392267644389592e-05,
+      "ewma_abs_return": 1.66738058103269e-05
+    },
+    {
+      "spread_bps": 0.0014792878633252255,
+      "realized_vol_60s": 4.388125842585873e-05,
+      "ewma_abs_return": 1.4756000079153944e-05
+    },
+    {
+      "spread_bps": 0.0014792852352261468,
+      "realized_vol_60s": 4.356001507239016e-05,
+      "ewma_abs_return": 1.3133393051692392e-05
+    },
+    {
+      "spread_bps": 0.0014792602892000181,
+      "realized_vol_60s": 4.363626704544579e-05,
+      "ewma_abs_return": 1.3599682607389886e-05
+    },
+    {
+      "spread_bps": 0.0014792852352261468,
+      "realized_vol_60s": 4.364746143378093e-05,
+      "ewma_abs_return": 1.4007685968625193e-05
+    },
+    {
+      "spread_bps": 0.0014794463105251745,
+      "realized_vol_60s": 4.561133285641069e-05,
+      "ewma_abs_return": 2.5866890313263152e-05
+    },
+    {
+      "spread_bps": 0.0014794463105251745,
+      "realized_vol_60s": 4.561133285641069e-05,
+      "ewma_abs_return": 2.263352902410526e-05
+    },
+    {
+      "spread_bps": 0.001479348700360839,
+      "realized_vol_60s": 4.658990285491829e-05,
+      "ewma_abs_return": 2.8051978981293807e-05
+    },
+    {
+      "spread_bps": 0.0014793799940279366,
+      "realized_vol_60s": 4.661642517974801e-05,
+      "ewma_abs_return": 2.7189845378586775e-05
+    },
+    {
+      "spread_bps": 0.14494627078328748,
+      "realized_vol_60s": 5.532145663822925e-05,
+      "ewma_abs_return": 5.221971599486268e-05
+    },
+    {
+      "spread_bps": 0.0014790185335536025,
+      "realized_vol_60s": 5.538696673601856e-05,
+      "ewma_abs_return": 4.7809114694013966e-05
+    },
+    {
+      "spread_bps": 0.001478947443356605,
+      "realized_vol_60s": 5.5790110821682736e-05,
+      "ewma_abs_return": 4.784134374008826e-05
+    },
+    {
+      "spread_bps": 0.001478947443356605,
+      "realized_vol_60s": 5.578966622790123e-05,
+      "ewma_abs_return": 4.186117577257722e-05
+    },
+    {
+      "spread_bps": 0.001478947443356605,
+      "realized_vol_60s": 5.578966622790123e-05,
+      "ewma_abs_return": 3.662852880100507e-05
+    },
+    {
+      "spread_bps": 1.103978985921582,
+      "realized_vol_60s": 9.722794623311134e-05,
+      "ewma_abs_return": 0.00010954309417486184
+    }
+  ],
+  "metrics": {
+    "baseline": {
+      "pr_auc": 0.9668395809738721,
+      "f1_at_threshold": 0.8328865058087578,
+      "positive_rate": 0.6245210727969349
+    },
+    "logistic_regression": {
+      "pr_auc": 0.9776452316545037,
+      "f1_at_threshold": 0.8640192539109507,
+      "positive_rate": 0.3486590038314176,
+      "train_seconds": 0.004351209034211934
+    },
+    "threshold": 0.6026498867677035,
+    "train_rows": 3130,
+    "validation_rows": 1044,
+    "test_rows": 1044
+  },
+  "predictions": [
+    {
+      "window_end_ts": "2026-04-01 03:15:46+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6594464032679328,
+      "logistic_probability": 0.0010243941324483,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:46+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1780391162240106,
+      "logistic_probability": 0.0115476963058057,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:47+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1744230943334688,
+      "logistic_probability": 0.0320114968658488,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:47+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6594464032679328,
+      "logistic_probability": 0.0010852561809961,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:48+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1576038578176576,
+      "logistic_probability": 0.0304766099877741,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:48+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6608673786302077,
+      "logistic_probability": 0.0010206963383488,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:49+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6608673786302077,
+      "logistic_probability": 0.0010867765577507,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:49+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1400903469871545,
+      "logistic_probability": 0.0296322839252772,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:50+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1313607259468382,
+      "logistic_probability": 0.0325369967802371,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:50+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6599529897502405,
+      "logistic_probability": 0.001118612378914,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:51+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6599136437044202,
+      "logistic_probability": 0.0012502065448584,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:51+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1433208266750223,
+      "logistic_probability": 0.0233617811455982,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:52+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.7385610167127528,
+      "logistic_probability": 0.0009079118232852,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:52+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1176952662151581,
+      "logistic_probability": 0.0257259652374129,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:53+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.7385610167127528,
+      "logistic_probability": 0.0008683985440066,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:53+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0041724370151168,
+      "logistic_probability": 0.0155801397512009,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:54+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.7406123490698405,
+      "logistic_probability": 0.0007442204653385,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:54+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0039783324277454,
+      "logistic_probability": 0.0185380552743615,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:55+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0582953187525423,
+      "logistic_probability": 0.0131115919546048,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:55+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.7426686508898588,
+      "logistic_probability": 0.0007050484329116,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:56+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0598918713498663,
+      "logistic_probability": 0.0089955446671035,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:56+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.7428467278875425,
+      "logistic_probability": 0.0007571388896508,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:57+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0008190297092957,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:57+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0539070727052479,
+      "logistic_probability": 0.0035376197856102,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:58+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.052666543729589,
+      "logistic_probability": 0.0082794497329347,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:58+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0011994692425944,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:59+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.001021091102318,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:15:59+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.052666543729589,
+      "logistic_probability": 0.0073284150063101,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:00+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0009646575948113,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:00+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1148717192314581,
+      "logistic_probability": 0.0041527737024022,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:01+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0009456851866734,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:01+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1037127590371948,
+      "logistic_probability": 0.0044485107185947,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:02+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1037127590371948,
+      "logistic_probability": 0.0049314967452644,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:02+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0009562586485524,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:03+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1037127590371948,
+      "logistic_probability": 0.0050497268944815,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:03+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0008716187115907,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:04+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1037127590371948,
+      "logistic_probability": 0.0054626411639271,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:04+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.6753542319233761,
+      "logistic_probability": 0.0008267682993095,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:05+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2645365091444176,
+      "logistic_probability": 0.0052755218452792,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:05+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0588150632363128,
+      "logistic_probability": 0.0102668397272651,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:06+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2645365091444176,
+      "logistic_probability": 0.0099676573607508,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:06+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0211757887129639,
+      "logistic_probability": 0.0110228515942569,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:07+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.069358418769703,
+      "logistic_probability": 0.0085881021424446,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:07+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2756421389003938,
+      "logistic_probability": 0.0104708680280128,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:08+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3404734408880745,
+      "logistic_probability": 0.0093039420148195,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:08+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1038943503855668,
+      "logistic_probability": 0.0070027581223553,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:09+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3408823835759236,
+      "logistic_probability": 0.0104124417096574,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:09+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1042880526687074,
+      "logistic_probability": 0.0080562652277738,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:10+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.4496577661728264,
+      "logistic_probability": 0.006142532162094,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:10+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1127159852081928,
+      "logistic_probability": 0.0086067568537266,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:11+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1327600009846797,
+      "logistic_probability": 0.0081954559711765,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:11+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.4691282947904283,
+      "logistic_probability": 0.0060008259565755,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:12+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3963652096707427,
+      "logistic_probability": 0.0059905767885603,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:12+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1004615406751313,
+      "logistic_probability": 0.0076550546307997,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:13+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1004615406751313,
+      "logistic_probability": 0.0105482343184254,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:13+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3963652096707427,
+      "logistic_probability": 0.0085875576623485,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:14+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1004615406751313,
+      "logistic_probability": 0.0121454915461627,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:14+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0097197443654364,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:15+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1004615406751313,
+      "logistic_probability": 0.012521326671369,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:15+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0111094826381631,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:16+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0117148217493928,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:16+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1004615406751313,
+      "logistic_probability": 0.0122027138503443,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:17+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0130051682393447,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:17+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0999292734518854,
+      "logistic_probability": 0.0141221089935106,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:18+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0135349651080252,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:18+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0999561436329272,
+      "logistic_probability": 0.0143775342135658,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:19+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1083679302724659,
+      "logistic_probability": 0.0115028617458705,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:19+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0119753323951981,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:20+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.3939580523571672,
+      "logistic_probability": 0.0042966652768149,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:20+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.1241143907343518,
+      "logistic_probability": 0.0062631084259652,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:21+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1607683415611845,
+      "logistic_probability": 0.0230279063719974,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:21+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2269865692513258,
+      "logistic_probability": 0.0078664478678119,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:22+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0110527558349733,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:22+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1331051876677148,
+      "logistic_probability": 0.0323224769011548,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:23+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1333440211821919,
+      "logistic_probability": 0.0414860945262081,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:23+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0156882519716717,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:24+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0200726199984508,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:24+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1333440211821919,
+      "logistic_probability": 0.0549372570686953,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:25+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1333440211821919,
+      "logistic_probability": 0.0608477404528464,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:25+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0233593778971504,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:26+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1333440211821919,
+      "logistic_probability": 0.0661835346991248,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:26+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0240271279646615,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:27+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0840862607853263,
+      "logistic_probability": 0.0524306768793007,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:27+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0180428417804856,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:28+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0168804859358141,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:28+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0833838135496503,
+      "logistic_probability": 0.0504472347447168,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:29+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0311195306941903,
+      "logistic_probability": 0.0383038624670628,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:29+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0181914335373653,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:30+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0311195306941903,
+      "logistic_probability": 0.0382074407501228,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:30+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.2147964482439492,
+      "logistic_probability": 0.0180832981799208,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:31+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.032454783091762,
+      "logistic_probability": 0.0412886947916906,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:31+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1816368989853034,
+      "logistic_probability": 0.023519518811736,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:32+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1787944359260969,
+      "logistic_probability": 0.0241084806967871,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:32+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.0133186662270524,
+      "logistic_probability": 0.0317333196427292,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:33+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0136469496891471,
+      "logistic_probability": 0.0289881913392558,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:33+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1787944359260969,
+      "logistic_probability": 0.028589878632191,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:34+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0135930550017937,
+      "logistic_probability": 0.0378647935472913,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:34+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1658613251838311,
+      "logistic_probability": 0.032960353044138,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:35+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0129106854388521,
+      "logistic_probability": 0.038479866866697,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:35+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1658613251838311,
+      "logistic_probability": 0.0389077422741186,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:36+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0129106854388521,
+      "logistic_probability": 0.0134551879631626,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:36+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1658824668475547,
+      "logistic_probability": 0.0194581175521264,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:37+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0129106854388521,
+      "logistic_probability": 0.0146735665134172,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:37+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1658824668475547,
+      "logistic_probability": 0.015454680207313,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:38+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": -0.0173605704228721,
+      "logistic_probability": 0.0143977435324988,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:38+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1489072933000312,
+      "logistic_probability": 0.0142596028270823,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:39+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.1575705905890125,
+      "logistic_probability": 0.0371209420111922,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:39+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1484434231083913,
+      "logistic_probability": 0.0167784995719701,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:40+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1484434231083913,
+      "logistic_probability": 0.016130481484062,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:40+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.2215076453759407,
+      "logistic_probability": 0.0281006639456701,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:41+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.2497889097271925,
+      "logistic_probability": 0.039690608660505,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:41+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1036536215573647,
+      "logistic_probability": 0.0225379106314616,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:42+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.2489272282372954,
+      "logistic_probability": 0.0461125416445517,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:42+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.0956078688310251,
+      "logistic_probability": 0.0192837008967681,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:43+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.2489272282372954,
+      "logistic_probability": 0.0536925845998057,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:43+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.0957082817631268,
+      "logistic_probability": 0.0218388443920703,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:44+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.2932195287844855,
+      "logistic_probability": 0.0453089351490955,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:44+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1278816363807454,
+      "logistic_probability": 0.0186180034285041,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:45+00:00",
+      "product_id": "BTC-USD",
+      "label": 0,
+      "baseline_score": -0.1275882828983783,
+      "logistic_probability": 0.0199030261543118,
+      "predicted_label": 0
+    },
+    {
+      "window_end_ts": "2026-04-01 03:16:45+00:00",
+      "product_id": "ETH-USD",
+      "label": 0,
+      "baseline_score": 0.3600074119998623,
+      "logistic_probability": 0.0740082275337268,
+      "predicted_label": 0
+    }
+  ]
+}

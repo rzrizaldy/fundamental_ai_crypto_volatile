@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "pr_auc": 0.9668395809738721,
+    "f1_at_threshold": 0.8328865058087578,
+    "positive_rate": 0.6245210727969349
+  },
+  "logistic_regression": {
+    "pr_auc": 0.9776452316545037,
+    "f1_at_threshold": 0.8640192539109507,
+    "positive_rate": 0.3486590038314176,
+    "train_seconds": 0.004351209034211934
+  },
+  "threshold": 0.6026498867677035,
+  "train_rows": 3130,
+  "validation_rows": 1044,
+  "test_rows": 1044
+}
