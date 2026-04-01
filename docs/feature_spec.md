@@ -17,11 +17,37 @@ The volatility target is the rolling standard deviation of future one-second log
 - `label = 0` otherwise
 
 ## Threshold Selection
-The default threshold uses the 90th percentile of `sigma_future_60s` on the available feature data:
 
-`tau = quantile(sigma_future_60s, 0.90)`
+**Chosen threshold τ: 7.83 × 10⁻⁵** (75th percentile of `sigma_future_60s` on the live session)
 
-If the resulting class balance is degenerate, the notebook should justify adjusting the percentile to maintain a usable rare-event classification problem.
+```
+tau = quantile(sigma_future_60s, 0.75)  →  7.83e-05
+```
+
+**Justification (from `notebooks/eda.ipynb` tau sweep):**
+
+The default 90th percentile was evaluated and produced zero positive labels in the
+validation window (rows 3,130–4,174). With 52 minutes of data, high-volatility bursts
+concentrate in the first and last thirds of the session, leaving the middle window
+(chronological validation split) with all negative labels — making threshold selection
+and F1-based evaluation impossible.
+
+The 75th percentile produces a 24.9% positive rate overall and distributes positives
+across train (14%), validation (37%), and test (45%) splits, enabling stable evaluation.
+
+| Percentile | τ value | Overall positive rate |
+|---|---|---|
+| 90th | 1.04 × 10⁻⁴ | ~10% (degenerate splits) |
+| **75th (chosen)** | **7.83 × 10⁻⁵** | **24.9%** |
+| 80th | 9.07 × 10⁻⁵ | ~20% |
+
+**Volatility autocorrelation note:** `realized_vol_60s` (backward 60s window) correlates
+0.991 with `sigma_future_60s`. This reflects genuine volatility persistence in crypto
+(vol clusters at 1-minute scales) rather than data leakage — the two windows are
+non-overlapping. However, it means the logistic model's high PR-AUC (0.978) largely
+reflects this persistence effect rather than richer predictive signal. A longer session
+(multiple hours, different regimes) would reduce this correlation and yield more meaningful
+model comparisons.
 
 ## Core Features
 - `midprice`

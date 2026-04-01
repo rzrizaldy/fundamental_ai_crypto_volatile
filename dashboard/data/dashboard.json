@@ -1,727 +1,727 @@
 {
   "available": true,
-  "feature_rows": 5228,
-  "label_rate": 0.24827850038255547,
+  "feature_rows": 6326,
+  "label_rate": 0.2484982611444831,
   "recent_volatility": [
     {
-      "window_end_ts": "2026-04-01T03:15:46Z",
+      "window_end_ts": "2026-04-01T03:24:55Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9926099125199874e-05,
-      "sigma_future_60s": 2.9926099125199874e-05
+      "realized_vol_60s": 5.126333858396758e-05,
+      "sigma_future_60s": 5.1263975642384306e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:46Z",
+      "window_end_ts": "2026-04-01T03:24:55Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.960429944980515e-05,
-      "sigma_future_60s": 5.947615750639488e-05
+      "realized_vol_60s": 8.437986564649528e-05,
+      "sigma_future_60s": 8.440114385626614e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:47Z",
+      "window_end_ts": "2026-04-01T03:24:56Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.947615750639488e-05,
-      "sigma_future_60s": 5.888012968381715e-05
+      "realized_vol_60s": 8.440114385626614e-05,
+      "sigma_future_60s": 8.440114385626614e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:47Z",
+      "window_end_ts": "2026-04-01T03:24:56Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9926099125199874e-05,
-      "sigma_future_60s": 2.987574363787932e-05
+      "realized_vol_60s": 5.1263975642384306e-05,
+      "sigma_future_60s": 5.1263975642384306e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:48Z",
+      "window_end_ts": "2026-04-01T03:24:57Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.888012968381715e-05,
-      "sigma_future_60s": 5.825949867502057e-05
+      "realized_vol_60s": 8.440114385626614e-05,
+      "sigma_future_60s": 8.369293098295074e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:48Z",
+      "window_end_ts": "2026-04-01T03:24:57Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.987574363787932e-05,
-      "sigma_future_60s": 2.987574363787932e-05
+      "realized_vol_60s": 5.1263975642384306e-05,
+      "sigma_future_60s": 5.078619251228968e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:49Z",
+      "window_end_ts": "2026-04-01T03:24:58Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.987574363787932e-05,
-      "sigma_future_60s": 2.9908147083339153e-05
+      "realized_vol_60s": 5.078619251228968e-05,
+      "sigma_future_60s": 5.078619251228968e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:49Z",
+      "window_end_ts": "2026-04-01T03:24:58Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.825949867502057e-05,
-      "sigma_future_60s": 5.7950144738788255e-05
+      "realized_vol_60s": 8.369293098295074e-05,
+      "sigma_future_60s": 8.340060957234095e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:50Z",
+      "window_end_ts": "2026-04-01T03:24:59Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.7950144738788255e-05,
-      "sigma_future_60s": 5.837397805536767e-05
+      "realized_vol_60s": 8.340060957234095e-05,
+      "sigma_future_60s": 7.966038085056432e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:50Z",
+      "window_end_ts": "2026-04-01T03:24:59Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9908147083339153e-05,
-      "sigma_future_60s": 2.9909541399781243e-05
+      "realized_vol_60s": 5.078619251228968e-05,
+      "sigma_future_60s": 4.729244235440083e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:51Z",
+      "window_end_ts": "2026-04-01T03:25:00Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9909541399781243e-05,
-      "sigma_future_60s": 2.7122493221848294e-05
+      "realized_vol_60s": 4.729244235440083e-05,
+      "sigma_future_60s": 3.783920647278036e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:51Z",
+      "window_end_ts": "2026-04-01T03:25:00Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.837397805536767e-05,
-      "sigma_future_60s": 5.746587815506193e-05
+      "realized_vol_60s": 7.966038085056432e-05,
+      "sigma_future_60s": 6.670768617128878e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:52Z",
+      "window_end_ts": "2026-04-01T03:25:01Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.7122493221848294e-05,
-      "sigma_future_60s": 2.7122493221848294e-05
+      "realized_vol_60s": 3.783920647278036e-05,
+      "sigma_future_60s": 4.0503252262358356e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:52Z",
+      "window_end_ts": "2026-04-01T03:25:01Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.746587815506193e-05,
-      "sigma_future_60s": 5.344293902596671e-05
+      "realized_vol_60s": 6.670768617128878e-05,
+      "sigma_future_60s": 6.680229632641577e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:53Z",
+      "window_end_ts": "2026-04-01T03:25:02Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.7122493221848294e-05,
-      "sigma_future_60s": 2.7049799603619612e-05
+      "realized_vol_60s": 4.0503252262358356e-05,
+      "sigma_future_60s": 4.1752196986225904e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:53Z",
+      "window_end_ts": "2026-04-01T03:25:02Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.344293902596671e-05,
-      "sigma_future_60s": 5.343606048933073e-05
+      "realized_vol_60s": 6.680229632641577e-05,
+      "sigma_future_60s": 6.879824781701409e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:54Z",
+      "window_end_ts": "2026-04-01T03:25:03Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.7049799603619612e-05,
-      "sigma_future_60s": 2.6976929881192206e-05
+      "realized_vol_60s": 4.1752196986225904e-05,
+      "sigma_future_60s": 4.2845956480686036e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:54Z",
+      "window_end_ts": "2026-04-01T03:25:03Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.343606048933073e-05,
-      "sigma_future_60s": 5.1229252309776344e-05
+      "realized_vol_60s": 6.879824781701409e-05,
+      "sigma_future_60s": 7.231898100182564e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:55Z",
+      "window_end_ts": "2026-04-01T03:25:04Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.1229252309776344e-05,
-      "sigma_future_60s": 5.11726748446031e-05
+      "realized_vol_60s": 7.231898100182564e-05,
+      "sigma_future_60s": 7.205507921604053e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:55Z",
+      "window_end_ts": "2026-04-01T03:25:04Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.6976929881192206e-05,
-      "sigma_future_60s": 2.6970619318576546e-05
+      "realized_vol_60s": 4.2845956480686036e-05,
+      "sigma_future_60s": 4.1493086140683925e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:56Z",
+      "window_end_ts": "2026-04-01T03:25:05Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.11726748446031e-05,
-      "sigma_future_60s": 5.1384759768991e-05
+      "realized_vol_60s": 7.205507921604053e-05,
+      "sigma_future_60s": 7.175787110634626e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:56Z",
+      "window_end_ts": "2026-04-01T03:25:05Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.6970619318576546e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 4.1493086140683925e-05,
+      "sigma_future_60s": 4.1501391108374624e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:57Z",
+      "window_end_ts": "2026-04-01T03:25:06Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 4.1501391108374624e-05,
+      "sigma_future_60s": 4.1501391108374624e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:57Z",
+      "window_end_ts": "2026-04-01T03:25:06Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.1384759768991e-05,
-      "sigma_future_60s": 5.1428720729020996e-05
+      "realized_vol_60s": 7.175787110634626e-05,
+      "sigma_future_60s": 7.175787110634626e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:58Z",
+      "window_end_ts": "2026-04-01T03:25:07Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.1428720729020996e-05,
-      "sigma_future_60s": 5.1428720729020996e-05
+      "realized_vol_60s": 7.175787110634626e-05,
+      "sigma_future_60s": 7.18019152236904e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:58Z",
+      "window_end_ts": "2026-04-01T03:25:07Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 4.1501391108374624e-05,
+      "sigma_future_60s": 4.150863138616805e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:59Z",
+      "window_end_ts": "2026-04-01T03:25:08Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 4.150863138616805e-05,
+      "sigma_future_60s": 3.7695068927232036e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:15:59Z",
+      "window_end_ts": "2026-04-01T03:25:08Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.1428720729020996e-05,
-      "sigma_future_60s": 4.9224339140558845e-05
+      "realized_vol_60s": 7.18019152236904e-05,
+      "sigma_future_60s": 6.554030789733302e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:00Z",
+      "window_end_ts": "2026-04-01T03:25:09Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 3.7695068927232036e-05,
+      "sigma_future_60s": 3.769566243004029e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:00Z",
+      "window_end_ts": "2026-04-01T03:25:09Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9224339140558845e-05,
-      "sigma_future_60s": 4.9619782223873945e-05
+      "realized_vol_60s": 6.554030789733302e-05,
+      "sigma_future_60s": 6.546910061101588e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:01Z",
+      "window_end_ts": "2026-04-01T03:25:10Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 3.769566243004029e-05,
+      "sigma_future_60s": 3.771939931971148e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:01Z",
+      "window_end_ts": "2026-04-01T03:25:10Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9619782223873945e-05,
-      "sigma_future_60s": 4.9619782223873945e-05
+      "realized_vol_60s": 6.546910061101588e-05,
+      "sigma_future_60s": 6.546910061101588e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:02Z",
+      "window_end_ts": "2026-04-01T03:25:11Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9619782223873945e-05,
-      "sigma_future_60s": 4.9619782223873945e-05
+      "realized_vol_60s": 6.546910061101588e-05,
+      "sigma_future_60s": 6.546910061101588e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:02Z",
+      "window_end_ts": "2026-04-01T03:25:11Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 3.771939931971148e-05,
+      "sigma_future_60s": 3.771939931971148e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:03Z",
+      "window_end_ts": "2026-04-01T03:25:12Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9619782223873945e-05,
-      "sigma_future_60s": 4.9619782223873945e-05
+      "realized_vol_60s": 6.546910061101588e-05,
+      "sigma_future_60s": 6.545423873273283e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:03Z",
+      "window_end_ts": "2026-04-01T03:25:12Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 2.9362369108886103e-05
+      "realized_vol_60s": 3.771939931971148e-05,
+      "sigma_future_60s": 3.771939931971148e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:04Z",
+      "window_end_ts": "2026-04-01T03:25:13Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9619782223873945e-05,
-      "sigma_future_60s": 5.537932451504237e-05
+      "realized_vol_60s": 6.545423873273283e-05,
+      "sigma_future_60s": 6.42586657050979e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:04Z",
+      "window_end_ts": "2026-04-01T03:25:13Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 2.9362369108886103e-05,
-      "sigma_future_60s": 4.3920627597854965e-05
+      "realized_vol_60s": 3.771939931971148e-05,
+      "sigma_future_60s": 3.771939931971148e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:05Z",
+      "window_end_ts": "2026-04-01T03:25:14Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.3920627597854965e-05,
-      "sigma_future_60s": 4.3920627597854965e-05
+      "realized_vol_60s": 3.771939931971148e-05,
+      "sigma_future_60s": 3.771939931971148e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:05Z",
+      "window_end_ts": "2026-04-01T03:25:14Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.537932451504237e-05,
-      "sigma_future_60s": 5.404549138792821e-05
+      "realized_vol_60s": 6.42586657050979e-05,
+      "sigma_future_60s": 6.465672006487106e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:06Z",
+      "window_end_ts": "2026-04-01T03:25:15Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.3920627597854965e-05,
-      "sigma_future_60s": 4.352707439967107e-05
+      "realized_vol_60s": 3.771939931971148e-05,
+      "sigma_future_60s": 3.772787296241611e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:06Z",
+      "window_end_ts": "2026-04-01T03:25:15Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.404549138792821e-05,
-      "sigma_future_60s": 5.0837206249422226e-05
+      "realized_vol_60s": 6.465672006487106e-05,
+      "sigma_future_60s": 6.465096889899238e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:07Z",
+      "window_end_ts": "2026-04-01T03:25:16Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.0837206249422226e-05,
-      "sigma_future_60s": 4.96133471222647e-05
+      "realized_vol_60s": 6.465096889899238e-05,
+      "sigma_future_60s": 5.7504689373982104e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:07Z",
+      "window_end_ts": "2026-04-01T03:25:16Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.352707439967107e-05,
-      "sigma_future_60s": 4.122963005834968e-05
+      "realized_vol_60s": 3.772787296241611e-05,
+      "sigma_future_60s": 3.743330490589794e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:08Z",
+      "window_end_ts": "2026-04-01T03:25:17Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.122963005834968e-05,
-      "sigma_future_60s": 4.121513824597944e-05
+      "realized_vol_60s": 3.743330490589794e-05,
+      "sigma_future_60s": 3.743330490589794e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:08Z",
+      "window_end_ts": "2026-04-01T03:25:17Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.96133471222647e-05,
-      "sigma_future_60s": 4.9599395388228286e-05
+      "realized_vol_60s": 5.7504689373982104e-05,
+      "sigma_future_60s": 5.724694155568317e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:09Z",
+      "window_end_ts": "2026-04-01T03:25:18Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.121513824597944e-05,
-      "sigma_future_60s": 3.7360435663115834e-05
+      "realized_vol_60s": 3.743330490589794e-05,
+      "sigma_future_60s": 3.743330490589794e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:09Z",
+      "window_end_ts": "2026-04-01T03:25:18Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.9599395388228286e-05,
-      "sigma_future_60s": 4.930073246880152e-05
+      "realized_vol_60s": 5.724694155568317e-05,
+      "sigma_future_60s": 5.724694155568317e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:10Z",
+      "window_end_ts": "2026-04-01T03:25:19Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.7360435663115834e-05,
-      "sigma_future_60s": 3.667045328695523e-05
+      "realized_vol_60s": 3.743330490589794e-05,
+      "sigma_future_60s": 3.7531042951925244e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:10Z",
+      "window_end_ts": "2026-04-01T03:25:19Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.930073246880152e-05,
-      "sigma_future_60s": 4.8590427273453185e-05
+      "realized_vol_60s": 5.724694155568317e-05,
+      "sigma_future_60s": 5.7316993511296966e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:11Z",
+      "window_end_ts": "2026-04-01T03:25:20Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.8590427273453185e-05,
-      "sigma_future_60s": 4.973499652621423e-05
+      "realized_vol_60s": 5.7316993511296966e-05,
+      "sigma_future_60s": 5.7316993511296966e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:11Z",
+      "window_end_ts": "2026-04-01T03:25:20Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.667045328695523e-05,
-      "sigma_future_60s": 3.924897836727945e-05
+      "realized_vol_60s": 3.7531042951925244e-05,
+      "sigma_future_60s": 3.7531042951925244e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:12Z",
+      "window_end_ts": "2026-04-01T03:25:21Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.924897836727945e-05,
-      "sigma_future_60s": 3.924897836727945e-05
+      "realized_vol_60s": 3.7531042951925244e-05,
+      "sigma_future_60s": 3.759058724356837e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:12Z",
+      "window_end_ts": "2026-04-01T03:25:21Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.973499652621423e-05,
-      "sigma_future_60s": 4.973499652621423e-05
+      "realized_vol_60s": 5.7316993511296966e-05,
+      "sigma_future_60s": 5.7316993511296966e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:13Z",
+      "window_end_ts": "2026-04-01T03:25:22Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.973499652621423e-05,
-      "sigma_future_60s": 4.973499652621423e-05
+      "realized_vol_60s": 5.7316993511296966e-05,
+      "sigma_future_60s": 5.432277047565685e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:13Z",
+      "window_end_ts": "2026-04-01T03:25:22Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.924897836727945e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.759058724356837e-05,
+      "sigma_future_60s": 3.4391713838109415e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:14Z",
+      "window_end_ts": "2026-04-01T03:25:23Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.973499652621423e-05,
-      "sigma_future_60s": 4.973499652621423e-05
+      "realized_vol_60s": 5.432277047565685e-05,
+      "sigma_future_60s": 5.330429174537403e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:14Z",
+      "window_end_ts": "2026-04-01T03:25:23Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.4391713838109415e-05,
+      "sigma_future_60s": 3.435514870316232e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:15Z",
+      "window_end_ts": "2026-04-01T03:25:24Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.973499652621423e-05,
-      "sigma_future_60s": 4.973499652621423e-05
+      "realized_vol_60s": 5.330429174537403e-05,
+      "sigma_future_60s": 5.330429174537403e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:15Z",
+      "window_end_ts": "2026-04-01T03:25:24Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.435514870316232e-05,
+      "sigma_future_60s": 3.438894354322983e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:16Z",
+      "window_end_ts": "2026-04-01T03:25:25Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.438894354322983e-05,
+      "sigma_future_60s": 3.438023789100262e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:16Z",
+      "window_end_ts": "2026-04-01T03:25:25Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.973499652621423e-05,
-      "sigma_future_60s": 4.975385862342075e-05
+      "realized_vol_60s": 5.330429174537403e-05,
+      "sigma_future_60s": 5.329374386646892e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:17Z",
+      "window_end_ts": "2026-04-01T03:25:26Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.438023789100262e-05,
+      "sigma_future_60s": 3.250814289723566e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:17Z",
+      "window_end_ts": "2026-04-01T03:25:26Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.975385862342075e-05,
-      "sigma_future_60s": 4.975290641756506e-05
+      "realized_vol_60s": 5.329374386646892e-05,
+      "sigma_future_60s": 5.23101420759424e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:18Z",
+      "window_end_ts": "2026-04-01T03:25:27Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.250814289723566e-05,
+      "sigma_future_60s": 3.233980812652114e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:18Z",
+      "window_end_ts": "2026-04-01T03:25:27Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.975290641756506e-05,
-      "sigma_future_60s": 4.945481566475119e-05
+      "realized_vol_60s": 5.23101420759424e-05,
+      "sigma_future_60s": 5.231408962806968e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:19Z",
+      "window_end_ts": "2026-04-01T03:25:28Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.945481566475119e-05,
-      "sigma_future_60s": 4.889680409665288e-05
+      "realized_vol_60s": 5.231408962806968e-05,
+      "sigma_future_60s": 5.300047018857888e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:19Z",
+      "window_end_ts": "2026-04-01T03:25:28Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 3.933428145049989e-05
+      "realized_vol_60s": 3.233980812652114e-05,
+      "sigma_future_60s": 3.233980812652114e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:20Z",
+      "window_end_ts": "2026-04-01T03:25:29Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 3.933428145049989e-05,
-      "sigma_future_60s": 4.525129494957243e-05
+      "realized_vol_60s": 3.233980812652114e-05,
+      "sigma_future_60s": 3.217702415127743e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:20Z",
+      "window_end_ts": "2026-04-01T03:25:29Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 4.889680409665288e-05,
-      "sigma_future_60s": 5.899227034807762e-05
+      "realized_vol_60s": 5.300047018857888e-05,
+      "sigma_future_60s": 5.299240683486319e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:21Z",
+      "window_end_ts": "2026-04-01T03:25:30Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.899227034807762e-05,
-      "sigma_future_60s": 5.8011963699481676e-05
+      "realized_vol_60s": 5.299240683486319e-05,
+      "sigma_future_60s": 5.3000472187462633e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:21Z",
+      "window_end_ts": "2026-04-01T03:25:30Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.525129494957243e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.217702415127743e-05,
+      "sigma_future_60s": 3.216760613234196e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:22Z",
+      "window_end_ts": "2026-04-01T03:25:31Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.216760613234196e-05,
+      "sigma_future_60s": 3.2274567598307476e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:22Z",
+      "window_end_ts": "2026-04-01T03:25:31Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.8011963699481676e-05,
-      "sigma_future_60s": 5.8020427307176266e-05
+      "realized_vol_60s": 5.3000472187462633e-05,
+      "sigma_future_60s": 5.299968424645248e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:23Z",
+      "window_end_ts": "2026-04-01T03:25:32Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.8020427307176266e-05,
-      "sigma_future_60s": 5.8020427307176266e-05
+      "realized_vol_60s": 5.299968424645248e-05,
+      "sigma_future_60s": 5.299968424645248e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:23Z",
+      "window_end_ts": "2026-04-01T03:25:32Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.2274567598307476e-05,
+      "sigma_future_60s": 3.2263746716260825e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:24Z",
+      "window_end_ts": "2026-04-01T03:25:33Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.2263746716260825e-05,
+      "sigma_future_60s": 3.2263746716260825e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:24Z",
+      "window_end_ts": "2026-04-01T03:25:33Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.8020427307176266e-05,
-      "sigma_future_60s": 5.8020427307176266e-05
+      "realized_vol_60s": 5.299968424645248e-05,
+      "sigma_future_60s": 5.299968424645248e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:25Z",
+      "window_end_ts": "2026-04-01T03:25:34Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.8020427307176266e-05,
-      "sigma_future_60s": 5.8020427307176266e-05
+      "realized_vol_60s": 5.299968424645248e-05,
+      "sigma_future_60s": 5.491832759402023e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:25Z",
+      "window_end_ts": "2026-04-01T03:25:34Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.2263746716260825e-05,
+      "sigma_future_60s": 3.670481469600044e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:26Z",
+      "window_end_ts": "2026-04-01T03:25:35Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.8020427307176266e-05,
-      "sigma_future_60s": 5.627486676126208e-05
+      "realized_vol_60s": 5.491832759402023e-05,
+      "sigma_future_60s": 6.324754438265663e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:26Z",
+      "window_end_ts": "2026-04-01T03:25:35Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.670481469600044e-05,
+      "sigma_future_60s": 4.0394122615512436e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:27Z",
+      "window_end_ts": "2026-04-01T03:25:36Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.627486676126208e-05,
-      "sigma_future_60s": 5.624997394903709e-05
+      "realized_vol_60s": 6.324754438265663e-05,
+      "sigma_future_60s": 6.52214121526454e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:27Z",
+      "window_end_ts": "2026-04-01T03:25:36Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 4.0394122615512436e-05,
+      "sigma_future_60s": 4.037192088141026e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:28Z",
+      "window_end_ts": "2026-04-01T03:25:37Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 4.037192088141026e-05,
+      "sigma_future_60s": 3.899375190280065e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:28Z",
+      "window_end_ts": "2026-04-01T03:25:37Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.624997394903709e-05,
-      "sigma_future_60s": 5.439787045553771e-05
+      "realized_vol_60s": 6.52214121526454e-05,
+      "sigma_future_60s": 6.507636828732041e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:29Z",
+      "window_end_ts": "2026-04-01T03:25:38Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.439787045553771e-05,
-      "sigma_future_60s": 5.439787045553771e-05
+      "realized_vol_60s": 6.507636828732041e-05,
+      "sigma_future_60s": 6.636417457429459e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:29Z",
+      "window_end_ts": "2026-04-01T03:25:38Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.5683279556849664e-05
+      "realized_vol_60s": 3.899375190280065e-05,
+      "sigma_future_60s": 3.899375190280065e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:30Z",
+      "window_end_ts": "2026-04-01T03:25:39Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.439787045553771e-05,
-      "sigma_future_60s": 5.44451881550283e-05
+      "realized_vol_60s": 6.636417457429459e-05,
+      "sigma_future_60s": 6.57169617309784e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:30Z",
+      "window_end_ts": "2026-04-01T03:25:39Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.5683279556849664e-05,
-      "sigma_future_60s": 4.685836345103892e-05
+      "realized_vol_60s": 3.899375190280065e-05,
+      "sigma_future_60s": 4.185095492816809e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:31Z",
+      "window_end_ts": "2026-04-01T03:25:40Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.44451881550283e-05,
-      "sigma_future_60s": 5.376705641838593e-05
+      "realized_vol_60s": 6.57169617309784e-05,
+      "sigma_future_60s": 6.571715906118422e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:31Z",
+      "window_end_ts": "2026-04-01T03:25:40Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.685836345103892e-05,
-      "sigma_future_60s": 4.6959092581421495e-05
+      "realized_vol_60s": 4.185095492816809e-05,
+      "sigma_future_60s": 4.293684414255648e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:32Z",
+      "window_end_ts": "2026-04-01T03:25:41Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.6959092581421495e-05,
-      "sigma_future_60s": 4.6959092581421495e-05
+      "realized_vol_60s": 4.293684414255648e-05,
+      "sigma_future_60s": 4.293684414255648e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:32Z",
+      "window_end_ts": "2026-04-01T03:25:41Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.376705641838593e-05,
-      "sigma_future_60s": 5.281146861130023e-05
+      "realized_vol_60s": 6.571715906118422e-05,
+      "sigma_future_60s": 6.571715906118422e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:33Z",
+      "window_end_ts": "2026-04-01T03:25:42Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.281146861130023e-05,
-      "sigma_future_60s": 5.281337849187784e-05
+      "realized_vol_60s": 6.571715906118422e-05,
+      "sigma_future_60s": 6.571715906118422e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:33Z",
+      "window_end_ts": "2026-04-01T03:25:42Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.6959092581421495e-05,
-      "sigma_future_60s": 4.741740671640752e-05
+      "realized_vol_60s": 4.293684414255648e-05,
+      "sigma_future_60s": 4.2942988935128046e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:34Z",
+      "window_end_ts": "2026-04-01T03:25:43Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.281337849187784e-05,
-      "sigma_future_60s": 5.2837559806196776e-05
+      "realized_vol_60s": 6.571715906118422e-05,
+      "sigma_future_60s": 6.53592285855001e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:34Z",
+      "window_end_ts": "2026-04-01T03:25:43Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.741740671640752e-05,
-      "sigma_future_60s": 4.741740671640752e-05
+      "realized_vol_60s": 4.2942988935128046e-05,
+      "sigma_future_60s": 4.292637919559668e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:35Z",
+      "window_end_ts": "2026-04-01T03:25:44Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.2837559806196776e-05,
-      "sigma_future_60s": 5.2837559806196776e-05
+      "realized_vol_60s": 6.53592285855001e-05,
+      "sigma_future_60s": 6.53592285855001e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:35Z",
+      "window_end_ts": "2026-04-01T03:25:44Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.741740671640752e-05,
-      "sigma_future_60s": 4.74166575135657e-05
+      "realized_vol_60s": 4.292637919559668e-05,
+      "sigma_future_60s": 4.292637919559668e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:36Z",
+      "window_end_ts": "2026-04-01T03:25:45Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.2837559806196776e-05,
-      "sigma_future_60s": 5.2837559806196776e-05
+      "realized_vol_60s": 6.53592285855001e-05,
+      "sigma_future_60s": 6.53592285855001e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:36Z",
+      "window_end_ts": "2026-04-01T03:25:45Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.74166575135657e-05,
-      "sigma_future_60s": 4.74166575135657e-05
+      "realized_vol_60s": 4.292637919559668e-05,
+      "sigma_future_60s": 4.292637919559668e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:37Z",
+      "window_end_ts": "2026-04-01T03:25:46Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.2837559806196776e-05,
-      "sigma_future_60s": 5.267986803134995e-05
+      "realized_vol_60s": 6.53592285855001e-05,
+      "sigma_future_60s": 6.684900645870177e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:37Z",
+      "window_end_ts": "2026-04-01T03:25:46Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.74166575135657e-05,
-      "sigma_future_60s": 4.801821131881115e-05
+      "realized_vol_60s": 4.292637919559668e-05,
+      "sigma_future_60s": 4.291095322629536e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:38Z",
+      "window_end_ts": "2026-04-01T03:25:47Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.267986803134995e-05,
-      "sigma_future_60s": 5.887895078405949e-05
+      "realized_vol_60s": 6.684900645870177e-05,
+      "sigma_future_60s": 6.88198375686924e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:38Z",
+      "window_end_ts": "2026-04-01T03:25:47Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.801821131881115e-05,
-      "sigma_future_60s": 4.803464961195376e-05
+      "realized_vol_60s": 4.291095322629536e-05,
+      "sigma_future_60s": 4.274810414726917e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:39Z",
+      "window_end_ts": "2026-04-01T03:25:48Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 5.887895078405949e-05,
-      "sigma_future_60s": 6.1144705446042e-05
+      "realized_vol_60s": 6.88198375686924e-05,
+      "sigma_future_60s": 6.899979157642953e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:39Z",
+      "window_end_ts": "2026-04-01T03:25:48Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.803464961195376e-05,
-      "sigma_future_60s": 4.803464961195376e-05
+      "realized_vol_60s": 4.274810414726917e-05,
+      "sigma_future_60s": 4.274810414726917e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:40Z",
+      "window_end_ts": "2026-04-01T03:25:49Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.803464961195376e-05,
-      "sigma_future_60s": 4.962187789470316e-05
+      "realized_vol_60s": 4.274810414726917e-05,
+      "sigma_future_60s": 4.2724298323574e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:40Z",
+      "window_end_ts": "2026-04-01T03:25:49Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.1144705446042e-05,
-      "sigma_future_60s": 6.214691624170895e-05
+      "realized_vol_60s": 6.899979157642953e-05,
+      "sigma_future_60s": 6.75448067352866e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:41Z",
+      "window_end_ts": "2026-04-01T03:25:50Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.214691624170895e-05,
-      "sigma_future_60s": 6.211638060225254e-05
+      "realized_vol_60s": 6.75448067352866e-05,
+      "sigma_future_60s": 6.722143689920187e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:41Z",
+      "window_end_ts": "2026-04-01T03:25:50Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.962187789470316e-05,
-      "sigma_future_60s": 4.990699740497171e-05
+      "realized_vol_60s": 4.2724298323574e-05,
+      "sigma_future_60s": 4.269866184169938e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:42Z",
+      "window_end_ts": "2026-04-01T03:25:51Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.211638060225254e-05,
-      "sigma_future_60s": 6.211638060225254e-05
+      "realized_vol_60s": 6.722143689920187e-05,
+      "sigma_future_60s": 6.730999677419663e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:42Z",
+      "window_end_ts": "2026-04-01T03:25:51Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.990699740497171e-05,
-      "sigma_future_60s": 4.99034390448034e-05
+      "realized_vol_60s": 4.269866184169938e-05,
+      "sigma_future_60s": 4.269866184169938e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:43Z",
+      "window_end_ts": "2026-04-01T03:25:52Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.211638060225254e-05,
-      "sigma_future_60s": 6.368597880769325e-05
+      "realized_vol_60s": 6.730999677419663e-05,
+      "sigma_future_60s": 6.687037634736598e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:43Z",
+      "window_end_ts": "2026-04-01T03:25:52Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.99034390448034e-05,
-      "sigma_future_60s": 4.876330319620329e-05
+      "realized_vol_60s": 4.269866184169938e-05,
+      "sigma_future_60s": 4.26173747374779e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:44Z",
+      "window_end_ts": "2026-04-01T03:25:53Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.368597880769325e-05,
-      "sigma_future_60s": 6.605275904590531e-05
+      "realized_vol_60s": 6.687037634736598e-05,
+      "sigma_future_60s": 6.687037634736598e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:44Z",
+      "window_end_ts": "2026-04-01T03:25:53Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.876330319620329e-05,
-      "sigma_future_60s": 4.8773698842710584e-05
+      "realized_vol_60s": 4.26173747374779e-05,
+      "sigma_future_60s": 4.254621353206554e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:45Z",
+      "window_end_ts": "2026-04-01T03:25:54Z",
       "product_id": "BTC-USD",
-      "realized_vol_60s": 4.8773698842710584e-05,
-      "sigma_future_60s": 4.917002863790527e-05
+      "realized_vol_60s": 4.254621353206554e-05,
+      "sigma_future_60s": 4.290956991383478e-05
     },
     {
-      "window_end_ts": "2026-04-01T03:16:45Z",
+      "window_end_ts": "2026-04-01T03:25:54Z",
       "product_id": "ETH-USD",
-      "realized_vol_60s": 6.605275904590531e-05,
-      "sigma_future_60s": 6.655376979655575e-05
+      "realized_vol_60s": 6.687037634736598e-05,
+      "sigma_future_60s": 6.744248849641672e-05
     }
   ],
   "feature_distribution": [
@@ -2728,980 +2728,980 @@
   ],
   "metrics": {
     "baseline": {
-      "pr_auc": 0.9668395809738721,
-      "f1_at_threshold": 0.8328865058087578,
-      "positive_rate": 0.6245210727969349
+      "pr_auc": 0.8256619302280888,
+      "f1_at_threshold": 0.7581699346405228,
+      "positive_rate": 0.061708860759493674
     },
     "logistic_regression": {
-      "pr_auc": 0.9776452316545037,
-      "f1_at_threshold": 0.8640192539109507,
-      "positive_rate": 0.3486590038314176,
-      "train_seconds": 0.004351209034211934
+      "pr_auc": 0.8439196136138548,
+      "f1_at_threshold": 0.8396946564885496,
+      "positive_rate": 0.04430379746835443,
+      "train_seconds": 0.005395749991293997
     },
-    "threshold": 0.6026498867677035,
-    "train_rows": 3130,
-    "validation_rows": 1044,
-    "test_rows": 1044
+    "threshold": 0.4506868231707269,
+    "train_rows": 3789,
+    "validation_rows": 1263,
+    "test_rows": 1264
   },
   "predictions": [
     {
-      "window_end_ts": "2026-04-01 03:15:46+00:00",
+      "window_end_ts": "2026-04-01 03:24:55+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6594464032679328,
-      "logistic_probability": 0.0010243941324483,
+      "baseline_score": -0.1085585157216261,
+      "logistic_probability": 0.008951350957237,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:46+00:00",
+      "window_end_ts": "2026-04-01 03:24:55+00:00",
       "product_id": "ETH-USD",
-      "label": 0,
-      "baseline_score": 0.1780391162240106,
-      "logistic_probability": 0.0115476963058057,
-      "predicted_label": 0
+      "label": 1,
+      "baseline_score": 0.8820324866534157,
+      "logistic_probability": 0.676864620035322,
+      "predicted_label": 1
     },
     {
-      "window_end_ts": "2026-04-01 03:15:47+00:00",
+      "window_end_ts": "2026-04-01 03:24:56+00:00",
       "product_id": "ETH-USD",
-      "label": 0,
-      "baseline_score": 0.1744230943334688,
-      "logistic_probability": 0.0320114968658488,
-      "predicted_label": 0
+      "label": 1,
+      "baseline_score": 0.8826689665326574,
+      "logistic_probability": 0.667656646017775,
+      "predicted_label": 1
     },
     {
-      "window_end_ts": "2026-04-01 03:15:47+00:00",
+      "window_end_ts": "2026-04-01 03:24:56+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6594464032679328,
-      "logistic_probability": 0.0010852561809961,
+      "baseline_score": -0.1085394598485749,
+      "logistic_probability": 0.0092883630316014,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:48+00:00",
+      "window_end_ts": "2026-04-01 03:24:57+00:00",
       "product_id": "ETH-USD",
-      "label": 0,
-      "baseline_score": 0.1576038578176576,
-      "logistic_probability": 0.0304766099877741,
-      "predicted_label": 0
+      "label": 1,
+      "baseline_score": 0.8826689665326574,
+      "logistic_probability": 0.6877151008326143,
+      "predicted_label": 1
     },
     {
-      "window_end_ts": "2026-04-01 03:15:48+00:00",
+      "window_end_ts": "2026-04-01 03:24:57+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6608673786302077,
-      "logistic_probability": 0.0010206963383488,
+      "baseline_score": -0.1085394598485749,
+      "logistic_probability": 0.009487695442052,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:49+00:00",
+      "window_end_ts": "2026-04-01 03:24:58+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6608673786302077,
-      "logistic_probability": 0.0010867765577507,
+      "baseline_score": -0.1228310451003951,
+      "logistic_probability": 0.0092458590533305,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:49+00:00",
+      "window_end_ts": "2026-04-01 03:24:58+00:00",
+      "product_id": "ETH-USD",
+      "label": 1,
+      "baseline_score": 0.8614847010827262,
+      "logistic_probability": 0.6537437511529781,
+      "predicted_label": 1
+    },
+    {
+      "window_end_ts": "2026-04-01 03:24:59+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1400903469871545,
-      "logistic_probability": 0.0296322839252772,
-      "predicted_label": 0
+      "baseline_score": 0.8527406996780834,
+      "logistic_probability": 0.6109971907849003,
+      "predicted_label": 1
     },
     {
-      "window_end_ts": "2026-04-01 03:15:50+00:00",
-      "product_id": "ETH-USD",
-      "label": 0,
-      "baseline_score": 0.1313607259468382,
-      "logistic_probability": 0.0325369967802371,
-      "predicted_label": 0
-    },
-    {
-      "window_end_ts": "2026-04-01 03:15:50+00:00",
+      "window_end_ts": "2026-04-01 03:24:59+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6599529897502405,
-      "logistic_probability": 0.001118612378914,
+      "baseline_score": -0.1228310451003951,
+      "logistic_probability": 0.0089786110689614,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:51+00:00",
+      "window_end_ts": "2026-04-01 03:25:00+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6599136437044202,
-      "logistic_probability": 0.0012502065448584,
+      "baseline_score": -0.2273370962456903,
+      "logistic_probability": 0.0042161720180718,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:51+00:00",
+      "window_end_ts": "2026-04-01 03:25:00+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1433208266750223,
-      "logistic_probability": 0.0233617811455982,
+      "baseline_score": 0.7408619114337393,
+      "logistic_probability": 0.416674187867572,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:52+00:00",
+      "window_end_ts": "2026-04-01 03:25:01+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.7385610167127528,
-      "logistic_probability": 0.0009079118232852,
+      "baseline_score": -0.5101049840130673,
+      "logistic_probability": 0.0007509514277038,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:52+00:00",
+      "window_end_ts": "2026-04-01 03:25:01+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1176952662151581,
-      "logistic_probability": 0.0257259652374129,
+      "baseline_score": 0.3534172140602677,
+      "logistic_probability": 0.0542275120714057,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:53+00:00",
+      "window_end_ts": "2026-04-01 03:25:02+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.7385610167127528,
-      "logistic_probability": 0.0008683985440066,
+      "baseline_score": -0.4304172865655545,
+      "logistic_probability": 0.0004816831868686,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:53+00:00",
+      "window_end_ts": "2026-04-01 03:25:02+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0041724370151168,
-      "logistic_probability": 0.0155801397512009,
+      "baseline_score": 0.3562472200033772,
+      "logistic_probability": 0.0608139218300609,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:54+00:00",
+      "window_end_ts": "2026-04-01 03:25:03+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.7406123490698405,
-      "logistic_probability": 0.0007442204653385,
+      "baseline_score": -0.3930584957844132,
+      "logistic_probability": 0.0016017230589297,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:54+00:00",
+      "window_end_ts": "2026-04-01 03:25:03+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0039783324277454,
-      "logistic_probability": 0.0185380552743615,
+      "baseline_score": 0.4159506902383637,
+      "logistic_probability": 0.1075234618779207,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:55+00:00",
+      "window_end_ts": "2026-04-01 03:25:04+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0582953187525423,
-      "logistic_probability": 0.0131115919546048,
+      "baseline_score": 0.5212638653805685,
+      "logistic_probability": 0.1327005722724732,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:55+00:00",
+      "window_end_ts": "2026-04-01 03:25:04+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.7426686508898588,
-      "logistic_probability": 0.0007050484329116,
+      "baseline_score": -0.3603416498443552,
+      "logistic_probability": 0.0018357231051412,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:56+00:00",
+      "window_end_ts": "2026-04-01 03:25:05+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0598918713498663,
-      "logistic_probability": 0.0089955446671035,
+      "baseline_score": 0.513369959898999,
+      "logistic_probability": 0.1143695405612541,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:56+00:00",
+      "window_end_ts": "2026-04-01 03:25:05+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.7428467278875425,
-      "logistic_probability": 0.0007571388896508,
+      "baseline_score": -0.4008090932950473,
+      "logistic_probability": 0.0014472493599644,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:57+00:00",
+      "window_end_ts": "2026-04-01 03:25:06+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0008190297092957,
+      "baseline_score": -0.4005606727328945,
+      "logistic_probability": 0.0020035365231958,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:57+00:00",
+      "window_end_ts": "2026-04-01 03:25:06+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0539070727052479,
-      "logistic_probability": 0.0035376197856102,
+      "baseline_score": 0.5044797861576475,
+      "logistic_probability": 0.1666944183912269,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:58+00:00",
+      "window_end_ts": "2026-04-01 03:25:07+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.052666543729589,
-      "logistic_probability": 0.0082794497329347,
+      "baseline_score": 0.5044797861576475,
+      "logistic_probability": 0.1728080074633642,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:58+00:00",
+      "window_end_ts": "2026-04-01 03:25:07+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0011994692425944,
+      "baseline_score": -0.4005606727328945,
+      "logistic_probability": 0.0021839108998081,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:59+00:00",
+      "window_end_ts": "2026-04-01 03:25:08+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.001021091102318,
+      "baseline_score": -0.4003440994786,
+      "logistic_probability": 0.0025344861817121,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:15:59+00:00",
+      "window_end_ts": "2026-04-01 03:25:08+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.052666543729589,
-      "logistic_probability": 0.0073284150063101,
+      "baseline_score": 0.5057972463570904,
+      "logistic_probability": 0.2034159896411542,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:00+00:00",
+      "window_end_ts": "2026-04-01 03:25:09+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0009646575948113,
+      "baseline_score": -0.5144164673837421,
+      "logistic_probability": 0.001354509916756,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:00+00:00",
+      "window_end_ts": "2026-04-01 03:25:09+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1148717192314581,
-      "logistic_probability": 0.0041527737024022,
+      "baseline_score": 0.3184982621917556,
+      "logistic_probability": 0.0773705104259026,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:01+00:00",
+      "window_end_ts": "2026-04-01 03:25:10+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0009456851866734,
+      "baseline_score": -0.5143987143584738,
+      "logistic_probability": 0.0013930277269454,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:01+00:00",
+      "window_end_ts": "2026-04-01 03:25:10+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1037127590371948,
-      "logistic_probability": 0.0044485107185947,
+      "baseline_score": 0.3163682895350175,
+      "logistic_probability": 0.076515322791939,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:02+00:00",
+      "window_end_ts": "2026-04-01 03:25:11+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1037127590371948,
-      "logistic_probability": 0.0049314967452644,
+      "baseline_score": 0.3163682895350175,
+      "logistic_probability": 0.0747574440982764,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:02+00:00",
+      "window_end_ts": "2026-04-01 03:25:11+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0009562586485524,
+      "baseline_score": -0.5136886897448344,
+      "logistic_probability": 0.0014137900768978,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:03+00:00",
+      "window_end_ts": "2026-04-01 03:25:12+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1037127590371948,
-      "logistic_probability": 0.0050497268944815,
+      "baseline_score": 0.3163682895350175,
+      "logistic_probability": 0.0869324719304286,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:03+00:00",
+      "window_end_ts": "2026-04-01 03:25:12+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0008716187115907,
+      "baseline_score": -0.5136886897448344,
+      "logistic_probability": 0.0014778150602162,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:04+00:00",
+      "window_end_ts": "2026-04-01 03:25:13+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1037127590371948,
-      "logistic_probability": 0.0054626411639271,
+      "baseline_score": 0.3159237367931862,
+      "logistic_probability": 0.0909233900089617,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:04+00:00",
+      "window_end_ts": "2026-04-01 03:25:13+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.6753542319233761,
-      "logistic_probability": 0.0008267682993095,
+      "baseline_score": -0.5136886897448344,
+      "logistic_probability": 0.0012599872363562,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:05+00:00",
+      "window_end_ts": "2026-04-01 03:25:14+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2645365091444176,
-      "logistic_probability": 0.0052755218452792,
+      "baseline_score": -0.5136886897448344,
+      "logistic_probability": 0.0010497950103373,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:05+00:00",
+      "window_end_ts": "2026-04-01 03:25:14+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0588150632363128,
-      "logistic_probability": 0.0102668397272651,
+      "baseline_score": 0.2801614154114391,
+      "logistic_probability": 0.0810732495530234,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:06+00:00",
+      "window_end_ts": "2026-04-01 03:25:15+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2645365091444176,
-      "logistic_probability": 0.0099676573607508,
+      "baseline_score": -0.5136886897448344,
+      "logistic_probability": 0.0009013481016836,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:06+00:00",
+      "window_end_ts": "2026-04-01 03:25:15+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0211757887129639,
-      "logistic_probability": 0.0110228515942569,
+      "baseline_score": 0.2920681309466444,
+      "logistic_probability": 0.0655451573586528,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:07+00:00",
+      "window_end_ts": "2026-04-01 03:25:16+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.069358418769703,
-      "logistic_probability": 0.0085881021424446,
+      "baseline_score": 0.2918961004326406,
+      "logistic_probability": 0.0756903775165574,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:07+00:00",
+      "window_end_ts": "2026-04-01 03:25:16+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2756421389003938,
-      "logistic_probability": 0.0104708680280128,
+      "baseline_score": -0.5134352237275585,
+      "logistic_probability": 0.0008241673179451,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:08+00:00",
+      "window_end_ts": "2026-04-01 03:25:17+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3404734408880745,
-      "logistic_probability": 0.0093039420148195,
+      "baseline_score": -0.5222464274453595,
+      "logistic_probability": 0.0005805585629573,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:08+00:00",
+      "window_end_ts": "2026-04-01 03:25:17+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1038943503855668,
-      "logistic_probability": 0.0070027581223553,
+      "baseline_score": 0.0781345491514283,
+      "logistic_probability": 0.016826620669554,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:09+00:00",
+      "window_end_ts": "2026-04-01 03:25:18+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3408823835759236,
-      "logistic_probability": 0.0104124417096574,
+      "baseline_score": -0.5222464274453595,
+      "logistic_probability": 0.000438687790142,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:09+00:00",
+      "window_end_ts": "2026-04-01 03:25:18+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1042880526687074,
-      "logistic_probability": 0.0080562652277738,
+      "baseline_score": 0.0704247229004256,
+      "logistic_probability": 0.014857805640522,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:10+00:00",
+      "window_end_ts": "2026-04-01 03:25:19+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.4496577661728264,
-      "logistic_probability": 0.006142532162094,
+      "baseline_score": -0.5222464274453595,
+      "logistic_probability": 0.0003372275083909,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:10+00:00",
+      "window_end_ts": "2026-04-01 03:25:19+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1127159852081928,
-      "logistic_probability": 0.0086067568537266,
+      "baseline_score": 0.0704247229004256,
+      "logistic_probability": 0.0114871546445958,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:11+00:00",
+      "window_end_ts": "2026-04-01 03:25:20+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1327600009846797,
-      "logistic_probability": 0.0081954559711765,
+      "baseline_score": 0.0725201369756629,
+      "logistic_probability": 0.0093745926972091,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:11+00:00",
+      "window_end_ts": "2026-04-01 03:25:20+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.4691282947904283,
-      "logistic_probability": 0.0060008259565755,
+      "baseline_score": -0.5193228591375608,
+      "logistic_probability": 0.0003728676624059,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:12+00:00",
+      "window_end_ts": "2026-04-01 03:25:21+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3963652096707427,
-      "logistic_probability": 0.0059905767885603,
+      "baseline_score": -0.5193228591375608,
+      "logistic_probability": 0.0003822847471126,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:12+00:00",
+      "window_end_ts": "2026-04-01 03:25:21+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1004615406751313,
-      "logistic_probability": 0.0076550546307997,
+      "baseline_score": 0.0725201369756629,
+      "logistic_probability": 0.0092888511532519,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:13+00:00",
+      "window_end_ts": "2026-04-01 03:25:22+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1004615406751313,
-      "logistic_probability": 0.0105482343184254,
+      "baseline_score": 0.0725201369756629,
+      "logistic_probability": 0.0118100429069408,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:13+00:00",
+      "window_end_ts": "2026-04-01 03:25:22+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3963652096707427,
-      "logistic_probability": 0.0085875576623485,
+      "baseline_score": -0.5175417533038147,
+      "logistic_probability": 0.0005162178690684,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:14+00:00",
+      "window_end_ts": "2026-04-01 03:25:23+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1004615406751313,
-      "logistic_probability": 0.0121454915461627,
+      "baseline_score": -0.0170439164230809,
+      "logistic_probability": 0.0068806044422992,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:14+00:00",
+      "window_end_ts": "2026-04-01 03:25:23+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0097197443654364,
+      "baseline_score": -0.6132273669311571,
+      "logistic_probability": 0.00030795214173,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:15+00:00",
+      "window_end_ts": "2026-04-01 03:25:24+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1004615406751313,
-      "logistic_probability": 0.012521326671369,
+      "baseline_score": -0.047508942674886,
+      "logistic_probability": 0.0058291826371766,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:15+00:00",
+      "window_end_ts": "2026-04-01 03:25:24+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0111094826381631,
+      "baseline_score": -0.6143211136761232,
+      "logistic_probability": 0.0003080823163318,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:16+00:00",
+      "window_end_ts": "2026-04-01 03:25:25+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0117148217493928,
+      "baseline_score": -0.6133102327816872,
+      "logistic_probability": 0.0003010505432505,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:16+00:00",
+      "window_end_ts": "2026-04-01 03:25:25+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1004615406751313,
-      "logistic_probability": 0.0122027138503443,
+      "baseline_score": -0.047508942674886,
+      "logistic_probability": 0.0050458848867737,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:17+00:00",
+      "window_end_ts": "2026-04-01 03:25:26+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0130051682393447,
+      "baseline_score": -0.613570638733972,
+      "logistic_probability": 0.0003509723911218,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:17+00:00",
+      "window_end_ts": "2026-04-01 03:25:26+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0999292734518854,
-      "logistic_probability": 0.0141221089935106,
+      "baseline_score": -0.0478244538369657,
+      "logistic_probability": 0.005345349222361,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:18+00:00",
+      "window_end_ts": "2026-04-01 03:25:27+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0135349651080252,
+      "baseline_score": -0.6695692781116895,
+      "logistic_probability": 0.0002687889789396,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:18+00:00",
+      "window_end_ts": "2026-04-01 03:25:27+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0999561436329272,
-      "logistic_probability": 0.0143775342135658,
+      "baseline_score": -0.0772462311198275,
+      "logistic_probability": 0.0031665579753503,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:19+00:00",
+      "window_end_ts": "2026-04-01 03:25:28+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1083679302724659,
-      "logistic_probability": 0.0115028617458705,
+      "baseline_score": -0.0771281508147487,
+      "logistic_probability": 0.0045244428545627,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:19+00:00",
+      "window_end_ts": "2026-04-01 03:25:28+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0119753323951981,
+      "baseline_score": -0.6746045557826187,
+      "logistic_probability": 0.0003407309531518,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:20+00:00",
+      "window_end_ts": "2026-04-01 03:25:29+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.3939580523571672,
-      "logistic_probability": 0.0042966652768149,
+      "baseline_score": -0.6746045557826187,
+      "logistic_probability": 0.0003816078851301,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:20+00:00",
+      "window_end_ts": "2026-04-01 03:25:29+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.1241143907343518,
-      "logistic_probability": 0.0062631084259652,
+      "baseline_score": -0.0565969397320835,
+      "logistic_probability": 0.0063568708658199,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:21+00:00",
+      "window_end_ts": "2026-04-01 03:25:30+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1607683415611845,
-      "logistic_probability": 0.0230279063719974,
+      "baseline_score": -0.0568381330681072,
+      "logistic_probability": 0.006245661897931,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:21+00:00",
+      "window_end_ts": "2026-04-01 03:25:30+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2269865692513258,
-      "logistic_probability": 0.0078664478678119,
+      "baseline_score": -0.6794737964763303,
+      "logistic_probability": 0.0004738342766869,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:22+00:00",
+      "window_end_ts": "2026-04-01 03:25:31+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0110527558349733,
+      "baseline_score": -0.6797555109447604,
+      "logistic_probability": 0.0004350071349584,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:22+00:00",
+      "window_end_ts": "2026-04-01 03:25:31+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1331051876677148,
-      "logistic_probability": 0.0323224769011548,
+      "baseline_score": -0.0565968799409026,
+      "logistic_probability": 0.006571691964247,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:23+00:00",
+      "window_end_ts": "2026-04-01 03:25:32+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1333440211821919,
-      "logistic_probability": 0.0414860945262081,
+      "baseline_score": -0.0566204490571203,
+      "logistic_probability": 0.0067320506205731,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:23+00:00",
+      "window_end_ts": "2026-04-01 03:25:32+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0156882519716717,
+      "baseline_score": -0.6765560490692374,
+      "logistic_probability": 0.0006556853954381,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:24+00:00",
+      "window_end_ts": "2026-04-01 03:25:33+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0200726199984508,
+      "baseline_score": -0.6768797263791478,
+      "logistic_probability": 0.0006737029121389,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:24+00:00",
+      "window_end_ts": "2026-04-01 03:25:33+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1333440211821919,
-      "logistic_probability": 0.0549372570686953,
+      "baseline_score": -0.0566204490571203,
+      "logistic_probability": 0.0065498895346862,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:25+00:00",
+      "window_end_ts": "2026-04-01 03:25:34+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1333440211821919,
-      "logistic_probability": 0.0608477404528464,
+      "baseline_score": -0.0566204490571203,
+      "logistic_probability": 0.0058773255813814,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:25+00:00",
+      "window_end_ts": "2026-04-01 03:25:34+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0233593778971504,
+      "baseline_score": -0.6768797263791478,
+      "logistic_probability": 0.0006815722245739,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:26+00:00",
+      "window_end_ts": "2026-04-01 03:25:35+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1333440211821919,
-      "logistic_probability": 0.0661835346991248,
+      "baseline_score": 0.0007705579551431,
+      "logistic_probability": 0.0076491841611377,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:26+00:00",
+      "window_end_ts": "2026-04-01 03:25:35+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0240271279646615,
+      "baseline_score": -0.5440372343702596,
+      "logistic_probability": 0.0009465096352966,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:27+00:00",
+      "window_end_ts": "2026-04-01 03:25:36+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0840862607853263,
-      "logistic_probability": 0.0524306768793007,
+      "baseline_score": 0.2499164660413334,
+      "logistic_probability": 0.0052752764369149,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:27+00:00",
+      "window_end_ts": "2026-04-01 03:25:36+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0180428417804856,
+      "baseline_score": -0.4336816036859404,
+      "logistic_probability": 0.0013133522400492,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:28+00:00",
+      "window_end_ts": "2026-04-01 03:25:37+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0168804859358141,
+      "baseline_score": -0.4343457082883709,
+      "logistic_probability": 0.001696512346156,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:28+00:00",
+      "window_end_ts": "2026-04-01 03:25:37+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0833838135496503,
-      "logistic_probability": 0.0504472347447168,
+      "baseline_score": 0.3089593617271387,
+      "logistic_probability": 0.0356521053675673,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:29+00:00",
+      "window_end_ts": "2026-04-01 03:25:38+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0311195306941903,
-      "logistic_probability": 0.0383038624670628,
+      "baseline_score": 0.3046207682608204,
+      "logistic_probability": 0.0372932343494002,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:29+00:00",
+      "window_end_ts": "2026-04-01 03:25:38+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0181914335373653,
+      "baseline_score": -0.4755698918322982,
+      "logistic_probability": 0.001417811938306,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:30+00:00",
+      "window_end_ts": "2026-04-01 03:25:39+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0311195306941903,
-      "logistic_probability": 0.0382074407501228,
+      "baseline_score": 0.3431419972009802,
+      "logistic_probability": 0.0616521836775248,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:30+00:00",
+      "window_end_ts": "2026-04-01 03:25:39+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.2147964482439492,
-      "logistic_probability": 0.0180832981799208,
+      "baseline_score": -0.4755698918322982,
+      "logistic_probability": 0.0014542311308328,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:31+00:00",
+      "window_end_ts": "2026-04-01 03:25:40+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.032454783091762,
-      "logistic_probability": 0.0412886947916906,
+      "baseline_score": 0.3237823820456812,
+      "logistic_probability": 0.0653555989029426,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:31+00:00",
+      "window_end_ts": "2026-04-01 03:25:40+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1816368989853034,
-      "logistic_probability": 0.023519518811736,
+      "baseline_score": -0.3901044200591328,
+      "logistic_probability": 0.0025912298128466,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:32+00:00",
+      "window_end_ts": "2026-04-01 03:25:41+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1787944359260969,
-      "logistic_probability": 0.0241084806967871,
+      "baseline_score": -0.3576229921811958,
+      "logistic_probability": 0.0029458160069522,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:32+00:00",
+      "window_end_ts": "2026-04-01 03:25:41+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.0133186662270524,
-      "logistic_probability": 0.0317333196427292,
+      "baseline_score": 0.3237882846430766,
+      "logistic_probability": 0.0730062633524743,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:33+00:00",
+      "window_end_ts": "2026-04-01 03:25:42+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0136469496891471,
-      "logistic_probability": 0.0289881913392558,
+      "baseline_score": 0.3237882846430766,
+      "logistic_probability": 0.0682425581741628,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:33+00:00",
+      "window_end_ts": "2026-04-01 03:25:42+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1787944359260969,
-      "logistic_probability": 0.028589878632191,
+      "baseline_score": -0.3576229921811958,
+      "logistic_probability": 0.0029456584774008,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:34+00:00",
+      "window_end_ts": "2026-04-01 03:25:43+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0135930550017937,
-      "logistic_probability": 0.0378647935472913,
+      "baseline_score": 0.3237882846430766,
+      "logistic_probability": 0.0684009916246002,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:34+00:00",
+      "window_end_ts": "2026-04-01 03:25:43+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1658613251838311,
-      "logistic_probability": 0.032960353044138,
+      "baseline_score": -0.3574391873932915,
+      "logistic_probability": 0.0030112654274917,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:35+00:00",
+      "window_end_ts": "2026-04-01 03:25:44+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0129106854388521,
-      "logistic_probability": 0.038479866866697,
+      "baseline_score": 0.3130817661721315,
+      "logistic_probability": 0.060746498891175,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:35+00:00",
+      "window_end_ts": "2026-04-01 03:25:44+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1658613251838311,
-      "logistic_probability": 0.0389077422741186,
+      "baseline_score": -0.3579360226592752,
+      "logistic_probability": 0.0035802550621627,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:36+00:00",
+      "window_end_ts": "2026-04-01 03:25:45+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0129106854388521,
-      "logistic_probability": 0.0134551879631626,
+      "baseline_score": 0.3130817661721315,
+      "logistic_probability": 0.0610774127170511,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:36+00:00",
+      "window_end_ts": "2026-04-01 03:25:45+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1658824668475547,
-      "logistic_probability": 0.0194581175521264,
+      "baseline_score": -0.3579360226592752,
+      "logistic_probability": 0.0035004635598133,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:37+00:00",
+      "window_end_ts": "2026-04-01 03:25:46+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0129106854388521,
-      "logistic_probability": 0.0146735665134172,
+      "baseline_score": 0.3130817661721315,
+      "logistic_probability": 0.0626640927452386,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:37+00:00",
+      "window_end_ts": "2026-04-01 03:25:46+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1658824668475547,
-      "logistic_probability": 0.015454680207313,
+      "baseline_score": -0.3579360226592752,
+      "logistic_probability": 0.0030469473404135,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:38+00:00",
+      "window_end_ts": "2026-04-01 03:25:47+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": -0.0173605704228721,
-      "logistic_probability": 0.0143977435324988,
+      "baseline_score": 0.3576444268021124,
+      "logistic_probability": 0.059864079208007,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:38+00:00",
+      "window_end_ts": "2026-04-01 03:25:47+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1489072933000312,
-      "logistic_probability": 0.0142596028270823,
+      "baseline_score": -0.3583974486525245,
+      "logistic_probability": 0.0027940426310928,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:39+00:00",
+      "window_end_ts": "2026-04-01 03:25:48+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.1575705905890125,
-      "logistic_probability": 0.0371209420111922,
+      "baseline_score": 0.4165964890479933,
+      "logistic_probability": 0.0968216633446733,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:39+00:00",
+      "window_end_ts": "2026-04-01 03:25:48+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1484434231083913,
-      "logistic_probability": 0.0167784995719701,
+      "baseline_score": -0.3632686367491455,
+      "logistic_probability": 0.0031067321631929,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:40+00:00",
+      "window_end_ts": "2026-04-01 03:25:49+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1484434231083913,
-      "logistic_probability": 0.016130481484062,
+      "baseline_score": -0.3632686367491455,
+      "logistic_probability": 0.0031290399155901,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:40+00:00",
+      "window_end_ts": "2026-04-01 03:25:49+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.2215076453759407,
-      "logistic_probability": 0.0281006639456701,
+      "baseline_score": 0.4219793246505658,
+      "logistic_probability": 0.1159970133258491,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:41+00:00",
+      "window_end_ts": "2026-04-01 03:25:50+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.2497889097271925,
-      "logistic_probability": 0.039690608660505,
+      "baseline_score": 0.3784574031185481,
+      "logistic_probability": 0.0878295306254882,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:41+00:00",
+      "window_end_ts": "2026-04-01 03:25:50+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1036536215573647,
-      "logistic_probability": 0.0225379106314616,
+      "baseline_score": -0.3639807233369702,
+      "logistic_probability": 0.0028483986301516,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:42+00:00",
+      "window_end_ts": "2026-04-01 03:25:51+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.2489272282372954,
-      "logistic_probability": 0.0461125416445517,
+      "baseline_score": 0.3687846723560438,
+      "logistic_probability": 0.0698082686568559,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:42+00:00",
+      "window_end_ts": "2026-04-01 03:25:51+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.0956078688310251,
-      "logistic_probability": 0.0192837008967681,
+      "baseline_score": -0.3647475690943649,
+      "logistic_probability": 0.0021581998151126,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:43+00:00",
+      "window_end_ts": "2026-04-01 03:25:52+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.2489272282372954,
-      "logistic_probability": 0.0536925845998057,
+      "baseline_score": 0.3714337005942895,
+      "logistic_probability": 0.0759400714028064,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:43+00:00",
+      "window_end_ts": "2026-04-01 03:25:52+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.0957082817631268,
-      "logistic_probability": 0.0218388443920703,
+      "baseline_score": -0.3647475690943649,
+      "logistic_probability": 0.002014590012851,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:44+00:00",
+      "window_end_ts": "2026-04-01 03:25:53+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.2932195287844855,
-      "logistic_probability": 0.0453089351490955,
+      "baseline_score": 0.3582836490065588,
+      "logistic_probability": 0.0778386527602704,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:44+00:00",
+      "window_end_ts": "2026-04-01 03:25:53+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1278816363807454,
-      "logistic_probability": 0.0186180034285041,
+      "baseline_score": -0.3671790521390359,
+      "logistic_probability": 0.001970447382464,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:45+00:00",
+      "window_end_ts": "2026-04-01 03:25:54+00:00",
       "product_id": "BTC-USD",
       "label": 0,
-      "baseline_score": -0.1275882828983783,
-      "logistic_probability": 0.0199030261543118,
+      "baseline_score": -0.3693076464106076,
+      "logistic_probability": 0.0019841519375164,
       "predicted_label": 0
     },
     {
-      "window_end_ts": "2026-04-01 03:16:45+00:00",
+      "window_end_ts": "2026-04-01 03:25:54+00:00",
       "product_id": "ETH-USD",
       "label": 0,
-      "baseline_score": 0.3600074119998623,
-      "logistic_probability": 0.0740082275337268,
+      "baseline_score": 0.3582836490065588,
+      "logistic_probability": 0.0658348094117828,
       "predicted_label": 0
     }
   ]
