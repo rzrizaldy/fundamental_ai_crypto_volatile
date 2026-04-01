@@ -4,7 +4,10 @@
 **Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University  
 **GitHub:** [https://github.com/rzrizaldy/fundamental_ai_crypto_volatile](https://github.com/rzrizaldy/fundamental_ai_crypto_volatile)
 
-**Live preview (static mode):** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/
+**Live preview (static mode):** https://rzrizaldy.github.io/crypto_volatility_pages/
+**Evidently drift report:** https://rzrizaldy.github.io/crypto_volatility_pages/reports/evidently.html
+**Model eval PDF:** https://rzrizaldy.github.io/crypto_volatility_pages/reports/model_eval.pdf
+
 > For live streaming (real Coinbase prices + model inference), run locally using the zip below.
 
 ---
