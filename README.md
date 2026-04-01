@@ -1,6 +1,23 @@
-# Crypto Volatility Pipeline
+# Crypto Volatility Intelligence
 
-This repository implements the Canvas assignment for real-time crypto volatility detection using public Coinbase market data, Kafka, MLflow, Evidently, and a live-capable dashboard with model spike markers and a plain-language volatility outlook.
+Real-time crypto volatility detection — Coinbase tick data → Kafka → features → logistic classifier → live dashboard.
+
+**Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University
+**Author:** Rizaldy Utomo · `rutomo@andrew.cmu.edu`
+
+---
+
+## Live Preview (static mode)
+
+| Link | Description |
+|---|---|
+| **[Dashboard](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/)** | Static dashboard — real session data, no server needed |
+| **[Evidently Drift Report](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html)** | Train-vs-test feature distribution shift |
+| **[Model Evaluation PDF](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf)** | Full evaluation report with figures |
+
+> **Streaming mode** (live Coinbase prices + real-time model inference) requires running the repo locally. See [Quick Start](#quick-start) and download the zip from `submission/`.
+
+---
 
 ## Stack
 - Python 3.12 for project runtime

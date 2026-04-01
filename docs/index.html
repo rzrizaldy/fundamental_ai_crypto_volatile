@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRYPTO VOLATILITY INTELLIGENCE // 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- ╔══════════════════════════════════════╗
+         ║  TOP STATS TICKER (CoinMarketCap style) ║
+         ╚══════════════════════════════════════╝ -->
+    <div class="top-bar">
+      <span class="ticker-label">CVI</span>
+      <button class="live-badge" id="live-badge" title="Click to toggle live / static mode">● STATIC</button>
+      <div class="ticker-scroll" id="ticker-scroll">
+        <span class="ticker-item">LOADING...</span>
+      </div>
+      <span class="ticker-label right">CMU · 2026</span>
+    </div>
+
+    <!-- ╔══════════════════════════════════════╗
+         ║  MAIN HEADER                         ║
+         ╚══════════════════════════════════════╝ -->
+    <header class="site-header">
+      <div class="shell">
+        <div class="header-grid">
+          <div class="header-left">
+            <p class="kicker">// FUNDAMENTAL_AI · CRYPTO_VOLATILITY_INTELLIGENCE</p>
+            <h1>CRYPTO<br />VOL<br />INTEL</h1>
+            <p class="lede">
+              Real-time BTC-USD + ETH-USD volatility intelligence via Coinbase
+              WebSocket → Kafka → logistic regression. One-second bars, 60s
+              forward spike prediction, live Evidently drift monitoring.
+            </p>
+          </div>
+          <div class="header-right">
+            <div class="price-board" id="price-board">
+              <div class="price-row">
+                <span class="price-pair">BTC-USD</span>
+                <span class="price-val" id="btc-price">—</span>
+                <span class="price-delta" id="btc-delta">—</span>
+              </div>
+              <div class="price-row">
+                <span class="price-pair">ETH-USD</span>
+                <span class="price-val" id="eth-price">—</span>
+                <span class="price-delta" id="eth-delta">—</span>
+              </div>
+              <div class="price-session">
+                <span>SESSION · 2026-04-01</span><br/>
+                <span>02:33 → 03:25 UTC</span><br/>
+                <span>52.7 MIN · 37,435 TICKS</span>
+              </div>
+              <button class="mode-toggle-btn" id="mode-toggle-btn" title="Toggle live / static data">⬤ LIVE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell">
+
+      <section class="market-live-row">
+        <div class="market-live-card" id="market-card-btc">
+          <div class="market-live-head">
+            <div class="kpi-label">BTC-USD LIVE PRICE</div>
+            <span class="badge badge-muted" id="market-btc-bias">MIXED</span>
+          </div>
+          <div class="market-live-price" id="market-btc-price">—</div>
+          <div class="market-live-vol" id="market-btc-vol">VOLATILITY PRESSURE: —</div>
+          <div class="market-live-grid">
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · UP</div>
+              <div class="metric-val" id="market-btc-hour-up-prob">—</div>
+              <div class="market-live-sub" id="market-btc-hour-up-move">—</div>
+              <div class="market-live-sub" id="market-btc-hour-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · DOWN</div>
+              <div class="metric-val" id="market-btc-hour-down-prob">—</div>
+              <div class="market-live-sub" id="market-btc-hour-down-move">—</div>
+              <div class="market-live-sub" id="market-btc-hour-down-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · UP</div>
+              <div class="metric-val" id="market-btc-day-up-prob">—</div>
+              <div class="market-live-sub" id="market-btc-day-up-move">—</div>
+              <div class="market-live-sub" id="market-btc-day-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · DOWN</div>
+              <div class="metric-val" id="market-btc-day-down-prob">—</div>
+              <div class="market-live-sub" id="market-btc-day-down-move">—</div>
+              <div class="market-live-sub" id="market-btc-day-down-price">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="market-live-card" id="market-card-eth">
+          <div class="market-live-head">
+            <div class="kpi-label">ETH-USD LIVE PRICE</div>
+            <span class="badge badge-muted" id="market-eth-bias">MIXED</span>
+          </div>
+          <div class="market-live-price" id="market-eth-price">—</div>
+          <div class="market-live-vol" id="market-eth-vol">VOLATILITY PRESSURE: —</div>
+          <div class="market-live-grid">
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · UP</div>
+              <div class="metric-val" id="market-eth-hour-up-prob">—</div>
+              <div class="market-live-sub" id="market-eth-hour-up-move">—</div>
+              <div class="market-live-sub" id="market-eth-hour-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT HOUR · DOWN</div>
+              <div class="metric-val" id="market-eth-hour-down-prob">—</div>
+              <div class="market-live-sub" id="market-eth-hour-down-move">—</div>
+              <div class="market-live-sub" id="market-eth-hour-down-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · UP</div>
+              <div class="metric-val" id="market-eth-day-up-prob">—</div>
+              <div class="market-live-sub" id="market-eth-day-up-move">—</div>
+              <div class="market-live-sub" id="market-eth-day-up-price">—</div>
+            </div>
+            <div class="market-live-metric">
+              <div class="metric-label">NEXT DAY · DOWN</div>
+              <div class="metric-val" id="market-eth-day-down-prob">—</div>
+              <div class="market-live-sub" id="market-eth-day-down-move">—</div>
+              <div class="market-live-sub" id="market-eth-day-down-price">—</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  KPI CARDS                           ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="kpi-row" id="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">FEATURE BARS</div>
+          <div class="kpi-value" id="kpi-bars">—</div>
+          <div class="kpi-sub">1-SEC WINDOWS</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">LABEL RATE</div>
+          <div class="kpi-value accent-orange" id="kpi-label-rate">—</div>
+          <div class="kpi-sub">τ = 75TH PCT</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">PR-AUC · LOGISTIC</div>
+          <div class="kpi-value accent-green" id="kpi-prauc">—</div>
+          <div class="kpi-sub">VS BASELINE 0.826</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">F1 @ THRESHOLD</div>
+          <div class="kpi-value accent-blue" id="kpi-f1">—</div>
+          <div class="kpi-sub">VAL-SELECTED THR</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">TRAIN / VAL / TEST</div>
+          <div class="kpi-value" id="kpi-split">—</div>
+          <div class="kpi-sub">60 / 20 / 20 %</div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  BIG VOLATILITY CHART                ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="panel chart-panel">
+        <div class="panel-head">
+          <div>
+            <h2>VOLATILITY TIMELINE</h2>
+            <p class="panel-sub">LEFT: absolute price (USD) · RIGHT: realized_vol_60s ×10⁻⁴ · <span class="tag-orange">ORANGE DOTS</span> = model spike flags · tabs switch pair</p>
+          </div>
+          <div class="pair-tabs">
+            <button class="tab active" data-pair="BTC-USD">BTC-USD</button>
+            <button class="tab" data-pair="ETH-USD">ETH-USD</button>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="vol-chart"></canvas>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item legend-blue">━ PRICE (LEFT AXIS, USD)</span>
+          <span class="legend-item" style="color:#5B7CFF">╌ VOL ×10⁻⁴ (RIGHT AXIS)</span>
+          <span class="legend-item legend-orange">● SPIKE (MODEL FLAG)</span>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  MODEL SCORECARD                     ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="two-col">
+        <div class="panel scorecard-panel">
+          <div class="panel-head">
+            <h2>BASELINE · Z-SCORE</h2>
+            <span class="badge badge-muted">REFERENCE</span>
+          </div>
+          <div class="metric-grid" id="baseline-metrics">
+            <div class="metric-block">
+              <div class="metric-label">PR-AUC</div>
+              <div class="metric-val" id="b-prauc">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">F1 SCORE</div>
+              <div class="metric-val" id="b-f1">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">POSITIVE RATE</div>
+              <div class="metric-val" id="b-pos">—</div>
+            </div>
+          </div>
+          <div class="scorecard-note">
+            Single-feature z-score on normalized volatility. Threshold selected on validation F1.
+            Sensitive to non-stationarity in reference window.
+          </div>
+        </div>
+
+        <div class="panel scorecard-panel winner-panel">
+          <div class="panel-head">
+            <h2>LOGISTIC REGRESSION</h2>
+            <span class="badge badge-green">WINNER ↑</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-block">
+              <div class="metric-label">PR-AUC</div>
+              <div class="metric-val accent-green" id="lr-prauc">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">F1 SCORE</div>
+              <div class="metric-val accent-green" id="lr-f1">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">POSITIVE RATE</div>
+              <div class="metric-val" id="lr-pos">—</div>
+            </div>
+          </div>
+          <div class="scorecard-note">
+            StandardScaler + LogisticRegression (liblinear, balanced). Jointly weights
+            spread_bps + realized_vol_60s + ewma_abs_return. Train time: &lt;10ms.
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  IMPROVEMENT DELTA BAR               ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="panel delta-panel">
+        <div class="panel-head">
+          <h2>LOGISTIC vs BASELINE — IMPROVEMENT</h2>
+        </div>
+        <div class="delta-row">
+          <div class="delta-block">
+            <div class="delta-label">PR-AUC DELTA</div>
+            <div class="delta-bar-wrap">
+              <div class="delta-bar" id="delta-prauc-bar"></div>
+            </div>
+            <div class="delta-val accent-green" id="delta-prauc-val">—</div>
+          </div>
+          <div class="delta-block">
+            <div class="delta-label">F1 DELTA</div>
+            <div class="delta-bar-wrap">
+              <div class="delta-bar" id="delta-f1-bar"></div>
+            </div>
+            <div class="delta-val accent-green" id="delta-f1-val">—</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>SPIKE RADAR</h2>
+              <p class="panel-sub">Orange-dot events from the model. In live mode, this panel updates the moment a new spike is flagged.</p>
+            </div>
+            <span class="badge badge-orange" id="spike-status">NO ACTIVE SPIKE</span>
+          </div>
+          <div class="spike-list" id="spike-radar-list"></div>
+          <p class="student-note">
+            Orange dots mean the model thinks the next minute is unusually likely to become turbulent. They do not mean price must go up or down.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>WHAT THIS MEANS NEXT</h2>
+              <p class="panel-sub">Simple turbulence probabilities for a non-technical reader. Think of it as the live odds of a yes-or-no question: “Will the market get rougher from here?”</p>
+            </div>
+            <span class="badge badge-blue" id="outlook-pair">BTC-USD</span>
+          </div>
+          <div class="outlook-grid">
+            <div class="outlook-card">
+              <div class="outlook-horizon">NEXT MINUTE</div>
+              <div class="outlook-value" id="outlook-minute-up">—</div>
+              <div class="outlook-sub" id="outlook-minute-down">— calmer</div>
+            </div>
+            <div class="outlook-card">
+              <div class="outlook-horizon">NEXT HOUR</div>
+              <div class="outlook-value accent-orange" id="outlook-hour-up">—</div>
+              <div class="outlook-sub" id="outlook-hour-down">— calmer</div>
+            </div>
+            <div class="outlook-card">
+              <div class="outlook-horizon">NEXT DAY</div>
+              <div class="outlook-value accent-blue" id="outlook-day-up">—</div>
+              <div class="outlook-sub" id="outlook-day-down">— calmer</div>
+            </div>
+          </div>
+          <div class="outlook-summary" id="student-summary">
+            Load exported or live data to view the simple turbulence outlook. Higher percentages mean rougher conditions are becoming more likely; lower percentages mean the market is cooling down.
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  RECENT PREDICTIONS + METHODS        ║
+           ╚══════════════════════════════════════╝ -->
+      <section class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>RECENT PREDICTIONS</h2>
+            <span class="panel-sub">TEST-SET SAMPLE · LAST 20 ROWS</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="pred-table">
+              <thead>
+                <tr>
+                  <th>TIME</th>
+                  <th>PAIR</th>
+                  <th>TRUE</th>
+                  <th>PRED</th>
+                  <th>PROB</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>METHODS</h2>
+          </div>
+          <div class="methods-list">
+            <div class="method-row">
+              <span class="method-num">01</span>
+              <span class="method-text">COINBASE WEBSOCKET → KAFKA (ticks.raw) → FEATURE STORE (ticks.features)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">02</span>
+              <span class="method-text">1-SEC OHLCV BARS · 11 FEATURES · TAU = 75TH PCT (7.83×10⁻⁵)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">03</span>
+              <span class="method-text">TRAIN/VAL/TEST = 60/20/20 % (CHRONOLOGICAL SPLIT)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">04</span>
+              <span class="method-text">BASELINE Z-SCORE · LOGISTIC REGRESSION · MLFLOW TRACKING</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">05</span>
+              <span class="method-text">EVIDENTLY DRIFT REPORT · FEATURE DISTRIBUTION SHIFT DETECTED (CALM CLOSE)</span>
+            </div>
+            <div class="method-row">
+              <span class="method-num">06</span>
+              <span class="method-text">VOL AUTOCORR r=0.991 (realized_vol_60s ↔ sigma_future_60s) — PERSISTENCE, NOT LEAKAGE</span>
+            </div>
+          </div>
+          <div class="artifact-links">
+            <a href="../reports/model_eval.md" class="art-link">MODEL_EVAL.MD</a>
+            <a href="../reports/evidently/train_vs_test.html" class="art-link">EVIDENTLY REPORT</a>
+            <a href="../img/model_pr_curve.png" class="art-link">PR CURVE</a>
+            <a href="../models/artifacts/predictions_latest.csv" class="art-link">PREDICTIONS CSV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ╔══════════════════════════════════════╗
+           ║  FOOTER                              ║
+           ╚══════════════════════════════════════╝ -->
+      <footer class="site-footer">
+        <span>RIZALDY UTOMO · rutomo@andrew.cmu.edu</span>
+        <span>//</span>
+        <span>CRYPTO VOLATILITY INTELLIGENCE · CMU · 2026</span>
+        <span>//</span>
+        <span>DATA: COINBASE ADVANCED TRADE WS · BTC-USD + ETH-USD</span>
+      </footer>
+
+    </main>
+
+    <script src="app.js?v=2"></script>
+  </body>
+</html>

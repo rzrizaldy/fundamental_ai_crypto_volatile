@@ -1,19 +1,24 @@
 # Crypto Volatility Intelligence — Submission
 
 **Author:** Rizaldy Utomo · `rutomo@andrew.cmu.edu`
-**Course:** Fundamentals of AI — Carnegie Mellon University
-**GitHub:** https://github.com/rzrizaldy/fundamental_ai_crypto_volatile
+**Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University  
+**GitHub:** [https://github.com/rzrizaldy/fundamental_ai_crypto_volatile](https://github.com/rzrizaldy/fundamental_ai_crypto_volatile)
+
+**Live preview (static mode):** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/
+> For live streaming (real Coinbase prices + model inference), run locally using the zip below.
 
 ---
 
 ## Contents
 
-| File | Description |
-|---|---|
+
+| File                                          | Description                                       |
+| --------------------------------------------- | ------------------------------------------------- |
 | `fundamental_ops_ai_crypto_report_rutomo.pdf` | Combined report: Scoping Brief + Model Evaluation |
-| `genai_appendix.md` | Generative AI usage disclosure |
-| `fundamental_ai_crypto_volatile.zip` | Full repository (source, data, models, dashboard) |
-| `README.md` | This file |
+| `genai_appendix.md`                           | Generative AI usage disclosure                    |
+| `fundamental_ai_crypto_volatile.zip`          | Full repository (source, data, models, dashboard) |
+| `README.md`                                   | This file                                         |
+
 
 ---
 
@@ -60,10 +65,12 @@ open dashboard/index.html
 
 ## Key Results
 
-| Model | PR-AUC | F1 |
-|---|---:|---:|
-| Baseline z-score | 0.8257 | 0.7582 |
+
+| Model                   | PR-AUC     | F1         |
+| ----------------------- | ---------- | ---------- |
+| Baseline z-score        | 0.8257     | 0.7582     |
 | **Logistic regression** | **0.8439** | **0.8397** |
+
 
 Session: Coinbase Advanced Trade · BTC-USD + ETH-USD · 2026-04-01T02:33–03:25 UTC (≈ 52.7 min)
 Data: 37,435 live ticks → 6,316 usable 1-second feature bars

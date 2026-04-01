@@ -1,7 +1,7 @@
 # GenAI Appendix
 
 **Author:** Rizaldy Utomo · `rutomo@andrew.cmu.edu`
-**Course:** Fundamentals of AI — Carnegie Mellon University
+**Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University
 
 ---
 
