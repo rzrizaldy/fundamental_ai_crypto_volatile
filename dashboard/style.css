@@ -417,6 +417,11 @@ h2 {
   color: #fff;
 }
 
+.tab:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
 /* ── TWO COLUMN ── */
 .two-col {
   display: grid;
@@ -466,6 +471,14 @@ h2 {
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
+}
+
+#w4-service-name,
+#w4-service-version,
+#w4-designation {
+  font-size: 18px;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 .scorecard-note {
@@ -742,6 +755,11 @@ h2 {
 .data-table tr:last-child td { border-bottom: none; }
 
 .data-table tr:hover td { background: var(--paper-dark); }
+
+#w4-replay-table tbody td[colspan="5"] {
+  color: var(--muted);
+  padding: 18px 10px;
+}
 
 .cell-pos  { color: var(--safety-orange); font-weight: 700; }
 .cell-neg  { color: var(--muted); }

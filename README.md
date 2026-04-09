@@ -127,6 +127,12 @@ Then open `http://localhost:8766/` for the live SSE dashboard with:
 - a simple “what this means next” turbulence outlook for the next minute, hour, and day, framed like the live odds of a yes-or-no question: “Will the market get rougher from here?”
 - a companion price-scenario compass with heuristic up/down bias and target ranges for the next hour and day
 
+To run the dashboard and the Week 4 replay API together for the full local demo:
+
+```bash
+python scripts/run_demo_stack.py
+```
+
 ## Week 4 Thin Slice
 Start the replay-mode FastAPI service:
 

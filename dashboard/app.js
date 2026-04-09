@@ -15,7 +15,10 @@ const TOKENS = {
 };
 
 const SSE_URL         = 'http://localhost:8766/stream';
+const W4_API_BASE     = 'http://localhost:8010';
 const CHART_MAX_POINTS = 300;  // rolling window shown in live mode
+const W4_REPLAY_COUNT = 12;
+const W4_REFRESH_MS   = 10_000;
 
 // ── State
 let chartInstance  = null;
@@ -25,6 +28,9 @@ let isLive         = false;
 let forcedStatic   = false;   // user manually pinned to static
 let activeES       = null;    // current EventSource ref
 let liveSpikeEvents = [];
+let w4Health       = null;
+let w4StatusTimer  = null;
+let lastW4LatencySeconds = null;
 
 // Chart data buffers per product (live mode)
 const liveBuffers = {
@@ -401,6 +407,230 @@ function renderPredictions(data) {
       </td>
     </tr>`;
   }).join('');
+}
+
+function sum(values) {
+  return values.reduce((total, value) => total + value, 0);
+}
+
+function setText(id, value) {
+  const node = document.getElementById(id);
+  if (!node) return;
+  node.textContent = value ?? '—';
+}
+
+function setBadge(id, label, tone) {
+  const node = document.getElementById(id);
+  if (!node) return;
+  node.textContent = label;
+  node.className = `badge ${tone}`;
+}
+
+function fmtLatency(seconds) {
+  if (!Number.isFinite(seconds)) return '—';
+  if (seconds < 1) return `${(seconds * 1000).toFixed(1)} ms`;
+  return `${seconds.toFixed(3)} s`;
+}
+
+function fmtProbability(probability) {
+  return Number.isFinite(probability) ? `${(probability * 100).toFixed(1)}%` : '—';
+}
+
+async function fetchJson(url, options = {}) {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    const detail = await response.text().catch(() => response.statusText);
+    throw new Error(`${response.status} ${detail || response.statusText}`.trim());
+  }
+  return response.json();
+}
+
+async function fetchText(url, options = {}) {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    const detail = await response.text().catch(() => response.statusText);
+    throw new Error(`${response.status} ${detail || response.statusText}`.trim());
+  }
+  return response.text();
+}
+
+function parsePrometheusMetrics(text) {
+  const values = {};
+  const lines = String(text || '').split('\n');
+  for (const line of lines) {
+    if (!line || line.startsWith('#')) continue;
+    const match = line.match(/^([a-zA-Z_:][a-zA-Z0-9_:]*)(\{[^}]*\})?\s+([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)$/);
+    if (!match) continue;
+    const [, metricName, , rawValue] = match;
+    if (metricName.endsWith('_created')) continue;
+    const value = Number(rawValue);
+    if (!Number.isFinite(value)) continue;
+    if (!values[metricName]) values[metricName] = [];
+    values[metricName].push(value);
+  }
+  return values;
+}
+
+function metricTotal(metrics, name) {
+  return sum(metrics[name] || []);
+}
+
+function nextReplayStartIndex() {
+  const total = Number(w4Health?.replay_rows || 0);
+  const cursor = Number(w4Health?.replay_cursor || 0);
+  if (!total) return 0;
+  return cursor >= total ? 0 : cursor;
+}
+
+function renderW4Offline(message) {
+  setBadge('w4-api-badge', 'OFFLINE', 'badge-muted');
+  setText('w4-service-name', '—');
+  setText('w4-service-version', '—');
+  setText('w4-designation', '—');
+  setText('w4-replay-rows', '—');
+  setText('w4-replay-cursor', '—');
+  setText('w4-threshold', '—');
+  setText('w4-request-count', '—');
+  setText('w4-pred-row-count', '—');
+  setText('w4-last-latency', '—');
+  setText('w4-api-copy', message || 'Week 4 API is not reachable on localhost:8010. Start `python scripts/run_demo_stack.py` or `python scripts/run_w4_api.py`.');
+}
+
+function renderW4Status(health, version, metrics) {
+  const requestCount = metricTotal(metrics, 'crypto_api_requests_total');
+  const predRows = metricTotal(metrics, 'crypto_api_prediction_rows_total');
+  const latencyCount = metricTotal(metrics, 'crypto_api_inference_seconds_count');
+  const latencySum = metricTotal(metrics, 'crypto_api_inference_seconds_sum');
+  const avgLatency = latencyCount > 0 ? latencySum / latencyCount : null;
+  const latencyDisplay = lastW4LatencySeconds ?? avgLatency;
+
+  setBadge('w4-api-badge', health?.model_loaded ? 'ONLINE' : 'LOADING', health?.model_loaded ? 'badge-green' : 'badge-muted');
+  setText('w4-service-name', health?.service || '—');
+  setText('w4-service-version', health?.service_version || version?.service_version || '—');
+  setText('w4-designation', health?.designation || version?.designation || '—');
+  setText('w4-replay-rows', Number.isFinite(Number(health?.replay_rows)) ? Number(health.replay_rows).toLocaleString() : '—');
+  setText('w4-replay-cursor', Number.isFinite(Number(health?.replay_cursor)) ? Number(health.replay_cursor).toLocaleString() : '—');
+  setText('w4-threshold', Number.isFinite(Number(version?.threshold)) ? Number(version.threshold).toFixed(4) : '—');
+  setText('w4-request-count', requestCount ? requestCount.toLocaleString() : '0');
+  setText('w4-pred-row-count', predRows ? predRows.toLocaleString() : '0');
+  setText('w4-last-latency', fmtLatency(latencyDisplay));
+  setText(
+    'w4-api-copy',
+    health
+      ? `Replay slice spans ${String(health.replay_start_ts || '').slice(11, 19)} to ${String(health.replay_end_ts || '').slice(11, 19)} UTC with ${Number(health.replay_rows || 0).toLocaleString()} rows loaded from the selected model bundle.`
+      : 'Week 4 API status unavailable.'
+  );
+}
+
+function renderW4ReplayPlaceholder(message) {
+  const tbody = document.querySelector('#w4-replay-table tbody');
+  if (!tbody) return;
+  tbody.innerHTML = `<tr><td colspan="5">${message}</td></tr>`;
+}
+
+function renderW4ReplaySample(payload) {
+  const tbody = document.querySelector('#w4-replay-table tbody');
+  if (!tbody) return;
+  const rows = payload?.predictions || [];
+  if (!rows.length) {
+    renderW4ReplayPlaceholder('No replay rows returned.');
+    setText('w4-replay-copy', 'The Week 4 API responded, but no replay rows were returned for this request.');
+    return;
+  }
+
+  tbody.innerHTML = rows.map((row) => {
+    const time = String(row.window_end_ts || '').slice(11, 19) || '—';
+    const predCls = row.predicted_label === 1 ? 'cell-pos' : 'cell-neg';
+    const labelCls = row.label === 1 ? 'cell-pos' : 'cell-neg';
+    const probCls = row.probability >= 0.5 ? 'cell-high' : '';
+    return `<tr>
+      <td>${time}</td>
+      <td>${row.product_id || '—'}</td>
+      <td class="${probCls}">${fmtProbability(row.probability)}</td>
+      <td class="${predCls}">${row.predicted_label === 1 ? 'SPIKE' : 'CALM'}</td>
+      <td class="${labelCls}">${row.label === 1 ? 'SPIKE' : row.label === 0 ? 'CALM' : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  lastW4LatencySeconds = payload?.latency_seconds ?? lastW4LatencySeconds;
+  setText('w4-last-latency', fmtLatency(lastW4LatencySeconds));
+  setText(
+    'w4-replay-copy',
+    `Scored ${Number(payload.rows_scored || rows.length).toLocaleString()} replay rows from index ${payload.replay_start_index ?? '—'} to ${payload.replay_end_index ?? '—'} in ${fmtLatency(payload.latency_seconds)}.`
+  );
+
+  if (w4Health && Number.isFinite(Number(payload?.replay_end_index))) {
+    w4Health = { ...w4Health, replay_cursor: Number(payload.replay_end_index) };
+    setText('w4-replay-cursor', Number(payload.replay_end_index).toLocaleString());
+  }
+}
+
+async function refreshW4Status() {
+  try {
+    const [health, version, metricsText] = await Promise.all([
+      fetchJson(`${W4_API_BASE}/health`),
+      fetchJson(`${W4_API_BASE}/version`),
+      fetchText(`${W4_API_BASE}/metrics`),
+    ]);
+    w4Health = health;
+    renderW4Status(health, version, parsePrometheusMetrics(metricsText));
+    return true;
+  } catch (error) {
+    w4Health = null;
+    renderW4Offline(`Week 4 API offline: ${error.message}`);
+    renderW4ReplayPlaceholder('Start the Week 4 API to load replay predictions.');
+    setText('w4-replay-copy', 'Replay sample unavailable while the Week 4 API is offline. Run `python scripts/run_demo_stack.py` or `python scripts/run_w4_api.py`.');
+    return false;
+  }
+}
+
+async function loadW4ReplaySample(startIndex = nextReplayStartIndex()) {
+  const button = document.getElementById('w4-replay-btn');
+  if (button) {
+    button.disabled = true;
+    button.textContent = 'LOADING...';
+  }
+
+  try {
+    const payload = await fetchJson(`${W4_API_BASE}/predict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        replay_count: W4_REPLAY_COUNT,
+        replay_start_index: startIndex,
+      }),
+    });
+    renderW4ReplaySample(payload);
+    await refreshW4Status();
+  } catch (error) {
+    renderW4ReplayPlaceholder('Replay sample failed to load.');
+    setText('w4-replay-copy', `Replay sample failed: ${error.message}`);
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = 'RUN 12-ROW REPLAY';
+    }
+  }
+}
+
+function bindW4ReplayButton() {
+  const button = document.getElementById('w4-replay-btn');
+  if (!button) return;
+  button.addEventListener('click', () => {
+    loadW4ReplaySample();
+  });
+}
+
+async function initW4Module() {
+  bindW4ReplayButton();
+  renderW4ReplayPlaceholder('Checking Week 4 API status...');
+  const isOnline = await refreshW4Status();
+  if (isOnline) {
+    await loadW4ReplaySample(nextReplayStartIndex());
+  }
+  if (!w4StatusTimer) {
+    w4StatusTimer = window.setInterval(refreshW4Status, W4_REFRESH_MS);
+  }
 }
 
 
@@ -822,6 +1052,8 @@ async function init() {
     console.error('[CVI] Static load failed:', err);
     document.getElementById('kpi-bars').textContent = 'ERR';
   }
+
+  await initW4Module();
 
   // Try to connect to live SSE server (non-blocking)
   const serverUp = await trySSE();
