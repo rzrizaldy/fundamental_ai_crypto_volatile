@@ -24,7 +24,7 @@ from pipeline.io import write_ndjson
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Stream Coinbase ticker data to Kafka.")
-    parser.add_argument("--minutes", type=int, default=15, help="How long to run the ingestor.")
+    parser.add_argument("--minutes", type=int, default=0, help="How long to run the ingestor (0 = run forever).")
     parser.add_argument("--pair", action="append", dest="pairs", help="Product id to ingest. Repeatable.")
     parser.add_argument("--no-mirror", action="store_true", help="Disable NDJSON mirroring.")
     return parser.parse_args()
@@ -49,14 +49,14 @@ async def run_stream(
     mirror_root: Path,
     mirror_enabled: bool,
     heartbeat_timeout_seconds: int,
-    run_until: datetime,
+    run_until: datetime | None,
 ) -> None:
     timeout_deadline = datetime.now(UTC) + timedelta(seconds=heartbeat_timeout_seconds)
     async with websockets.connect(websocket_url, ping_interval=20, ping_timeout=20) as socket:
         for channel in ("ticker", "heartbeats"):
             await socket.send(json.dumps(build_subscribe_message(channel, product_ids)))
 
-        while datetime.now(UTC) < run_until:
+        while run_until is None or datetime.now(UTC) < run_until:
             payload = await asyncio.wait_for(socket.recv(), timeout=heartbeat_timeout_seconds)
             message = json.loads(payload)
             message_type = message.get("type", "")
@@ -94,10 +94,28 @@ async def main() -> None:
     ensure_directories(config)
 
     product_ids = args.pairs or list(config["stream"]["pairs"])
-    producer = AIOKafkaProducer(bootstrap_servers=config["stream"]["bootstrap_servers"])
-    await producer.start()
+    bootstrap = config["stream"]["bootstrap_servers"]
+
+    # Retry Kafka connection on startup (Kafka may not be ready yet)
+    for attempt in range(30):
+        try:
+            producer = AIOKafkaProducer(bootstrap_servers=bootstrap)
+            await producer.start()
+            break
+        except Exception as exc:
+            if attempt == 29:
+                raise
+            print(f"Kafka not ready ({exc}), retrying in 5s… ({attempt + 1}/30)")
+            await asyncio.sleep(5)
+
+    run_until = (
+        datetime.now(UTC) + timedelta(minutes=args.minutes)
+        if args.minutes > 0
+        else None
+    )
+    print(f"Ingestor starting — pairs={product_ids} run_until={'forever' if run_until is None else run_until.isoformat()}")
+
     try:
-        run_until = datetime.now(UTC) + timedelta(minutes=args.minutes)
         await run_stream(
             websocket_url=config["stream"]["websocket_url"],
             product_ids=product_ids,
