@@ -29,6 +29,16 @@ storage:
 tracking:
   mlflow_tracking_uri: sqlite:///mlruns/mlflow.db
   experiment_name: crypto-volatility
+service:
+  name: crypto-volatility-w4-api
+  version: 0.1.0
+  host: 0.0.0.0
+  port: 8010
+  designation: Selected-base
+  model_artifact: models/artifacts/logistic_model.joblib
+  replay_source: data/processed/features.parquet
+  replay_window_minutes: 10
+  replay_slice_output: data/processed/features_replay_10min.parquet
 reports:
   img_dir: img
   evidently_dir: reports/evidently

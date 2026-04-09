@@ -49,7 +49,10 @@ cp .env.example .env
 - `scripts/build_report.py`: Markdown to TeX to PDF build helper
 - `scripts/export_dashboard_data.py`: dashboard artifact export
 - `scripts/dashboard_server.py`: live SSE dashboard server
+- `scripts/run_w4_api.py`: Week 4 replay-mode FastAPI thin slice
+- `scripts/replay_api_smoke.py`: 10-minute replay smoke test for the Week 4 API
 - `dashboard/`: static + live interface
+- `service/replay_api.py`: FastAPI app with `/health`, `/predict`, `/version`, `/metrics`
 
 ## Quick Start
 Start infrastructure:
@@ -123,6 +126,35 @@ Then open `http://localhost:8766/` for the live SSE dashboard with:
 - a spike radar panel for the latest model-triggered events
 - a simple “what this means next” turbulence outlook for the next minute, hour, and day, framed like the live odds of a yes-or-no question: “Will the market get rougher from here?”
 - a companion price-scenario compass with heuristic up/down bias and target ranges for the next hour and day
+
+## Week 4 Thin Slice
+Start the replay-mode FastAPI service:
+
+```bash
+python scripts/run_w4_api.py
+```
+
+Then verify the required endpoints:
+
+```bash
+curl http://localhost:8010/health
+curl http://localhost:8010/version
+curl http://localhost:8010/metrics
+curl -X POST http://localhost:8010/predict \
+  -H 'Content-Type: application/json' \
+  -d '{"replay_count": 5, "replay_start_index": 0}'
+```
+
+Run the 10-minute replay smoke test:
+
+```bash
+python scripts/replay_api_smoke.py --persist-slice
+```
+
+Week 4 docs:
+- `docs/team_charter.md`
+- `docs/selection_rationale.md`
+- `docs/system_diagram.md`
 
 ## Reporting Workflow
 Source Markdown files:
