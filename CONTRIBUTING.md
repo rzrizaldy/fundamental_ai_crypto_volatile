@@ -102,6 +102,58 @@ git push origin name/feature   # push branch
 
 ---
 
+## Cross-Agent Collaboration
+
+When multiple teammates work with different agents (Claude Code, Codex, Cursor) at the same time, follow these rules to avoid stepping on each other.
+
+### Before starting any work
+
+Always give your agent the latest context:
+
+```
+@CONTRIBUTING.md
+@docs/team_charter.md
+```
+
+This tells the agent:
+- which files belong to which person (W4 roles, W5-W7 splits)
+- the branch naming convention
+- what already exists so it does not rewrite someone else's work
+
+### Claim your area before you start
+
+Post in Google Chat what you are working on before you let your agent write code. Example:
+
+> "taking W5 kafka reconnect, branch jiho/w5-kafka-reconnect"
+
+This prevents two agents from editing the same file at the same time.
+
+### If there is a merge conflict
+
+Do not let your agent force-push or overwrite. Tell it:
+
+> "There is a conflict in `<filename>`. Pull the latest from main, rebase my branch, and resolve the conflict by keeping both changes."
+
+```bash
+git fetch origin
+git rebase origin/main
+# agent resolves conflicts
+git rebase --continue
+git push origin your-branch --force-with-lease
+```
+
+### Recommended prompt to start any session
+
+Paste this at the start of every agent session:
+
+```
+Read @CONTRIBUTING.md and @docs/team_charter.md first.
+My name is <yourname>. I am responsible for <your area from team_charter>.
+Work only in files relevant to my area. Push to branch <yourname>/<topic> and open a PR when done.
+```
+
+---
+
 ## Common Errors
 
 | Error | Fix |

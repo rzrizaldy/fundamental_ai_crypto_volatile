@@ -81,6 +81,18 @@ Week 4 was run through together by the team, building on Rizaldy's individual pr
 
 ---
 
+## Cross-Agent Collaboration Rules
+
+Each teammate may use a different AI agent (Claude Code, Codex, Cursor). To avoid conflicts:
+
+1. **Start every agent session** by tagging `@CONTRIBUTING.md` and `@docs/team_charter.md` so the agent knows the repo structure, branch rules, and who owns what.
+2. **Announce in Google Chat** which area you are working on before starting — e.g. "taking W6 Prometheus metrics, branch jiho/w6-prometheus".
+3. **Agents must never push to main.** The branch protection will reject it. Always push to `yourname/topic`.
+4. **If files overlap** (e.g. `docker/compose.yaml`), the platform lead (Ridho) has final say. Open a PR and tag him for review.
+5. **Agents should rebase, not merge**, to keep history clean.
+
+---
+
 ## Working Agreements
 
 - The current repo is the single implementation source of truth.
