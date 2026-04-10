@@ -173,9 +173,12 @@
           <div class="panel-head">
             <div>
               <h2>WEEK 4 API THIN SLICE</h2>
-              <p class="panel-sub">Replay-mode FastAPI service status and model metadata from the localhost service on port 8010.</p>
+              <p class="panel-sub">Replay-mode FastAPI service on port 8000. All services start with <code>docker compose up -d</code>.</p>
             </div>
-            <span class="badge badge-muted" id="w4-api-badge">OFFLINE</span>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <button class="tab" id="w4-launch-btn" type="button">OPEN DOCS</button>
+              <span class="badge badge-muted" id="w4-api-badge">OFFLINE</span>
+            </div>
           </div>
           <div class="metric-grid">
             <div class="metric-block">
@@ -236,11 +239,9 @@
             <table class="data-table" id="w4-replay-table">
               <thead>
                 <tr>
-                  <th>TIME</th>
-                  <th>PAIR</th>
-                  <th>PROB</th>
+                  <th>INDEX</th>
+                  <th>SCORE</th>
                   <th>PRED</th>
-                  <th>LABEL</th>
                 </tr>
               </thead>
               <tbody></tbody>
