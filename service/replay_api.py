@@ -75,10 +75,9 @@ class PredictRow(BaseModel):
 
 
 class PredictRequest(BaseModel):
-    rows: list[PredictRow] = Field(
-        ...,
-        min_length=1,
-        description="Feature rows to score.",
+    rows: list[PredictRow] | None = Field(
+        default=None,
+        description="Feature rows to score. Required when replay_count is not set.",
     )
     replay_count: int | None = Field(
         default=None,
@@ -282,7 +281,12 @@ async def predict(request: PredictRequest) -> dict[str, Any]:
     service = get_service()
     if request.replay_count is not None:
         return service.predict_replay(request.replay_count, request.replay_start_index)
-    return service.predict_rows(request.rows)
+    if request.rows:
+        return service.predict_rows(request.rows)
+    raise HTTPException(
+        status_code=400,
+        detail="Supply either `rows` (list of feature dicts) or `replay_count` (integer) in the request body.",
+    )
 
 
 @app.get("/metrics")
