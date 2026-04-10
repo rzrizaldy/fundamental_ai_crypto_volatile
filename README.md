@@ -2,8 +2,8 @@
 
 Real-time crypto volatility detection — Coinbase tick data → Kafka → features → logistic classifier → live dashboard.
 
-**Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University
-**Author:** Rizaldy Utomo · `rutomo@andrew.cmu.edu`
+**Course:** Fundamentals of Operationalizing AI -- Carnegie Mellon University
+**Team:** Team 3 -- Rizaldy Utomo, Ridho Bakti, Jiho Hong, Afif Izzatullah
 
 ---
 
@@ -143,10 +143,10 @@ python scripts/run_w4_api.py
 Then verify the required endpoints:
 
 ```bash
-curl http://localhost:8010/health
-curl http://localhost:8010/version
-curl http://localhost:8010/metrics
-curl -X POST http://localhost:8010/predict \
+curl http://localhost:8000/health
+curl http://localhost:8000/version
+curl http://localhost:8000/metrics
+curl -X POST http://localhost:8000/predict \
   -H 'Content-Type: application/json' \
   -d '{"replay_count": 5, "replay_start_index": 0}'
 ```

@@ -15,7 +15,7 @@ stream:
     max: 30
   raw_topic: ticks.raw
   feature_topic: ticks.features
-  bootstrap_servers: localhost:9092
+  bootstrap_servers: kafka:9092
 features:
   bar_freq_seconds: 1
   target_horizon_seconds: 60
@@ -27,7 +27,7 @@ storage:
   artifacts_dir: models/artifacts
   dashboard_dir: dashboard/data
 tracking:
-  mlflow_tracking_uri: sqlite:///mlruns/mlflow.db
+  mlflow_tracking_uri: http://mlflow:5000
   experiment_name: crypto-volatility
 service:
   name: crypto-volatility-w4-api

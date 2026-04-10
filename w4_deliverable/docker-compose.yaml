@@ -4,8 +4,7 @@ services:
     container_name: crypto-kafka
     restart: unless-stopped
     ports:
-      - "9092:9092"
-      - "9093:9093"
+      - "9094:9094"
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
@@ -25,61 +24,17 @@ services:
       retries: 10
       start_period: 30s
 
-  ingestor:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.ingestor
-    container_name: crypto-ingestor
-    restart: unless-stopped
-    depends_on:
-      kafka:
-        condition: service_healthy
-    environment:
-      PYTHONUNBUFFERED: "1"
-      KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
-
-  dashboard:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.dashboard
-    container_name: crypto-dashboard
-    restart: unless-stopped
-    ports:
-      - "8766:8766"
-    volumes:
-      - ../models/artifacts:/app/models/artifacts
-      - ../dashboard:/app/dashboard
-    depends_on:
-      kafka:
-        condition: service_healthy
-
-  api:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.api
-    container_name: crypto-api
-    restart: unless-stopped
-    ports:
-      - "8000:8000"
-    environment:
-      PYTHONUNBUFFERED: "1"
-      KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
-      MLFLOW_TRACKING_URI: "http://mlflow:5000"
-    depends_on:
-      kafka:
-        condition: service_healthy
-
   mlflow:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile.mlflow
+      context: .
+      dockerfile: Dockerfile.mlflow
     container_name: crypto-mlflow
     restart: unless-stopped
     ports:
       - "5001:5000"
     volumes:
-      - ../mlruns:/mlflow/mlruns
-      - ../models/artifacts:/mlflow/artifacts
+      - mlflow_data:/mlflow/mlruns
+      - ./models/artifacts:/mlflow/artifacts
     command:
       - mlflow
       - server
@@ -92,5 +47,22 @@ services:
       - --default-artifact-root
       - /mlflow/artifacts
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: crypto-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: "1"
+      KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      MLFLOW_TRACKING_URI: "http://mlflow:5000"
+    depends_on:
+      kafka:
+        condition: service_healthy
+
 volumes:
   kafka_data:
+  mlflow_data:
