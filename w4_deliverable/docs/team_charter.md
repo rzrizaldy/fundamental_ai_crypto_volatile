@@ -58,20 +58,11 @@ Bootstrap the team thin slice from Rizaldy's individual repo. The full team revi
 | Role | Owner | Responsibility |
 |---|---|---|
 | Model + Data Lead | Rizaldy Utomo | Selected model, threshold, replay slice, selection rationale |
-| API / Backend Lead | Rizaldy Utomo | FastAPI thin slice, request/response contract, replay scoring |
-| Platform / MLOps Lead | Rizaldy Utomo | Docker Compose, Kafka, MLflow, environment reproducibility |
-| Observability / QA Lead | Rizaldy Utomo | `/metrics`, health checks, smoke tests |
+| API / Backend Lead | Jiho Hong | FastAPI thin slice, request/response contract, replay scoring |
+| Platform / MLOps Lead | Ridho Bakti | Docker Compose, Dockerfile.api, environment reproducibility |
+| Observability / QA Lead | Afif Izzatullah | `/metrics`, health checks, smoke tests, docs review |
 
-Week 4 was bootstrapped entirely by Rizaldy from the individual project. The full team takes over from Week 5.
-
-**Hypothetical split if Week 4 work were distributed across the full team:**
-
-| Task | Hypothetical Lead | Hypothetical Support |
-|---|---|---|
-| Model selection and selection_rationale.md | Rizaldy Utomo | Ridho Bakti |
-| FastAPI /predict, /health, /version, /metrics | Jiho Hong | Rizaldy Utomo |
-| Docker Compose, Dockerfile.api, infra setup | Ridho Bakti | Afif Izzatullah |
-| Smoke test, /metrics validation, docs review | Afif Izzatullah | Jiho Hong |
+Week 4 was run through together by the team, building on Rizaldy's individual project as the base.
 
 ---
 
