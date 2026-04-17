@@ -15,7 +15,7 @@ stream:
     max: 30
   raw_topic: ticks.raw
   feature_topic: ticks.features
-  bootstrap_servers: localhost:9092
+  bootstrap_servers: localhost:9094
 features:
   bar_freq_seconds: 1
   target_horizon_seconds: 60
@@ -36,6 +36,7 @@ service:
   port: 8000
   designation: Selected-base
   model_artifact: models/artifacts/logistic_model.joblib
+  baseline_artifact: models/artifacts/baseline.json
   replay_source: data/processed/features.parquet
   replay_window_minutes: 10
   replay_slice_output: data/processed/features_replay_10min.parquet

@@ -1,20 +1,23 @@
 from __future__ import annotations
 
+import json
+import os
+import sys
+import time
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from threading import Lock
 from typing import Any
-import sys
-import time
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+import numpy as np
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
@@ -23,10 +26,18 @@ from pipeline.config import ROOT_DIR, ensure_directories, load_config
 from pipeline.modeling import MODEL_FEATURES, load_model_bundle, prepare_model_frame
 
 
+SUPPORTED_VARIANTS = {"ml", "baseline"}
+
+
 REQUEST_COUNTER = Counter(
     "crypto_api_requests_total",
     "Total HTTP requests handled by the replay API module.",
     ["endpoint", "method"],
+)
+REQUEST_ERROR_COUNTER = Counter(
+    "crypto_api_request_errors_total",
+    "Total HTTP requests that returned a 5xx status.",
+    ["endpoint", "method", "status"],
 )
 PREDICTION_REQUEST_COUNTER = Counter(
     "crypto_api_prediction_requests_total",
@@ -46,6 +57,11 @@ INFERENCE_LATENCY = Histogram(
 MODEL_LOADED_GAUGE = Gauge(
     "crypto_api_model_loaded",
     "Whether the replay API module has loaded the model bundle.",
+)
+MODEL_VARIANT_INFO = Gauge(
+    "crypto_api_model_variant_info",
+    "Active model variant (label carries the name; value is always 1 when set).",
+    ["variant"],
 )
 REPLAY_ROWS_GAUGE = Gauge(
     "crypto_api_replay_rows",
@@ -139,14 +155,47 @@ class ReplayThinSliceService:
         self.version = service_cfg["version"]
         self.designation = service_cfg["designation"]
         self.model_path = ROOT_DIR / service_cfg["model_artifact"]
+        self.baseline_path = ROOT_DIR / service_cfg.get(
+            "baseline_artifact", "models/artifacts/baseline.json"
+        )
         self.replay_source = ROOT_DIR / service_cfg["replay_source"]
         self.replay_slice_output = ROOT_DIR / service_cfg["replay_slice_output"]
         self.replay_window_minutes = int(service_cfg["replay_window_minutes"])
 
-        bundle = load_model_bundle(str(self.model_path))
-        self.model = bundle["model"]
-        self.threshold = float(bundle["threshold"])
-        self.model_metadata = bundle.get("metadata", {})
+        self.variant = os.getenv("MODEL_VARIANT", "ml").strip().lower()
+        if self.variant not in SUPPORTED_VARIANTS:
+            raise ValueError(
+                f"Unsupported MODEL_VARIANT={self.variant!r}. "
+                f"Expected one of: {sorted(SUPPORTED_VARIANTS)}."
+            )
+
+        self.model = None
+        self.baseline: dict[str, float] | None = None
+        self.model_metadata: dict[str, Any] = {}
+
+        if self.variant == "ml":
+            bundle = load_model_bundle(str(self.model_path))
+            self.model = bundle["model"]
+            self.threshold = float(bundle["threshold"])
+            self.model_metadata = bundle.get("metadata", {})
+        else:
+            if not self.baseline_path.exists():
+                raise FileNotFoundError(
+                    f"MODEL_VARIANT=baseline requires {self.baseline_path}, but it was not found. "
+                    "Run the training pipeline first so `models/artifacts/baseline.json` exists."
+                )
+            with self.baseline_path.open("r", encoding="utf-8") as handle:
+                baseline_payload = json.load(handle)
+            self.baseline = {
+                "mean": float(baseline_payload["mean"]),
+                "std": float(baseline_payload["std"]) or 1e-8,
+                "threshold": float(baseline_payload["threshold"]),
+            }
+            self.threshold = self.baseline["threshold"]
+            self.model_metadata = {
+                "sha": "",
+                "source": str(self.baseline_path.relative_to(ROOT_DIR)),
+            }
 
         replay_artifacts = build_replay_slice(
             self.replay_source,
@@ -158,6 +207,7 @@ class ReplayThinSliceService:
         self.replay_end_ts = replay_artifacts.end_ts
 
         MODEL_LOADED_GAUGE.set(1)
+        MODEL_VARIANT_INFO.labels(variant=self.variant).set(1)
         REPLAY_ROWS_GAUGE.set(len(self.replay_df))
         REPLAY_CURSOR_GAUGE.set(self.cursor)
 
@@ -167,13 +217,16 @@ class ReplayThinSliceService:
             "service": self.name,
             "version": self.version,
             "model_loaded": True,
+            "model_variant": self.variant,
             "replay_rows": int(len(self.replay_df)),
             "replay_cursor": int(self.cursor),
         }
 
     def version_payload(self) -> dict[str, Any]:
+        model_name = "logistic_regression" if self.variant == "ml" else "baseline_zscore"
         return {
-            "model": "logistic_regression",
+            "model": model_name,
+            "model_variant": self.variant,
             "sha": self.model_metadata.get("sha", ""),
             "version": self.version,
             "designation": self.designation,
@@ -189,10 +242,16 @@ class ReplayThinSliceService:
         scoring_frame = scoring_frame.replace([float("inf"), float("-inf")], pd.NA)
         scoring_frame = scoring_frame.dropna(subset=MODEL_FEATURES)
         if scoring_frame.empty:
-            raise HTTPException(status_code=400, detail="All rows dropped after validation — check for NaN/inf values.")
+            raise HTTPException(
+                status_code=400,
+                detail="All rows dropped after validation — check for NaN/inf values.",
+            )
 
         t0 = time.perf_counter()
-        probabilities = self.model.predict_proba(scoring_frame[MODEL_FEATURES])[:, 1]
+        if self.variant == "ml":
+            probabilities = self.model.predict_proba(scoring_frame[MODEL_FEATURES])[:, 1]
+        else:
+            probabilities = self._score_baseline(scoring_frame)
         INFERENCE_LATENCY.observe(time.perf_counter() - t0)
 
         PREDICTION_REQUEST_COUNTER.labels(source=source).inc()
@@ -200,10 +259,18 @@ class ReplayThinSliceService:
 
         return {
             "scores": [round(float(p), 4) for p in probabilities],
-            "model_variant": "ml",
+            "model_variant": self.variant,
             "version": self.version,
             "ts": datetime.now(UTC).isoformat(),
         }
+
+    def _score_baseline(self, scoring_frame: pd.DataFrame) -> np.ndarray:
+        assert self.baseline is not None, "baseline artifact missing for variant=baseline"
+        sigma = self.baseline["std"] or 1e-8
+        z = (scoring_frame["realized_vol_60s"].to_numpy() - self.baseline["mean"]) / sigma
+        z = np.nan_to_num(z, nan=0.0, posinf=50.0, neginf=-50.0)
+        clipped = np.clip(z, -50.0, 50.0)
+        return 1.0 / (1.0 + np.exp(-clipped))
 
     def predict_rows(self, rows: list[PredictRow]) -> dict[str, Any]:
         frame = pd.DataFrame([r.model_dump() for r in rows])
@@ -234,6 +301,8 @@ async def lifespan(_: FastAPI):
     yield
     service_container.clear()
     MODEL_LOADED_GAUGE.set(0)
+    for variant in SUPPORTED_VARIANTS:
+        MODEL_VARIANT_INFO.labels(variant=variant).set(0)
 
 
 app = FastAPI(
@@ -251,6 +320,33 @@ app.add_middleware(
 )
 
 
+def _metric_endpoint_label(request: Request) -> str:
+    route = request.scope.get("route")
+    if route is not None and getattr(route, "path", None):
+        return route.path
+    return request.url.path
+
+
+@app.middleware("http")
+async def prometheus_request_middleware(request: Request, call_next):
+    method = request.method
+    try:
+        response = await call_next(request)
+    except Exception:
+        endpoint = _metric_endpoint_label(request)
+        REQUEST_COUNTER.labels(endpoint=endpoint, method=method).inc()
+        REQUEST_ERROR_COUNTER.labels(endpoint=endpoint, method=method, status="500").inc()
+        raise
+
+    endpoint = _metric_endpoint_label(request)
+    REQUEST_COUNTER.labels(endpoint=endpoint, method=method).inc()
+    if response.status_code >= 500:
+        REQUEST_ERROR_COUNTER.labels(
+            endpoint=endpoint, method=method, status=str(response.status_code)
+        ).inc()
+    return response
+
+
 def get_service() -> ReplayThinSliceService:
     service = service_container.get("service")
     if service is None:
@@ -260,13 +356,11 @@ def get_service() -> ReplayThinSliceService:
 
 @app.get("/health")
 async def health() -> dict[str, Any]:
-    REQUEST_COUNTER.labels(endpoint="/health", method="GET").inc()
     return get_service().health()
 
 
 @app.get("/version")
 async def version() -> dict[str, Any]:
-    REQUEST_COUNTER.labels(endpoint="/version", method="GET").inc()
     return get_service().version_payload()
 
 
@@ -277,7 +371,6 @@ async def predict(request: PredictRequest) -> dict[str, Any]:
     Send ``rows`` with actual feature values for immediate scoring,
     or set ``replay_count`` to pull rows from the loaded 10-minute replay slice.
     """
-    REQUEST_COUNTER.labels(endpoint="/predict", method="POST").inc()
     service = get_service()
     if request.replay_count is not None:
         return service.predict_replay(request.replay_count, request.replay_start_index)
@@ -291,5 +384,4 @@ async def predict(request: PredictRequest) -> dict[str, Any]:
 
 @app.get("/metrics")
 async def metrics() -> Response:
-    REQUEST_COUNTER.labels(endpoint="/metrics", method="GET").inc()
     return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)

@@ -62,6 +62,17 @@ python scripts/replay_api_smoke.py --persist-slice
 
 This is the gate for declaring the service "up." If it exits 0, we are healthy.
 
+### 1.6 Observability (optional)
+
+Bring up the Prometheus + Grafana profile to watch the API during the demo:
+
+```bash
+docker compose -f docker/compose.yaml --profile observability up -d
+```
+
+- Prometheus scrapes `api:8000/metrics` every 5s (see [../../docker/prometheus/prometheus.yml](../../docker/prometheus/prometheus.yml)).
+- Grafana loads the provisioned **Crypto Volatility API** dashboard from [../../docker/grafana/dashboards/crypto_api.json](../../docker/grafana/dashboards/crypto_api.json) at `http://localhost:3000`. Key panels: model loaded, active model variant, replay cursor progress, request rate by endpoint, inference latency p50/p95/p99, error rate, prediction throughput.
+
 ---
 
 ## 2. Common failures and fixes
@@ -88,7 +99,7 @@ Find the symptom, follow the fix. If you hit something not listed, escalate per 
 
 1. If the bad rows came from the replay slice, the slice parquet has corruption — rebuild it (restart the API; the lifespan rebuilds the slice).
 2. If they came from a live caller, the upstream featurizer is the culprit.
-3. Compare the feature distribution against Rizaldy's Evidently drift report (`docs/drift_summary.md` once landed).
+3. Compare the feature distribution against Rizaldy's Evidently drift report at [docs/drift_summary.md](../drift_summary.md) and the raw artifact at [reports/evidently/train_vs_test.html](../../reports/evidently/train_vs_test.html).
 
 **Fix:** fix the upstream data source or roll back the upstream featurizer change; re-POST the request.
 
@@ -106,13 +117,22 @@ Find the symptom, follow the fix. If you hit something not listed, escalate per 
 
 ### 2.5 Kafka connection refused on ingest (`scripts/ws_ingest.py`)
 
-**Meaning:** broker not reachable at `localhost:9092`.
+**Meaning:** broker not reachable from the host.
 
 **Checks:**
 
 ```bash
 docker compose -f docker/compose.yaml ps
 docker compose -f docker/compose.yaml logs kafka --tail 50
+```
+
+**Host-side bootstrap address:** `localhost:9094` (the EXTERNAL listener, advertised as `localhost:9094` by [../../docker/compose.yaml](../../docker/compose.yaml) and mapped to host port 9094). In-container services keep using `kafka:9092`. The default in [../../config.yaml](../../config.yaml) (`stream.bootstrap_servers`) already points at `localhost:9094`, and both the host scripts and containers honor a `KAFKA_BOOTSTRAP_SERVERS` env override.
+
+**Host smoke:**
+
+```bash
+KAFKA_BOOTSTRAP_SERVERS=localhost:9094 \
+  python scripts/kafka_consume_check.py --topic ticks.raw --timeout-seconds 10
 ```
 
 **Fix:** restart the Kafka container (`docker compose restart kafka`), confirm it reports `Kafka Server started`, retry the ingest.
@@ -142,6 +162,46 @@ docker compose -f docker/compose.yaml logs kafka --tail 50
 ## 3. Rollback procedure
 
 Fallback when something on `main` broke the service.
+
+### 3.0 Fast path: switch to the baseline variant
+
+Before reverting code, try the variant toggle — it is a one-environment-variable
+mitigation that keeps the API contract identical but swaps the scoring engine
+to the stable z-score baseline (see [`models/artifacts/baseline.json`](../../models/artifacts/baseline.json)).
+
+Local run:
+
+```bash
+MODEL_VARIANT=baseline python scripts/run_w4_api.py
+```
+
+Docker Compose:
+
+```bash
+MODEL_VARIANT=baseline docker compose -f docker/compose.yaml up -d api
+```
+
+Or set it persistently in the `api` service under `docker/compose.yaml`:
+
+```yaml
+api:
+  environment:
+    MODEL_VARIANT: baseline
+```
+
+Verify:
+
+```bash
+curl -s http://localhost:8000/version | jq '.model_variant, .model'
+# -> "baseline"
+# -> "baseline_zscore"
+```
+
+`/health` also echoes `"model_variant": "baseline"` and Grafana's *Active model
+variant* stat panel will flip to `baseline`. If the baseline restores the
+service, file an incident and move on to the git-level rollback below on a
+follow-up branch. Unknown values (e.g. `MODEL_VARIANT=foo`) fail the API at
+startup on purpose.
 
 ### 3.1 Identify the last-green reference
 

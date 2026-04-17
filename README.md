@@ -37,6 +37,15 @@ Start the Docker services:
 docker compose -f docker/compose.yaml up -d --build
 ```
 
+Optional — bring up the Prometheus + Grafana observability profile (scrapes the API's `/metrics`):
+
+```bash
+docker compose -f docker/compose.yaml --profile observability up -d
+```
+
+- Prometheus: `http://localhost:9090`
+- Grafana: `http://localhost:3000` (anonymous Viewer; admin login `admin` / `admin`) — the **Crypto Volatility API** dashboard is provisioned automatically.
+
 Run the API locally:
 
 ```bash
@@ -113,6 +122,7 @@ python scripts/run_demo_stack.py
 - `docs/system_diagram.md` — architecture overview
 - `docs/operations/runbook.md` — startup, rollback, incident response
 - `docs/operations/slo.md` — current service-level objectives
+- `docs/drift_summary.md` — Week 6 train-vs-test drift summary (decision + monitoring triggers)
 - `docs/status/pr_review_status.md` — what has been merged, validated, and what is still pending
 - `docs/status/team_module_w5_w7.md` — current team work split after Week 4
 
