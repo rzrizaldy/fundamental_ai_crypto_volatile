@@ -1,27 +1,26 @@
 # Week 5 load test — latency report
 
-**Last run (UTC):** not recorded in this clone (regenerate below)  
-**Default target:** `http://127.0.0.1:8000` (port from `config.yaml` `service.port`)  
+**Generated (UTC):** 2026-04-17T19:43:08.545824+00:00  
+**Target:** `http://127.0.0.1:8000`  
 **Scenario:** 100 concurrent `POST /predict` calls with identical single-row manual scoring (`rows` payload).  
 **Rationale:** Manual scoring avoids the replay cursor lock so the burst exercises concurrent inference and HTTP handling.
 
-## Prerequisites
-
-- `models/artifacts/logistic_model.joblib` (train with `models/train.py` or use team artifacts).
-- `data/processed/features.parquet` (ingest + featurize, or use team data).
-
-## Regenerate (overwrites this file)
+Regenerate this file:
 
 ```bash
-# terminal 1
-python scripts/run_w4_api.py
-
-# terminal 2
+python scripts/run_w4_api.py   # in another terminal
 python scripts/replay_api_load_test.py --write-report reports/w5_load_test_latency.md
 ```
 
-The script prints a JSON summary to stdout and writes min / p50 / p95 / p99 / max / mean / stdev to the **Results** section.
-
 ## Results
 
-*Run the script after the API is up with the prerequisites above — this section will be filled automatically.*
+- **Requests succeeded:** 100 / 100
+- **Requests failed:** 0 / 100
+- **Latency (ms) — min:** 19.48
+- **Latency (ms) — p50:** 74.45
+- **Latency (ms) — p95:** 117.78
+- **Latency (ms) — p99:** 122.21
+- **Latency (ms) — max:** 122.84
+- **Latency (ms) — mean:** 73.93
+- **Latency (ms) — stdev:** 29.38
+

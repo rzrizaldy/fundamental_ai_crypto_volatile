@@ -16,9 +16,12 @@ Single-page map of the project's docs. Keep this updated when you add or rename 
 - [model_card_v1.md](model_card_v1.md) — intended use, metrics, limitations.
 - [genai_appendix.md](genai_appendix.md) — GenAI use disclosure.
 
-## Operations (Week 6)
-- [slo.md](slo.md) — service level objectives for the replay API.
-- [runbook.md](runbook.md) — on-call playbook: startup, failures, rollback, escalation.
+## Operations
+- [operations/slo.md](operations/slo.md) — service level objectives for the replay API.
+- [operations/runbook.md](operations/runbook.md) — on-call playbook: startup, failures, rollback, escalation.
+
+## Status and review
+- [status/pr_review_status.md](status/pr_review_status.md) — what each open PR adds, what was fixed locally, and what is still pending.
 
 ## Related top-level files
 - [../CONTRIBUTING.md](../CONTRIBUTING.md) — branch rules, PR process, cross-agent collaboration.

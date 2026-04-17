@@ -1,6 +1,6 @@
 # Runbook — Crypto Volatility Replay API
 
-> **Scope:** the Week 4 FastAPI service in [service/replay_api.py](../service/replay_api.py). Paired with [docs/slo.md](slo.md).
+> **Scope:** the Week 4 FastAPI service in [service/replay_api.py](../../service/replay_api.py). Paired with [slo.md](slo.md).
 >
 > **Audience:** whoever is on-call for the demo. Follow these steps before escalating.
 
@@ -78,7 +78,7 @@ Find the symptom, follow the fix. If you hit something not listed, escalate per 
 2. Does the process log show an exception during `ReplayThinSliceService.__init__`?
 3. Is the replay source parquet present at `service.replay_source` (default `data/processed/features.parquet`)?
 
-**Fix:** restore the missing file from the `Selected-base` tag (`git checkout Selected-base -- models/artifacts/logistic_model.joblib`), restart the API, rerun section 1.4.
+**Fix:** restore the missing file from the last known-good commit (`git checkout <known-good-sha> -- models/artifacts/logistic_model.joblib`), restart the API, rerun section 1.4.
 
 ### 2.2 `/predict` returns 400 `"All rows dropped after validation — check for NaN/inf values."`
 
@@ -145,8 +145,9 @@ Fallback when something on `main` broke the service.
 
 ### 3.1 Identify the last-green reference
 
-- Week 4 baseline: git tag `Selected-base`.
-- Later weeks: whatever tag or commit SHA the weekly demo was cut from.
+- This clone currently does **not** carry a `Selected-base` git tag in Git metadata, even though that designation is used in the docs and config.
+- Until Week 7 release tagging lands, use the last known-good commit SHA or merged PR commit recorded in [docs/status/pr_review_status.md](../status/pr_review_status.md).
+- Later weeks should use a real release tag or demo commit SHA once the team starts cutting them.
 
 ### 3.2 Roll back
 
@@ -161,13 +162,13 @@ If the smoke test passes on the rolled-back version, the bad change is confirmed
 
 ### 3.3 Do not force-push to `main`
 
-Per [CONTRIBUTING.md](../CONTRIBUTING.md) the main branch is protected. Always roll forward via a revert PR, never rewrite history on the shared branch.
+Per [CONTRIBUTING.md](../../CONTRIBUTING.md) the main branch is protected. Always roll forward via a revert PR, never rewrite history on the shared branch.
 
 ---
 
 ## 4. Escalation and ownership
 
-Roles below come from [docs/team_charter.md](team_charter.md). Route the incident to the listed owner in Google Chat first; cc the full team for anything that blocks the demo.
+Roles below come from [docs/team_charter.md](../team_charter.md). Route the incident to the listed owner in Google Chat first; cc the full team for anything that blocks the demo.
 
 | Symptom area | Primary owner | Backup |
 |---|---|---|

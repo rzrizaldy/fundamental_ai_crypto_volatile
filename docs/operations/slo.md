@@ -1,6 +1,6 @@
 # Service Level Objectives (SLOs)
 
-> **Scope:** the Week 4 replay-mode FastAPI in [service/replay_api.py](../service/replay_api.py), exposed on port `8000` via `scripts/run_w4_api.py`. Endpoints in scope: `/health`, `/predict`, `/version`, `/metrics`.
+> **Scope:** the Week 4 replay-mode FastAPI in [service/replay_api.py](../../service/replay_api.py), exposed on port `8000` via `scripts/run_w4_api.py`. Endpoints in scope: `/health`, `/predict`, `/version`, `/metrics`.
 >
 > **Owner:** Ridho Bakti (platform / MLOps lead). **Reviewers:** Rizaldy (model), Jiho (backend), Afif (QA).
 >
@@ -53,7 +53,7 @@ Targets are set for a **7-day rolling window** unless noted otherwise. Violating
 
 ### Targets out of scope right now
 
-- **Throughput SLO** — deferred until Afif's W5 load-test numbers land. We expect to commit to "100 concurrent `/predict` requests with p95 <= 50 ms" after that report.
+- **Throughput SLO** — not yet formalized. The local W5 burst run on 2026-04-17 succeeded `100 / 100`, but end-to-end HTTP request latency was `p95 = 117.78 ms` (see `reports/w5_load_test_latency.md`). That result should inform the future throughput SLO, but it does not replace the current inference-histogram SLI.
 - **Data-freshness SLO** — the replay slice is a frozen 10-minute window; freshness will become meaningful only when the live Kafka ingest path is re-enabled.
 
 ---
@@ -79,12 +79,13 @@ Alert routing will be implemented against Jiho's Prometheus/Grafana dashboards (
 
 ## 6. Cross-references
 
-- [docs/runbook.md](runbook.md) — how to respond when an SLO burns.
-- [service/replay_api.py](../service/replay_api.py) — authoritative metric names (lines with `Counter(`, `Gauge(`, `Histogram(`).
-- [docs/team_charter.md](team_charter.md) — role ownership used for incident escalation.
-- [updated_techincal_team_module.md](../updated_techincal_team_module.md) — Week 5 / Week 6 task split.
+- [runbook.md](runbook.md) — how to respond when an SLO burns.
+- [service/replay_api.py](../../service/replay_api.py) — authoritative metric names (lines with `Counter(`, `Gauge(`, `Histogram(`).
+- [docs/team_charter.md](../team_charter.md) — role ownership used for incident escalation.
+- [updated_techincal_team_module.md](../../updated_techincal_team_module.md) — Week 5 / Week 6 task split.
+- [docs/status/pr_review_status.md](../status/pr_review_status.md) — current integration/review status of the peer PRs.
 - Jiho's W6 Prometheus + Grafana scrape config (forthcoming) — wires these SLIs into live dashboards and alerts.
-- Rizaldy's W6 Evidently drift report (`docs/drift_summary.md`, forthcoming) — informs whether a latency or error-rate regression has a data-quality root cause.
+- Rizaldy's W6 Evidently drift report (`../drift_summary.md`, forthcoming) — informs whether a latency or error-rate regression has a data-quality root cause.
 
 ---
 

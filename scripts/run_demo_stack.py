@@ -10,12 +10,20 @@ from urllib.request import urlopen
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from pipeline.config import load_config
+
+
+API_PORT = int(load_config()["service"]["port"])
+API_HEALTH_URL = f"http://localhost:{API_PORT}/health"
 
 SERVICES = (
     (
         "week4_api",
         [sys.executable, str(REPO_ROOT / "scripts/run_w4_api.py")],
-        "http://localhost:8010/health",
+        API_HEALTH_URL,
     ),
     (
         "dashboard",
@@ -61,7 +69,7 @@ def main() -> None:
 
     print("\nLive endpoints:")
     print("  - Dashboard: http://localhost:8766/")
-    print("  - Week 4 API: http://localhost:8010/health")
+    print(f"  - Week 4 API: {API_HEALTH_URL}")
     print("\nPress Ctrl+C to stop any processes started by this launcher.")
 
     try:

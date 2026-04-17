@@ -33,7 +33,7 @@ Trained a z-score baseline and a logistic regression model with time-based train
 
 Deliverables: `models/train.py`, `models/infer.py`, `models/artifacts/`, `reports/model_eval.pdf`, `docs/model_card_v1.md`, `docs/genai_appendix.md`
 
-The repo was tagged as `Selected-base` for team handoff. The logistic regression artifact at `models/artifacts/logistic_model.joblib` is the selected model going into the team service.
+The repo was designated as `Selected-base` for team handoff. The logistic regression artifact at `models/artifacts/logistic_model.joblib` is the selected model going into the team service.
 
 ---
 
@@ -75,7 +75,7 @@ Week 4 was run through together by the team, building on Rizaldy's individual pr
 | W5 | Load test (100 burst requests) + latency report | Afif Izzatullah | Ridho Bakti |
 | W6 | Prometheus metrics + Grafana dashboards | Jiho Hong | Ridho Bakti |
 | W6 | Evidently drift report, docs/drift_summary.md | Rizaldy Utomo | Afif Izzatullah |
-| W6 | SLOs (docs/slo.md) + Runbook (docs/runbook.md) | Ridho Bakti | Jiho Hong |
+| W6 | SLOs (`docs/operations/slo.md`) + Runbook (`docs/operations/runbook.md`) | Ridho Bakti | Jiho Hong |
 | W7 | 8-min demo recording (startup, failure, rollback) | All | |
 | W7 | Final repo cleanup + tagged release | Rizaldy Utomo | All |
 
