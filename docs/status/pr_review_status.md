@@ -16,7 +16,7 @@ This file tracks the peer PRs reviewed on 2026-04-17 and what happened after pul
 - `scripts/run_demo_stack.py` was updated to target the configured API port instead of the stale `8010` hardcode.
 - Week 6 operations docs were grouped under `docs/operations/` to keep `docs/` clearer as more team docs land.
 - `docs/team_charter.md` and `docs/README.md` were updated to point at the new operations-doc locations.
-- `updated_techincal_team_module.md` was refreshed so it reflects the current post-PR state instead of the pre-PR gap list.
+- `docs/status/team_module_w5_w7.md` was refreshed so it reflects the current post-PR state instead of the pre-PR gap list.
 
 ## Validation Run On 2026-04-17
 

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=20260409-w4" />
+    <link rel="stylesheet" href="style.css?v=20260417-dashboard" />
   </head>
   <body>
 
@@ -172,11 +172,11 @@
         <div class="panel">
           <div class="panel-head">
             <div>
-              <h2>WEEK 4 API THIN SLICE</h2>
-              <p class="panel-sub">Replay-mode FastAPI service on port 8000. All services start with <code>docker compose up -d</code>.</p>
+              <h2>MODULE: API THIN SLICE</h2>
+              <p class="panel-sub">Replay-mode FastAPI module on port 8000. All services start with <code>docker compose up -d</code>.</p>
             </div>
             <div style="display:flex;gap:0.5rem;align-items:center;">
-              <button class="tab" id="w4-launch-btn" type="button">OPEN DOCS</button>
+              <button class="tab" id="w4-launch-btn" type="button">OPEN API DOCS</button>
               <span class="badge badge-muted" id="w4-api-badge">OFFLINE</span>
             </div>
           </div>
@@ -223,7 +223,7 @@
             </div>
           </div>
           <div class="scorecard-note" id="w4-api-copy">
-            Start `python scripts/run_w4_api.py` to expose the Week 4 replay service.
+            Start <code>docker compose up -d</code> to expose the API thin-slice module.
           </div>
         </div>
 
@@ -231,7 +231,7 @@
           <div class="panel-head">
             <div>
               <h2>REPLAY SAMPLE</h2>
-              <p class="panel-sub">A direct sample from the Week 4 `/predict` replay endpoint so the dashboard reflects the interim API milestone, not just the live SSE path.</p>
+              <p class="panel-sub">A direct sample from the module <code>/predict</code> replay endpoint so the dashboard reflects the API path, not just the live SSE stream.</p>
             </div>
             <button class="tab" id="w4-replay-btn" type="button">RUN 12-ROW REPLAY</button>
           </div>
@@ -447,7 +447,7 @@
             </div>
             <div class="method-row">
               <span class="method-num">04</span>
-              <span class="method-text">BASELINE Z-SCORE · LOGISTIC REGRESSION · MLFLOW TRACKING</span>
+              <span class="method-text">BASELINE Z-SCORE · LOGISTIC REGRESSION · MLFLOW RUN TRACKING</span>
             </div>
             <div class="method-row">
               <span class="method-num">05</span>
@@ -459,10 +459,65 @@
             </div>
           </div>
           <div class="artifact-links">
-            <a href="../reports/model_eval.md" class="art-link">MODEL_EVAL.MD</a>
-            <a href="../reports/evidently/train_vs_test.html" class="art-link">EVIDENTLY REPORT</a>
-            <a href="../img/model_pr_curve.png" class="art-link">PR CURVE</a>
-            <a href="../models/artifacts/predictions_latest.csv" class="art-link">PREDICTIONS CSV</a>
+            <a href="reports/model_eval.md" class="art-link" target="_blank" rel="noreferrer">MODEL_EVAL.MD</a>
+            <a href="reports/evidently/train_vs_test.html" class="art-link" target="_blank" rel="noreferrer">EVIDENTLY REPORT</a>
+            <a href="img/model_pr_curve.png" class="art-link" target="_blank" rel="noreferrer">PR CURVE</a>
+            <a href="models/artifacts/predictions_latest.csv" class="art-link" target="_blank" rel="noreferrer">PREDICTIONS CSV</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>STATIC EXPORT STATUS</h2>
+              <p class="panel-sub">Freshness checks for the dashboard snapshot and the static evidence bundle served from this app.</p>
+            </div>
+            <span class="badge badge-blue" id="static-export-badge">STATIC</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-block">
+              <div class="metric-label">EXPORTED AT</div>
+              <div class="metric-val" id="export-generated-at">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">DATA WINDOW</div>
+              <div class="metric-val" id="export-data-window">—</div>
+            </div>
+            <div class="metric-block">
+              <div class="metric-label">LATEST PREDICTION</div>
+              <div class="metric-val" id="export-predictions-ts">—</div>
+            </div>
+          </div>
+          <div class="scorecard-note" id="static-export-copy">
+            Loading dashboard export metadata...
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>MLFLOW RUNS</h2>
+              <p class="panel-sub">Recent experiment runs behind the local MLflow UI on port 5001.</p>
+            </div>
+            <a href="http://localhost:5001/" class="art-link" target="_blank" rel="noreferrer">OPEN MLFLOW</a>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="mlflow-runs-table">
+              <thead>
+                <tr>
+                  <th>RUN</th>
+                  <th>STATUS</th>
+                  <th>STARTED</th>
+                  <th>MODEL</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="scorecard-note" id="mlflow-runs-copy">
+            Loading MLflow runs...
           </div>
         </div>
       </section>
@@ -480,6 +535,6 @@
 
     </main>
 
-    <script src="app.js?v=20260410-w4-1"></script>
+    <script src="app.js?v=20260417-dashboard"></script>
   </body>
 </html>

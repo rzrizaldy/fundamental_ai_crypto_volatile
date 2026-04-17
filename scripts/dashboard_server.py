@@ -25,10 +25,12 @@ import asyncio
 import json
 import logging
 import math
+import sqlite3
 import sys
 import time
 from collections import defaultdict, deque
 from datetime import datetime, UTC
+from mimetypes import guess_type
 from pathlib import Path
 from typing import AsyncGenerator
 
@@ -37,7 +39,7 @@ import numpy as np
 import pandas as pd
 import uvicorn
 import websockets
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -53,10 +55,25 @@ COINBASE_WS_URL = "wss://advanced-trade-ws.coinbase.com"
 PAIRS           = ["BTC-USD", "ETH-USD"]
 MODEL_PATH      = REPO_ROOT / "models/artifacts/logistic_model.joblib"
 DASHBOARD_DIR   = REPO_ROOT / "dashboard"
+MLFLOW_DB_PATH  = REPO_ROOT / "mlruns/mlflow.db"
+EXPORT_PATH     = DASHBOARD_DIR / "data/dashboard.json"
 PORT            = 8766
 TICK_BUFFER_MAX = 360           # 6 min of ticks per product
 BAR_INTERVAL_S  = 1.0           # push a feature bar every second
 EWMA_ALPHA      = 2 / (15 + 1)  # span=15, matches training
+
+ARTIFACT_PATHS = {
+    "model-eval": REPO_ROOT / "reports/model_eval.md",
+    "evidently-report": REPO_ROOT / "reports/evidently/train_vs_test.html",
+    "pr-curve": REPO_ROOT / "img/model_pr_curve.png",
+    "predictions-csv": REPO_ROOT / "models/artifacts/predictions_latest.csv",
+}
+
+PUBLIC_DIRS = {
+    "reports": REPO_ROOT / "reports",
+    "img": REPO_ROOT / "img",
+    "models_artifacts": REPO_ROOT / "models/artifacts",
+}
 
 FEATURES = [
     "return_1s", "spread_bps",
@@ -72,6 +89,86 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
 )
 log = logging.getLogger("cvi")
+
+
+def _no_cache_file_response(path: Path) -> FileResponse:
+    media_type, _ = guess_type(path.name)
+    return FileResponse(
+        path,
+        media_type=media_type,
+        filename=path.name,
+        headers={"Cache-Control": "no-store, max-age=0"},
+    )
+
+
+def _resolve_public_path(base_dir: Path, relative_path: str) -> Path:
+    candidate = (base_dir / relative_path).resolve()
+    try:
+        candidate.relative_to(base_dir.resolve())
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail="Artifact path is outside the allowed directory.") from exc
+    if not candidate.exists() or not candidate.is_file():
+        raise HTTPException(status_code=404, detail=f"File `{relative_path}` not found.")
+    return candidate
+
+
+def _load_recent_mlflow_runs(limit: int = 8) -> dict:
+    if not MLFLOW_DB_PATH.exists():
+        return {
+            "available": False,
+            "ui_url": "http://localhost:5001/",
+            "summary": {"total_runs": 0, "finished_runs": 0, "failed_runs": 0},
+            "runs": [],
+        }
+
+    with sqlite3.connect(MLFLOW_DB_PATH) as conn:
+        conn.row_factory = sqlite3.Row
+        summary_row = conn.execute(
+            """
+            SELECT
+              COUNT(*) AS total_runs,
+              SUM(CASE WHEN status = 'FINISHED' THEN 1 ELSE 0 END) AS finished_runs,
+              SUM(CASE WHEN status = 'FAILED' THEN 1 ELSE 0 END) AS failed_runs
+            FROM runs
+            """
+        ).fetchone()
+        rows = conn.execute(
+            """
+            SELECT
+              COALESCE(e.name, 'Default') AS experiment_name,
+              r.run_uuid,
+              r.status,
+              datetime(r.start_time / 1000, 'unixepoch') AS started_at,
+              datetime(r.end_time / 1000, 'unixepoch') AS ended_at,
+              COALESCE(
+                (
+                  SELECT p.value
+                  FROM params AS p
+                  WHERE p.run_uuid = r.run_uuid AND p.key = 'model_type'
+                  LIMIT 1
+                ),
+                '—'
+              ) AS model_type
+            FROM runs AS r
+            LEFT JOIN experiments AS e
+              ON e.experiment_id = r.experiment_id
+            ORDER BY r.start_time DESC
+            LIMIT ?
+            """,
+            (limit,),
+        ).fetchall()
+
+    summary = {
+        "total_runs": int(summary_row["total_runs"] or 0),
+        "finished_runs": int(summary_row["finished_runs"] or 0),
+        "failed_runs": int(summary_row["failed_runs"] or 0),
+    }
+    return {
+        "available": summary["total_runs"] > 0,
+        "ui_url": "http://localhost:5001/",
+        "summary": summary,
+        "runs": [dict(row) for row in rows],
+    }
 
 
 # ── Live featurizer ──────────────────────────────────────────────────────────
@@ -336,6 +433,41 @@ async def status() -> dict:
         "tick_counts":  dict(tick_counts),
         "featurizer":   "ready" if featurizer else "loading",
     }
+
+
+@app.get("/data/dashboard.json")
+async def dashboard_payload() -> FileResponse:
+    if not EXPORT_PATH.exists():
+        raise HTTPException(status_code=404, detail="Dashboard export not found.")
+    return _no_cache_file_response(EXPORT_PATH)
+
+
+@app.get("/artifacts/{artifact_name}")
+async def artifact_file(artifact_name: str) -> FileResponse:
+    path = ARTIFACT_PATHS.get(artifact_name)
+    if path is None or not path.exists():
+        raise HTTPException(status_code=404, detail=f"Artifact `{artifact_name}` not found.")
+    return _no_cache_file_response(path)
+
+
+@app.get("/reports/{report_path:path}")
+async def report_file(report_path: str) -> FileResponse:
+    return _no_cache_file_response(_resolve_public_path(PUBLIC_DIRS["reports"], report_path))
+
+
+@app.get("/img/{asset_path:path}")
+async def image_file(asset_path: str) -> FileResponse:
+    return _no_cache_file_response(_resolve_public_path(PUBLIC_DIRS["img"], asset_path))
+
+
+@app.get("/models/artifacts/{artifact_path:path}")
+async def model_artifact_file(artifact_path: str) -> FileResponse:
+    return _no_cache_file_response(_resolve_public_path(PUBLIC_DIRS["models_artifacts"], artifact_path))
+
+
+@app.get("/api/mlflow/runs")
+async def mlflow_runs() -> dict:
+    return _load_recent_mlflow_runs()
 
 
 # ── Static files ─────────────────────────────────────────────────────────────

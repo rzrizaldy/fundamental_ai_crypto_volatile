@@ -22,8 +22,9 @@ Single-page map of the project's docs. Keep this updated when you add or rename 
 
 ## Status and review
 - [status/pr_review_status.md](status/pr_review_status.md) — what each open PR adds, what was fixed locally, and what is still pending.
+- [status/team_module_w5_w7.md](status/team_module_w5_w7.md) — current Week 5-7 ownership split.
+- [status/screenshots/](status/screenshots/) — review/demo screenshots kept out of the repo root.
 
 ## Related top-level files
 - [../CONTRIBUTING.md](../CONTRIBUTING.md) — branch rules, PR process, cross-agent collaboration.
-- [../updated_techincal_team_module.md](../updated_techincal_team_module.md) — Week 5-7 task split.
 - [../README.md](../README.md) — project overview and quick start.

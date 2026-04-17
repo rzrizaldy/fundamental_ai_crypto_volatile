@@ -1,7 +1,85 @@
 {
   "available": true,
+  "generated_at": "2026-04-17T20:10:25.588172+00:00",
+  "source_files": {
+    "model_eval_md": {
+      "path": "reports/model_eval.md",
+      "exists": true,
+      "modified_at": "2026-04-01T20:33:58.359606+00:00"
+    },
+    "evidently_report": {
+      "path": "reports/evidently/train_vs_test.html",
+      "exists": true,
+      "modified_at": "2026-04-01T03:31:10.569044+00:00"
+    },
+    "pr_curve": {
+      "path": "img/model_pr_curve.png",
+      "exists": true,
+      "modified_at": "2026-04-17T20:10:00.023376+00:00"
+    },
+    "predictions_csv": {
+      "path": "models/artifacts/predictions_latest.csv",
+      "exists": true,
+      "modified_at": "2026-04-17T20:10:00.033926+00:00"
+    }
+  },
+  "mlflow_runs": {
+    "available": true,
+    "ui_url": "http://localhost:5001/",
+    "summary": {
+      "total_runs": 5,
+      "finished_runs": 2,
+      "failed_runs": 3
+    },
+    "runs": [
+      {
+        "experiment_name": "crypto-volatility",
+        "run_uuid": "77ca4f22849d4b41837227c266bbe83c",
+        "status": "FINISHED",
+        "started_at": "2026-04-17 20:10:00",
+        "ended_at": "2026-04-17 20:10:00",
+        "model_type": "logistic_regression"
+      },
+      {
+        "experiment_name": "crypto-volatility",
+        "run_uuid": "8369cabcb7e34177af3f973bed53bca3",
+        "status": "FINISHED",
+        "started_at": "2026-04-17 20:09:59",
+        "ended_at": "2026-04-17 20:09:59",
+        "model_type": "baseline_zscore"
+      },
+      {
+        "experiment_name": "crypto-volatility",
+        "run_uuid": "26ba423174844c9e9184a3dac958bddb",
+        "status": "FAILED",
+        "started_at": "2026-04-17 20:08:42",
+        "ended_at": "2026-04-17 20:08:42",
+        "model_type": "baseline_zscore"
+      },
+      {
+        "experiment_name": "crypto-volatility",
+        "run_uuid": "eecf3d05018c4fc1a6e97911e9778b97",
+        "status": "FAILED",
+        "started_at": "2026-04-17 20:08:21",
+        "ended_at": "2026-04-17 20:08:21",
+        "model_type": "baseline_zscore"
+      },
+      {
+        "experiment_name": "crypto-volatility",
+        "run_uuid": "feb0e97ac04044e8b0b433c8578f0200",
+        "status": "FAILED",
+        "started_at": "2026-04-10 18:44:05",
+        "ended_at": "2026-04-10 18:44:05",
+        "model_type": "baseline_zscore"
+      }
+    ]
+  },
   "feature_rows": 6326,
   "label_rate": 0.2484982611444831,
+  "data_window": {
+    "start": "2026-04-01T02:33:12+00:00",
+    "end": "2026-04-01T03:25:54+00:00"
+  },
   "recent_volatility": [
     {
       "window_end_ts": "2026-04-01T03:24:55Z",
@@ -59860,9 +59938,9 @@
       "pr_auc": 0.8439196136138548,
       "f1_at_threshold": 0.8396946564885496,
       "positive_rate": 0.04430379746835443,
-      "train_seconds": 0.005395749991293997
+      "train_seconds": 0.006682291000288387
     },
-    "threshold": 0.4506868231707269,
+    "threshold": 0.4506868231707221,
     "train_rows": 3789,
     "validation_rows": 1263,
     "test_rows": 1264
@@ -59873,7 +59951,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.1085585157216261,
-      "logistic_probability": 0.008951350957237,
+      "logistic_probability": 0.0089513509572369,
       "predicted_label": 0
     },
     {
@@ -59881,7 +59959,7 @@
       "product_id": "ETH-USD",
       "label": 1,
       "baseline_score": 0.8820324866534157,
-      "logistic_probability": 0.676864620035322,
+      "logistic_probability": 0.6768646200353213,
       "predicted_label": 1
     },
     {
@@ -59889,7 +59967,7 @@
       "product_id": "ETH-USD",
       "label": 1,
       "baseline_score": 0.8826689665326574,
-      "logistic_probability": 0.667656646017775,
+      "logistic_probability": 0.6676566460177745,
       "predicted_label": 1
     },
     {
@@ -59897,7 +59975,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.1085394598485749,
-      "logistic_probability": 0.0092883630316014,
+      "logistic_probability": 0.0092883630316013,
       "predicted_label": 0
     },
     {
@@ -59905,7 +59983,7 @@
       "product_id": "ETH-USD",
       "label": 1,
       "baseline_score": 0.8826689665326574,
-      "logistic_probability": 0.6877151008326143,
+      "logistic_probability": 0.6877151008326147,
       "predicted_label": 1
     },
     {
@@ -59913,7 +59991,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.1085394598485749,
-      "logistic_probability": 0.009487695442052,
+      "logistic_probability": 0.0094876954420519,
       "predicted_label": 0
     },
     {
@@ -59929,7 +60007,7 @@
       "product_id": "ETH-USD",
       "label": 1,
       "baseline_score": 0.8614847010827262,
-      "logistic_probability": 0.6537437511529781,
+      "logistic_probability": 0.6537437511529784,
       "predicted_label": 1
     },
     {
@@ -59937,7 +60015,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.8527406996780834,
-      "logistic_probability": 0.6109971907849003,
+      "logistic_probability": 0.610997190784901,
       "predicted_label": 1
     },
     {
@@ -59953,7 +60031,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.2273370962456903,
-      "logistic_probability": 0.0042161720180718,
+      "logistic_probability": 0.0042161720180717,
       "predicted_label": 0
     },
     {
@@ -59961,7 +60039,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.7408619114337393,
-      "logistic_probability": 0.416674187867572,
+      "logistic_probability": 0.4166741878675715,
       "predicted_label": 0
     },
     {
@@ -59977,7 +60055,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3534172140602677,
-      "logistic_probability": 0.0542275120714057,
+      "logistic_probability": 0.0542275120714053,
       "predicted_label": 0
     },
     {
@@ -59993,7 +60071,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3562472200033772,
-      "logistic_probability": 0.0608139218300609,
+      "logistic_probability": 0.0608139218300604,
       "predicted_label": 0
     },
     {
@@ -60009,7 +60087,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.4159506902383637,
-      "logistic_probability": 0.1075234618779207,
+      "logistic_probability": 0.1075234618779195,
       "predicted_label": 0
     },
     {
@@ -60017,7 +60095,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.5212638653805685,
-      "logistic_probability": 0.1327005722724732,
+      "logistic_probability": 0.1327005722724714,
       "predicted_label": 0
     },
     {
@@ -60033,7 +60111,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.513369959898999,
-      "logistic_probability": 0.1143695405612541,
+      "logistic_probability": 0.1143695405612528,
       "predicted_label": 0
     },
     {
@@ -60057,7 +60135,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.5044797861576475,
-      "logistic_probability": 0.1666944183912269,
+      "logistic_probability": 0.166694418391225,
       "predicted_label": 0
     },
     {
@@ -60065,7 +60143,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.5044797861576475,
-      "logistic_probability": 0.1728080074633642,
+      "logistic_probability": 0.1728080074633624,
       "predicted_label": 0
     },
     {
@@ -60089,7 +60167,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.5057972463570904,
-      "logistic_probability": 0.2034159896411542,
+      "logistic_probability": 0.203415989641153,
       "predicted_label": 0
     },
     {
@@ -60105,7 +60183,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3184982621917556,
-      "logistic_probability": 0.0773705104259026,
+      "logistic_probability": 0.0773705104259021,
       "predicted_label": 0
     },
     {
@@ -60121,7 +60199,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3163682895350175,
-      "logistic_probability": 0.076515322791939,
+      "logistic_probability": 0.0765153227919385,
       "predicted_label": 0
     },
     {
@@ -60129,7 +60207,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3163682895350175,
-      "logistic_probability": 0.0747574440982764,
+      "logistic_probability": 0.0747574440982761,
       "predicted_label": 0
     },
     {
@@ -60145,7 +60223,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3163682895350175,
-      "logistic_probability": 0.0869324719304286,
+      "logistic_probability": 0.0869324719304284,
       "predicted_label": 0
     },
     {
@@ -60161,7 +60239,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3159237367931862,
-      "logistic_probability": 0.0909233900089617,
+      "logistic_probability": 0.0909233900089615,
       "predicted_label": 0
     },
     {
@@ -60185,7 +60263,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.2801614154114391,
-      "logistic_probability": 0.0810732495530234,
+      "logistic_probability": 0.0810732495530233,
       "predicted_label": 0
     },
     {
@@ -60209,7 +60287,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.2918961004326406,
-      "logistic_probability": 0.0756903775165574,
+      "logistic_probability": 0.0756903775165575,
       "predicted_label": 0
     },
     {
@@ -60321,7 +60399,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": -0.0170439164230809,
-      "logistic_probability": 0.0068806044422992,
+      "logistic_probability": 0.0068806044422993,
       "predicted_label": 0
     },
     {
@@ -60497,7 +60575,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": -0.0566204490571203,
-      "logistic_probability": 0.0058773255813814,
+      "logistic_probability": 0.0058773255813815,
       "predicted_label": 0
     },
     {
@@ -60553,7 +60631,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3089593617271387,
-      "logistic_probability": 0.0356521053675673,
+      "logistic_probability": 0.035652105367567,
       "predicted_label": 0
     },
     {
@@ -60561,7 +60639,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3046207682608204,
-      "logistic_probability": 0.0372932343494002,
+      "logistic_probability": 0.0372932343494,
       "predicted_label": 0
     },
     {
@@ -60577,7 +60655,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3431419972009802,
-      "logistic_probability": 0.0616521836775248,
+      "logistic_probability": 0.0616521836775242,
       "predicted_label": 0
     },
     {
@@ -60585,7 +60663,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.4755698918322982,
-      "logistic_probability": 0.0014542311308328,
+      "logistic_probability": 0.0014542311308327,
       "predicted_label": 0
     },
     {
@@ -60593,7 +60671,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3237823820456812,
-      "logistic_probability": 0.0653555989029426,
+      "logistic_probability": 0.0653555989029422,
       "predicted_label": 0
     },
     {
@@ -60617,7 +60695,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3237882846430766,
-      "logistic_probability": 0.0730062633524743,
+      "logistic_probability": 0.073006263352474,
       "predicted_label": 0
     },
     {
@@ -60625,7 +60703,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3237882846430766,
-      "logistic_probability": 0.0682425581741628,
+      "logistic_probability": 0.0682425581741627,
       "predicted_label": 0
     },
     {
@@ -60633,7 +60711,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.3576229921811958,
-      "logistic_probability": 0.0029456584774008,
+      "logistic_probability": 0.0029456584774007,
       "predicted_label": 0
     },
     {
@@ -60657,7 +60735,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3130817661721315,
-      "logistic_probability": 0.060746498891175,
+      "logistic_probability": 0.0607464988911751,
       "predicted_label": 0
     },
     {
@@ -60673,7 +60751,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3130817661721315,
-      "logistic_probability": 0.0610774127170511,
+      "logistic_probability": 0.0610774127170513,
       "predicted_label": 0
     },
     {
@@ -60689,7 +60767,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3130817661721315,
-      "logistic_probability": 0.0626640927452386,
+      "logistic_probability": 0.0626640927452388,
       "predicted_label": 0
     },
     {
@@ -60697,7 +60775,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.3579360226592752,
-      "logistic_probability": 0.0030469473404135,
+      "logistic_probability": 0.0030469473404134,
       "predicted_label": 0
     },
     {
@@ -60705,7 +60783,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3576444268021124,
-      "logistic_probability": 0.059864079208007,
+      "logistic_probability": 0.0598640792080072,
       "predicted_label": 0
     },
     {
@@ -60729,7 +60807,7 @@
       "product_id": "BTC-USD",
       "label": 0,
       "baseline_score": -0.3632686367491455,
-      "logistic_probability": 0.0031067321631929,
+      "logistic_probability": 0.0031067321631928,
       "predicted_label": 0
     },
     {
@@ -60801,7 +60879,7 @@
       "product_id": "ETH-USD",
       "label": 0,
       "baseline_score": 0.3582836490065588,
-      "logistic_probability": 0.0778386527602704,
+      "logistic_probability": 0.0778386527602703,
       "predicted_label": 0
     },
     {
@@ -60828,5 +60906,6 @@
       "logistic_probability": 0.0658348094117828,
       "predicted_label": 0
     }
-  ]
+  ],
+  "latest_prediction_ts": "2026-04-01 03:25:54+00:00"
 }

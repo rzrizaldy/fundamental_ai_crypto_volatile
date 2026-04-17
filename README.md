@@ -1,147 +1,49 @@
 # Crypto Volatility Intelligence
 
-Real-time crypto volatility detection — Coinbase tick data → Kafka → features → logistic classifier → live dashboard.
+Real-time crypto volatility detection for `BTC-USD` and `ETH-USD`: Coinbase market data -> Kafka -> engineered features -> logistic classifier -> FastAPI + dashboard.
 
-**Course:** Fundamentals of Operationalizing AI -- Carnegie Mellon University
-**Team:** Team 3 -- Rizaldy Utomo, Ridho Bakti, Jiho Hong, Afif Izzatullah
+**Course:** Fundamentals of Operationalizing AI, Carnegie Mellon University  
+**Team:** Team 3 — Rizaldy Utomo, Ridho Bakti, Jiho Hong, Afif Izzatullah
 
----
-
-## Live Preview (static mode)
+## Live Links
 
 | Link | Description |
 |---|---|
-| **[Dashboard](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/)** | Static dashboard — real session data, no server needed |
-| **[Evidently Drift Report](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html)** | Train-vs-test feature distribution shift |
-| **[Model Evaluation PDF](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf)** | Full evaluation report with figures |
+| [Dashboard](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/) | Static dashboard with exported real-session data |
+| [Evidently Report](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html) | Train-vs-test drift report |
+| [Model Evaluation PDF](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf) | Evaluation write-up and figures |
 
-> **Streaming mode** (live Coinbase prices + real-time model inference) requires running the repo locally. See [Quick Start](#quick-start) and download the zip from `submission/`.
+## What This Repo Contains
 
----
+- A replayable crypto-volatility pipeline built on real Coinbase data.
+- A Week 4 thin-slice API with `/health`, `/predict`, `/version`, and `/metrics`.
+- Week 5/6 team deliverables including CI, load testing, SLO/runbook docs, and PR status tracking.
 
-## Stack
-- Python 3.12 for project runtime
-- Kafka in KRaft mode via Docker Compose
-- MLflow with local SQLite backend
-- Public Coinbase Advanced Trade WebSocket
-- Parquet and NDJSON artifact storage
-- Markdown-first reports with `.md -> .tex -> .pdf`
-
-## Host Setup
-Recommended local installs:
+## Local Setup
 
 ```bash
 brew install python@3.12 pandoc tectonic
 python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-dev.txt
 cp .env.example .env
 ```
 
-## Repo Layout
-- `scripts/ws_ingest.py`: Coinbase WebSocket ingest to Kafka and NDJSON
-- `scripts/kafka_consume_check.py`: stream validation
-- `features/featurizer.py`: Kafka raw-to-feature consumer
-- `scripts/replay.py`: deterministic raw replay to Parquet
-- `models/train.py`: baseline + logistic regression + MLflow
-- `models/infer.py`: batch inference from saved model
-- `scripts/generate_evidently_report.py`: drift and data quality report
-- `scripts/build_report.py`: Markdown to TeX to PDF build helper
-- `scripts/export_dashboard_data.py`: dashboard artifact export
-- `scripts/dashboard_server.py`: live SSE dashboard server
-- `scripts/run_w4_api.py`: Week 4 replay-mode FastAPI thin slice
-- `scripts/replay_api_smoke.py`: 10-minute replay smoke test for the Week 4 API
-- `scripts/replay_api_load_test.py`: Week 5 burst load test (100 concurrent requests) and `reports/w5_load_test_latency.md`
-- `dashboard/`: static + live interface
-- `service/replay_api.py`: FastAPI app with `/health`, `/predict`, `/version`, `/metrics`
+## Fast Start
 
-## Quick Start
-Start infrastructure:
+Start the Docker services:
 
 ```bash
-docker compose -f docker/compose.yaml up -d
+docker compose -f docker/compose.yaml up -d --build
 ```
 
-Ingest live ticks:
-
-```bash
-python scripts/ws_ingest.py --minutes 15
-```
-
-Validate Kafka flow:
-
-```bash
-python scripts/kafka_consume_check.py --topic ticks.raw --min 100
-```
-
-Build live features:
-
-```bash
-python features/featurizer.py --topic_in ticks.raw --topic_out ticks.features --max-messages 2000
-```
-
-Replay raw data:
-
-```bash
-python scripts/replay.py --raw "data/raw/**/*.ndjson" --out data/processed/features_replay.parquet
-```
-
-Train models:
-
-```bash
-python models/train.py --features data/processed/features.parquet
-```
-
-Run inference:
-
-```bash
-python models/infer.py --features data/processed/features.parquet
-```
-
-Generate Evidently report:
-
-```bash
-python scripts/generate_evidently_report.py \
-  --reference data/processed/features.parquet \
-  --current data/processed/features_replay.parquet \
-  --name early_vs_late
-```
-
-Export dashboard payload and serve the dashboard:
-
-```bash
-python scripts/export_dashboard_data.py
-python -m http.server 8000
-```
-
-Then open `http://localhost:8000/dashboard/`.
-
-Live dashboard mode:
-
-```bash
-python scripts/dashboard_server.py
-```
-
-Then open `http://localhost:8766/` for the live SSE dashboard with:
-- orange-dot spike markers on the volatility chart
-- a spike radar panel for the latest model-triggered events
-- a simple “what this means next” turbulence outlook for the next minute, hour, and day, framed like the live odds of a yes-or-no question: “Will the market get rougher from here?”
-- a companion price-scenario compass with heuristic up/down bias and target ranges for the next hour and day
-
-To run the dashboard and the Week 4 replay API together for the full local demo:
-
-```bash
-python scripts/run_demo_stack.py
-```
-
-## Week 4 Thin Slice
-Start the replay-mode FastAPI service:
+Run the API locally:
 
 ```bash
 python scripts/run_w4_api.py
 ```
 
-Then verify the required endpoints:
+Verify the core endpoints:
 
 ```bash
 curl http://localhost:8000/health
@@ -152,41 +54,79 @@ curl -X POST http://localhost:8000/predict \
   -d '{"replay_count": 5, "replay_start_index": 0}'
 ```
 
-Run the 10-minute replay smoke test:
+Run the smoke test:
 
 ```bash
 python scripts/replay_api_smoke.py --persist-slice
 ```
 
-Week 5 burst load test (100 concurrent `POST /predict` calls) and latency report (requires `data/processed/features.parquet` and the API running):
+Run the Week 5 load test:
 
 ```bash
-python scripts/replay_api_load_test.py
+python scripts/replay_api_load_test.py --write-report reports/w5_load_test_latency.md
 ```
 
-Writes `reports/w5_load_test_latency.md` and prints a JSON summary to stdout.
-
-Week 4 docs:
-- `docs/team_charter.md`
-- `docs/selection_rationale.md`
-- `docs/system_diagram.md`
-
-## Reporting Workflow
-Source Markdown files:
-- `docs/scoping_brief.md`
-- `reports/model_eval.md`
-
-Build report artifacts:
+Launch the live dashboard:
 
 ```bash
-python scripts/build_report.py --input docs/scoping_brief.md --output-dir reports/build
-python scripts/build_report.py --input reports/model_eval.md --output-dir reports/build
+python scripts/dashboard_server.py
 ```
 
-Notebook figures and report figures should be written to `img/`.
+Then open `http://localhost:8766/`.
+
+To launch the API and dashboard together for a local demo:
+
+```bash
+python scripts/run_demo_stack.py
+```
+
+## Project Map
+
+### Core app and pipeline
+- `service/` — FastAPI replay API
+- `scripts/` — runners, smoke/load tests, replay/export/build helpers
+- `pipeline/` — shared config, IO, schemas, modeling, feature logic
+- `features/` — Kafka feature consumer
+- `dashboard/` — dashboard assets and exported data hooks
+
+### Data, models, and reports
+- `data/` — raw and processed datasets
+- `models/` — training, inference, and model artifacts
+- `reports/` — evaluation markdown, PDFs, Evidently output, load-test report
+- `img/` — report figures
+
+### Docs and team coordination
+- `docs/README.md` — index of project docs
+- `docs/operations/` — runbook and SLOs
+- `docs/status/` — PR review log, team module, review screenshots
+- `CONTRIBUTING.md` — branch and PR workflow
+
+### Submission and handoff
+- `submission/` — submission bundle and submission-facing README
+- `handoff/` — handoff notes and packaged artifacts
+- `w4_deliverable/` — Week 4 deliverable snapshot
+
+## Important Docs
+
+- `docs/team_charter.md` — ownership and weekly split
+- `docs/selection_rationale.md` — why the logistic model is the selected base
+- `docs/system_diagram.md` — architecture overview
+- `docs/operations/runbook.md` — startup, rollback, incident response
+- `docs/operations/slo.md` — current service-level objectives
+- `docs/status/pr_review_status.md` — what has been merged, validated, and what is still pending
+- `docs/status/team_module_w5_w7.md` — current team work split after Week 4
+
+## Developer Checks
+
+```bash
+ruff check .
+black --check .
+pytest -q
+```
 
 ## Notes
-- The project assumes public Coinbase market-data access only.
-- The dashboard supports both exported static JSON and live SSE mode on port `8766`.
-- The beginner-facing outlook module is educational and describes turbulence probability, not price direction.
-- The price-scenario compass is a heuristic companion layer driven by recent momentum and current volatility. It should not be described as a trained directional model.
+
+- Public Coinbase market-data access only; no private exchange credentials required.
+- The dashboard has both static-export and live-SSE modes.
+- The model predicts short-horizon turbulence probability, not price direction.
+- The price-scenario compass is a heuristic UI layer, not a trained directional model.

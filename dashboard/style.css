@@ -475,7 +475,10 @@ h2 {
 
 #w4-service-name,
 #w4-service-version,
-#w4-designation {
+#w4-designation,
+#export-generated-at,
+#export-data-window,
+#export-predictions-ts {
   font-size: 18px;
   line-height: 1.2;
   word-break: break-word;
@@ -756,7 +759,8 @@ h2 {
 
 .data-table tr:hover td { background: var(--paper-dark); }
 
-#w4-replay-table tbody td[colspan="5"] {
+#w4-replay-table tbody td[colspan="3"],
+#mlflow-runs-table tbody td[colspan="4"] {
   color: var(--muted);
   padding: 18px 10px;
 }

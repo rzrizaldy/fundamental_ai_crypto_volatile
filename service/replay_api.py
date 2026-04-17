@@ -25,7 +25,7 @@ from pipeline.modeling import MODEL_FEATURES, load_model_bundle, prepare_model_f
 
 REQUEST_COUNTER = Counter(
     "crypto_api_requests_total",
-    "Total HTTP requests handled by the Week 4 replay API.",
+    "Total HTTP requests handled by the replay API module.",
     ["endpoint", "method"],
 )
 PREDICTION_REQUEST_COUNTER = Counter(
@@ -45,7 +45,7 @@ INFERENCE_LATENCY = Histogram(
 )
 MODEL_LOADED_GAUGE = Gauge(
     "crypto_api_model_loaded",
-    "Whether the Week 4 replay API has loaded the model bundle.",
+    "Whether the replay API module has loaded the model bundle.",
 )
 REPLAY_ROWS_GAUGE = Gauge(
     "crypto_api_replay_rows",
@@ -237,7 +237,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    title="Crypto Volatility Week 4 Thin Slice",
+    title="Crypto Volatility API Thin Slice",
     description="Team 3 — Rizaldy Utomo, Ridho Bakti, Jiho Hong, Afif Izzatullah",
     version="0.1.0",
     lifespan=lifespan,

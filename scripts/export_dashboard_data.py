@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from pathlib import Path
 import json
 import math
+import sqlite3
 import sys
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -179,6 +181,97 @@ def _clean(obj):
     return obj
 
 
+def _iso_mtime(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    return datetime.fromtimestamp(path.stat().st_mtime, tz=UTC).isoformat()
+
+
+def _build_source_files() -> dict[str, dict[str, object]]:
+    sources = {
+        "model_eval_md": ROOT_DIR / "reports/model_eval.md",
+        "evidently_report": ROOT_DIR / "reports/evidently/train_vs_test.html",
+        "pr_curve": ROOT_DIR / "img/model_pr_curve.png",
+        "predictions_csv": ROOT_DIR / "models/artifacts/predictions_latest.csv",
+    }
+    return {
+        key: {
+            "path": str(path.relative_to(ROOT_DIR)),
+            "exists": path.exists(),
+            "modified_at": _iso_mtime(path),
+        }
+        for key, path in sources.items()
+    }
+
+
+def _load_recent_mlflow_runs(db_path: Path, limit: int = 8) -> dict[str, object]:
+    if not db_path.exists():
+        return {
+            "available": False,
+            "ui_url": "http://localhost:5001/",
+            "summary": {"total_runs": 0, "finished_runs": 0, "failed_runs": 0},
+            "runs": [],
+        }
+
+    with sqlite3.connect(db_path) as conn:
+        conn.row_factory = sqlite3.Row
+        summary_row = conn.execute(
+            """
+            SELECT
+              COUNT(*) AS total_runs,
+              SUM(CASE WHEN status = 'FINISHED' THEN 1 ELSE 0 END) AS finished_runs,
+              SUM(CASE WHEN status = 'FAILED' THEN 1 ELSE 0 END) AS failed_runs
+            FROM runs
+            """
+        ).fetchone()
+        rows = conn.execute(
+            """
+            SELECT
+              COALESCE(e.name, 'Default') AS experiment_name,
+              r.run_uuid,
+              r.status,
+              datetime(r.start_time / 1000, 'unixepoch') AS started_at,
+              datetime(r.end_time / 1000, 'unixepoch') AS ended_at,
+              COALESCE(
+                (
+                  SELECT p.value
+                  FROM params AS p
+                  WHERE p.run_uuid = r.run_uuid AND p.key = 'model_type'
+                  LIMIT 1
+                ),
+                '—'
+              ) AS model_type
+            FROM runs AS r
+            LEFT JOIN experiments AS e
+              ON e.experiment_id = r.experiment_id
+            ORDER BY r.start_time DESC
+            LIMIT ?
+            """,
+            (limit,),
+        ).fetchall()
+
+    summary = {
+        "total_runs": int(summary_row["total_runs"] or 0),
+        "finished_runs": int(summary_row["finished_runs"] or 0),
+        "failed_runs": int(summary_row["failed_runs"] or 0),
+    }
+    return {
+        "available": summary["total_runs"] > 0,
+        "ui_url": "http://localhost:5001/",
+        "summary": summary,
+        "runs": [dict(row) for row in rows],
+    }
+
+
+def _coerce_iso_timestamp(value: object) -> str | None:
+    if value is None:
+        return None
+    ts = pd.to_datetime(value, utc=True, errors="coerce")
+    if pd.isna(ts):
+        return str(value)
+    return ts.isoformat()
+
+
 def main() -> None:
     config = load_config()
     ensure_directories(config)
@@ -189,7 +282,12 @@ def main() -> None:
     metrics_path = ROOT_DIR / config["storage"]["artifacts_dir"] / "metrics_summary.json"
     predictions_path = ROOT_DIR / config["storage"]["artifacts_dir"] / "predictions_latest.csv"
 
-    payload: dict[str, object] = {"available": False}
+    payload: dict[str, object] = {
+        "available": False,
+        "generated_at": datetime.now(UTC).isoformat(),
+        "source_files": _build_source_files(),
+        "mlflow_runs": _load_recent_mlflow_runs(ROOT_DIR / "mlruns/mlflow.db"),
+    }
     predictions_df = None
     if predictions_path.exists():
         predictions_df = pd.read_csv(predictions_path)
@@ -216,6 +314,10 @@ def main() -> None:
         payload["available"] = True
         payload["feature_rows"] = int(len(features_df))
         payload["label_rate"] = float(features_df["label"].mean()) if len(features_df) else 0.0
+        payload["data_window"] = {
+            "start": _coerce_iso_timestamp(features_df["window_end_ts"].min()),
+            "end": _coerce_iso_timestamp(features_df["window_end_ts"].max()),
+        }
         latest = features_df.sort_values("window_end_ts").tail(120)
         payload["recent_volatility"] = latest[
             ["window_end_ts", "product_id", "realized_vol_60s", "sigma_future_60s"]
@@ -288,6 +390,8 @@ def main() -> None:
 
     if predictions_df is not None:
         payload["predictions"] = predictions_df.tail(120).to_dict(orient="records")
+        if "window_end_ts" in predictions_df.columns and not predictions_df.empty:
+            payload["latest_prediction_ts"] = str(predictions_df["window_end_ts"].iloc[-1])
 
     (dashboard_dir / "dashboard.json").write_text(
         json.dumps(_clean(payload), indent=2),

@@ -82,7 +82,7 @@ Alert routing will be implemented against Jiho's Prometheus/Grafana dashboards (
 - [runbook.md](runbook.md) — how to respond when an SLO burns.
 - [service/replay_api.py](../../service/replay_api.py) — authoritative metric names (lines with `Counter(`, `Gauge(`, `Histogram(`).
 - [docs/team_charter.md](../team_charter.md) — role ownership used for incident escalation.
-- [updated_techincal_team_module.md](../../updated_techincal_team_module.md) — Week 5 / Week 6 task split.
+- [docs/status/team_module_w5_w7.md](../status/team_module_w5_w7.md) — Week 5 / Week 6 task split.
 - [docs/status/pr_review_status.md](../status/pr_review_status.md) — current integration/review status of the peer PRs.
 - Jiho's W6 Prometheus + Grafana scrape config (forthcoming) — wires these SLIs into live dashboards and alerts.
 - Rizaldy's W6 Evidently drift report (`../drift_summary.md`, forthcoming) — informs whether a latency or error-rate regression has a data-quality root cause.

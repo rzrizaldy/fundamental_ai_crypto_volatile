@@ -12,7 +12,7 @@
 - [ ] Rebased on latest `main` (not merged)
 - [ ] `ruff check .`, `black --check .`, and `pytest -q` pass locally
 - [ ] No direct edits to `main`-owned infra files without tagging @rzrizaldy / @ridho (platform lead)
-- [ ] Linked related issue / week from `updated_techincal_team_module.md` if applicable
+- [ ] Linked related issue / week from `docs/status/team_module_w5_w7.md` if applicable
 
 ## How to verify
 <!-- Commands, curls, or screenshots a reviewer can run -->

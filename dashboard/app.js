@@ -16,6 +16,7 @@ const TOKENS = {
 
 const SSE_URL         = 'http://localhost:8766/stream';
 const W4_API_BASE     = 'http://localhost:8000';
+const MLFLOW_UI_BASE  = 'http://localhost:5001';
 const CHART_MAX_POINTS = 300;  // rolling window shown in live mode
 const W4_REPLAY_COUNT = 12;
 const W4_REFRESH_MS   = 10_000;
@@ -50,7 +51,7 @@ const liveState = {
 // ── ─────────────────────────────────────────────────────── ──
 
 async function loadDashboard() {
-  const res = await fetch('data/dashboard.json');
+  const res = await fetch('data/dashboard.json', { cache: 'no-store' });
   if (!res.ok) throw new Error('dashboard.json not found');
   return res.json();
 }
@@ -437,6 +438,13 @@ function fmtProbability(probability) {
   return Number.isFinite(probability) ? `${(probability * 100).toFixed(1)}%` : '—';
 }
 
+function fmtTimestampCompact(value) {
+  if (!value) return '—';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')} UTC`;
+}
+
 async function fetchJson(url, options = {}) {
   const response = await fetch(url, options);
   if (!response.ok) {
@@ -494,7 +502,7 @@ function renderW4Offline(message) {
   setText('w4-request-count', '—');
   setText('w4-pred-row-count', '—');
   setText('w4-last-latency', '—');
-  setText('w4-api-copy', message || 'Week 4 API is not reachable on localhost:8000. Run `docker compose up -d` to start all services.');
+  setText('w4-api-copy', message || 'API thin-slice module is not reachable on localhost:8000. Run `docker compose up -d` to start all services.');
 }
 
 function renderW4Status(health, version, metrics) {
@@ -519,14 +527,14 @@ function renderW4Status(health, version, metrics) {
     'w4-api-copy',
     health
       ? `${Number(health.replay_rows || 0).toLocaleString()} rows loaded from the selected model bundle. Cursor at row ${Number(health.replay_cursor || 0).toLocaleString()}.`
-      : 'Week 4 API status unavailable.'
+      : 'API thin-slice status unavailable.'
   );
 }
 
 function renderW4ReplayPlaceholder(message) {
   const tbody = document.querySelector('#w4-replay-table tbody');
   if (!tbody) return;
-  tbody.innerHTML = `<tr><td colspan="5">${message}</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="3">${message}</td></tr>`;
 }
 
 function renderW4ReplaySample(payload, threshold) {
@@ -535,7 +543,7 @@ function renderW4ReplaySample(payload, threshold) {
   const scores = payload?.scores || [];
   if (!scores.length) {
     renderW4ReplayPlaceholder('No replay rows returned.');
-    setText('w4-replay-copy', 'The Week 4 API responded, but no replay rows were returned for this request.');
+    setText('w4-replay-copy', 'The API thin-slice module responded, but no replay rows were returned for this request.');
     return;
   }
 
@@ -575,14 +583,14 @@ async function refreshW4Status() {
     w4Version = version;
     renderW4Status(health, version, parsePrometheusMetrics(metricsText));
     const launchBtn = document.getElementById('w4-launch-btn');
-    if (launchBtn) { launchBtn.textContent = 'OPEN DOCS'; launchBtn.classList.add('badge-green-btn'); }
+    if (launchBtn) { launchBtn.textContent = 'OPEN API DOCS'; launchBtn.classList.add('badge-green-btn'); }
     return true;
   } catch (error) {
     w4Health = null;
     w4Version = null;
-    renderW4Offline(`Week 4 API offline: ${error.message}`);
-    renderW4ReplayPlaceholder('Start the Week 4 API to load replay predictions.');
-    setText('w4-replay-copy', 'Replay sample unavailable while the Week 4 API is offline. Run `docker compose up -d` to start all services.');
+    renderW4Offline(`API thin-slice module offline: ${error.message}`);
+    renderW4ReplayPlaceholder('Start the API thin-slice module to load replay predictions.');
+    setText('w4-replay-copy', 'Replay sample unavailable while the API thin-slice module is offline. Run `docker compose up -d` to start all services.');
     return false;
   }
 }
@@ -637,13 +645,80 @@ function bindW4ReplayButton() {
 
 async function initW4Module() {
   bindW4ReplayButton();
-  renderW4ReplayPlaceholder('Checking Week 4 API status...');
+  renderW4ReplayPlaceholder('Checking API thin-slice status...');
   const isOnline = await refreshW4Status();
   if (isOnline) {
     await loadW4ReplaySample(nextReplayStartIndex());
   }
   if (!w4StatusTimer) {
     w4StatusTimer = window.setInterval(refreshW4Status, W4_REFRESH_MS);
+  }
+}
+
+function renderExportStatus(data) {
+  const exportReady = Boolean(data?.available);
+  const badgeTone = exportReady ? 'badge-blue' : 'badge-muted';
+  setBadge('static-export-badge', exportReady ? 'READY' : 'EMPTY', badgeTone);
+
+  const windowStart = data?.data_window?.start ? String(data.data_window.start).slice(0, 10) : '—';
+  const windowEnd = data?.data_window?.end ? String(data.data_window.end).slice(0, 10) : '—';
+  setText('export-generated-at', fmtTimestampCompact(data?.generated_at));
+  setText('export-data-window', windowStart === '—' ? '—' : `${windowStart} → ${windowEnd}`);
+  setText('export-predictions-ts', fmtTimestampCompact(data?.latest_prediction_ts));
+
+  const sourceFiles = data?.source_files || {};
+  const sourceCopy = [
+    ['MODEL_EVAL', sourceFiles.model_eval_md?.modified_at],
+    ['EVIDENTLY', sourceFiles.evidently_report?.modified_at],
+    ['PR CURVE', sourceFiles.pr_curve?.modified_at],
+    ['PRED CSV', sourceFiles.predictions_csv?.modified_at],
+  ]
+    .filter(([, modifiedAt]) => modifiedAt)
+    .map(([label, modifiedAt]) => `${label} ${fmtTimestampCompact(modifiedAt)}`);
+
+  setText(
+    'static-export-copy',
+    sourceCopy.length
+      ? `Snapshot refreshed ${fmtTimestampCompact(data?.generated_at)}. Evidence timestamps: ${sourceCopy.join(' · ')}.`
+      : 'Snapshot metadata loaded, but evidence timestamps are unavailable.'
+  );
+}
+
+function renderMlflowRuns(payload) {
+  const tbody = document.querySelector('#mlflow-runs-table tbody');
+  if (!tbody) return;
+  const runs = payload?.runs || [];
+
+  if (!runs.length) {
+    tbody.innerHTML = '<tr><td colspan="4">No MLflow runs logged yet.</td></tr>';
+    setText('mlflow-runs-copy', 'No MLflow runs are currently available at localhost:5001.');
+    return;
+  }
+
+  tbody.innerHTML = runs.map((run) => {
+    const statusClass = run.status === 'FINISHED' ? 'cell-high' : run.status === 'FAILED' ? 'cell-pos' : 'cell-neg';
+    return `<tr>
+      <td>${String(run.run_uuid || '—').slice(0, 8)}</td>
+      <td class="${statusClass}">${run.status || '—'}</td>
+      <td>${fmtTimestampCompact(run.started_at)}</td>
+      <td>${run.model_type || '—'}</td>
+    </tr>`;
+  }).join('');
+
+  const summary = payload?.summary || {};
+  setText(
+    'mlflow-runs-copy',
+    `${summary.total_runs || 0} total run(s) · ${summary.finished_runs || 0} finished · ${summary.failed_runs || 0} failed. Open MLflow for full artifacts.`
+  );
+}
+
+async function initMlflowModule() {
+  try {
+    const payload = await fetchJson('/api/mlflow/runs', { cache: 'no-store' });
+    renderMlflowRuns(payload);
+  } catch (error) {
+    renderMlflowRuns(dashData?.mlflow_runs || {});
+    setText('mlflow-runs-copy', `MLflow runs fallback loaded from static export. Live fetch failed: ${error.message}`);
   }
 }
 
@@ -1059,6 +1134,7 @@ async function init() {
     renderSpikeRadar(dashData);
     renderOutlook(dashData, activePair);
     renderMarketOutlook(dashData);
+    renderExportStatus(dashData);
     bindPairTabs();
     bindModeToggle();
     buildChart(activePair);   // static chart for active pair (BTC-USD default)
@@ -1067,6 +1143,7 @@ async function init() {
     document.getElementById('kpi-bars').textContent = 'ERR';
   }
 
+  await initMlflowModule();
   await initW4Module();
 
   // Try to connect to live SSE server (non-blocking)
