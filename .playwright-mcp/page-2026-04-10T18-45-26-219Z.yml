@@ -1,0 +1,234 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "MLflow" [ref=e5] [cursor=pointer]:
+        - /url: "#/"
+        - img "MLflow" [ref=e6]
+      - generic [ref=e7]: 2.22.0
+    - generic [ref=e8]:
+      - link "Experiments" [ref=e9] [cursor=pointer]:
+        - /url: "#/"
+      - link "Models" [ref=e10] [cursor=pointer]:
+        - /url: "#/models"
+      - link "Prompts" [ref=e11] [cursor=pointer]:
+        - /url: "#/prompts"
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - switch [ref=e15] [cursor=pointer]
+        - img [ref=e17]
+      - link "GitHub" [ref=e19] [cursor=pointer]:
+        - /url: https://github.com/mlflow/mlflow
+      - link "Docs" [ref=e20] [cursor=pointer]:
+        - /url: https://www.mlflow.org/docs/latest/index.html
+  - generic [ref=e229]:
+    - generic [ref=e235]:
+      - generic [ref=e236]:
+        - heading "Experiments" [level=2] [ref=e237]
+        - generic [ref=e238]:
+          - button "New Experiment" [ref=e239] [cursor=pointer]:
+            - img [ref=e240]:
+              - img [ref=e241]
+          - button "Hide experiment list" [ref=e244] [cursor=pointer]:
+            - img [ref=e245]:
+              - img [ref=e246]
+      - textbox "search experiments" [ref=e249]:
+        - /placeholder: Search experiments
+      - grid "grid" [ref=e251]:
+        - rowgroup [ref=e252]:
+          - generic [ref=e253]:
+            - checkbox [ref=e257] [cursor=pointer]
+            - link "Default" [ref=e259] [cursor=pointer]:
+              - /url: "#/experiments/0"
+            - button [ref=e260] [cursor=pointer]:
+              - img [ref=e261]:
+                - img [ref=e262]
+            - button [ref=e264] [cursor=pointer]:
+              - img [ref=e265]:
+                - img [ref=e266]
+          - generic [ref=e268]:
+            - checkbox [checked] [ref=e272] [cursor=pointer]
+            - link "crypto-volatility" [ref=e274] [cursor=pointer]:
+              - /url: "#/experiments/1"
+            - button [ref=e275] [cursor=pointer]:
+              - img [ref=e276]:
+                - img [ref=e277]
+            - button [ref=e279] [cursor=pointer]:
+              - img [ref=e280]:
+                - img [ref=e281]
+    - generic [ref=e284]:
+      - generic [ref=e286]:
+        - heading "crypto-volatility Info Provide Feedback Add Description" [level=2] [ref=e287]:
+          - generic "crypto-volatility" [ref=e288]
+          - generic [ref=e289]:
+            - button "Info" [ref=e291] [cursor=pointer]:
+              - img "Info" [ref=e292]:
+                - img [ref=e293]
+            - link "Provide Feedback" [ref=e296] [cursor=pointer]:
+              - /url: https://github.com/mlflow/mlflow/issues/6348
+              - generic [ref=e297]:
+                - text: Provide Feedback
+                - img [ref=e299]:
+                  - img [ref=e300]
+            - button "Add Description" [ref=e303] [cursor=pointer]:
+              - generic [ref=e305]: Add Description
+        - button "Share" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: Share
+      - generic [ref=e313]:
+        - generic [ref=e314]:
+          - tablist [ref=e315]:
+            - generic [ref=e317]:
+              - tab "Runs" [selected] [ref=e319] [cursor=pointer]
+              - tab "Evaluation" [ref=e321] [cursor=pointer]:
+                - generic [ref=e322]:
+                  - text: Evaluation
+                  - status [ref=e323]:
+                    - generic [ref=e324]: Experimental
+              - tab "Traces" [ref=e326] [cursor=pointer]
+          - generic:
+            - generic:
+              - tabpanel "Runs"
+        - generic [ref=e327]:
+          - generic [ref=e328]:
+            - generic [ref=e329]:
+              - generic [ref=e330] [cursor=pointer]:
+                - generic [ref=e331]:
+                  - radio [checked]
+                - img [ref=e333]:
+                  - img [ref=e334]
+              - generic [ref=e336] [cursor=pointer]:
+                - generic [ref=e337]:
+                  - radio
+                - img [ref=e339]:
+                  - img [ref=e340]
+            - generic [ref=e347] [cursor=pointer]:
+              - img [ref=e349]:
+                - img [ref=e350]
+              - combobox "metrics.rmse < 1 and params.model = \"tree\"" [ref=e353]
+              - button [ref=e356]:
+                - img [ref=e357]:
+                  - img [ref=e358]
+            - combobox "Time created, no option selected" [ref=e362] [cursor=pointer]:
+              - generic [ref=e364]: Time created
+              - img [ref=e365]:
+                - img [ref=e366]
+            - 'combobox "State, selected option: Active" [ref=e369] [cursor=pointer]':
+              - generic [ref=e370]:
+                - generic [ref=e371]: "State:"
+                - generic [ref=e372]: Active
+              - img [ref=e373]:
+                - img [ref=e374]
+            - generic [ref=e377]:
+              - combobox "Datasets, multiselectable, 0 options selected" [disabled]:
+                - generic:
+                  - generic: Datasets
+                - img:
+                  - img
+            - 'button "Sort: Created" [ref=e378] [cursor=pointer]':
+              - img [ref=e379]:
+                - img [ref=e380]
+              - generic [ref=e382]:
+                - text: "Sort: Created"
+                - img [ref=e384]:
+                  - img [ref=e385]
+            - button "Columns" [ref=e387] [cursor=pointer]:
+              - img [ref=e388]:
+                - img [ref=e389]
+              - generic [ref=e391]:
+                - text: Columns
+                - img [ref=e392]:
+                  - img [ref=e393]
+            - button "Group by" [ref=e395] [cursor=pointer]:
+              - img [ref=e396]:
+                - img [ref=e397]
+              - generic [ref=e400]:
+                - text: Group by
+                - img [ref=e402]:
+                  - img [ref=e403]
+          - generic [ref=e405]:
+            - button "More options" [ref=e406] [cursor=pointer]:
+              - img [ref=e407]:
+                - img [ref=e408]
+            - button "New run" [ref=e410] [cursor=pointer]:
+              - img [ref=e411]:
+                - img [ref=e412]
+              - generic [ref=e414]: New run
+      - generic [ref=e417]:
+        - generic [ref=e420]:
+          - grid [ref=e422]:
+            - row [ref=e506]:
+              - columnheader [ref=e507]:  
+              - columnheader [ref=e508]:  
+              - columnheader [ref=e510]:  
+            - row "Run Name Created Select all runs " [ref=e512]:
+              - columnheader "Run Name" [ref=e432] [cursor=pointer]:
+                - text: 
+                - columnheader "Run Name" [ref=e433]:
+                  - generic [ref=e435]: Run Name
+              - columnheader "Created" [ref=e436] [cursor=pointer]:
+                - text: 
+                - columnheader "Created" [ref=e437]:
+                  - generic [ref=e438]:
+                    - generic [ref=e439]: Created
+                    - img [ref=e440]:
+                      - img [ref=e441]
+              - columnheader "Select all runs " [ref=e513]:
+                - checkbox "Select all runs" [ref=e514]
+                - text: 
+            - rowgroup [ref=e443]:
+              - row [ref=e515]:
+                - columnheader [ref=e516]:  
+                - columnheader [ref=e518]:  
+                - columnheader [ref=e520]:  
+                - columnheader [ref=e522]:  
+              - row "Dataset Duration Source Models" [ref=e453]:
+                - columnheader "Dataset" [ref=e454]:
+                  - text: 
+                  - columnheader "Dataset" [ref=e455]:
+                    - generic [ref=e457]: Dataset
+                - columnheader "Duration" [ref=e458]:
+                  - text: 
+                  - columnheader "Duration" [ref=e459]:
+                    - generic [ref=e461]: Duration
+                - columnheader "Source" [ref=e462] [cursor=pointer]:
+                  - text: 
+                  - columnheader "Source" [ref=e463]:
+                    - generic [ref=e465]: Source
+                - columnheader "Models" [ref=e466]:
+                  - text: 
+                  - columnheader "Models" [ref=e467]:
+                    - generic [ref=e468]: Models
+            - rowgroup [ref=e469]:
+              - row "Press SPACE to select this row." [ref=e470]:
+                - gridcell "#9e102c baseline_zscore" [ref=e479]:
+                  - generic [ref=e481]:
+                    - generic [ref=e483] [cursor=pointer]: "#9e102c"
+                    - link "baseline_zscore" [ref=e484] [cursor=pointer]:
+                      - /url: "#/experiments/1/runs/feb0e97ac04044e8b0b433c8578f0200"
+                      - generic [ref=e485]: baseline_zscore
+                - gridcell "1 minute ago" [ref=e524]:
+                  - generic "04/10/2026, 02:44:05 PM" [ref=e487]:
+                    - img [ref=e488]:
+                      - img [ref=e489]
+                    - text: 1 minute ago
+                - gridcell "Press Space to toggle row selection (unchecked)  Pin run" [ref=e525]:
+                  - checkbox "Press Space to toggle row selection (unchecked)" [ref=e526]
+                  - text: 
+                  - generic [ref=e528] [cursor=pointer]:
+                    - generic [ref=e529]: Pin run
+                    - checkbox "Pin run"
+                    - img [ref=e530]:
+                      - img [ref=e531]
+            - rowgroup [ref=e492]:
+              - row "Press SPACE to select this row." [ref=e493]:
+                - gridcell "-" [ref=e494]
+                - gridcell "46ms" [ref=e495]
+                - gridcell "train.py" [ref=e496]:
+                  - generic [ref=e497]:
+                    - img [ref=e498]:
+                      - img [ref=e499]
+                    - generic [ref=e501]: train.py
+                - gridcell "-" [ref=e502]
+          - text:    
+        - generic [ref=e504]:
+          - strong [ref=e505]: "1"
+          - text: matching run

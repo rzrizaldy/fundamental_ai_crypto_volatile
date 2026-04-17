@@ -1,0 +1,193 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "MLflow" [ref=e5] [cursor=pointer]:
+        - /url: "#/"
+        - img "MLflow" [ref=e6]
+      - generic [ref=e7]: 2.22.0
+    - generic [ref=e8]:
+      - link "Experiments" [ref=e9] [cursor=pointer]:
+        - /url: "#/"
+      - link "Models" [ref=e10] [cursor=pointer]:
+        - /url: "#/models"
+      - link "Prompts" [ref=e11] [cursor=pointer]:
+        - /url: "#/prompts"
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - switch [ref=e15] [cursor=pointer]
+        - img [ref=e17]
+      - link "GitHub" [ref=e19] [cursor=pointer]:
+        - /url: https://github.com/mlflow/mlflow
+      - link "Docs" [ref=e20] [cursor=pointer]:
+        - /url: https://www.mlflow.org/docs/latest/index.html
+  - generic [ref=e26]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "Experiments" [level=2] [ref=e30]
+        - generic [ref=e31]:
+          - button "New Experiment" [ref=e32] [cursor=pointer]:
+            - img [ref=e33]:
+              - img [ref=e34]
+          - button "Hide experiment list" [ref=e37] [cursor=pointer]:
+            - img [ref=e38]:
+              - img [ref=e39]
+      - textbox "search experiments" [ref=e42]:
+        - /placeholder: Search experiments
+      - grid "grid" [ref=e44]:
+        - rowgroup [ref=e45]:
+          - generic [ref=e46]:
+            - checkbox [checked] [ref=e50] [cursor=pointer]
+            - link "Default" [ref=e52] [cursor=pointer]:
+              - /url: "#/experiments/0"
+            - button [ref=e53] [cursor=pointer]:
+              - img [ref=e54]:
+                - img [ref=e55]
+            - button [ref=e57] [cursor=pointer]:
+              - img [ref=e58]:
+                - img [ref=e59]
+    - generic [ref=e62]:
+      - generic [ref=e64]:
+        - heading "Default Info Provide Feedback Add Description" [level=2] [ref=e65]:
+          - generic "Default" [ref=e66]
+          - generic [ref=e67]:
+            - button "Info" [ref=e69] [cursor=pointer]:
+              - img "Info" [ref=e70]:
+                - img [ref=e71]
+            - link "Provide Feedback" [ref=e74] [cursor=pointer]:
+              - /url: https://github.com/mlflow/mlflow/issues/6348
+              - generic [ref=e75]:
+                - text: Provide Feedback
+                - img [ref=e77]:
+                  - img [ref=e78]
+            - button "Add Description" [ref=e81] [cursor=pointer]:
+              - generic [ref=e83]: Add Description
+        - button "Share" [ref=e88] [cursor=pointer]:
+          - generic [ref=e89]: Share
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - tablist [ref=e93]:
+            - generic [ref=e95]:
+              - tab "Runs" [selected] [ref=e97] [cursor=pointer]
+              - tab "Evaluation" [ref=e99] [cursor=pointer]:
+                - generic [ref=e100]:
+                  - text: Evaluation
+                  - status [ref=e101]:
+                    - generic [ref=e102]: Experimental
+              - tab "Traces" [ref=e104] [cursor=pointer]
+          - generic:
+            - generic:
+              - tabpanel "Runs"
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108] [cursor=pointer]:
+                - generic [ref=e109]:
+                  - radio [checked]
+                - img [ref=e111]:
+                  - img [ref=e112]
+              - generic [ref=e114] [cursor=pointer]:
+                - generic [ref=e115]:
+                  - radio
+                - img [ref=e117]:
+                  - img [ref=e118]
+            - generic [ref=e125] [cursor=pointer]:
+              - img [ref=e127]:
+                - img [ref=e128]
+              - combobox "metrics.rmse < 1 and params.model = \"tree\"" [ref=e131]
+              - button [ref=e134]:
+                - img [ref=e135]:
+                  - img [ref=e136]
+            - combobox "Time created, no option selected" [ref=e140] [cursor=pointer]:
+              - generic [ref=e142]: Time created
+              - img [ref=e143]:
+                - img [ref=e144]
+            - 'combobox "State, selected option: Active" [ref=e147] [cursor=pointer]':
+              - generic [ref=e148]:
+                - generic [ref=e149]: "State:"
+                - generic [ref=e150]: Active
+              - img [ref=e151]:
+                - img [ref=e152]
+            - generic [ref=e155]:
+              - combobox "Datasets, multiselectable, 0 options selected" [disabled]:
+                - generic:
+                  - generic: Datasets
+                - img:
+                  - img
+            - 'button "Sort: Created" [ref=e156] [cursor=pointer]':
+              - img [ref=e157]:
+                - img [ref=e158]
+              - generic [ref=e160]:
+                - text: "Sort: Created"
+                - img [ref=e162]:
+                  - img [ref=e163]
+            - button "Columns" [ref=e165] [cursor=pointer]:
+              - img [ref=e166]:
+                - img [ref=e167]
+              - generic [ref=e169]:
+                - text: Columns
+                - img [ref=e170]:
+                  - img [ref=e171]
+            - button "Group by" [ref=e173] [cursor=pointer]:
+              - img [ref=e174]:
+                - img [ref=e175]
+              - generic [ref=e178]:
+                - text: Group by
+                - img [ref=e180]:
+                  - img [ref=e181]
+          - generic [ref=e183]:
+            - button "More options" [ref=e184] [cursor=pointer]:
+              - img [ref=e185]:
+                - img [ref=e186]
+            - button "New run" [ref=e188] [cursor=pointer]:
+              - img [ref=e189]:
+                - img [ref=e190]
+              - generic [ref=e192]: New run
+      - generic [ref=e195]:
+        - generic [ref=e198]:
+          - grid [ref=e200]:
+            - row "Select all runs  Run Name Created" [ref=e201]:
+              - columnheader "Select all runs " [ref=e202]:
+                - checkbox "Select all runs" [ref=e203]
+                - text: 
+              - columnheader "Run Name" [ref=e204] [cursor=pointer]:
+                - text: 
+                - columnheader "Run Name" [ref=e205]:
+                  - generic [ref=e207]: Run Name
+              - columnheader "Created" [ref=e208] [cursor=pointer]:
+                - text: 
+                - columnheader "Created" [ref=e209]:
+                  - generic [ref=e210]:
+                    - generic [ref=e211]: Created
+                    - img [ref=e212]:
+                      - img [ref=e213]
+            - rowgroup [ref=e215]:
+              - row "Dataset Duration Source Models" [ref=e216]:
+                - columnheader "Dataset" [ref=e217]:
+                  - text: 
+                  - columnheader "Dataset" [ref=e218]:
+                    - generic [ref=e220]: Dataset
+                - columnheader "Duration" [ref=e221]:
+                  - text: 
+                  - columnheader "Duration" [ref=e222]:
+                    - generic [ref=e224]: Duration
+                - columnheader "Source" [ref=e225] [cursor=pointer]:
+                  - text: 
+                  - columnheader "Source" [ref=e226]:
+                    - generic [ref=e228]: Source
+                - columnheader "Models" [ref=e229]:
+                  - text: 
+                  - columnheader "Models" [ref=e230]:
+                    - generic [ref=e231]: Models
+          - text:    
+        - generic [ref=e235]:
+          - img [ref=e236]:
+            - img [ref=e237]
+          - heading "No runs logged" [level=3] [ref=e239]
+          - generic [ref=e240]:
+            - text: No runs have been logged yet.
+            - link "Learn more" [ref=e241] [cursor=pointer]:
+              - /url: https://www.mlflow.org/docs/latest/tracking.html#logging-data-to-runs
+            - text: about how to create ML model training runs in this experiment.
+        - generic [ref=e243]:
+          - strong [ref=e244]: "0"
+          - text: matching runs
