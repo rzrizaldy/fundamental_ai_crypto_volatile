@@ -16,6 +16,7 @@ from aiokafka import AIOKafkaConsumer
 from dotenv import load_dotenv
 
 from pipeline.config import load_config
+from pipeline.kafka_resilience import safe_stop_client, start_with_backoff
 
 
 def parse_args() -> argparse.Namespace:
@@ -31,14 +32,16 @@ async def main() -> None:
     args = parse_args()
     config = load_config()
 
-    consumer = AIOKafkaConsumer(
-        args.topic,
-        bootstrap_servers=config["stream"]["bootstrap_servers"],
-        auto_offset_reset="earliest",
-        enable_auto_commit=False,
-        consumer_timeout_ms=2_000,
-    )
-    await consumer.start()
+    def make_consumer() -> AIOKafkaConsumer:
+        return AIOKafkaConsumer(
+            args.topic,
+            bootstrap_servers=config["stream"]["bootstrap_servers"],
+            auto_offset_reset="earliest",
+            enable_auto_commit=False,
+            consumer_timeout_ms=2_000,
+        )
+
+    consumer = await start_with_backoff(make_consumer, label="kafka consumer")
     try:
         deadline = datetime.now(UTC) + timedelta(seconds=args.timeout_seconds)
         message_count = 0
@@ -74,7 +77,7 @@ async def main() -> None:
             )
         )
     finally:
-        await consumer.stop()
+        await safe_stop_client(consumer)
 
 
 if __name__ == "__main__":

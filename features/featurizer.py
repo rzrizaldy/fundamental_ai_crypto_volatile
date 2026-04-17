@@ -15,7 +15,14 @@ from dotenv import load_dotenv
 
 from pipeline.config import ROOT_DIR, ensure_directories, load_config
 from pipeline.featurizer_core import FeatureConfig, build_features, records_to_frame
-from pipeline.io import save_parquet, write_ndjson
+from pipeline.io import save_parquet
+from pipeline.kafka_resilience import (
+    attach_shutdown_handlers,
+    is_transient_kafka_error,
+    runtime_reconnect_backoff_seconds,
+    safe_stop_client,
+    start_with_backoff,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -44,56 +51,76 @@ async def main() -> None:
     topic_out = args.topic_out or config["stream"]["feature_topic"]
     processed_path = ROOT_DIR / config["storage"]["processed_dir"] / "features.parquet"
 
-    consumer = AIOKafkaConsumer(
-        topic_in,
-        bootstrap_servers=config["stream"]["bootstrap_servers"],
-        auto_offset_reset="earliest",
-        enable_auto_commit=True,
-        consumer_timeout_ms=2_000,
-    )
-    producer = AIOKafkaProducer(bootstrap_servers=config["stream"]["bootstrap_servers"])
-    await consumer.start()
-    await producer.start()
+    bootstrap = config["stream"]["bootstrap_servers"]
+    shutdown_event = asyncio.Event()
+    attach_shutdown_handlers(shutdown_event)
+
+    def make_consumer() -> AIOKafkaConsumer:
+        return AIOKafkaConsumer(
+            topic_in,
+            bootstrap_servers=bootstrap,
+            auto_offset_reset="earliest",
+            enable_auto_commit=True,
+            consumer_timeout_ms=2_000,
+        )
+
+    def make_producer() -> AIOKafkaProducer:
+        return AIOKafkaProducer(bootstrap_servers=bootstrap)
+
+    consumer = await start_with_backoff(make_consumer, label="kafka consumer")
+    producer = await start_with_backoff(make_producer, label="kafka producer")
 
     raw_records: list[dict] = []
     last_emitted_ts: dict[str, str] = {}
     seen_messages = 0
     try:
-        while True:
-            result = await consumer.getmany(timeout_ms=2_000, max_records=args.flush_every)
-            batch = []
-            for records in result.values():
-                for record in records:
-                    batch.append(json.loads(record.value.decode("utf-8")))
-            if not batch:
+        while not shutdown_event.is_set():
+            try:
+                result = await consumer.getmany(timeout_ms=2_000, max_records=args.flush_every)
+                batch = []
+                for records in result.values():
+                    for record in records:
+                        batch.append(json.loads(record.value.decode("utf-8")))
+                if not batch:
+                    if args.max_messages and seen_messages >= args.max_messages:
+                        break
+                    continue
+
+                raw_records.extend(batch)
+                seen_messages += len(batch)
+
+                raw_df = records_to_frame(raw_records)
+                features_df = build_features(raw_df, feature_config, source="live")
+                if features_df.empty:
+                    continue
+
+                for product_id, group in features_df.groupby("product_id", sort=True):
+                    cutoff = last_emitted_ts.get(product_id)
+                    if cutoff:
+                        group = group[group["window_end_ts"] > cutoff]
+                    if group.empty:
+                        continue
+                    last_emitted_ts[product_id] = group["window_end_ts"].max()
+                    for _, row in group.iterrows():
+                        await producer.send_and_wait(topic_out, row.to_json().encode("utf-8"))
+
+                save_parquet(features_df, processed_path)
                 if args.max_messages and seen_messages >= args.max_messages:
                     break
-                continue
-
-            raw_records.extend(batch)
-            seen_messages += len(batch)
-
-            raw_df = records_to_frame(raw_records)
-            features_df = build_features(raw_df, feature_config, source="live")
-            if features_df.empty:
-                continue
-
-            for product_id, group in features_df.groupby("product_id", sort=True):
-                cutoff = last_emitted_ts.get(product_id)
-                if cutoff:
-                    group = group[group["window_end_ts"] > cutoff]
-                if group.empty:
-                    continue
-                last_emitted_ts[product_id] = group["window_end_ts"].max()
-                for _, row in group.iterrows():
-                    await producer.send_and_wait(topic_out, row.to_json().encode("utf-8"))
-
-            save_parquet(features_df, processed_path)
-            if args.max_messages and seen_messages >= args.max_messages:
-                break
+            except asyncio.CancelledError:
+                raise
+            except BaseException as exc:
+                if not is_transient_kafka_error(exc):
+                    raise
+                print(f"Kafka transient error ({exc}); reconnecting consumer and producer…")
+                await safe_stop_client(consumer)
+                await safe_stop_client(producer)
+                await asyncio.sleep(runtime_reconnect_backoff_seconds())
+                consumer = await start_with_backoff(make_consumer, label="kafka consumer (reconnect)")
+                producer = await start_with_backoff(make_producer, label="kafka producer (reconnect)")
     finally:
-        await consumer.stop()
-        await producer.stop()
+        await safe_stop_client(consumer)
+        await safe_stop_client(producer)
 
 
 if __name__ == "__main__":
