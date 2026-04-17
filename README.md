@@ -51,6 +51,7 @@ cp .env.example .env
 - `scripts/dashboard_server.py`: live SSE dashboard server
 - `scripts/run_w4_api.py`: Week 4 replay-mode FastAPI thin slice
 - `scripts/replay_api_smoke.py`: 10-minute replay smoke test for the Week 4 API
+- `scripts/replay_api_load_test.py`: Week 5 burst load test (100 concurrent requests) and `reports/w5_load_test_latency.md`
 - `dashboard/`: static + live interface
 - `service/replay_api.py`: FastAPI app with `/health`, `/predict`, `/version`, `/metrics`
 
@@ -156,6 +157,14 @@ Run the 10-minute replay smoke test:
 ```bash
 python scripts/replay_api_smoke.py --persist-slice
 ```
+
+Week 5 burst load test (100 concurrent `POST /predict` calls) and latency report (requires `data/processed/features.parquet` and the API running):
+
+```bash
+python scripts/replay_api_load_test.py
+```
+
+Writes `reports/w5_load_test_latency.md` and prints a JSON summary to stdout.
 
 Week 4 docs:
 - `docs/team_charter.md`
