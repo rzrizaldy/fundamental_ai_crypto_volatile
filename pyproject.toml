@@ -1,0 +1,70 @@
+# W5 lint + format config (Ridho).
+#
+# Scope note: Black and Ruff are enabled repo-wide via CI, but many directories
+# are initially excluded so this PR stays non-disruptive. Each excluded area
+# graduates into the enforced set as its owner finishes their W5-W7 work.
+# Actively enforced at W5 start: tests/, service/ (minus the grandfathered
+# replay_api.py which uses a sys.path bootstrap pattern that clashes with
+# import-order rules; that file will be refactored in a later PR).
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+extend-exclude = '''
+/(
+    \.venv
+  | mlruns
+  | data
+  | notebooks
+  | models
+  | features
+  | pipeline
+  | scripts
+  | dashboard
+  | handoff
+  | submission
+  | w4_deliverable
+  | interim\ report_rb
+  | reports
+  | img
+  | templates
+)/
+| service/replay_api\.py
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [
+    ".venv",
+    "mlruns",
+    "data",
+    "notebooks",
+    "models",
+    "features",
+    "pipeline",
+    "scripts",
+    "dashboard",
+    "handoff",
+    "submission",
+    "w4_deliverable",
+    "interim report_rb",
+    "reports",
+    "img",
+    "templates",
+    "service/replay_api.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "C4"]
+ignore = [
+    "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+asyncio_default_fixture_loop_scope = "function"

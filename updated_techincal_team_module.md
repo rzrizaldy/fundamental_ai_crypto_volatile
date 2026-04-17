@@ -11,12 +11,18 @@ Week 4 thin slice is already done, so from here the team should focus only on th
 
 ## Current Repo Gaps
 
-- No `.github/workflows` yet.
 - No `docs/drift_summary.md` yet.
-- No `docs/slo.md` yet.
-- No `docs/runbook.md` yet.
 - No Prometheus/Grafana artifacts yet.
-- Replay smoke test should be synced with the current API response before more QA work.
+- No backend 5xx/request-failure counter yet.
+- The 100-request burst load test now succeeds, but HTTP request latency p95 is still `117.78 ms`, so backend/performance follow-up is still needed.
+- No Week 7 release tag / release checklist yet.
+
+## Local Integration Note
+
+- PR #2 adds the Week 5 burst load-test script and latency report scaffold.
+- PR #3 adds the GitHub Actions CI workflow, dev requirements, and PR template.
+- PR #4 adds the Week 6 SLO and runbook docs.
+- Smoke and demo launch scripts were stale against the current API contract and were fixed locally on the integration branch.
 
 ## Working Rules
 
