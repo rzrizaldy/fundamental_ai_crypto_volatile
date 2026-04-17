@@ -20,6 +20,13 @@ import websockets
 from pipeline.coinbase import build_subscribe_message, normalize_message
 from pipeline.config import ROOT_DIR, ensure_directories, load_config
 from pipeline.io import write_ndjson
+from pipeline.kafka_resilience import (
+    attach_shutdown_handlers,
+    recv_websocket_or_shutdown,
+    safe_stop_client,
+    send_with_producer_recovery,
+    start_with_backoff,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -44,20 +51,31 @@ def raw_mirror_path(base_dir: Path, product_id: str, event_ts: str) -> Path:
 async def run_stream(
     websocket_url: str,
     product_ids: list[str],
-    producer: AIOKafkaProducer,
+    producer_cell: list[AIOKafkaProducer],
+    bootstrap_servers: str,
     raw_topic: str,
     mirror_root: Path,
     mirror_enabled: bool,
     heartbeat_timeout_seconds: int,
     run_until: datetime | None,
+    shutdown_event: asyncio.Event,
 ) -> None:
     timeout_deadline = datetime.now(UTC) + timedelta(seconds=heartbeat_timeout_seconds)
+    producer_factory = lambda: AIOKafkaProducer(bootstrap_servers=bootstrap_servers)
+
     async with websockets.connect(websocket_url, ping_interval=20, ping_timeout=20) as socket:
         for channel in ("ticker", "heartbeats"):
             await socket.send(json.dumps(build_subscribe_message(channel, product_ids)))
 
-        while run_until is None or datetime.now(UTC) < run_until:
-            payload = await asyncio.wait_for(socket.recv(), timeout=heartbeat_timeout_seconds)
+        while (run_until is None or datetime.now(UTC) < run_until) and not shutdown_event.is_set():
+            payload = await recv_websocket_or_shutdown(
+                socket,
+                timeout_seconds=float(heartbeat_timeout_seconds),
+                shutdown_event=shutdown_event,
+            )
+            if payload is None:
+                print("Shutdown requested; closing WebSocket ingestor.")
+                break
             message = json.loads(payload)
             message_type = message.get("type", "")
 
@@ -77,7 +95,12 @@ async def run_stream(
                 continue
 
             for record in records:
-                await producer.send_and_wait(raw_topic, json.dumps(record).encode("utf-8"))
+                await send_with_producer_recovery(
+                    producer_cell,
+                    producer_factory,
+                    topic=raw_topic,
+                    value=json.dumps(record).encode("utf-8"),
+                )
 
             if mirror_enabled:
                 bucketed: dict[Path, list[dict]] = defaultdict(list)
@@ -96,17 +119,12 @@ async def main() -> None:
     product_ids = args.pairs or list(config["stream"]["pairs"])
     bootstrap = config["stream"]["bootstrap_servers"]
 
-    # Retry Kafka connection on startup (Kafka may not be ready yet)
-    for attempt in range(30):
-        try:
-            producer = AIOKafkaProducer(bootstrap_servers=bootstrap)
-            await producer.start()
-            break
-        except Exception as exc:
-            if attempt == 29:
-                raise
-            print(f"Kafka not ready ({exc}), retrying in 5s… ({attempt + 1}/30)")
-            await asyncio.sleep(5)
+    shutdown_event = asyncio.Event()
+    attach_shutdown_handlers(shutdown_event)
+
+    producer_factory = lambda: AIOKafkaProducer(bootstrap_servers=bootstrap)
+    producer = await start_with_backoff(producer_factory, label="kafka producer")
+    producer_cell = [producer]
 
     run_until = (
         datetime.now(UTC) + timedelta(minutes=args.minutes)
@@ -119,15 +137,17 @@ async def main() -> None:
         await run_stream(
             websocket_url=config["stream"]["websocket_url"],
             product_ids=product_ids,
-            producer=producer,
+            producer_cell=producer_cell,
+            bootstrap_servers=bootstrap,
             raw_topic=config["stream"]["raw_topic"],
             mirror_root=ROOT_DIR / config["storage"]["raw_dir"],
             mirror_enabled=not args.no_mirror,
             heartbeat_timeout_seconds=config["stream"]["heartbeat_timeout_seconds"],
             run_until=run_until,
+            shutdown_event=shutdown_event,
         )
     finally:
-        await producer.stop()
+        await safe_stop_client(producer_cell[0])
 
 
 if __name__ == "__main__":
