@@ -11,3 +11,14 @@ scrape_configs:
           - api:8000
         labels:
           service: crypto-volatility-api
+
+  # Featurizer runs on the host (not in compose). Set FEATURIZER_METRICS_PORT=9111 when running
+  # `python features/featurizer.py`. On Linux Docker Engine, add `extra_hosts` or replace the host.
+  - job_name: crypto-featurizer
+    metrics_path: /metrics
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+          - host.docker.internal:9111
+        labels:
+          service: crypto-featurizer

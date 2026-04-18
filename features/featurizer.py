@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -12,6 +13,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 from dotenv import load_dotenv
+from prometheus_client import Gauge, start_http_server
 
 from pipeline.config import ROOT_DIR, ensure_directories, load_config
 from pipeline.featurizer_core import FeatureConfig, build_features, records_to_frame
@@ -23,6 +25,35 @@ from pipeline.kafka_resilience import (
     safe_stop_client,
     start_with_backoff,
 )
+
+CONSUMER_LAG = Gauge(
+    "crypto_featurizer_kafka_consumer_lag_messages",
+    "Approximate total consumer lag (log-end minus current position) across assigned partitions.",
+    ["topic"],
+)
+
+
+async def refresh_consumer_lag(consumer: AIOKafkaConsumer, topic: str) -> None:
+    assigned = consumer.assignment()
+    if not assigned:
+        CONSUMER_LAG.labels(topic=topic).set(0)
+        return
+    tps = list(assigned)
+    try:
+        ends = await consumer.end_offsets(tps)
+    except Exception:
+        return
+    lag_sum = 0
+    for tp in tps:
+        try:
+            pos = await consumer.position(tp)
+        except Exception:
+            continue
+        hi = ends.get(tp)
+        if hi is None:
+            continue
+        lag_sum += max(0, int(hi) - int(pos))
+    CONSUMER_LAG.labels(topic=topic).set(lag_sum)
 
 
 def parse_args() -> argparse.Namespace:
@@ -70,6 +101,11 @@ async def main() -> None:
     consumer = await start_with_backoff(make_consumer, label="kafka consumer")
     producer = await start_with_backoff(make_producer, label="kafka producer")
 
+    metrics_port = int(os.getenv("FEATURIZER_METRICS_PORT", "0"))
+    if metrics_port > 0:
+        start_http_server(metrics_port)
+        print(f"Prometheus metrics at http://0.0.0.0:{metrics_port}/metrics")
+
     raw_records: list[dict] = []
     last_emitted_ts: dict[str, str] = {}
     seen_messages = 0
@@ -77,6 +113,7 @@ async def main() -> None:
         while not shutdown_event.is_set():
             try:
                 result = await consumer.getmany(timeout_ms=2_000, max_records=args.flush_every)
+                await refresh_consumer_lag(consumer, topic_in)
                 batch = []
                 for records in result.values():
                     for record in records:
