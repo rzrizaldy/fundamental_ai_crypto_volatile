@@ -39,6 +39,17 @@ REQUEST_ERROR_COUNTER = Counter(
     "Total HTTP requests that returned a 5xx status.",
     ["endpoint", "method", "status"],
 )
+REQUEST_CLIENT_ERROR_COUNTER = Counter(
+    "crypto_api_client_errors_total",
+    "Total HTTP requests that returned a 4xx status.",
+    ["endpoint", "method", "status"],
+)
+HTTP_REQUEST_DURATION = Histogram(
+    "crypto_api_http_request_duration_seconds",
+    "Wall-clock duration of HTTP requests handled by the replay API (excluding scrape of /metrics).",
+    ["endpoint", "method"],
+    buckets=(0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0, 10.0),
+)
 PREDICTION_REQUEST_COUNTER = Counter(
     "crypto_api_prediction_requests_total",
     "Total prediction requests by source.",
@@ -330,17 +341,28 @@ def _metric_endpoint_label(request: Request) -> str:
 @app.middleware("http")
 async def prometheus_request_middleware(request: Request, call_next):
     method = request.method
+    t0 = time.perf_counter()
     try:
         response = await call_next(request)
     except Exception:
         endpoint = _metric_endpoint_label(request)
+        elapsed = time.perf_counter() - t0
+        if not (method == "GET" and endpoint == "/metrics"):
+            HTTP_REQUEST_DURATION.labels(endpoint=endpoint, method=method).observe(elapsed)
         REQUEST_COUNTER.labels(endpoint=endpoint, method=method).inc()
         REQUEST_ERROR_COUNTER.labels(endpoint=endpoint, method=method, status="500").inc()
         raise
 
     endpoint = _metric_endpoint_label(request)
+    elapsed = time.perf_counter() - t0
+    if not (method == "GET" and endpoint == "/metrics"):
+        HTTP_REQUEST_DURATION.labels(endpoint=endpoint, method=method).observe(elapsed)
     REQUEST_COUNTER.labels(endpoint=endpoint, method=method).inc()
-    if response.status_code >= 500:
+    if 400 <= response.status_code < 500:
+        REQUEST_CLIENT_ERROR_COUNTER.labels(
+            endpoint=endpoint, method=method, status=str(response.status_code)
+        ).inc()
+    elif response.status_code >= 500:
         REQUEST_ERROR_COUNTER.labels(
             endpoint=endpoint, method=method, status=str(response.status_code)
         ).inc()
