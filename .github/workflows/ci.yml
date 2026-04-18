@@ -23,6 +23,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt -r requirements-dev.txt
 
+      # config.yaml expects models/artifacts/logistic_model.joblib, but root *.joblib is gitignored.
+      # The same file is tracked under the MLflow run layout — copy it before pytest.
+      - name: Materialize model artifact path for tests
+        run: |
+          mkdir -p models/artifacts
+          cp "models/artifacts/1/77ca4f22849d4b41837227c266bbe83c/artifacts/logistic_model.joblib" \
+            "models/artifacts/logistic_model.joblib"
+
       - name: Ruff (lint)
         run: ruff check .
 
