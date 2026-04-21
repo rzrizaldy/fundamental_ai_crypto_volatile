@@ -19,6 +19,8 @@ Single-page map of the project's docs. Keep this updated when you add or rename 
 ## Operations
 - [operations/slo.md](operations/slo.md) — service level objectives for the replay API.
 - [operations/runbook.md](operations/runbook.md) — on-call playbook: startup, failures, rollback, escalation.
+- [operations/release_checklist.md](operations/release_checklist.md) — Week 7 release and packaging checklist.
+- [operations/docker_runbook_snippet.md](operations/docker_runbook_snippet.md) — short Docker-oriented operator snippet.
 
 ## Status and review
 - [status/pr_review_status.md](status/pr_review_status.md) — what each open PR adds, what was fixed locally, and what is still pending.

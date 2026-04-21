@@ -31,7 +31,16 @@ cp .env.example .env
 
 ## Fast Start
 
-Start the Docker services:
+The authoritative compose file is `docker/compose.yaml`.
+
+Fastest path from repo root:
+
+```bash
+make up
+make ps
+```
+
+Equivalent raw Docker command:
 
 ```bash
 docker compose -f docker/compose.yaml up -d --build
@@ -40,6 +49,8 @@ docker compose -f docker/compose.yaml up -d --build
 Optional — bring up the Prometheus + Grafana observability profile (scrapes the API's `/metrics`):
 
 ```bash
+make obs
+# or:
 docker compose -f docker/compose.yaml --profile observability up -d
 ```
 
@@ -66,12 +77,16 @@ curl -X POST http://localhost:8000/predict \
 Run the smoke test:
 
 ```bash
+make smoke
+# or:
 python scripts/replay_api_smoke.py --persist-slice
 ```
 
 Run the Week 5 load test:
 
 ```bash
+make loadtest
+# or:
 python scripts/replay_api_load_test.py --write-report reports/w5_load_test_latency.md
 ```
 
@@ -106,14 +121,14 @@ python scripts/run_demo_stack.py
 
 ### Docs and team coordination
 - `docs/README.md` — index of project docs
-- `docs/operations/` — runbook and SLOs
+- `docs/operations/` — runbook, SLOs, release checklist, Docker operator snippet
 - `docs/status/` — PR review log, team module, review screenshots
 - `CONTRIBUTING.md` — branch and PR workflow
 
 ### Submission and handoff
 - `submission/` — submission bundle and submission-facing README
 - `handoff/` — handoff notes and packaged artifacts
-- `w4_deliverable/` — Week 4 deliverable snapshot
+- `w4_deliverable/` — legacy Week 4 snapshot kept for historical reference only
 
 ## Important Docs
 
@@ -122,6 +137,8 @@ python scripts/run_demo_stack.py
 - `docs/system_diagram.md` — architecture overview
 - `docs/operations/runbook.md` — startup, rollback, incident response
 - `docs/operations/slo.md` — current service-level objectives
+- `docs/operations/release_checklist.md` — final release and packaging checklist
+- `docs/operations/docker_runbook_snippet.md` — short Docker-oriented runbook snippet
 - `docs/drift_summary.md` — Week 6 train-vs-test drift summary (decision + monitoring triggers)
 - `docs/status/pr_review_status.md` — what has been merged, validated, and what is still pending
 - `docs/status/team_module_w5_w7.md` — current team work split after Week 4
@@ -129,9 +146,9 @@ python scripts/run_demo_stack.py
 ## Developer Checks
 
 ```bash
-ruff check .
-black --check .
-pytest -q
+.venv/bin/ruff check .
+.venv/bin/black --check .
+.venv/bin/pytest -q
 ```
 
 ## Notes

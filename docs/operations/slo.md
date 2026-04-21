@@ -4,7 +4,7 @@
 >
 > **Owner:** Ridho Bakti (platform / MLOps lead). **Reviewers:** Rizaldy (model), Jiho (backend), Afif (QA).
 >
-> **Status:** Week 6 initial draft. Targets below are proposals grounded in the current single-replica local deployment; they will be re-tuned after Afif's Week 5 load-test report and once Jiho's Prometheus/Grafana stack is wired up.
+> **Status:** Week 6 draft grounded in the current single-replica local deployment. The repo now ships the Week 5 load-test report, Prometheus scrape config, Grafana dashboard JSON, and the Week 6 drift summary; targets below remain proposed until the final release pass.
 
 ---
 
@@ -26,9 +26,9 @@ All four SLIs map directly to Prometheus metrics already exposed by the service 
 
 | # | SLI | Metric(s) in `/metrics` | What "good" looks like |
 |---|---|---|---|
-| 1 | **Availability** | `crypto_api_requests_total{endpoint="/health",method="GET"}` with a companion 5xx counter from future instrumentation; until then, use probe success ratio from the smoke script. | `/health` returns `200 {"status": "ok"}` |
+| 1 | **Availability** | `crypto_api_requests_total{endpoint="/health",method="GET"}` plus `crypto_api_request_errors_total{endpoint="/health",method="GET",status="500"}` | `/health` returns `200 {"status": "ok"}` |
 | 2 | **Inference latency** | `crypto_api_inference_seconds` (Histogram, buckets `0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 1.0`) | p95 stays inside the 50 ms bucket |
-| 3 | **Request error rate** | `crypto_api_requests_total{endpoint=...,method=...}` vs failed request counter (to be added in W6 backend work). Proxy for now: ratio of HTTP 5xx observed by `scripts/replay_api_smoke.py`. | 5xx responses < 1% of total requests |
+| 3 | **Request error rate** | `crypto_api_requests_total{endpoint=...,method=...}` vs `crypto_api_request_errors_total{endpoint=...,method=...,status="500"}` | 5xx responses < 1% of total requests |
 | 4 | **Model readiness** | `crypto_api_model_loaded` (Gauge, 1 = loaded, 0 = lifespan failed) | `== 1` at all times except during restarts |
 
 Supporting signals (used for root-cause, not as primary SLIs):
@@ -65,7 +65,7 @@ Targets are set for a **7-day rolling window** unless noted otherwise. Violating
 - **Slow burn alert:** error budget consumed >= **5% in 6 hours**. Open a ticket and investigate within the next working day.
 - When the budget for a 7-day window is fully consumed, freeze non-critical merges and prioritize reliability fixes until the next window resets.
 
-Alert routing will be implemented against Jiho's Prometheus/Grafana dashboards (W6 parallel work). This SLO doc declares **what** to alert on; that PR declares **how**.
+This repo already ships the Prometheus scrape config and Grafana dashboards needed to visualize these SLIs. Alert rules can be added on top of the same stack during the final release pass.
 
 ---
 
@@ -84,8 +84,9 @@ Alert routing will be implemented against Jiho's Prometheus/Grafana dashboards (
 - [docs/team_charter.md](../team_charter.md) — role ownership used for incident escalation.
 - [docs/status/team_module_w5_w7.md](../status/team_module_w5_w7.md) — Week 5 / Week 6 task split.
 - [docs/status/pr_review_status.md](../status/pr_review_status.md) — current integration/review status of the peer PRs.
-- Jiho's W6 Prometheus + Grafana scrape config (forthcoming) — wires these SLIs into live dashboards and alerts.
-- Rizaldy's W6 Evidently drift report (`../drift_summary.md`, forthcoming) — informs whether a latency or error-rate regression has a data-quality root cause.
+- [../../docker/prometheus/prometheus.yml](../../docker/prometheus/prometheus.yml) — current Prometheus scrape config.
+- [../../docker/grafana/dashboards/crypto_api.json](../../docker/grafana/dashboards/crypto_api.json) — provisioned Grafana dashboard definition.
+- [../drift_summary.md](../drift_summary.md) — train-vs-test drift summary used to interpret data-quality-related regressions.
 
 ---
 

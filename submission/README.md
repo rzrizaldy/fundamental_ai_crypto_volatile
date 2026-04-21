@@ -4,23 +4,23 @@
 **Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University  
 **GitHub:** [https://github.com/rzrizaldy/fundamental_ai_crypto_volatile](https://github.com/rzrizaldy/fundamental_ai_crypto_volatile)
 
-**Live preview (static mode):** https://rzrizaldy.github.io/crypto_volatility_pages/
-**Evidently drift report:** https://rzrizaldy.github.io/crypto_volatility_pages/reports/evidently.html
-**Model eval PDF:** https://rzrizaldy.github.io/crypto_volatility_pages/reports/model_eval.pdf
+**Live preview (static mode):** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/  
+**Evidently drift report:** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html  
+**Model eval PDF:** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf
 
-> For live streaming (real Coinbase prices + model inference), run locally using the zip below.
+> The zip below is the current-repo submission bundle, rebuilt from the Week 5 to Week 7 repo state rather than the old Week 4 snapshot.
 
 ---
 
 ## Contents
 
 
-| File                                          | Description                                       |
-| --------------------------------------------- | ------------------------------------------------- |
+| File | Description |
+| --- | --- |
 | `fundamental_ops_ai_crypto_report_rutomo.pdf` | Combined report: Scoping Brief + Model Evaluation |
-| `genai_appendix.md`                           | Generative AI usage disclosure                    |
-| `fundamental_ai_crypto_volatile.zip`          | Full repository (source, data, models, dashboard) |
-| `README.md`                                   | This file                                         |
+| `genai_appendix.md` | Generative AI usage disclosure |
+| `fundamental_ai_crypto_volatile.zip` | Current repository bundle for reproducibility and local reruns |
+| `README.md` | This file |
 
 
 ---
@@ -37,9 +37,10 @@ notebooks/            EDA notebook (executed)
 dashboard/            Chart.js dashboard + FastAPI SSE server
 reports/              Model evaluation report (.md / .tex / .pdf)
 docs/                 Scoping brief, feature spec, model card, GenAI appendix
-handoff/              Team handoff: compose, Dockerfiles, raw slice, artifacts
 img/                  All figures referenced in reports
-data/                 Raw NDJSON ticks + processed feature Parquet files
+data/processed/       Feature Parquet files needed for replay and validation
+tests/                Regression tests for featurizer and model variant paths
+.github/              CI workflow and PR template
 ```
 
 ---
@@ -47,27 +48,38 @@ data/                 Raw NDJSON ticks + processed feature Parquet files
 ## Quick Start
 
 ```bash
-# 1. Activate environment
-source .venv/bin/activate   # or: pip install -r requirements.txt
+# 1. Create and activate environment
+python3.12 -m venv .venv
+source .venv/bin/activate
+.venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 
 # 2. Start infrastructure
-docker compose -f docker/compose.yaml up -d
+make up
+# or: docker compose -f docker/compose.yaml up -d --build
 
-# 3. Replay features from saved raw data
-python scripts/replay.py --raw "data/raw/**/*.ndjson" --out data/processed/features.parquet
+# 3. Verify the API
+python scripts/run_w4_api.py
+make smoke
 
-# 4. Train models (logs to MLflow)
-python models/train.py --features data/processed/features.parquet
+# 4. Optional: observability profile
+make obs
+# or: docker compose -f docker/compose.yaml --profile observability up -d
 
 # 5. Run live dashboard
-python scripts/dashboard_server.py &
-open dashboard/index.html
+python scripts/dashboard_server.py
+# then open http://localhost:8766/
 ```
 
 ---
 
-## Key Results
+## What the bundle contains
 
+- Source code, docs, tests, Compose assets, dashboard assets, and processed data needed for local reruns.
+- The selected logistic model artifact plus baseline artifacts under `models/artifacts/`.
+- Week 5 to Week 7 operational docs, including the runbook, SLOs, release checklist, and drift summary.
+- The bundle intentionally excludes the legacy `w4_deliverable/` snapshot and other transient local-only folders.
+
+## Key Results
 
 | Model                   | PR-AUC     | F1         |
 | ----------------------- | ---------- | ---------- |
@@ -77,3 +89,9 @@ open dashboard/index.html
 
 Session: Coinbase Advanced Trade · BTC-USD + ETH-USD · 2026-04-01T02:33–03:25 UTC (≈ 52.7 min)
 Data: 37,435 live ticks → 6,316 usable 1-second feature bars
+
+## Validation Notes
+
+- Week 5 load test: `100 / 100` requests succeeded.
+- Current HTTP request latency is still `p95 = 117.78 ms` under the 100-request burst scenario, so performance tuning remains a known follow-up rather than a solved claim.
+- `docker/compose.yaml` is the only compose path used by the final docs and run instructions.

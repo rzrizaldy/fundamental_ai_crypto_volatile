@@ -3,6 +3,8 @@
 > **Scope:** the Week 4 FastAPI service in [service/replay_api.py](../../service/replay_api.py). Paired with [slo.md](slo.md).
 >
 > **Audience:** whoever is on-call for the demo. Follow these steps before escalating.
+>
+> **Short-form Docker summary:** see [docker_runbook_snippet.md](docker_runbook_snippet.md) for the compact Compose-oriented version.
 
 ---
 
@@ -17,6 +19,15 @@ Follow this sequence when bringing the service up from a clean host.
 - `config.yaml` unchanged (authoritative paths for model artifact and replay source).
 
 ### 1.2 Bring up infra
+
+Fastest path from repo root:
+
+```bash
+make up
+make ps
+```
+
+Equivalent raw Docker commands:
 
 ```bash
 docker compose -f docker/compose.yaml up -d
@@ -67,6 +78,8 @@ This is the gate for declaring the service "up." If it exits 0, we are healthy.
 Bring up the Prometheus + Grafana profile to watch the API during the demo:
 
 ```bash
+make obs
+# or:
 docker compose -f docker/compose.yaml --profile observability up -d
 ```
 
@@ -205,7 +218,7 @@ startup on purpose.
 
 ### 3.1 Identify the last-green reference
 
-- This clone currently does **not** carry a `Selected-base` git tag in Git metadata, even though that designation is used in the docs and config.
+- `Selected-base` is the model designation used in docs and config; it is **not** the current git tag.
 - Until Week 7 release tagging lands, use the last known-good commit SHA or merged PR commit recorded in [docs/status/pr_review_status.md](../status/pr_review_status.md).
 - Later weeks should use a real release tag or demo commit SHA once the team starts cutting them.
 

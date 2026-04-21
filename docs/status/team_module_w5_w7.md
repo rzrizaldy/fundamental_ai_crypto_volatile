@@ -1,6 +1,6 @@
 # Updated Technical Team Module
 
-Week 4 thin slice is already done, so from here the team should focus only on the remaining Week 5 to Week 7 work.
+Week 4 thin slice is complete. This file tracks the current Week 5 to Week 7 repo state so the final submission work is grounded in what already exists, not the earlier Week 4 package.
 
 ## Current Split
 
@@ -9,20 +9,25 @@ Week 4 thin slice is already done, so from here the team should focus only on th
 - Afif: Week 5 load test with 100 burst requests plus latency report; then QA/docs support and help on drift reporting.
 - Rizaldy: Week 6 Evidently drift report plus `docs/drift_summary.md`; then Week 7 final repo cleanup and tagged release.
 
-## Current Repo Gaps
+## Current Repo State
 
-- No `docs/drift_summary.md` yet.
-- No Prometheus/Grafana artifacts yet.
-- No backend 5xx/request-failure counter yet.
-- The 100-request burst load test now succeeds, but HTTP request latency p95 is still `117.78 ms`, so backend/performance follow-up is still needed.
-- No Week 7 release tag / release checklist yet.
+- `docs/drift_summary.md` exists and links to the shipped Evidently artifacts.
+- Prometheus and Grafana assets exist under `docker/prometheus/` and `docker/grafana/`.
+- The backend exposes a real 5xx request-error counter via `crypto_api_request_errors_total` in `service/replay_api.py`.
+- The Week 5 burst load test succeeds `100 / 100`, but HTTP request latency still lands at `p95 = 117.78 ms`, so performance follow-up remains open.
+
+## Remaining Gaps Before Final Submission
+
+- No real Week 7 release tag exists yet.
+- The final release checklist still needs to be executed against the installed environment.
+- The submission archive needs to be rebuilt from the current repo state instead of the old Week 4 snapshot.
 
 ## Local Integration Note
 
 - PR #2 adds the Week 5 burst load-test script and latency report scaffold.
 - PR #3 adds the GitHub Actions CI workflow, dev requirements, and PR template.
 - PR #4 adds the Week 6 SLO and runbook docs.
-- Smoke and demo launch scripts were stale against the current API contract and were fixed locally on the integration branch.
+- Smoke and demo launch scripts were stale against the current API contract and were fixed locally.
 
 ## Working Rules
 
