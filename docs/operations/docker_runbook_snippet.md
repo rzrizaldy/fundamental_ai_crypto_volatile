@@ -9,7 +9,7 @@ In Docker terms, a runbook is the operator cheat sheet for the Compose stack. It
 ~~~md
 ## Docker service runbook
 
-Use the repo-root `compose.yaml` as the operator entrypoint. It includes `docker/compose.yaml`.
+Use the repo-root `docker-compose.yaml` as the operator entrypoint. It includes `docker/compose.yaml`.
 
 ### Bring the stack up
 

@@ -22,7 +22,7 @@ copy_paths=(
   "CONTRIBUTING.md"
   "Makefile"
   "README.md"
-  "compose.yaml"
+  "docker-compose.yaml"
   "config.yaml"
   "dashboard"
   "data/processed"

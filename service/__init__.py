@@ -1,1 +1,1 @@
-"""Week 4 API thin-slice service package."""
+"""Replay API service package for the final project stack."""

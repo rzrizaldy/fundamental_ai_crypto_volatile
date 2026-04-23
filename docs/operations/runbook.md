@@ -1,6 +1,6 @@
-# Runbook — Crypto Volatility Replay API
+# Runbook — Crypto Volatility Service
 
-> **Scope:** the Week 4 FastAPI service in [service/replay_api.py](../../service/replay_api.py). Paired with [slo.md](slo.md).
+> **Scope:** the final replay-mode service centered on [service/replay_api.py](../../service/replay_api.py) and the repo-root Docker Compose workflow. Paired with [slo.md](slo.md).
 >
 > **Audience:** whoever is on-call for the demo. Follow these steps before escalating.
 >
@@ -17,7 +17,7 @@ Follow this sequence when bringing the service up from a clean host.
 - Python 3.12 venv with `requirements.txt` installed.
 - Docker Desktop running (for Kafka + MLflow).
 - `config.yaml` unchanged (authoritative paths for model artifact and replay source).
-- Repo-root `compose.yaml` present; it includes `docker/compose.yaml` so plain `docker compose ...` works from the root directory.
+- Repo-root `docker-compose.yaml` present; it includes `docker/compose.yaml` so plain `docker compose ...` works from the root directory.
 
 ### 1.2 Bring up infra
 
@@ -31,23 +31,23 @@ make ps
 Equivalent raw Docker commands:
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 docker compose ps
 ```
 
 All services should show `Up` / `healthy`.
-The default stack includes `ingestor`; it is not a manual post-start step.
+The default stack includes `api`, `dashboard`, and `ingestor`; none of them are manual post-start steps.
 
-### 1.3 Start the API
+### 1.3 Standard operating mode
+
+This runbook is **Docker-first**. After section 1.2, the API is already running in the `api` container on port `8000`.
+
+Do **not** start `python scripts/run_w4_api.py` on the host as part of the normal runbook flow after `docker compose up`, or you risk port conflicts and mixed observability.
+
+Use the host-run path only for local code debugging outside the standard Compose flow. The script name is legacy (`run_w4_api.py`) and is retained only as a compatibility entrypoint:
 
 ```bash
 python scripts/run_w4_api.py
-```
-
-Expected log line:
-
-```
-Uvicorn running on http://0.0.0.0:8000
 ```
 
 ### 1.4 Verify endpoints
@@ -64,12 +64,14 @@ curl -s -X POST http://localhost:8000/predict \
 Healthy output from `/health`:
 
 ```json
-{"status":"ok","service":"crypto-volatility-w4-api","version":"0.1.0","model_loaded":true,"replay_rows":<int>,"replay_cursor":0}
+{"status":"ok","service":"crypto-volatility-api","version":"0.1.0","model_loaded":true,"model_variant":"ml","replay_rows":<int>,"replay_cursor":0}
 ```
 
 ### 1.5 Full smoke test
 
 ```bash
+make smoke
+# or:
 python scripts/replay_api_smoke.py --persist-slice
 ```
 
@@ -184,19 +186,23 @@ Before reverting code, try the variant toggle — it is a one-environment-variab
 mitigation that keeps the API contract identical but swaps the scoring engine
 to the stable z-score baseline (see [`models/artifacts/baseline.json`](../../models/artifacts/baseline.json)).
 
-Local run:
+Local host-run debug path using the legacy-named compatibility script:
 
 ```bash
 MODEL_VARIANT=baseline python scripts/run_w4_api.py
 ```
 
+Use that only when you are intentionally running the API outside Compose.
+
 Docker Compose:
 
 ```bash
-MODEL_VARIANT=baseline docker compose up -d api
+MODEL_VARIANT=baseline docker compose up -d --build api
 ```
 
-Or set it persistently in the `api` service under `docker/compose.yaml`:
+This works because the `api` service reads `MODEL_VARIANT` from Compose environment interpolation.
+
+Or set it persistently in the `api` service under `docker/compose.yaml` if the baseline should remain active across restarts:
 
 ```yaml
 api:
@@ -229,11 +235,11 @@ startup on purpose.
 ```bash
 git fetch --all --tags
 git checkout <last-green-tag-or-sha>
-python scripts/run_w4_api.py
-python scripts/replay_api_smoke.py --persist-slice
+docker compose up -d --build api dashboard ingestor
+make smoke
 ```
 
-If the smoke test passes on the rolled-back version, the bad change is confirmed. Open an issue, revert the offending commit on a new branch (`ridho/revert-<topic>`), and open a PR.
+If the smoke test passes after the rebuilt containers come up, the bad change is confirmed. Open an issue, revert the offending commit on a new branch (`ridho/revert-<topic>`), and open a PR.
 
 ### 3.3 Do not force-push to `main`
 
@@ -241,18 +247,17 @@ Per [CONTRIBUTING.md](../../CONTRIBUTING.md) the main branch is protected. Alway
 
 ---
 
-## 4. Escalation and ownership
+## 4. Escalation
 
-Roles below come from [docs/team_charter.md](../team_charter.md). Route the incident to the listed owner in Google Chat first; cc the full team for anything that blocks the demo.
+If the fix path above does not restore the service, capture the minimum operator evidence before handing off:
 
-| Symptom area | Primary owner | Backup |
-|---|---|---|
-| API request/response regression, FastAPI crashes | Jiho Hong (backend lead) | Rizaldy Utomo |
-| Docker Compose, Kafka broker, infrastructure | Ridho Bakti (platform lead) | Jiho Hong |
-| Model bundle, thresholds, drift signals | Rizaldy Utomo (model lead) | Afif Izzatullah |
-| Smoke test failures, `/metrics` gaps, load-test regressions | Afif Izzatullah (QA lead) | Ridho Bakti |
-| CI (GitHub Actions, Black, Ruff) | Ridho Bakti | Afif Izzatullah |
-| SLO burn review | Ridho Bakti | Rizaldy Utomo |
+1. `docker compose ps`
+2. `docker compose logs api --tail 100`
+3. `curl -s http://localhost:8000/version`
+4. `make smoke` output, or the exact failing command and error
+5. The commit SHA or release reference currently checked out
+
+Escalate with those artifacts in the team channel so the next person can continue from a concrete state instead of re-triaging from scratch.
 
 ---
 

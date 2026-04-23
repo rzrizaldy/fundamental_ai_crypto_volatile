@@ -1,7 +1,6 @@
 services:
   kafka:
     image: apache/kafka:3.8.0
-    container_name: crypto-kafka
     restart: unless-stopped
     ports:
       - "9092:9092"
@@ -30,7 +29,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.ingestor
-    container_name: crypto-ingestor
     restart: unless-stopped
     command: ["python", "scripts/ws_ingest.py", "--no-mirror"]
     depends_on:
@@ -44,7 +42,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.dashboard
-    container_name: crypto-dashboard
     restart: unless-stopped
     ports:
       - "8766:8766"
@@ -59,7 +56,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.api
-    container_name: crypto-api
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -67,6 +63,7 @@ services:
       PYTHONUNBUFFERED: "1"
       KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
       MLFLOW_TRACKING_URI: "http://mlflow:5000"
+      MODEL_VARIANT: "${MODEL_VARIANT:-ml}"
     depends_on:
       kafka:
         condition: service_healthy
@@ -75,7 +72,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.mlflow
-    container_name: crypto-mlflow
     restart: unless-stopped
     ports:
       - "5001:5000"
@@ -96,7 +92,6 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.55.0
-    container_name: crypto-prometheus
     restart: unless-stopped
     profiles: ["observability"]
     ports:
@@ -109,7 +104,6 @@ services:
 
   grafana:
     image: grafana/grafana:11.2.0
-    container_name: crypto-grafana
     restart: unless-stopped
     profiles: ["observability"]
     ports:

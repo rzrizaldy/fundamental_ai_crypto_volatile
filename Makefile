@@ -5,7 +5,7 @@ COMPOSE := docker compose
 
 help:
 	@printf "Targets:\n"
-	@printf "  make up        # build and start core services from compose.yaml\n"
+	@printf "  make up        # build and start core services from docker-compose.yaml\n"
 	@printf "  make obs       # start observability profile (Prometheus + Grafana)\n"
 	@printf "  make ps        # show compose service status\n"
 	@printf "  make logs      # tail compose logs\n"

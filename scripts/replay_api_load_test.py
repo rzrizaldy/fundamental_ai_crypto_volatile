@@ -1,8 +1,10 @@
 """Week 5 burst load test: 100 concurrent POST /predict requests and a latency report.
 
 Uses manual ``rows`` scoring so requests do not contend on the replay cursor lock.
-Requires the Week 4 API (``python scripts/run_w4_api.py``) and processed features
-(see ``python scripts/replay_api_smoke.py --persist-slice``).
+Requires the packaged replay API service and processed features
+(see ``python scripts/replay_api_smoke.py --persist-slice``). The normal
+startup path is ``docker compose up -d --build``; ``python scripts/run_w4_api.py``
+is retained only as a legacy local entrypoint.
 """
 
 from __future__ import annotations
@@ -161,7 +163,7 @@ def _write_report(
 Regenerate this file:
 
 ```bash
-python scripts/run_w4_api.py   # in another terminal
+docker compose up -d --build
 python scripts/replay_api_load_test.py --write-report reports/w5_load_test_latency.md
 ```
 
@@ -181,7 +183,10 @@ def main() -> None:
         _http_json(f"{base_url}/health", timeout=min(10.0, args.timeout))
     except error.URLError as exc:
         raise SystemExit(
-            f"Could not reach the API at {base_url}. Start it with `python scripts/run_w4_api.py`. ({exc})"
+            "Could not reach the API at "
+            f"{base_url}. Start the stack with `docker compose up -d --build`, "
+            "or use the legacy local entrypoint `python scripts/run_w4_api.py`. "
+            f"({exc})"
         ) from exc
 
     row = _sample_row()

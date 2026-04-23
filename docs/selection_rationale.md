@@ -7,7 +7,7 @@
 **Selected artifact:** logistic regression pipeline stored at `models/artifacts/logistic_model.joblib`
 
 ## Why This Model Was Chosen
-The Week 4 brief asks for a system prototype first, not a model bake-off. The repo already has a trained logistic regression artifact with verified offline evaluation, known thresholding behavior, and a clean inference path. That makes it the best base model for the team thin slice.
+This document records the model-selection decision that carried through to the final submission. The repo already has a trained logistic regression artifact with verified offline evaluation, known thresholding behavior, and a clean inference path. That makes it the best base model for the shipped replay service.
 
 ## Evidence From The Current Repo
 
@@ -19,12 +19,12 @@ The Week 4 brief asks for a system prototype first, not a model bake-off. The re
 These values come from `models/artifacts/metrics_summary.json` and are documented in the current handoff.
 
 ## Why Not Composite Yet
-A composite model could be reasonable later, but Week 4 is the wrong time to add that complexity. The immediate objective is to prove the end-to-end service path:
+A composite model could be reasonable later, but it would add integration risk without changing the current deliverable. The immediate objective is to keep the end-to-end service path stable:
 - replay data loading
 - FastAPI inference
 - versioned model access
 - metrics exposure
-- thin-slice monitoring hooks
+- monitoring hooks
 
 Adding a composite layer now would increase integration risk without improving the core service demo.
 
@@ -40,7 +40,7 @@ Adding a composite layer now would increase integration risk without improving t
 - The training session is relatively short and regime-specific.
 - The current threshold uses the 75th percentile label rule, not the original 90th percentile target.
 
-## Recommendation For Week 5+
+## Recommendation For Future Iteration
 - Keep the logistic artifact as the baseline service model.
 - Revisit composite options only after the live API, Prometheus, and Grafana stack is stable.
 - If the team later wants a composite, compare it against this selected-base artifact rather than replacing it blindly.

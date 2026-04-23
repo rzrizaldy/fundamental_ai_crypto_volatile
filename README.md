@@ -5,6 +5,13 @@ Real-time crypto volatility detection for `BTC-USD` and `ETH-USD`: Coinbase mark
 **Course:** Fundamentals of Operationalizing AI, Carnegie Mellon University  
 **Team:** Team 3 — Rizaldy Utomo, Ridho Bakti, Jiho Hong, Afif Izzatullah
 
+## Submission Summary
+
+- Submit the tagged GitHub release with source code, Compose files, and docs.
+- Root-level Compose entrypoint is `docker-compose.yaml`, which delegates to `docker/compose.yaml`.
+- README quick start below is intentionally short and matches the submission brief.
+- Demo video link will be added to the release later.
+
 ## Live Links
 
 | Link | Description |
@@ -16,35 +23,22 @@ Real-time crypto volatility detection for `BTC-USD` and `ETH-USD`: Coinbase mark
 ## What This Repo Contains
 
 - A replayable crypto-volatility pipeline built on real Coinbase data.
-- A Week 4 thin-slice API with `/health`, `/predict`, `/version`, and `/metrics`.
+- A replay-mode FastAPI service with `/health`, `/predict`, `/version`, and `/metrics`.
 - Week 5/6 team deliverables including CI, load testing, SLO/runbook docs, and PR status tracking.
 
-## Local Setup
+## Quick Start
 
 ```bash
-brew install python@3.12 pandoc tectonic
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt -r requirements-dev.txt
-cp .env.example .env
+docker compose up -d
+curl http://localhost:8000/health
+curl -X POST http://localhost:8000/predict \
+  -H 'Content-Type: application/json' \
+  -d '{"replay_count": 5, "replay_start_index": 0}'
 ```
 
-## Fast Start
+The repo-root `docker-compose.yaml` is a thin wrapper over `docker/compose.yaml`, so plain `docker compose ...` works from the root directory.
 
-The easiest Compose entrypoint is the repo-root `compose.yaml`, which includes `docker/compose.yaml`.
-
-Fastest path from repo root:
-
-```bash
-make up
-make ps
-```
-
-Equivalent raw Docker command:
-
-```bash
-docker compose up -d --build
-```
+## Local Validation
 
 Optional — bring up the Prometheus + Grafana observability profile (scrapes the API's `/metrics`):
 
@@ -56,12 +50,7 @@ docker compose --profile observability up -d
 
 - Prometheus: `http://localhost:9090`
 - Grafana: `http://localhost:3000` (anonymous Viewer; admin login `admin` / `admin`) — the **Crypto Volatility API** dashboard is provisioned automatically.
-
-Run the API locally:
-
-```bash
-python scripts/run_w4_api.py
-```
+- The default Compose stack already starts `api`, `dashboard`, and `ingestor`.
 
 Verify the core endpoints:
 
@@ -101,10 +90,8 @@ docker compose logs ingestor --tail 100
 Launch the live dashboard:
 
 ```bash
-python scripts/dashboard_server.py
+open http://localhost:8766/
 ```
-
-Then open `http://localhost:8766/`.
 
 To launch the API and dashboard together for a local demo:
 
@@ -140,7 +127,7 @@ python scripts/run_demo_stack.py
 
 ## Important Docs
 
-- `docs/team_charter.md` — ownership and weekly split
+- `docs/team_charter.md` — team charter, historical split, and working agreements
 - `docs/selection_rationale.md` — why the logistic model is the selected base
 - `docs/system_diagram.md` — architecture overview
 - `docs/operations/runbook.md` — startup, rollback, incident response
@@ -149,7 +136,7 @@ python scripts/run_demo_stack.py
 - `docs/operations/docker_runbook_snippet.md` — short Docker-oriented runbook snippet
 - `docs/drift_summary.md` — Week 6 train-vs-test drift summary (decision + monitoring triggers)
 - `docs/status/pr_review_status.md` — what has been merged, validated, and what is still pending
-- `docs/status/team_module_w5_w7.md` — current team work split after Week 4
+- `docs/status/team_module_w5_w7.md` — current Week 5-7 delivery status and repo truth
 
 ## Developer Checks
 
@@ -162,7 +149,8 @@ python scripts/run_demo_stack.py
 ## Notes
 
 - Public Coinbase market-data access only; no private exchange credentials required.
-- `docker compose up -d --build` now brings up `kafka`, `ingestor`, `dashboard`, `api`, and `mlflow` from the root `compose.yaml` wrapper.
+- `docker compose up -d` brings up `kafka`, `ingestor`, `dashboard`, `api`, and `mlflow` from the root `docker-compose.yaml` wrapper.
 - The dashboard has both static-export and live-SSE modes.
 - The model predicts short-horizon turbulence probability, not price direction.
 - The price-scenario compass is a heuristic UI layer, not a trained directional model.
+- Latest live rerun on 2026-04-23 succeeded `100 / 100` requests with HTTP request latency `p95 = 209.90 ms`.

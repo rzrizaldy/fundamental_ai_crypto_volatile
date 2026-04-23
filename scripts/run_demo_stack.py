@@ -21,7 +21,7 @@ API_HEALTH_URL = f"http://localhost:{API_PORT}/health"
 
 SERVICES = (
     (
-        "week4_api",
+        "replay_api",
         [sys.executable, str(REPO_ROOT / "scripts/run_w4_api.py")],
         API_HEALTH_URL,
     ),
@@ -69,7 +69,7 @@ def main() -> None:
 
     print("\nLive endpoints:")
     print("  - Dashboard: http://localhost:8766/")
-    print(f"  - Week 4 API: {API_HEALTH_URL}")
+    print(f"  - Replay API: {API_HEALTH_URL}")
     print("\nPress Ctrl+C to stop any processes started by this launcher.")
 
     try:

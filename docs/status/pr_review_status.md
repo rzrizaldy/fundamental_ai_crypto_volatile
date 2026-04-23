@@ -6,7 +6,7 @@ This file tracks the Week 5 and Week 6 work that landed in the current repo stat
 
 | PR | Owner | Scope | Local status | What works | Follow-up / pending |
 |---|---|---|---|---|---|
-| #2 | Afif | Week 5 load test | Integrated locally and executed | Adds `scripts/replay_api_load_test.py` and `reports/w5_load_test_latency.md`. Uses manual `rows` scoring, so it avoids replay-cursor contention and is suitable for burst latency checks. The local run succeeded `100 / 100` with request-latency `p95 = 117.78 ms`. | Request latency under 100 concurrent calls is still high enough to justify backend/perf follow-up, even though all requests succeeded. |
+| #2 | Afif | Week 5 load test | Integrated locally and executed | Adds `scripts/replay_api_load_test.py` and `reports/w5_load_test_latency.md`. Uses manual `rows` scoring, so it avoids replay-cursor contention and is suitable for burst latency checks. The latest local rerun on 2026-04-23 succeeded `100 / 100` with request-latency `p95 = 209.90 ms`. | Request latency under 100 concurrent calls is still high enough to justify backend/perf follow-up, even though all requests succeeded. |
 | #3 | Ridho | Week 5 CI + linting | Integrated locally | Adds `.github/workflows/ci.yml`, `pyproject.toml`, `requirements-dev.txt`, and a PR template. This gives the repo a real CI starting point. | CI still has narrow lint scope by design, and local dev tools must be installed before Black/Ruff can be run here. |
 | #4 | Ridho | Week 6 SLO + runbook docs | Integrated locally with fixes | Adds docs index plus solid first-pass ops docs for SLOs and incident response. | Final polish still needs the release checklist, package rebuild, and final validation pass. |
 
@@ -28,6 +28,16 @@ This file tracks the Week 5 and Week 6 work that landed in the current repo stat
 - Prometheus metrics after the run showed `crypto_api_model_loaded 1.0` and all observed `crypto_api_inference_seconds` samples inside the `<= 0.005 s` bucket.
 - The burst test's HTTP request latency was still materially higher than raw inference time: `p50 = 74.45 ms`, `p95 = 117.78 ms`, `p99 = 122.21 ms`.
 
+## Validation Run On 2026-04-23
+
+- `docker compose up -d` from repo root succeeded after removing hardcoded Compose `container_name` collisions.
+- `curl http://localhost:8000/health` returned `200` with `service=crypto-volatility-api` and `model_loaded=true`.
+- `curl http://localhost:8766/status` returned `200` with `ws_connected=true`.
+- `make smoke` passed and scored all `1200` replay rows.
+- `make obs` brought up Prometheus and Grafana successfully.
+- `make loadtest` passed with `100 / 100` requests succeeding.
+- The latest burst test measured `p50 = 123.46 ms`, `p95 = 209.90 ms`, `p99 = 212.12 ms`.
+
 ## Current Repo Truth
 
 - Kafka reconnect, retry, and graceful-shutdown helpers are present in `pipeline/kafka_resilience.py` and used by `scripts/ws_ingest.py`.
@@ -39,7 +49,6 @@ This file tracks the Week 5 and Week 6 work that landed in the current repo stat
 
 - The final release checklist still needs to be executed from the installed environment.
 - A real Week 7 release tag and last-known-good release reference still need to be created.
-- `submission/fundamental_ai_crypto_volatile.zip` still needs to be rebuilt from the current repo state.
 - Submission-facing docs must stay aligned with the rebuilt archive contents.
 
 ## Recommended Next Order

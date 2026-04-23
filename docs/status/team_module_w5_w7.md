@@ -1,6 +1,6 @@
-# Updated Technical Team Module
+# Updated Technical Delivery Module
 
-Week 4 thin slice is complete. This file tracks the current Week 5 to Week 7 repo state so the final submission work is grounded in what already exists, not the earlier Week 4 package.
+The core service path is complete. This file tracks the current Week 5 to Week 7 repo state so the final submission work stays grounded in what already exists in the repo.
 
 ## Current Split
 
@@ -14,13 +14,13 @@ Week 4 thin slice is complete. This file tracks the current Week 5 to Week 7 rep
 - `docs/drift_summary.md` exists and links to the shipped Evidently artifacts.
 - Prometheus and Grafana assets exist under `docker/prometheus/` and `docker/grafana/`.
 - The backend exposes a real 5xx request-error counter via `crypto_api_request_errors_total` in `service/replay_api.py`.
-- The Week 5 burst load test succeeds `100 / 100`, but HTTP request latency still lands at `p95 = 117.78 ms`, so performance follow-up remains open.
+- The Week 5 burst load test still succeeds `100 / 100`, but the latest live rerun on 2026-04-23 lands at `p95 = 209.90 ms`, so performance follow-up remains open.
 
 ## Remaining Gaps Before Final Submission
 
 - No real Week 7 release tag exists yet.
 - The final release checklist still needs to be executed against the installed environment.
-- The submission archive needs to be rebuilt from the current repo state instead of the old Week 4 snapshot.
+- The final release reference still needs to be recorded after the checklist run is green.
 
 ## Local Integration Note
 

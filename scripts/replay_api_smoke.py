@@ -15,7 +15,7 @@ from service.replay_api import build_replay_slice
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Replay a 10-minute slice against the Week 4 FastAPI service.")
+    parser = argparse.ArgumentParser(description="Replay a 10-minute slice against the packaged FastAPI service.")
     parser.add_argument("--base-url", default="", help="FastAPI base URL (default: http://localhost:<service.port>).")
     parser.add_argument("--batch-size", type=int, default=120, help="Replay rows to send per request.")
     parser.add_argument(
@@ -72,7 +72,10 @@ def main() -> None:
         version = _http_json(f"{base_url}/version")
     except error.URLError as exc:
         raise SystemExit(
-            f"Could not reach the Week 4 API at {base_url}. Start it with `python scripts/run_w4_api.py`. ({exc})"
+            "Could not reach the API at "
+            f"{base_url}. Start the stack with `docker compose up -d --build`, "
+            "or use the legacy local entrypoint `python scripts/run_w4_api.py`. "
+            f"({exc})"
         ) from exc
 
     if health.get("status") != "ok" or not health.get("model_loaded", False):

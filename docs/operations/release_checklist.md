@@ -10,7 +10,7 @@ Use this checklist before cutting the final submission tag or rebuilding the sub
   - `.venv/bin/pytest`
   - `.venv/bin/ruff`
   - `docker`
-- Keep the repo-root `compose.yaml` as the preferred operator entrypoint; it includes `docker/compose.yaml`.
+- Keep the repo-root `docker-compose.yaml` as the preferred operator entrypoint; it includes `docker/compose.yaml`.
 
 ## 2. Validation
 
@@ -35,7 +35,7 @@ make loadtest
 - Confirm `Selected-base` is described as a model designation unless a real git tag has already been cut.
 - Confirm the final write-up discloses the current burst-load result honestly:
   - `100 / 100` requests succeeded
-  - HTTP request latency `p95 = 117.78 ms`
+  - HTTP request latency `p95 = 209.90 ms`
 
 ## 4. Submission bundle
 

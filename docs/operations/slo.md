@@ -1,16 +1,14 @@
 # Service Level Objectives (SLOs)
 
-> **Scope:** the Week 4 replay-mode FastAPI in [service/replay_api.py](../../service/replay_api.py), exposed on port `8000` via `scripts/run_w4_api.py`. Endpoints in scope: `/health`, `/predict`, `/version`, `/metrics`.
+> **Scope:** the final replay-mode service in [service/replay_api.py](../../service/replay_api.py), exposed on port `8000` through the repo-root Docker Compose flow. Endpoints in scope: `/health`, `/predict`, `/version`, `/metrics`. The legacy local entrypoint `scripts/run_w4_api.py` remains available for debugging, but it is not the primary operating mode.
 >
-> **Owner:** Ridho Bakti (platform / MLOps lead). **Reviewers:** Rizaldy (model), Jiho (backend), Afif (QA).
->
-> **Status:** Week 6 draft grounded in the current single-replica local deployment. The repo now ships the Week 5 load-test report, Prometheus scrape config, Grafana dashboard JSON, and the Week 6 drift summary; targets below remain proposed until the final release pass.
+> **Status:** final submission baseline for the current single-replica local deployment. The repo ships the Week 5 load-test report, Prometheus scrape config, Grafana dashboards, runbook, and drift summary; the targets below are the documented operating contract for the packaged service.
 
 ---
 
 ## 1. Why we need SLOs
 
-The team is moving from a thin slice to a demo-grade service. We need a written contract that answers three operational questions:
+The repo now ships a demo-grade replay service. We need a written contract that answers three operational questions:
 
 1. **Is the service healthy enough to keep serving?** (availability)
 2. **Is it fast enough to be useful to a live dashboard?** (latency)
@@ -53,7 +51,7 @@ Targets are set for a **7-day rolling window** unless noted otherwise. Violating
 
 ### Targets out of scope right now
 
-- **Throughput SLO** — not yet formalized. The local W5 burst run on 2026-04-17 succeeded `100 / 100`, but end-to-end HTTP request latency was `p95 = 117.78 ms` (see `reports/w5_load_test_latency.md`). That result should inform the future throughput SLO, but it does not replace the current inference-histogram SLI.
+- **Throughput SLO** — not yet formalized. The latest local burst rerun on 2026-04-23 succeeded `100 / 100`, but end-to-end HTTP request latency was `p95 = 209.90 ms` (see `reports/w5_load_test_latency.md`). That result should inform the future throughput SLO, but it does not replace the current inference-histogram SLI.
 - **Data-freshness SLO** — the replay slice is a frozen 10-minute window; freshness will become meaningful only when the live Kafka ingest path is re-enabled.
 
 ---
@@ -65,7 +63,7 @@ Targets are set for a **7-day rolling window** unless noted otherwise. Violating
 - **Slow burn alert:** error budget consumed >= **5% in 6 hours**. Open a ticket and investigate within the next working day.
 - When the budget for a 7-day window is fully consumed, freeze non-critical merges and prioritize reliability fixes until the next window resets.
 
-This repo already ships the Prometheus scrape config and Grafana dashboards needed to visualize these SLIs. Alert rules can be added on top of the same stack during the final release pass.
+This repo already ships the Prometheus scrape config and Grafana dashboards needed to visualize these SLIs. Alert rules can be added on top of the same stack later without changing the SLI definitions here.
 
 ---
 
@@ -81,7 +79,6 @@ This repo already ships the Prometheus scrape config and Grafana dashboards need
 
 - [runbook.md](runbook.md) — how to respond when an SLO burns.
 - [service/replay_api.py](../../service/replay_api.py) — authoritative metric names (lines with `Counter(`, `Gauge(`, `Histogram(`).
-- [docs/team_charter.md](../team_charter.md) — role ownership used for incident escalation.
 - [docs/status/team_module_w5_w7.md](../status/team_module_w5_w7.md) — Week 5 / Week 6 task split.
 - [docs/status/pr_review_status.md](../status/pr_review_status.md) — current integration/review status of the peer PRs.
 - [../../docker/prometheus/prometheus.yml](../../docker/prometheus/prometheus.yml) — current Prometheus scrape config.
