@@ -23,7 +23,7 @@ This plan translates the Week 4 interim feedback into a final submission closeou
 
 ## Standardization decisions for the final submission
 
-- Use `docker/compose.yaml` as the only compose path in README, report, submission manifest, and handoff materials.
+- Use the repo-root `compose.yaml` as the operator entrypoint; it includes `docker/compose.yaml`.
 - Treat `Selected-base` as a model designation, not a git tag, until a real Week 7 release tag is created.
 - Use `submission/fundamental_ai_crypto_volatile.zip` as the final archive name and remove the stale Week 4-only archive path from submission-facing docs.
 - Keep one authoritative path for runnable monitoring assets:
@@ -42,7 +42,7 @@ This plan translates the Week 4 interim feedback into a final submission closeou
    - Make `README.md`, `submission/README.md`, and any final report/manifests use the same compose path, package name, and model designation language.
    - Ensure every named script, test, dashboard artifact, and monitoring config actually ships in the final package.
 3. Rebuild the submission archive from current repo truth.
-   - Package the current repo state rather than the old `w4_deliverable/` snapshot.
+  - Package the current repo state rather than the archived `archive/w4_deliverable/` snapshot.
    - Replace `submission/w4_deliverable.zip` with `submission/fundamental_ai_crypto_volatile.zip`.
 4. Add a Week 7 release checklist and execute it.
    - Validate environment setup.
@@ -58,7 +58,7 @@ This plan translates the Week 4 interim feedback into a final submission closeou
 - Run the existing replay smoke flow.
 - Run the existing load-test flow and keep the measured latency numbers in the final writeup.
 - Verify `submission/README.md` matches the exact contents of `submission/`.
-- Verify all submission-facing docs use `docker/compose.yaml`.
+- Verify all submission-facing docs use the repo-root Compose entrypoint consistently.
 - Verify no final doc still says `forthcoming`, `does not exist yet`, or references `submission/w4_deliverable.zip`.
 - Create the Week 7 release tag only after the validation pass is green.
 

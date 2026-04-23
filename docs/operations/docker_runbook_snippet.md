@@ -9,17 +9,18 @@ In Docker terms, a runbook is the operator cheat sheet for the Compose stack. It
 ~~~md
 ## Docker service runbook
 
-Use `docker/compose.yaml` as the single source of truth for the local stack.
+Use the repo-root `compose.yaml` as the operator entrypoint. It includes `docker/compose.yaml`.
 
 ### Bring the stack up
 
 ```bash
-docker compose -f docker/compose.yaml up -d --build
-docker compose -f docker/compose.yaml ps
+docker compose up -d --build
+docker compose ps
 ```
 
 Core services:
 - `kafka` on `localhost:9094` for host-side clients
+- `ingestor` as the default Coinbase-to-Kafka stream worker
 - `api` on `http://localhost:8000`
 - `dashboard` on `http://localhost:8766`
 - `mlflow` on `http://localhost:5001`
@@ -27,7 +28,7 @@ Core services:
 Optional observability profile:
 
 ```bash
-docker compose -f docker/compose.yaml --profile observability up -d
+docker compose --profile observability up -d
 ```
 
 Adds:
@@ -37,7 +38,7 @@ Adds:
 ### Basic operator checks
 
 ```bash
-docker compose -f docker/compose.yaml ps
+docker compose ps
 curl -s http://localhost:8000/health
 curl -s http://localhost:8000/version
 curl -s http://localhost:8000/metrics | head -n 20
@@ -46,16 +47,17 @@ curl -s http://localhost:8000/metrics | head -n 20
 ### Logs and restart
 
 ```bash
-docker compose -f docker/compose.yaml logs api --tail 100
-docker compose -f docker/compose.yaml logs kafka --tail 100
-docker compose -f docker/compose.yaml restart api
-docker compose -f docker/compose.yaml restart kafka
+docker compose logs ingestor --tail 100
+docker compose logs api --tail 100
+docker compose logs kafka --tail 100
+docker compose restart api
+docker compose restart kafka
 ```
 
 ### Shut the stack down
 
 ```bash
-docker compose -f docker/compose.yaml down
+docker compose down
 ```
 ~~~
 

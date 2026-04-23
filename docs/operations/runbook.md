@@ -17,6 +17,7 @@ Follow this sequence when bringing the service up from a clean host.
 - Python 3.12 venv with `requirements.txt` installed.
 - Docker Desktop running (for Kafka + MLflow).
 - `config.yaml` unchanged (authoritative paths for model artifact and replay source).
+- Repo-root `compose.yaml` present; it includes `docker/compose.yaml` so plain `docker compose ...` works from the root directory.
 
 ### 1.2 Bring up infra
 
@@ -30,11 +31,12 @@ make ps
 Equivalent raw Docker commands:
 
 ```bash
-docker compose -f docker/compose.yaml up -d
-docker compose -f docker/compose.yaml ps
+docker compose up -d
+docker compose ps
 ```
 
 All services should show `Up` / `healthy`.
+The default stack includes `ingestor`; it is not a manual post-start step.
 
 ### 1.3 Start the API
 
@@ -80,7 +82,7 @@ Bring up the Prometheus + Grafana profile to watch the API during the demo:
 ```bash
 make obs
 # or:
-docker compose -f docker/compose.yaml --profile observability up -d
+docker compose --profile observability up -d
 ```
 
 - Prometheus scrapes `api:8000/metrics` every 5s (see [../../docker/prometheus/prometheus.yml](../../docker/prometheus/prometheus.yml)).
@@ -135,8 +137,8 @@ Find the symptom, follow the fix. If you hit something not listed, escalate per 
 **Checks:**
 
 ```bash
-docker compose -f docker/compose.yaml ps
-docker compose -f docker/compose.yaml logs kafka --tail 50
+docker compose ps
+docker compose logs kafka --tail 50
 ```
 
 **Host-side bootstrap address:** `localhost:9094` (the EXTERNAL listener, advertised as `localhost:9094` by [../../docker/compose.yaml](../../docker/compose.yaml) and mapped to host port 9094). In-container services keep using `kafka:9092`. The default in [../../config.yaml](../../config.yaml) (`stream.bootstrap_servers`) already points at `localhost:9094`, and both the host scripts and containers honor a `KAFKA_BOOTSTRAP_SERVERS` env override.
@@ -191,7 +193,7 @@ MODEL_VARIANT=baseline python scripts/run_w4_api.py
 Docker Compose:
 
 ```bash
-MODEL_VARIANT=baseline docker compose -f docker/compose.yaml up -d api
+MODEL_VARIANT=baseline docker compose up -d api
 ```
 
 Or set it persistently in the `api` service under `docker/compose.yaml`:

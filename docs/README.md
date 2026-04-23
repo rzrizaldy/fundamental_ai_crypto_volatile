@@ -30,3 +30,4 @@ Single-page map of the project's docs. Keep this updated when you add or rename 
 ## Related top-level files
 - [../CONTRIBUTING.md](../CONTRIBUTING.md) — branch rules, PR process, cross-agent collaboration.
 - [../README.md](../README.md) — project overview and quick start.
+- [../archive/README.md](../archive/README.md) — historical snapshots kept out of the active code path.

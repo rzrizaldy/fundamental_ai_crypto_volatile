@@ -20,7 +20,7 @@ This file tracks the Week 5 and Week 6 work that landed in the current repo stat
 
 ## Validation Run On 2026-04-17
 
-- Docker stack rebuilt and started successfully with `docker compose -f docker/compose.yaml up -d --build`.
+- Docker stack rebuilt and started successfully with `docker compose up -d --build` from repo root.
 - `curl http://localhost:8000/health` returned `200` with `model_loaded=true`.
 - `curl http://localhost:8766/status` returned `200` with `ws_connected=true`.
 - `python scripts/replay_api_smoke.py --persist-slice` passed and scored all `1200` replay rows.

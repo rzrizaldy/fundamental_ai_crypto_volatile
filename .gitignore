@@ -1,8 +1,11 @@
 .DS_Store
+.playwright-mcp/
 .venv/
 __pycache__/
 .pytest_cache/
 *.pyc
+/s*.png
+/slide*.png
 mlruns/
 reports/build/
 dashboard/data/

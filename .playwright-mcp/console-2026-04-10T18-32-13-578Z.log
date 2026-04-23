@@ -1,6 +1,0 @@
-[     375ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8766/favicon.ico:0
-[     388ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://localhost:8000/predict:0
-[     413ms] [LOG] [CVI] SSE connected — live mode active @ http://localhost:8766/app.js?v=20260410-w4-1:1021
-[   13002ms] [LOG] [CVI] SSE disconnected — retrying in 10s @ http://localhost:8766/app.js?v=20260410-w4-1:1038
-[   13059ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://localhost:8000/predict:0
-[   13066ms] [LOG] [CVI] SSE connected — live mode active @ http://localhost:8766/app.js?v=20260410-w4-1:1021

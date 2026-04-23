@@ -22,6 +22,7 @@ copy_paths=(
   "CONTRIBUTING.md"
   "Makefile"
   "README.md"
+  "compose.yaml"
   "config.yaml"
   "dashboard"
   "data/processed"

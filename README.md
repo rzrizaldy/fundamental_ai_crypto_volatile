@@ -31,7 +31,7 @@ cp .env.example .env
 
 ## Fast Start
 
-The authoritative compose file is `docker/compose.yaml`.
+The easiest Compose entrypoint is the repo-root `compose.yaml`, which includes `docker/compose.yaml`.
 
 Fastest path from repo root:
 
@@ -43,7 +43,7 @@ make ps
 Equivalent raw Docker command:
 
 ```bash
-docker compose -f docker/compose.yaml up -d --build
+docker compose up -d --build
 ```
 
 Optional — bring up the Prometheus + Grafana observability profile (scrapes the API's `/metrics`):
@@ -51,7 +51,7 @@ Optional — bring up the Prometheus + Grafana observability profile (scrapes th
 ```bash
 make obs
 # or:
-docker compose -f docker/compose.yaml --profile observability up -d
+docker compose --profile observability up -d
 ```
 
 - Prometheus: `http://localhost:9090`
@@ -90,6 +90,14 @@ make loadtest
 python scripts/replay_api_load_test.py --write-report reports/w5_load_test_latency.md
 ```
 
+Tail ingestor logs when validating the live stream:
+
+```bash
+make logs-ingestor
+# or:
+docker compose logs ingestor --tail 100
+```
+
 Launch the live dashboard:
 
 ```bash
@@ -125,10 +133,10 @@ python scripts/run_demo_stack.py
 - `docs/status/` — PR review log, team module, review screenshots
 - `CONTRIBUTING.md` — branch and PR workflow
 
-### Submission and handoff
+### Submission, handoff, and archive
 - `submission/` — submission bundle and submission-facing README
 - `handoff/` — handoff notes and packaged artifacts
-- `w4_deliverable/` — legacy Week 4 snapshot kept for historical reference only
+- `archive/` — legacy snapshots kept out of the active repo flow
 
 ## Important Docs
 
@@ -154,6 +162,7 @@ python scripts/run_demo_stack.py
 ## Notes
 
 - Public Coinbase market-data access only; no private exchange credentials required.
+- `docker compose up -d --build` now brings up `kafka`, `ingestor`, `dashboard`, `api`, and `mlflow` from the root `compose.yaml` wrapper.
 - The dashboard has both static-export and live-SSE modes.
 - The model predicts short-horizon turbulence probability, not price direction.
 - The price-scenario compass is a heuristic UI layer, not a trained directional model.

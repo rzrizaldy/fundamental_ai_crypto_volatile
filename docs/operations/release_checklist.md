@@ -10,14 +10,14 @@ Use this checklist before cutting the final submission tag or rebuilding the sub
   - `.venv/bin/pytest`
   - `.venv/bin/ruff`
   - `docker`
-- Keep `docker/compose.yaml` as the only compose file used in release-facing docs and commands.
+- Keep the repo-root `compose.yaml` as the preferred operator entrypoint; it includes `docker/compose.yaml`.
 
 ## 2. Validation
 
 ```bash
 .venv/bin/ruff check .
 .venv/bin/pytest -q
-docker compose -f docker/compose.yaml config >/dev/null
+docker compose config >/dev/null
 ```
 
 If Docker is available and the local stack can be started safely, also run:
@@ -30,7 +30,7 @@ make loadtest
 
 ## 3. Documentation alignment
 
-- Confirm `README.md` and `submission/README.md` use `docker/compose.yaml`.
+- Confirm `README.md` and `submission/README.md` use the repo-root Compose entrypoint consistently.
 - Confirm no final doc still uses placeholder status wording for assets that already ship.
 - Confirm `Selected-base` is described as a model designation unless a real git tag has already been cut.
 - Confirm the final write-up discloses the current burst-load result honestly:
@@ -47,7 +47,7 @@ Then verify:
 
 - `submission/fundamental_ai_crypto_volatile.zip` exists.
 - `submission/README.md` matches the actual contents of `submission/`.
-- The rebuilt zip is based on the current repo state, not the legacy `w4_deliverable/` snapshot.
+- The rebuilt zip is based on the current repo state, not the archived `archive/w4_deliverable/` snapshot.
 
 ## 5. Release reference
 

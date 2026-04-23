@@ -32,6 +32,7 @@ services:
       dockerfile: docker/Dockerfile.ingestor
     container_name: crypto-ingestor
     restart: unless-stopped
+    command: ["python", "scripts/ws_ingest.py", "--no-mirror"]
     depends_on:
       kafka:
         condition: service_healthy
