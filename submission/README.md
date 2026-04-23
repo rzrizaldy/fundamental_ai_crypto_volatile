@@ -1,12 +1,12 @@
 # Crypto Volatility Intelligence — Submission
 
-**Author:** Rizaldy Utomo · `rutomo@andrew.cmu.edu`
+**Author:** Afif, Jiho, Ridho, Rizaldy - Group 3  
 **Course:** Fundamentals of Operationalizing AI — Carnegie Mellon University  
 **GitHub:** [https://github.com/rzrizaldy/fundamental_ai_crypto_volatile](https://github.com/rzrizaldy/fundamental_ai_crypto_volatile)
 
-**Live preview (static mode):** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/  
-**Evidently drift report:** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html  
-**Model eval PDF:** https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf
+**Live preview (static mode):** [https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/)  
+**Evidently drift report:** [https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/evidently.html)  
+**Model eval PDF:** [https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf](https://rzrizaldy.github.io/fundamental_ai_crypto_volatile/reports/model_eval.pdf)
 
 > Submission target: a tagged GitHub release containing source code, Compose files, docs, this README, and the demo video link once it is available.
 
@@ -15,12 +15,12 @@
 ## Contents
 
 
-| File | Description |
-| --- | --- |
-| `fundamental_ops_ai_crypto_report_rutomo.pdf` | Combined report: Scoping Brief + Model Evaluation |
-| `genai_appendix.md` | Generative AI usage disclosure |
-| `fundamental_ai_crypto_volatile.zip` | Current repository bundle for reproducibility and local reruns |
-| `README.md` | This file |
+| File                                          | Description                                                    |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| `fundamental_ops_ai_crypto_report_rutomo.pdf` | Combined report: Scoping Brief + Model Evaluation              |
+| `genai_appendix.md`                           | Generative AI usage disclosure                                 |
+| `fundamental_ai_crypto_volatile.zip`          | Current repository bundle for reproducibility and local reruns |
+| `README.md`                                   | This file                                                      |
 
 
 ---
@@ -68,6 +68,7 @@ curl -X POST http://localhost:8000/predict \
 
 ## Key Results
 
+
 | Model                   | PR-AUC     | F1         |
 | ----------------------- | ---------- | ---------- |
 | Baseline z-score        | 0.8257     | 0.7582     |
@@ -82,3 +83,4 @@ Data: 37,435 live ticks → 6,316 usable 1-second feature bars
 - Week 5 load test: `100 / 100` requests succeeded.
 - Latest live rerun on 2026-04-23 measured HTTP request latency `p50 = 123.46 ms`, `p95 = 209.90 ms`, `p99 = 212.12 ms`, so performance tuning remains a known follow-up rather than a solved claim.
 - `docker compose up -d` works from repo root, and the default stack includes the `ingestor` service.
+
